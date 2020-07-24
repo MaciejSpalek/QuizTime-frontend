@@ -1,11 +1,8 @@
 import React from 'react'
-import GlobalStyle from '../theme/GlobalStyle'
-import styled, { ThemeProvider } from 'styled-components'
-import { theme } from '../theme/Theme'
+import styled  from 'styled-components'
 
-const StyledContainer = styled.div`
-    height: 100vh;
-    overflow: hidden;
+const StyledContainer = styled.main`
+    height: 100%;
 `
 
 interface Props {
@@ -14,10 +11,7 @@ interface Props {
 
 const MainTemplate: React.FC<Props> = ({ children }) => (
   <StyledContainer>
-    <GlobalStyle />
-    <ThemeProvider theme={theme}> 
         {children} 
-    </ThemeProvider>
   </StyledContainer>
 );
 

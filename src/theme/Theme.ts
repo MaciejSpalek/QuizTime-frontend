@@ -17,11 +17,8 @@ export const theme = {
         bold: "bold"
     },
     colors: {
-        primaryWhite: 'rgb(255,255,255)',
-        primaryRed: '#FF4643',
-        primaryBlue: '#0B2C3C',
-        primaryBlack: 'rgb(0,0,0)',
-        primaryGray: 'rgb(223, 223, 223)'
+        white: 'rgb(255,255,255)',
+        grayscale: ["#161512", "#393734", "#403E38", "#898989"]
     },
     responsive: {
         xs: '480px',
