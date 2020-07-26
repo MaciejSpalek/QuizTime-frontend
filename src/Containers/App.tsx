@@ -2,9 +2,9 @@ import React from 'react'
 import GlobalTemplate from '../templates/GlobalTemplate'
 import Home from './Home'
 import UnknownPage from './UnknownPage'
-import Navbar from '../Components/organisms/Navbar';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import MainTemplate from '../templates/MainTemplate';
+import Navbar from '../Components/organisms/Navbar/index'
+import MainTemplate from '../templates/MainTemplate'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
 const App = () => {

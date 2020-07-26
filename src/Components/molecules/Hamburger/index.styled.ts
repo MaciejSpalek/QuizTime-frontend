@@ -11,9 +11,7 @@ export const StyledButton = styled.button`
     cursor: pointer;
     display: inline-block;
     background-color: transparent;
-    padding: 10px;
     border-radius: 50%;
-    margin: 0;
 `
 
 export const StyledOuterBox = styled.span`

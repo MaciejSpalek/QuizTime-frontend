@@ -13,12 +13,12 @@ export const theme = {
         xxl: '7rem'
     },
     fontWeights: {
-        normal: 400,
+        light: 400,
         bold: "bold"
     },
     colors: {
         white: 'rgb(255,255,255)',
-        grayscale: ["#161512", "#393734", "#403E38", "#898989"]
+        grayscale: ["#161512", "#393734", "#403E38", "#898989", "#9B9A96", "#A19A94"]
     },
     responsive: {
         xs: '480px',

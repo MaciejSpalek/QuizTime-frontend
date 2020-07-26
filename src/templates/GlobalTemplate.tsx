@@ -9,7 +9,7 @@ const StyledContainer = styled.div`
 `
 
 interface Props {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 const GlobalTemplate: React.FC<Props> = ({ children }) => (
