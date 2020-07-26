@@ -3,17 +3,17 @@ import styled  from 'styled-components'
 
 const StyledContainer = styled.main`
   height: calc(100vh - 60px);
-  overflow: hidden;
+  background-color: ${({theme}) => theme.colors.grayscale[1]};
 `
 
 interface Props {
   children: React.ReactNode;
 }
 
-const MainTemplate: React.FC<Props> = ({ children }) => (
+const QuizesTemplate: React.FC<Props> = ({ children }) => (
   <StyledContainer>
         {children} 
   </StyledContainer>
 );
 
-export default MainTemplate;
+export default QuizesTemplate;

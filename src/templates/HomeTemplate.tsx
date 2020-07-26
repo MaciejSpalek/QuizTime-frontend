@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const StyledContainer = styled.div`
     height: 100%;
+    overflow: hidden;
     background-color: ${({theme}) => theme.colors.grayscale[0]};
 `
 

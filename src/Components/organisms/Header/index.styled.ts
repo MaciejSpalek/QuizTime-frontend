@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import { FlexColumn } from '../../../theme/Mixins'
+import { FlexCenter } from '../../../theme/Mixins'
 
 export const StyledContainer = styled.div`
-    ${FlexColumn};
-    justify-content: center;
+    ${FlexCenter};
+    height: 100%;
     padding: 10px;
 `
