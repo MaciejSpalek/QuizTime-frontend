@@ -3,7 +3,6 @@ import styled  from 'styled-components'
 
 const StyledContainer = styled.main`
   height: calc(100vh - 60px);
-  overflow: hidden;
 `
 
 interface Props {
@@ -12,7 +11,7 @@ interface Props {
 
 const MainTemplate: React.FC<Props> = ({ children }) => (
   <StyledContainer>
-        {children} 
+    {children} 
   </StyledContainer>
 );
 
