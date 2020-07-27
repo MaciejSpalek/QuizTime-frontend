@@ -1,18 +1,13 @@
 import React from 'react'
 import { StyledNavbar } from './index.styled'
 import Hamburger from '../../molecules/Hamburger/index'
-import Image from '../../atoms/Image/index'
-import Logo from '../../../assets/LogoImage.svg'
+import Heading from '../../atoms/Heading'
 
 const Navbar = ()=> {
     return (
         <StyledNavbar>
-            <Image 
-                url={Logo}
-                width={"30px"}
-                height={"30px"}    
-                alt={"Logo"}
-            />
+
+            <Heading />
             <Hamburger />
         </StyledNavbar>
     )

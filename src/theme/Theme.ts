@@ -18,7 +18,7 @@ export const theme = {
     },
     colors: {
         white: 'rgb(255,255,255)',
-        grayscale: ["#161512", "#393734", "#403E38", "#898989", "#9B9A96", "#A19A94"]
+        grayscale: ["#202020", "#393734", "#403E38", "#898989", "#9B9A96", "#A19A94"]
     },
     responsive: {
         xs: '480px',

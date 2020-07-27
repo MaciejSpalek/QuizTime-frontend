@@ -20,4 +20,4 @@ const GlobalTemplate: React.FC<Props> = ({ children }) => (
   </StyledContainer>
 );
 
-export default GlobalTemplate;
+export default GlobalTemplate
