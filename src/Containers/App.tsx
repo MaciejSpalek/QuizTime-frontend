@@ -5,7 +5,7 @@ import UnknownPage from './UnknownPage'
 import Navbar from '../Components/organisms/Navbar/index'
 import MainTemplate from '../templates/MainTemplate'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
+import {routes} from '../routes/index'
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
         <Navbar />
         <MainTemplate>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path={routes.home} component={Home} />
             <Route component={UnknownPage}/>
           </Switch>
         </MainTemplate>
