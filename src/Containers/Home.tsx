@@ -1,11 +1,13 @@
 import React from 'react'
 import HomeTemplate from '../templates/HomeTemplate'
-import Header from '../Components/organisms/Header/index'
+import QuizesWrapper from '../Components/organisms/QuizesWrapper/index'
+import SearchPanel from '../Components/organisms/SearchPanel/index'
 
 const Home = () => {
   return (
     <HomeTemplate>
-      <Header />
+      <SearchPanel />
+      <QuizesWrapper />
     </HomeTemplate>  
   )
 }  

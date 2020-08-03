@@ -4,7 +4,7 @@ import { StyledHeading } from './index.styled'
 const Heading = ()=> {
     return (
         <StyledHeading>
-            QuizPlatform
+            Quizzy
         </StyledHeading>
     )
 }

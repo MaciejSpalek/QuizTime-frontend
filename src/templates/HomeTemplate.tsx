@@ -2,8 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledContainer = styled.div`
-    height: 100%;
-    background-color: ${({theme}) => theme.colors.grayscale[0]};
+  position: relative;
+  top: 0;
+  height: calc(100vh - 60px);
 `
 
 interface Props {
