@@ -5,6 +5,7 @@ import { theme } from '../theme/Theme'
 
 const StyledContainer = styled.div`
   height: 100vh;
+  overflow: hidden;
 `
 
 interface Props {

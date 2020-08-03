@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 export const HamburgerLine = css`
     width: 100%;
     height: 4px;
-    background-color: ${({theme}) => theme.colors.grayscale[3]};
+    background-color: ${({theme}) => theme.colors.green};
     position: absolute;
 `
 

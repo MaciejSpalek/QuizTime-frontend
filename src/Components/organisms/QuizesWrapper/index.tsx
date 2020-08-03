@@ -1,9 +1,13 @@
 import React from 'react'
-import { StyledContainer } from './index.styled'
-
+import { 
+    StyledContainer, 
+ } from './index.styled'
+import QuizesList from '../../molecules/QuizesList/index'
 const QuizesWrapper = ()=> {
     return (
-        <StyledContainer></StyledContainer>
+        <StyledContainer>
+            <QuizesList />
+        </StyledContainer>
     )
 }
 
