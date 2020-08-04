@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyledNavbar } from './index.styled'
 import Hamburger from '../../molecules/Hamburger/index'
-import Heading from '../../atoms/Heading'
+import Logo from '../../atoms/Heading'
+import Menu from '../../molecules/Menu/index'
+
 
 const Navbar = ()=> {
+    const [ isMenuOpened, setMenuStatus ] = useState(false)
+    const handleMenuStatus = (): void => {
+        setMenuStatus(!isMenuOpened)
+    }
+
     return (
         <StyledNavbar>
-
-            <Heading />
-            <Hamburger />
+            <Logo />
+            <Hamburger clickHandler={handleMenuStatus}/>
+            {isMenuOpened ? <Menu /> : null}
         </StyledNavbar>
     )
 }

@@ -20,10 +20,10 @@ const tempQuizes = [
 ]
 
 const QuizesList = ()=> {
-    const [quizes, setQuizes] = useState<Quiz[]>(tempQuizes)
+    const [quizes] = useState<Quiz[]>(tempQuizes)
     return (
         <StyledList>
-            {quizes.map(quizData => <QuizThumbnail quizData={quizData}/>)}
+            {quizes.map(quizData => <QuizThumbnail key={quizData.id} quizData={quizData}/>)}
         </StyledList>
     )
 }

@@ -4,20 +4,23 @@ import { StyledNavLink,  StyledLink } from './index.styled';
 interface Props {
     to: string;
     type: string;
-    text: string;
-    extraStyles?: any
+    text?: string;
+    styles?: any;
+    children?: React.ReactNode;
 }
 
-const Link: React.FC<Props> = ({ type, text, to, extraStyles }) => {
+const Link: React.FC<Props> = ({ type, text, to, styles, children}) => {
   if (type === "NavLink") {
     return (
-        <StyledNavLink to={to} extraStyles={extraStyles}>
-            {text}
+        <StyledNavLink to={to} cssstyles={styles}>
+            {children}
+            {text} 
         </StyledNavLink>
     )
   } else {
     return (
-        <StyledLink to={to} extraStyles={extraStyles}>
+        <StyledLink to={to} cssstyles={styles}>
+            {children}
             {text}
         </StyledLink>
     )
