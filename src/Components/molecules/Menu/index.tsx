@@ -1,10 +1,11 @@
 import React from 'react'
-import {css} from 'styled-components'
+import { css } from 'styled-components'
+import { StyledMenu } from './index.style'
+import { routes } from '../../../routes/index'
 import MenuItem from '../../atoms/Link/index'
 import Image from '../../atoms/Image/index'
 import HomeSVG from '../../../assets/Home.svg'
 import LoginSVG from '../../../assets/Login.svg'
-import { StyledMenu } from './index.style'
 
 const HomeIcon = () => <Image 
     url={HomeSVG}
@@ -16,7 +17,7 @@ const HomeIcon = () => <Image
 
 const LoginIcon = () => <Image 
     url={LoginSVG}
-    alt="Ikona logowania"
+    alt="Login Icon"
     width="40px"
     height="40px"
     margin="0 10px 0 0"
@@ -31,16 +32,16 @@ const Menu = ()=> {
     return (
         <StyledMenu>
             <MenuItem 
-                to="/"
+                to={ routes.home }
                 type="NavLink"
-                text="Główna"
+                text="Home"
                 styles={NavLinkStyles}
                 children={<HomeIcon />}
             />
             <MenuItem 
-                to="/logowanie"
+                to={ routes.login }
                 type="NavLink"
-                text="Logowanie"
+                text="Sign in"
                 styles={NavLinkStyles}
                 children={<LoginIcon />}
             />

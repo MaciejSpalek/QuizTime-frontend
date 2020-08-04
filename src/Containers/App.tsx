@@ -1,11 +1,12 @@
 import React from 'react'
 import GlobalTemplate from '../templates/GlobalTemplate'
 import Home from './Home'
+import LoginPanel from './LoginPanel'
 import UnknownPage from './UnknownPage'
 import Navbar from '../Components/organisms/Navbar/index'
 import MainTemplate from '../templates/MainTemplate'
+import { routes } from '../routes/index'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import {routes} from '../routes/index'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <MainTemplate>
           <Switch>
             <Route exact path={routes.home} component={Home} />
+            <Route exact path={routes.login} component={LoginPanel} />
             <Route component={UnknownPage}/>
           </Switch>
         </MainTemplate>
