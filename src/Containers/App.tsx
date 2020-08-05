@@ -1,7 +1,7 @@
 import React from 'react'
 import GlobalTemplate from '../templates/GlobalTemplate'
 import Home from './Home'
-import LoginPanel from './LoginPanel'
+import LoginPage from './LoginPage'
 import UnknownPage from './UnknownPage'
 import Navbar from '../Components/organisms/Navbar/index'
 import MainTemplate from '../templates/MainTemplate'
@@ -16,7 +16,7 @@ const App = () => {
         <MainTemplate>
           <Switch>
             <Route exact path={routes.home} component={Home} />
-            <Route exact path={routes.login} component={LoginPanel} />
+            <Route exact path={routes.login} component={LoginPage} />
             <Route component={UnknownPage}/>
           </Switch>
         </MainTemplate>
