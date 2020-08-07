@@ -10,14 +10,21 @@ interface Props {
     ariaLabel?: string;
 }
 
-const Input: React.FC<Props> = ({ id, name, type, onChange, placeholder, ariaLabel }) => (
+const Input: React.FC<Props> = ({ 
+  id, 
+  name, 
+  type, 
+  onChange, 
+  ariaLabel,
+  placeholder
+}) => (
   <StyledInput
     id={id}
+    type={type}
     name={name}
     onChange={onChange}
-    type={type}
-    placeholder={placeholder}
     aria-label={ariaLabel}
+    placeholder={placeholder}
   />
 );
 

@@ -8,13 +8,13 @@ import ReadingGlassImage from '../../../assets/ReadingGlass.svg'
 const SearchPanel = ()=> {
     return (
         <StyledContainer>
-            <Label>
-                <Input 
-                    type="search"
-                    placeholder="Szukaj quizu"
-                    ariaLabel="Wyszukiwarka quizów"
-                />
-            </Label>
+            <Label forText="search-input" />
+            <Input 
+                id="search-input"
+                type="search"
+                placeholder="Szukaj quizu"
+                ariaLabel="Wyszukiwarka quizów"
+            />
             <Image 
                 url={ReadingGlassImage}
                 alt="Lupa"
