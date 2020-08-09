@@ -7,7 +7,7 @@ interface Props {
   
 const FormTemplate: React.FC<Props> = ({ children})=> {
     return (
-        <StyledForm>
+        <StyledForm  noValidate autoComplete="off">
             {children}
         </StyledForm>
     )

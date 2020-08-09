@@ -8,7 +8,6 @@ export const StyledInput = styled.input`
   background-color: ${({ theme }) => theme.colors.white};
   border: none;
   border-radius: 5px;
-  /* box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.1); */
   box-shadow: 0px 0px 5px rgba(0, 0, 0, .3);
   transition: box-shadow 0.3s ease-in-out;
   outline: none;

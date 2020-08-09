@@ -7,7 +7,7 @@ export const StyledButton = styled.button`
     min-height: 38px;
     font-size: 1.2em;
     font-weight: ${({ theme }) => theme.fontWeights.bold};  
-    font-size: ${({ theme }) => theme.fontSizes.xs};  
+    font-size: ${({ theme }) => theme.fontSizes.sm};  
     background-color: ${({ theme }) => theme.colors.grayscale[1]};
     border-radius: .2em;
     border: none;

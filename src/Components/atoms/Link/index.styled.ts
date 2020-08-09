@@ -9,6 +9,7 @@ const styles = css`
   font-weight: ${({ theme }) => theme.fontWeights.light};
   color: ${({ theme }) => theme.fontWeights.white};
   text-decoration: none;
+  margin: 10px 0;
   cursor: pointer;
 `
 

@@ -46,11 +46,13 @@ interface Props {
                         text={title}
                         isBold={true}
                         textAlign={"center"}
+                        isMessage={false}
                     />
                     <Paragraph 
                         text={score}
                         isBold={false}
                         textAlign={"center"}
+                        isMessage={false}
                     />
                 </StyledTextWrapper>
             </StyledTopWrapper>
