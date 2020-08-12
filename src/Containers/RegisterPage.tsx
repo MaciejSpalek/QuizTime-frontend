@@ -75,10 +75,13 @@ const RegisterPage: React.FC = () => {
                 validationSchema={validationSchema}
                 onSubmit={(data, { setSubmitting }) => {
                     // make async call
+                    setSubmitting(false)
+                    console.log("coś")
+                    setSubmitting(true)
                 }}>
 
                 {({ values, errors, isSubmitting }) => (
-                    <AuthForm>
+                    <form>
                         <MyTextField 
                             name="nick"
                             label="Nick" 
@@ -100,7 +103,7 @@ const RegisterPage: React.FC = () => {
                             to={routes.login}
                             text="Have you account?"
                         />
-                    </AuthForm>
+                    </form>
                 )}
             </Formik>
         </PageTemplate>

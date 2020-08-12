@@ -5,15 +5,13 @@ type Props = {
     text: string;
     isBold: boolean;
     textAlign: string;
-    isMessage: boolean;
 }
 
 
-const Paragraph: FC<Props> = ({text, isBold, textAlign, isMessage})=> {
+const Paragraph: FC<Props> = ({text, isBold, textAlign})=> {
     return (
         <StyledParagraph 
             isBold={isBold}
-            isMessage={isMessage}
             textAlign={textAlign}>
             {text} 
         </StyledParagraph>
