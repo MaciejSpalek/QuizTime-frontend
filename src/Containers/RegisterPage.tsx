@@ -1,63 +1,34 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import PageTemplate from '../templates/PageTemplate'
 import AuthForm from '../Components/organisms/AuthForm/index'
 import Button from '../Components/atoms/Button/index'
 import Link from '../Components/atoms/Link/index'
+import FormField from '../Components/molecules/FormField/index'
+import Input from '../Components/atoms/Input/index'
+import Label from '../Components/atoms/Label/index'
+import ErrorMessage from '../Components/atoms/ErrorMessage/index'
+import api from '../services/api'
 import { routes } from '../routes/index'
 import * as yup from "yup";
-
 import {
-    Formik,
-    FieldAttributes,
-    useField
+    Formik
 } from "formik";
 
-import {
-    TextField,
-    withStyles
-} from "@material-ui/core";
 
-const CssTextField = withStyles({
-    root: {
-        width: '100%',
-        margin: '10px 0',
-    
-        '& label.Mui-focused': {
-            borderBottomColor: 'green',
-
-        },
-    },
-  })(TextField);
-
-  type MyInputProps = { 
-      label?: string;
-      placeholder?: string; 
-  } & FieldAttributes<{}>
-
-  
-const MyTextField: React.FC<MyInputProps> = ({
-    label,
-    placeholder,
-    ...props
-}) => {
-    const [field, meta] = useField<{}>(props);
-    const errorText = meta.error && meta.touched ? meta.error : "";
-    return (
-        <CssTextField
-            placeholder={placeholder}
-            helperText={errorText}
-            id="standard-basic" 
-            label={label}
-            error={!!errorText}
-            {...field}
-        />    
-    );    
-};    
 
 const validationSchema = yup.object({
-    nick: yup.string().required().min(3).max(20),
-    email: yup.string().required().max(50),
-    password: yup.string().required().max(20)
+    nick: yup.string()
+        .required('Required')
+        .min(5, 'Nick must be at least 5 characters')
+        .max(20, 'Nick can be maximum 20 characters'),
+    email: yup.string()
+        .email('Invalid email')
+        .required('Required'),
+
+    password: yup.string()
+        .min(6, 'Password must be at least 6 characters')
+        .max(24, 'Password can be maximum 24 characters')
+        .required('Required')
 });    
 
 
@@ -74,36 +45,78 @@ const RegisterPage: React.FC = () => {
 
                 validationSchema={validationSchema}
                 onSubmit={(data, { setSubmitting }) => {
-                    // make async call
-                    setSubmitting(false)
-                    console.log("coś")
-                    setSubmitting(true)
+                    console.log(data)
                 }}>
-
-                {({ values, errors, isSubmitting }) => (
-                    <form>
-                        <MyTextField 
-                            name="nick"
-                            label="Nick" 
-                            required
-                        />
-                        <MyTextField 
-                            name="email"
-                            label="Email" 
-                            required
-                        />
-                        <MyTextField 
-                            name="password"
-                            label="Password" 
-                            required
-                        />
+                {({ 
+                    handleSubmit,
+                    handleChange, 
+                    handleBlur,
+                    touched, 
+                    values, 
+                    errors
+                }) => (
+                    <AuthForm handleSubmit={handleSubmit}>
+                        <FormField>
+                            <Label 
+                                text="Nick"
+                                forText="nick"
+                            />
+                            <Input
+                                id="nick" 
+                                type="nick"
+                                name="nick"
+                                value={values.nick}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                isRequired={true}
+                            />
+                            {errors.nick && touched.nick ? (
+                                <ErrorMessage text={errors.nick} />
+                            ) : null}
+                        </FormField>
+                        <FormField>
+                            <Label 
+                                text="Email"
+                                forText="email"
+                            />
+                            <Input
+                                id="email" 
+                                type="email"
+                                name="email"
+                                value={values.email}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                isRequired={true}
+                            />
+                            {errors.email && touched.email ? (
+                                <ErrorMessage text={errors.email} />
+                            ) : null}
+                        </FormField>
+                        <FormField>
+                            <Label 
+                                text="Password"
+                                forText="password"
+                            />
+                            <Input 
+                                id="password"
+                                type="password"
+                                name="password"
+                                value={values.password}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                isRequired={true}
+                            />
+                            {errors.password && touched.password ? (
+                                <ErrorMessage text={errors.password} />
+                            ) : null}
+                        </FormField>
                         <Button text="Register" />
                         <Link 
-                            type="Link"
                             to={routes.login}
-                            text="Have you account?"
+                            type="Link"
+                            text="Create an acconut"
                         />
-                    </form>
+                    </AuthForm>
                 )}
             </Formik>
         </PageTemplate>
