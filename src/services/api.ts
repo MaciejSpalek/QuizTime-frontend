@@ -1,30 +1,32 @@
-const API_URL = 'https://jsonplaceholder.typicode.com/todos/'
+const CORS_URL = 'https://cors-anywhere.herokuapp.com'
+const API_URL = 'https://quizapp-v2.herokuapp.com'
 
-const request = (
+const request = async (
     endpoint: string, 
     method?: string, 
-    data?:any, 
+    data?: any, 
     token?: string
 ) => {
-    const url = `${API_URL}${endpoint}`
+    const url = `${CORS_URL}/${API_URL}${endpoint}`
     const config = {
         method,
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-        }
+            // 'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(data)
     }
 
     // if(method === 'POST') {
     //     config.body = JSON.stringify(data)
     // }
 
-    return fetch(url, config)
-        .then(response => response.json())
+   
+    return await fetch(url, config).then(response => response.json())
 }
 
-const get = async (endpoint:string) => await request(endpoint);
-const post = (endpoint:string, data: any, token: string) : object => request(endpoint, 'POST', data, token);
+const get = (endpoint:string) => request(endpoint);
+const post = (endpoint:string, data: any) => request(endpoint, 'POST', data);
 const put = (endpoint:string, data: any): object => request(endpoint, 'PUT', data);
 const _delete = (endpoint:string): object => request(endpoint);
 

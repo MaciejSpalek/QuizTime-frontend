@@ -8,22 +8,18 @@ import Input from '../Components/atoms/Input/index'
 import Label from '../Components/atoms/Label/index'
 import ErrorMessage from '../Components/atoms/ErrorMessage/index'
 import api from '../services/api'
-import { routes } from '../routes/index'
 import * as yup from "yup";
-import {
-    Formik
-} from "formik";
+import { routes } from '../routes/index'
+import { Formik } from "formik";
+import { setCookie } from '../helpers/cookies'
 
 
 
 const validationSchema = yup.object({
-    nick: yup.string()
+    username: yup.string()
         .required('Required')
-        .min(5, 'Nick must be at least 5 characters')
-        .max(20, 'Nick can be maximum 20 characters'),
-    email: yup.string()
-        .email('Invalid email')
-        .required('Required'),
+        .min(5, 'Username must be at least 5 characters')
+        .max(20, 'Username can be maximum 20 characters'),
 
     password: yup.string()
         .min(6, 'Password must be at least 6 characters')
@@ -33,20 +29,31 @@ const validationSchema = yup.object({
 
 
 const RegisterPage: React.FC = () => {
+    const [ response, setResponse ] = useState<any>([])
+
+    useEffect(()=> {
+        console.log(response)
+    }, [response])
+
     return (
         <PageTemplate>
             <Formik
                 validateOnChange={true}
                 initialValues={{
-                    nick: "",
-                    email: "",
-                    password: "",
+                    username: "",
+                    password: ""
                 }}
 
                 validationSchema={validationSchema}
                 onSubmit={(data, { setSubmitting }) => {
-                    console.log(data)
+                    
+                    api.post('/register', data).then(json => {
+                        setResponse(json)
+                        setCookie("token", json.token)
+                    })      
+                    
                 }}>
+                
                 {({ 
                     handleSubmit,
                     handleChange, 
@@ -58,38 +65,20 @@ const RegisterPage: React.FC = () => {
                     <AuthForm handleSubmit={handleSubmit}>
                         <FormField>
                             <Label 
-                                text="Nick"
-                                forText="nick"
+                                text="Username"
+                                forText="username"
                             />
                             <Input
-                                id="nick" 
-                                type="nick"
-                                name="nick"
-                                value={values.nick}
+                                id="username" 
+                                type="username"
+                                name="username"
+                                value={values.username}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 isRequired={true}
                             />
-                            {errors.nick && touched.nick ? (
-                                <ErrorMessage text={errors.nick} />
-                            ) : null}
-                        </FormField>
-                        <FormField>
-                            <Label 
-                                text="Email"
-                                forText="email"
-                            />
-                            <Input
-                                id="email" 
-                                type="email"
-                                name="email"
-                                value={values.email}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                isRequired={true}
-                            />
-                            {errors.email && touched.email ? (
-                                <ErrorMessage text={errors.email} />
+                            {errors.username && touched.username ? (
+                                <ErrorMessage text={errors.username} />
                             ) : null}
                         </FormField>
                         <FormField>
@@ -114,7 +103,7 @@ const RegisterPage: React.FC = () => {
                         <Link 
                             to={routes.login}
                             type="Link"
-                            text="Create an acconut"
+                            text="Do you have an account ?"
                         />
                     </AuthForm>
                 )}

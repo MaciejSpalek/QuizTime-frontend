@@ -15,46 +15,40 @@ import {
 } from "formik";
 
 const validationSchema = yup.object({
-    email: yup.string()
-        .email('Invalid email')
-        .required('Required'),
+    username: yup.string()
+        .required('Required')
+        .min(5, 'Username must be at least 5 characters')
+        .max(20, 'Username can be maximum 20 characters'),
 
     password: yup.string()
         .min(6, 'Password must be at least 6 characters')
         .max(24, 'Password can be maximum 24 characters')
         .required('Required')
-}) 
-
+});    
 
 
 
 
 const LoginPage: React.FC = () => {
-    // const [ response, setResponse ] = useState([])
+    const [ response, setResponse ] = useState([])
 
-    // const someRequest = async () => {
-    //     await fetch('https://jsonplaceholder.typicode.com/todos/1')
-    //     .then(response => response.json())
-    //     .then(json => setResponse(json))
-    // }
-
-    // useEffect(()=> {
-    //     console.log(response)
-    // }, [response])
+    useEffect(()=> {
+        console.log(response)
+    }, [response])
 
     return (
         <PageTemplate>
             <Formik
                 validateOnChange={true}
                 initialValues={{
-                    email: "",
-                    password: "",
+                    username: "",
+                    password: ""
                 }}
                 validationSchema={validationSchema}
                
 
-                onSubmit={(values, { setSubmitting }) => {
-                    // api.get('1').then(json => setResponse(json))
+                onSubmit={(data, { setSubmitting }) => {
+                    api.post('/authenticate', data).then(json => setResponse(json))
                 }}>
                 {({ 
                     handleSubmit,
@@ -65,22 +59,22 @@ const LoginPage: React.FC = () => {
                     errors
                 }) => (
                     <AuthForm handleSubmit={handleSubmit}>
-                        <FormField>
+                      <FormField>
                             <Label 
-                                text="Email"
-                                forText="email"
+                                text="Username"
+                                forText="username"
                             />
                             <Input
-                                id="email" 
-                                type="email"
-                                name="email"
-                                value={values.email}
+                                id="username" 
+                                type="username"
+                                name="username"
+                                value={values.username}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 isRequired={true}
                             />
-                            {errors.email && touched.email ? (
-                                <ErrorMessage text={errors.email} />
+                            {errors.username && touched.username ? (
+                                <ErrorMessage text={errors.username} />
                             ) : null}
                         </FormField>
                         <FormField>
