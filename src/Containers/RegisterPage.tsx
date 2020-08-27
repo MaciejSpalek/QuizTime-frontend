@@ -11,8 +11,9 @@ import api from '../services/api'
 import * as yup from "yup";
 import { routes } from '../routes/index'
 import { Formik } from "formik";
-import { setCookie } from '../helpers/cookies'
-
+import ErrorHandler from '../helpers/ErrorHandler'
+import { setCookie, showCookie } from '../helpers/cookies'
+import { setIsAuthenticatedState } from '../redux/Actions/sessionActions'
 
 
 const validationSchema = yup.object({
@@ -29,11 +30,16 @@ const validationSchema = yup.object({
 
 
 const RegisterPage: React.FC = () => {
-    const [ response, setResponse ] = useState<any>([])
+    const [ response, setResponse ] = useState<any>(null)
+    const [ requestStatus, setRequestStatus ] = useState<boolean>(true)
+    const [ requestMessage, setRequestMessage ] = useState<string>("")
+    
+    
 
     useEffect(()=> {
-        console.log(response)
-    }, [response])
+        console.log(response, requestStatus, requestMessage)    
+
+    }, [response, requestStatus])
 
     return (
         <PageTemplate>
@@ -47,11 +53,24 @@ const RegisterPage: React.FC = () => {
                 validationSchema={validationSchema}
                 onSubmit={(data, { setSubmitting }) => {
                     
-                    api.post('/register', data).then(json => {
-                        setResponse(json)
-                        setCookie("token", json.token)
-                    })      
-                    
+                    api.post('/register', data)
+                        .then(res => {
+                            if (res.ok) {
+                                setRequestStatus(true)
+                                setRequestMessage("")
+                                return res.json()
+                            } else {
+                                setRequestStatus(false)
+                                setRequestMessage(res.statusText)
+                                throw new Error(res.statusText)
+                            }
+                        }).then(res => {
+                            setResponse(res)
+                        }).catch(error => {
+                            console.error(error)
+                        });
+                        // .then(json => setResponse(json))
+                            // setCookie("token", json.token);
                 }}>
                 
                 {({ 
@@ -77,9 +96,13 @@ const RegisterPage: React.FC = () => {
                                 onBlur={handleBlur}
                                 isRequired={true}
                             />
-                            {errors.username && touched.username ? (
-                                <ErrorMessage text={errors.username} />
-                            ) : null}
+                            <ErrorHandler 
+                                value={values.username}
+                                requestMessage={requestMessage}
+                                requestStatus={requestStatus}
+                                touched={touched}
+                                errors={errors}
+                            />
                         </FormField>
                         <FormField>
                             <Label 
@@ -95,9 +118,11 @@ const RegisterPage: React.FC = () => {
                                 onBlur={handleBlur}
                                 isRequired={true}
                             />
-                            {errors.password && touched.password ? (
-                                <ErrorMessage text={errors.password} />
-                            ) : null}
+                            {/* {errors.password && touched.password ? (
+                                <ErrorMessage text={okRequestStatus ? errors.password : requestMessage} />
+                            ) : null} */}
+
+
                         </FormField>
                         <Button text="Register" />
                         <Link 

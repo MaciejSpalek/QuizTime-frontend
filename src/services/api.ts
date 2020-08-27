@@ -12,7 +12,7 @@ const request = async (
         method,
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization': `Bearer ${token}`,
+            // 'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(data)
     }
@@ -21,18 +21,17 @@ const request = async (
     //     config.body = JSON.stringify(data)
     // }
 
-   
-    return await fetch(url, config).then(response => response.json())
+    return await fetch(url, config).then(res => res)
 }
 
-const get = (endpoint:string) => request(endpoint);
+const get = (endpoint:string, token: string) => request(endpoint, 'GET', {}, token)
 const post = (endpoint:string, data: any) => request(endpoint, 'POST', data);
-const put = (endpoint:string, data: any): object => request(endpoint, 'PUT', data);
-const _delete = (endpoint:string): object => request(endpoint);
+// const put = (endpoint:string, data: any): object => request(endpoint, 'PUT', data);
+// const _delete = (endpoint:string): object => request(endpoint);
 
 export default {
     get,
     post,
-    put,
-    delete: _delete
+    // put,
+    // delete: _delete
 };

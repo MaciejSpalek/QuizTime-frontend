@@ -1,25 +1,18 @@
-import { AUTH_FAILURE, AUTH_SUCCESS } from '../Types/sessionTypes'
+import { SET_IS_AUTHENTICATED } from '../Types/sessionTypes'
 
 export const initialState = {
-    isAuthenticated: false,
-    nick: '',
-    message: {},
+    isAuthenticated: false
   };
 
 export const sessionReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case AUTH_SUCCESS: {
+        case SET_IS_AUTHENTICATED: {
             return {
               ...state,
               isAuthenticated: action.payload.isAuthenticated,
-              nick: action.payload.nick,
             };
           }
-          case AUTH_FAILURE: {
-            return {
-              ...state,
-            };
-          }
+
       default: {
         return state;
       }

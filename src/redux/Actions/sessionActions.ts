@@ -1,11 +1,11 @@
 import {
-  AUTH_FAILURE,
-  AUTH_SUCCESS,
-  AUTH_REQUEST,
+  SET_IS_AUTHENTICATED
 } from "../Types/sessionTypes";
 
-export const authenticate = () => async (dispatch: any) => {
-  dispatch({ type: AUTH_REQUEST });
-  try {
-  } catch (err) {}
+export const setIsAuthenticatedState = (state: boolean) => (dispatch: any) => {
+  dispatch({
+    type: SET_IS_AUTHENTICATED,
+    payload: state
+  })
 };
+

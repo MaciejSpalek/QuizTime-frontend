@@ -35,7 +35,7 @@ const LoginPage: React.FC = () => {
     useEffect(()=> {
         console.log(response)
     }, [response])
-
+    
     return (
         <PageTemplate>
             <Formik
@@ -45,10 +45,10 @@ const LoginPage: React.FC = () => {
                     password: ""
                 }}
                 validationSchema={validationSchema}
-               
-
+                
+                
                 onSubmit={(data, { setSubmitting }) => {
-                    api.post('/authenticate', data).then(json => setResponse(json))
+                    // api.post('/authenticate', data).then(json => setResponse(json))
                 }}>
                 {({ 
                     handleSubmit,
