@@ -12,7 +12,7 @@ import * as yup from "yup";
 import { routes } from '../routes/index'
 import { Formik } from "formik";
 import ErrorHandler from '../helpers/ErrorHandler'
-import { setCookie, showCookie } from '../helpers/cookies'
+import { setCookie, showCookie, fakeToken, getExpireDate } from '../helpers/cookies'
 import { setIsAuthenticatedState } from '../redux/Actions/sessionActions'
 
 
@@ -40,9 +40,15 @@ const RegisterPage: React.FC = () => {
     }
 
     useEffect(()=> {
-        console.log(response, requestStatus, requestMessage)    
-
-    }, [response, requestStatus])
+        // console.log(response, requestStatus, requestMessage)    
+        // console.log(getExpireDate("30"))
+        // console.log(seconds_since_epoch())
+        // document.cookie = "token=`dsahd32dn982n3s23023`; expires=`${}`"
+        // console.log(typeof new Date())
+        // setCookie("token", "dsdasddsadsad2ssad", getExpireDate("30"))
+        // console.log(typeof showCookie("token"))
+        console.log("działa")
+    }, [showCookie("token")])
 
     return (
         <PageTemplate>
@@ -62,6 +68,8 @@ const RegisterPage: React.FC = () => {
                                 setRequestMessage("")
                                 return res.json()
                             } else {
+                                setCookie("token", "dsadsafdsf3joir2ijd32o32oin23");
+                                setCookie("expires", `${new Date()}`);
                                 setRequestStatus(false)
                                 setRequestMessage(res.statusText)
                                 throw new Error(res.statusText)
@@ -72,7 +80,6 @@ const RegisterPage: React.FC = () => {
                             console.error(error)
                         });
                         // .then(json => setResponse(json))
-                            // setCookie("token", json.token);
                 }}>
                 
                 {({ 

@@ -12,25 +12,25 @@ export const showCookie = (name: string): any => {
     }
 }
 
-export const setCookie = (name:string, val: string, days?:string, path?:string, domain?:string, secure?:string): void => {
+export const setCookie = (name: string, val: string, date?: Date, path?: string, domain?: string, secure?: string): void => {
     if (navigator.cookieEnabled) { 
         
         const cookieName = encodeURIComponent(name);
         const cookieVal = encodeURIComponent(val);
         let cookieText = cookieName + "=" + cookieVal;
 
-        if (typeof days === "number") {
-            const data = new Date();
-            data.setTime(data.getTime() + (days * 24*60*60*1000));
-            cookieText += "; expires=" + data.toUTCString();
+        if (typeof date !== "undefined") {
+            cookieText += "; expires=" + date.toUTCString();
         }
 
         if (path) {
             cookieText += "; path=" + path;
         }
+
         if (domain) {
             cookieText += "; domain=" + domain;
         }
+
         if (secure) {
             cookieText += "; secure";
         }
@@ -39,3 +39,23 @@ export const setCookie = (name:string, val: string, days?:string, path?:string, 
     }
 }
 
+
+export const fakeToken = (): object => {
+    return {
+        token: "j32oid32ujd0edwj0932j09j292",
+        tokenLifeTime: 30
+    }
+}
+
+export const getExpireDate = (tokenLifeTime: string): any => {
+    const getSecondsSinceEpoch = (): number => {  
+        const date = new Date(); 
+        return Math.round(date.getTime() / 1000)  
+    } 
+    
+    const tokenLifeTimeConvertedToNumber = parseInt(tokenLifeTime)
+    console.log(new Date((getSecondsSinceEpoch() + tokenLifeTimeConvertedToNumber) * 1000))
+    return new Date((getSecondsSinceEpoch() + tokenLifeTimeConvertedToNumber) * 1000)
+}
+
+  
