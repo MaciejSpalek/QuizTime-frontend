@@ -34,7 +34,10 @@ const RegisterPage: React.FC = () => {
     const [ requestStatus, setRequestStatus ] = useState<boolean>(true)
     const [ requestMessage, setRequestMessage ] = useState<string>("")
     
-    
+    const inputFunctionsHandler = (onFunction: any, e: Event) => {
+        onFunction(e)
+        setRequestStatus(true)
+    }
 
     useEffect(()=> {
         console.log(response, requestStatus, requestMessage)    
@@ -52,7 +55,6 @@ const RegisterPage: React.FC = () => {
 
                 validationSchema={validationSchema}
                 onSubmit={(data, { setSubmitting }) => {
-                    
                     api.post('/register', data)
                         .then(res => {
                             if (res.ok) {
@@ -92,8 +94,8 @@ const RegisterPage: React.FC = () => {
                                 type="username"
                                 name="username"
                                 value={values.username}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
+                                onChange={(e: Event)=> inputFunctionsHandler(handleChange, e)}
+                                onBlur={(e: Event)=> inputFunctionsHandler(handleBlur, e)}
                                 isRequired={true}
                             />
                             <ErrorHandler 
