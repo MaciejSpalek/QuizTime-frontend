@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { useSelector, TypedUseSelectorHook } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { routes } from '../routes'
 import { RootState } from '../redux/store'
 
@@ -11,7 +11,11 @@ interface Props {
 }
 
 const PrivateRoute: React.FC<Props> = ({ component: Component, ...props }): any => {
-    const isAuthenticated = useSelector<RootState>(state => state.session.isAuthenticated);
+    const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
+
+    useEffect(()=> {
+        console.log("PrivateRoute",isAuthenticated)
+    }, [isAuthenticated])
     
     return (
         <Route
@@ -24,5 +28,6 @@ const PrivateRoute: React.FC<Props> = ({ component: Component, ...props }): any 
         />
     )
 }
+
 
 export default PrivateRoute; 

@@ -39,22 +39,18 @@ export const setCookie = (name: string, val: string, date?: Date, path?: string,
     }
 }
 
-
-export const fakeToken = (): object => {
-    return {
-        token: "j32oid32ujd0edwj0932j09j292",
-        tokenLifeTime: 30
-    }
+export const deleteCookie = (name: string): void => {
+    const cookieName = encodeURIComponent(name);
+    document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 }
 
-export const getExpireDate = (tokenLifeTime: string): any => {
+export const getExpireDate = (tokenLifeTime: string): Date => {
     const getSecondsSinceEpoch = (): number => {  
         const date = new Date(); 
         return Math.round(date.getTime() / 1000)  
     } 
     
     const tokenLifeTimeConvertedToNumber = parseInt(tokenLifeTime)
-    console.log(new Date((getSecondsSinceEpoch() + tokenLifeTimeConvertedToNumber) * 1000))
     return new Date((getSecondsSinceEpoch() + tokenLifeTimeConvertedToNumber) * 1000)
 }
 

@@ -7,13 +7,14 @@ import FormField from '../Components/molecules/FormField/index'
 import Input from '../Components/atoms/Input/index'
 import Label from '../Components/atoms/Label/index'
 import ErrorMessage from '../Components/atoms/ErrorMessage/index'
-import api from '../services/api'
-import * as yup from "yup";
-import { routes } from '../routes/index'
-import { Formik } from "formik";
 import ErrorHandler from '../helpers/ErrorHandler'
-import { setCookie, showCookie, fakeToken, getExpireDate } from '../helpers/cookies'
-import { setIsAuthenticatedState } from '../redux/Actions/sessionActions'
+import api from '../services/api'
+import * as yup from "yup"
+import { routes } from '../routes/index'
+import { Formik } from "formik"
+import { setCookie, getExpireDate } from '../helpers/cookies'
+import { register } from '../Auth/requests'
+import { useDispatch } from 'react-redux' 
 
 
 const validationSchema = yup.object({
@@ -33,22 +34,19 @@ const RegisterPage: React.FC = () => {
     const [ response, setResponse ] = useState<any>(null)
     const [ requestStatus, setRequestStatus ] = useState<boolean>(true)
     const [ requestMessage, setRequestMessage ] = useState<string>("")
-    
+    const dispatch = useDispatch()
+
     const inputFunctionsHandler = (onFunction: any, e: Event) => {
         onFunction(e)
         setRequestStatus(true)
     }
 
+    
     useEffect(()=> {
-        // console.log(response, requestStatus, requestMessage)    
-        // console.log(getExpireDate("30"))
-        // console.log(seconds_since_epoch())
-        // document.cookie = "token=`dsahd32dn982n3s23023`; expires=`${}`"
-        // console.log(typeof new Date())
-        // setCookie("token", "dsdasddsadsad2ssad", getExpireDate("30"))
-        // console.log(typeof showCookie("token"))
-        console.log("działa")
-    }, [showCookie("token")])
+        console.log(response)
+    }, [response])
+
+    
 
     return (
         <PageTemplate>
@@ -61,25 +59,7 @@ const RegisterPage: React.FC = () => {
 
                 validationSchema={validationSchema}
                 onSubmit={(data, { setSubmitting }) => {
-                    api.post('/register', data)
-                        .then(res => {
-                            if (res.ok) {
-                                setRequestStatus(true)
-                                setRequestMessage("")
-                                return res.json()
-                            } else {
-                                setCookie("token", "dsadsafdsf3joir2ijd32o32oin23");
-                                setCookie("expires", `${new Date()}`);
-                                setRequestStatus(false)
-                                setRequestMessage(res.statusText)
-                                throw new Error(res.statusText)
-                            }
-                        }).then(res => {
-                            setResponse(res)
-                        }).catch(error => {
-                            console.error(error)
-                        });
-                        // .then(json => setResponse(json))
+                    register(data, dispatch)
                 }}>
                 
                 {({ 
