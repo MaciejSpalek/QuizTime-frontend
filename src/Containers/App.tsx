@@ -10,7 +10,6 @@ import PrivateRoute from '../hoc/PrivateRoute'
 import ProfilePage from './ProfilePage'
 import { routes } from '../routes/index'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { withCookies, Cookies } from 'react-cookie'
 
 const App = () => {
   return (

@@ -44,14 +44,13 @@ export const deleteCookie = (name: string): void => {
     document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 }
 
-export const getExpireDate = (tokenLifeTime: string): Date => {
+export const getExpireDate = (tokenLifeTime: number): Date => {
     const getSecondsSinceEpoch = (): number => {  
         const date = new Date(); 
         return Math.round(date.getTime() / 1000)  
     } 
     
-    const tokenLifeTimeConvertedToNumber = parseInt(tokenLifeTime)
-    return new Date((getSecondsSinceEpoch() + tokenLifeTimeConvertedToNumber) * 1000)
+    return new Date((getSecondsSinceEpoch() + tokenLifeTime) * 1000)
 }
 
   

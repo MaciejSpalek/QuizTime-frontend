@@ -2,15 +2,17 @@ import React from 'react';
 import { StyledInput } from './index.styled';
 
 interface Props {
-    id?: string;
-    name?: string;
-    type: string;
-    value?: string | number;
-    placeholder?: string;
-    onChange?:  any;
-    onBlur?: any;
-    ariaLabel?: string;
-    isRequired?: boolean;
+    id?: string
+    type: string
+    name?: string
+    onBlur?: any
+    onChange?:  any
+    isRequired?: boolean
+    placeholder?: string
+    value?: string | number
+    ariaLabel?: string
+    ariaInvalid?: boolean
+    ariaDescribedBy?: string 
 }
 
 const Input: React.FC<Props> = ({ 
@@ -18,22 +20,26 @@ const Input: React.FC<Props> = ({
   name, 
   type, 
   value,
-  onChange, 
   onBlur,
+  onChange, 
   ariaLabel,
   isRequired,
-  placeholder
+  placeholder,
+  ariaInvalid,
+  ariaDescribedBy
 }) => (
     <StyledInput
       id={id}
-      type={type}
       name={name}
-      onChange={onChange}
-      onBlur={onBlur}
-      aria-label={ariaLabel}
-      required={isRequired}
-      placeholder={placeholder}
+      type={type}
       value={value}
+      onBlur={onBlur}
+      onChange={onChange}
+      required={isRequired}
+      aria-label={ariaLabel}
+      placeholder={placeholder}
+      aria-invalid={ariaInvalid}
+      aria-describedby={ariaDescribedBy}
     />
 );
 

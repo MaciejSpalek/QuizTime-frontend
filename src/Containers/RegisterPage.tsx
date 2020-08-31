@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useEffect } from 'react'
 import PageTemplate from '../templates/PageTemplate'
 import AuthForm from '../Components/organisms/AuthForm/index'
 import Button from '../Components/atoms/Button/index'
@@ -8,13 +8,14 @@ import Input from '../Components/atoms/Input/index'
 import Label from '../Components/atoms/Label/index'
 import ErrorMessage from '../Components/atoms/ErrorMessage/index'
 import ErrorHandler from '../helpers/ErrorHandler'
-import api from '../services/api'
 import * as yup from "yup"
 import { routes } from '../routes/index'
 import { Formik } from "formik"
-import { setCookie, getExpireDate } from '../helpers/cookies'
 import { register } from '../Auth/requests'
-import { useDispatch } from 'react-redux' 
+import { useDispatch, useSelector } from 'react-redux' 
+import { RootState } from '../redux/store'
+import { setRequestStatus } from '../redux/Actions/sessionActions'
+import { isInaccessible } from '@testing-library/react'
 
 
 const validationSchema = yup.object({
@@ -29,24 +30,30 @@ const validationSchema = yup.object({
         .required('Required')
 });    
 
+type Props = { history: any }
 
-const RegisterPage: React.FC = () => {
-    const [ response, setResponse ] = useState<any>(null)
-    const [ requestStatus, setRequestStatus ] = useState<boolean>(true)
-    const [ requestMessage, setRequestMessage ] = useState<string>("")
+const RegisterPage: React.FC<Props> = ({ history }) => {
+    const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
+    const requestMessage = useSelector<RootState, string>(state => state.session.errorMessage)
+    const requestStatus = useSelector<RootState, boolean>(state => state.session.requestStatus)
     const dispatch = useDispatch()
 
-    const inputFunctionsHandler = (onFunction: any, e: Event) => {
-        onFunction(e)
-        setRequestStatus(true)
+    const inputFunctionsHandler = (onHandler: any, e: Event) => {
+        onHandler(e)
+        dispatch(setRequestStatus(true))
     }
-
-    
-    useEffect(()=> {
-        console.log(response)
-    }, [response])
-
-    
+  
+    useEffect(() => {
+        let timeout: number;
+        if (isAuthenticated) {
+            timeout = setTimeout(() => {
+                history.push('/profile')
+            })
+        }
+        return () => {
+            clearTimeout(timeout)
+        }
+    }, [isAuthenticated, history]);
 
     return (
         <PageTemplate>
@@ -58,17 +65,23 @@ const RegisterPage: React.FC = () => {
                 }}
 
                 validationSchema={validationSchema}
-                onSubmit={(data, { setSubmitting }) => {
+                onSubmit={(data, {setSubmitting, resetForm}) => {
                     register(data, dispatch)
+                    setSubmitting(true);
+                    setTimeout(() => {
+                        resetForm()
+                        setSubmitting(false)
+                    }, 2000);
                 }}>
                 
                 {({ 
+                    isSubmitting,
                     handleSubmit,
                     handleChange, 
                     handleBlur,
                     touched, 
                     values, 
-                    errors
+                    errors,
                 }) => (
                     <AuthForm handleSubmit={handleSubmit}>
                         <FormField>
@@ -81,12 +94,15 @@ const RegisterPage: React.FC = () => {
                                 type="username"
                                 name="username"
                                 value={values.username}
+                                ariaInvalid={true}
+                                ariaDescribedBy="err_1"
                                 onChange={(e: Event)=> inputFunctionsHandler(handleChange, e)}
                                 onBlur={(e: Event)=> inputFunctionsHandler(handleBlur, e)}
                                 isRequired={true}
                             />
                             <ErrorHandler 
-                                value={values.username}
+                                id="err_1"
+                                value="username"
                                 requestMessage={requestMessage}
                                 requestStatus={requestStatus}
                                 touched={touched}
@@ -103,17 +119,21 @@ const RegisterPage: React.FC = () => {
                                 type="password"
                                 name="password"
                                 value={values.password}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
+                                ariaInvalid={true}
+                                ariaDescribedBy="err_2"
+                                onChange={(e: Event)=> inputFunctionsHandler(handleChange, e)}
+                                onBlur={(e: Event)=> inputFunctionsHandler(handleBlur, e)}
                                 isRequired={true}
                             />
-                            {/* {errors.password && touched.password ? (
-                                <ErrorMessage text={okRequestStatus ? errors.password : requestMessage} />
-                            ) : null} */}
-
-
+                            {errors.password && touched.password ? (
+                                <ErrorMessage id="err_2" text={errors.password} />
+                            ) : null}
                         </FormField>
-                        <Button text="Register" />
+                        <Button 
+                            type="submit" 
+                            text="Register" 
+                            isDisabled={isSubmitting}
+                        />
                         <Link 
                             to={routes.login}
                             type="Link"

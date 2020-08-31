@@ -2,13 +2,18 @@ import React from 'react';
 import { StyledButton } from './index.styled';
 
 interface Props {
-    text: string;
+    text: string
+    type?: any
+    isDisabled?: boolean
     clickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const Button: React.FC<Props> = ({ text, clickHandler }) => (
-    <StyledButton onClick={clickHandler}>
-        {text}
+const Button: React.FC<Props> = ({ text, clickHandler, type, isDisabled }) => (
+    <StyledButton 
+        onClick={clickHandler} 
+        type={type}
+        disabled={isDisabled}>
+            {text}
     </StyledButton>
 );
 

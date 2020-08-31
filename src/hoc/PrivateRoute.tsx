@@ -14,16 +14,23 @@ const PrivateRoute: React.FC<Props> = ({ component: Component, ...props }): any 
     const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
 
     useEffect(()=> {
-        console.log("PrivateRoute",isAuthenticated)
+        console.log("PrivateRoute", isAuthenticated)
     }, [isAuthenticated])
     
     return (
         <Route
             {...props}
-            render={(props) => (
+            render={props => (
                 isAuthenticated ?
                     <Component {...props} /> :
-                    <Redirect to={routes.login} />
+                    <Redirect 
+                        to={{ 
+                            pathname: `${routes.login}`, 
+                            state: { 
+                                from: props.location.pathname 
+                            } 
+                        }} 
+                    />
             )}
         />
     )

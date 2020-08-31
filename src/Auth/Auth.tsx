@@ -5,21 +5,28 @@ import { useDispatch } from 'react-redux'
 
 const Auth = () => {
     const dispatch = useDispatch()
-    // useEffect(()=> {
-        const interval = setInterval(()=> {
-            const token = showCookie('token')
-            if(!token) {
-                console.log("ustawiam na false")
-                dispatch(authenticate(false))
-                // clearInterval(interval)
-            } 
-            else {
-                console.log("ustawiam na true")
-                dispatch(authenticate(true))
-                // clearInterval(interval)
-            }
+    
+    const setAuthentication = () => {
+        const token = showCookie('token')
+        if(!token) {
+            console.log("Brak autoryzacji")
+            dispatch(authenticate(false))
+        } else {
+            console.log("Zautoryzowano")
+            dispatch(authenticate(true))
+        }
+    }
+
+    useEffect(()=> {
+        setAuthentication()
+    }, [])
+
+    useEffect(()=> {
+        setInterval(()=> {
+            setAuthentication()
         }, 3000)
-    // }, [document.cookie])
+    })
+
     return (<></>)
 }
 

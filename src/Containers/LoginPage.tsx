@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useEffect } from 'react'
 import PageTemplate from '../templates/PageTemplate'
 import AuthForm from '../Components/organisms/AuthForm/index'
 import Button from '../Components/atoms/Button/index'
@@ -7,13 +7,14 @@ import FormField from '../Components/molecules/FormField/index'
 import Input from '../Components/atoms/Input/index'
 import Label from '../Components/atoms/Label/index'
 import ErrorMessage from '../Components/atoms/ErrorMessage/index'
-import api from '../services/api'
-import { routes } from '../routes/index'
+import ErrorHandler from '../helpers/ErrorHandler'
 import * as yup from "yup";
-
-import {
-    Formik
-} from "formik";
+import { routes } from '../routes/index'
+import { useDispatch, useSelector } from 'react-redux' 
+import { RootState } from '../redux/store'
+import { Formik } from "formik";
+import { login } from '../Auth/requests'
+import { setRequestStatus } from '../redux/Actions/sessionActions'
 
 const validationSchema = yup.object({
     username: yup.string()
@@ -28,15 +29,32 @@ const validationSchema = yup.object({
 });    
 
 
+type Props = { history: any }
 
-
-const LoginPage: React.FC = () => {
-    const [ response, setResponse ] = useState([])
-
-    useEffect(()=> {
-        console.log(response)
-    }, [response])
+const LoginPage: React.FC<Props> = ({ history }) => {
+    const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
+    const requestMessage = useSelector<RootState, string>(state => state.session.errorMessage)
+    const requestStatus = useSelector<RootState, boolean>(state => state.session.requestStatus)
     
+    const dispatch = useDispatch()
+
+    const inputFunctionsHandler = (onHandler: any, e: Event) => {
+        onHandler(e)
+        dispatch(setRequestStatus(true))
+    }
+
+    useEffect(() => {
+        let timeout: number;
+        if (isAuthenticated) {
+            timeout = setTimeout(() => {
+                history.push('/profile');
+            });
+        }
+        return () => {
+          clearTimeout(timeout);
+        }
+      }, [isAuthenticated, history]);
+
     return (
         <PageTemplate>
             <Formik
@@ -46,12 +64,17 @@ const LoginPage: React.FC = () => {
                     password: ""
                 }}
                 validationSchema={validationSchema}
-                
-                
-                onSubmit={(data, { setSubmitting }) => {
-                    // api.post('/authenticate', data).then(json => setResponse(json))
+              
+                onSubmit={(data, {setSubmitting, resetForm}) => {
+                login(data, dispatch)
+                    setSubmitting(true);
+                    setTimeout(() => {
+                        resetForm()
+                        setSubmitting(false)
+                    }, 2000)
                 }}>
                 {({ 
+                    isSubmitting,
                     handleSubmit,
                     handleChange, 
                     handleBlur,
@@ -70,13 +93,20 @@ const LoginPage: React.FC = () => {
                                 type="username"
                                 name="username"
                                 value={values.username}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
+                                ariaInvalid={true}
+                                ariaDescribedBy="err_1"
+                                onChange={(e: Event)=> inputFunctionsHandler(handleChange, e)}
+                                onBlur={(e: Event)=> inputFunctionsHandler(handleBlur, e)}
                                 isRequired={true}
                             />
-                            {errors.username && touched.username ? (
-                                <ErrorMessage text={errors.username} />
-                            ) : null}
+                            <ErrorHandler 
+                                id="err_1"
+                                value="username"
+                                requestMessage={requestMessage}
+                                requestStatus={requestStatus}
+                                touched={touched}
+                                errors={errors}
+                            />
                         </FormField>
                         <FormField>
                             <Label 
@@ -88,20 +118,26 @@ const LoginPage: React.FC = () => {
                                 type="password"
                                 name="password"
                                 value={values.password}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
+                                ariaInvalid={true}
+                                ariaDescribedBy="err_2"
+                                onChange={(e: Event)=> inputFunctionsHandler(handleChange, e)}
+                                onBlur={(e: Event)=> inputFunctionsHandler(handleBlur, e)}
                                 isRequired={true}
                             />
                             {errors.password && touched.password ? (
-                                <ErrorMessage text={errors.password} />
+                                <ErrorMessage id="err_2" text={errors.password} />
                             ) : null}
                         </FormField>
-                        <Button text="Log in" />
+                        <Button 
+                            type="submit" 
+                            text="Log in" 
+                            isDisabled={isSubmitting}
+                        />
                         <Link 
                             to={routes.register}
                             type="Link"
                             text="Create an acconut"
-                        />
+                            />
                     </AuthForm>
                 )}
             </Formik>

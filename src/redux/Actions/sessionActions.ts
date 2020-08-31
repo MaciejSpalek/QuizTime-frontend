@@ -7,8 +7,6 @@ export const authenticate = (state: boolean) => (dispatch: any) => {
   })
 };
 
-
-
 export const setRequestMessage = (state: string) => (dispatch: any) => {
   dispatch({
     type: SessionTypes.SET_ERROR_MESSAGE,
