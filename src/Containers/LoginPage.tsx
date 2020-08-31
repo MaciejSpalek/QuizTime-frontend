@@ -66,7 +66,7 @@ const LoginPage: React.FC<Props> = ({ history }) => {
                 validationSchema={validationSchema}
               
                 onSubmit={(data, {setSubmitting, resetForm}) => {
-                login(data, dispatch)
+                    login(data, dispatch)
                     setSubmitting(true);
                     setTimeout(() => {
                         resetForm()

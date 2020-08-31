@@ -4,6 +4,7 @@ import { StyledMenu } from './index.style'
 import { routes } from '../../../routes/index'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../redux/store'
+import { logout } from '../../../Auth/requests'
 import MenuItem from '../../atoms/Link/index'
 import Image from '../../atoms/Image/index'
 import HomeSVG from '../../../assets/Home.svg'
@@ -82,6 +83,7 @@ const Menu = ()=> {
                 text="Logout"
                 styles={NavLinkStyles}
                 children={<LogoutIcon />}
+                handleOnClick={logout}
             /> : null}
         </StyledMenu>
     )

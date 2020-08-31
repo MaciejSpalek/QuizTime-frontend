@@ -1,5 +1,5 @@
 import api from '../services/api'
-import { getExpireDate, setCookie } from '../helpers/cookies'
+import { getExpireDate, setCookie, deleteCookie } from '../helpers/cookies'
 import { setRequestMessage, setRequestStatus } from '../redux/Actions/sessionActions'
 
 
@@ -52,9 +52,12 @@ export const login = (data: object, dispatch: any): void => {
         const { token, jwt_TOKEN_VALIDITY: tokenLifeTime} = res
         const expireTokenDate: Date =  getExpireDate(tokenLifeTime)
         setCookie('token', token, expireTokenDate)
-        
     })
     .catch(error => {
         console.error(error)
     })
   }
+
+export const logout = (): void => {
+    deleteCookie('token')
+}
