@@ -1,6 +1,6 @@
-import api from '../services/api'
 import { getExpireDate, setCookie, deleteCookie } from '../helpers/cookies'
 import { setRequestMessage, setRequestStatus } from '../redux/Actions/sessionActions'
+import api from '../services/api'
 
 
 export const register = (data: object, dispatch: any): void => {

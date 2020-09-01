@@ -13,10 +13,6 @@ interface Props {
 const PrivateRoute: React.FC<Props> = ({ component: Component, ...props }): any => {
     const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
 
-    useEffect(()=> {
-        console.log("PrivateRoute", isAuthenticated)
-    }, [isAuthenticated])
-    
     return (
         <Route
             {...props}

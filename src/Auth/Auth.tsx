@@ -9,10 +9,8 @@ const Auth = () => {
     const setAuthentication = () => {
         const token = showCookie('token')
         if(!token) {
-            console.log("Brak autoryzacji")
             dispatch(authenticate(false))
         } else {
-            console.log("Zautoryzowano")
             dispatch(authenticate(true))
         }
     }

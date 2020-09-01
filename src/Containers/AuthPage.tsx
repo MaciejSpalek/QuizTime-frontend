@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PageTemplate from '../templates/PageTemplate'
 import AuthForm from '../Components/organisms/AuthForm/index'
 import Button from '../Components/atoms/Button/index'
@@ -13,7 +13,7 @@ import { routes } from '../routes/index'
 import { useDispatch, useSelector } from 'react-redux' 
 import { RootState } from '../redux/store'
 import { Formik } from "formik";
-import { login } from '../Auth/requests'
+import { login, register } from '../Auth/requests'
 import { setRequestStatus } from '../redux/Actions/sessionActions'
 
 const validationSchema = yup.object({
@@ -29,27 +29,32 @@ const validationSchema = yup.object({
 });    
 
 
-type Props = { history: any }
+type Props = { history?: any }
 
-const LoginPage: React.FC<Props> = ({ history }) => {
+const AuthPage: React.FC<Props> = ({ history }) => {
     const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
     const requestMessage = useSelector<RootState, string>(state => state.session.errorMessage)
     const requestStatus = useSelector<RootState, boolean>(state => state.session.requestStatus)
-    
+
     const dispatch = useDispatch()
 
-    const inputFunctionsHandler = (onHandler: any, e: Event) => {
-        onHandler(e)
+    const inputFunctionsHandler = (handleOnFunction: any, e: Event) => {
+        handleOnFunction(e)
         dispatch(setRequestStatus(true))
     }
 
+    const isLoginRoute = (): boolean => {
+        return history.location.pathname === routes.login
+    }
+
     useEffect(() => {
-        let timeout: number;
+        let timeout: number
         if (isAuthenticated) {
             timeout = setTimeout(() => {
                 history.push('/profile');
             });
         }
+        
         return () => {
           clearTimeout(timeout);
         }
@@ -58,15 +63,14 @@ const LoginPage: React.FC<Props> = ({ history }) => {
     return (
         <PageTemplate>
             <Formik
+                validationSchema={validationSchema}
                 validateOnChange={true}
                 initialValues={{
                     username: "",
                     password: ""
                 }}
-                validationSchema={validationSchema}
-              
                 onSubmit={(data, {setSubmitting, resetForm}) => {
-                    login(data, dispatch)
+                    isLoginRoute() ? login(data, dispatch) : register(data, dispatch)
                     setSubmitting(true);
                     setTimeout(() => {
                         resetForm()
@@ -130,13 +134,13 @@ const LoginPage: React.FC<Props> = ({ history }) => {
                         </FormField>
                         <Button 
                             type="submit" 
-                            text="Log in" 
+                            text={isLoginRoute() ? "Log in": "Register"} 
                             isDisabled={isSubmitting}
                         />
                         <Link 
-                            to={routes.register}
+                            text={isLoginRoute() ? "Create an acconut" : "Do you have an account ?"}
+                            to={isLoginRoute() ? routes.register : routes.login}
                             type="Link"
-                            text="Create an acconut"
                             />
                     </AuthForm>
                 )}
@@ -145,7 +149,7 @@ const LoginPage: React.FC<Props> = ({ history }) => {
     )
 }
 
-export default LoginPage
+export default AuthPage
 
 
 
