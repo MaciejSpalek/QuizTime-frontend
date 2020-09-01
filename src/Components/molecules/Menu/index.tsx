@@ -2,10 +2,16 @@ import React from 'react'
 import { css } from 'styled-components'
 import { StyledMenu } from './index.style'
 import { routes } from '../../../routes/index'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../redux/store'
+import { logout } from '../../../Auth/requests'
 import MenuItem from '../../atoms/Link/index'
 import Image from '../../atoms/Image/index'
 import HomeSVG from '../../../assets/Home.svg'
 import LoginSVG from '../../../assets/Login.svg'
+import LogoutSVG from '../../../assets/Logout.svg'
+import UserSVG from '../../../assets/User.svg'
+
 
 const HomeIcon = () => <Image 
     url={HomeSVG}
@@ -23,28 +29,62 @@ const LoginIcon = () => <Image
     margin="0 10px 0 0"
 />
 
+const LogoutIcon = () => <Image 
+    url={LogoutSVG}
+    alt="Logout Icon"
+    width="40px"
+    height="40px"
+    margin="0 10px 0 0"
+/>
+
+const UserIcon = () => <Image 
+    url={UserSVG}
+    alt="Logout Icon"
+    width="40px"
+    height="40px"
+    margin="0 10px 0 0"
+/>
+
 const NavLinkStyles = css`
     color: ${({theme}) => theme.colors.grayscale[2]};
     font-weight: ${({theme}) => theme.fontWeights.bold};
 `
 
 const Menu = ()=> {
+    const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
     return (
         <StyledMenu>
             <MenuItem 
-                to={ routes.home }
+                to={routes.home}
                 type="NavLink"
                 text="Home"
                 styles={NavLinkStyles}
                 children={<HomeIcon />}
             />
-            <MenuItem 
-                to={ routes.login }
+            {!isAuthenticated ? <MenuItem 
+                to={routes.login}
                 type="NavLink"
                 text="Sign in"
                 styles={NavLinkStyles}
                 children={<LoginIcon />}
-            />
+            /> : null}
+
+            {isAuthenticated ? <MenuItem 
+                to={routes.profile}
+                type="NavLink"
+                text="Profile"
+                styles={NavLinkStyles}
+                children={<UserIcon />}
+            /> : null}
+
+            {isAuthenticated ? <MenuItem 
+                to={routes.home}
+                type="NavLink"
+                text="Logout"
+                styles={NavLinkStyles}
+                children={<LogoutIcon />}
+                handleOnClick={logout}
+            /> : null}
         </StyledMenu>
     )
 }

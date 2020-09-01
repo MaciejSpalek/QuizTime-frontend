@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
+import { FlexCenter } from '../theme/Mixins'
 
 const StyledContainer = styled.div`
+  ${FlexCenter};
   position: relative;
-  top: 0;
   height: calc(100vh - 60px);
 `
 
@@ -11,10 +12,10 @@ interface Props {
   children: React.ReactNode;
 }
 
-const LoginPanelTemplate: React.FC<Props> = ({ children }) => (
+const PageTemplate: React.FC<Props> = ({ children }) => (
   <StyledContainer>
     {children} 
   </StyledContainer>
 );
 
-export default LoginPanelTemplate;
+export default PageTemplate;

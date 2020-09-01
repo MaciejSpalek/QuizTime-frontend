@@ -1,17 +1,16 @@
   
-import React from 'react';
-import { StyledLabel } from './index.styled';
+import React from 'react'
+import { StyledLabel } from './index.styled'
 
 interface Props {
-    children?: React.ReactNode
+  text?: string
+  forText?: string
 }
 
-const Label: React.FC<Props> = ({ children, ...props }) => (
-  <StyledLabel {...props}>
-    {children}
+const Label: React.FC<Props> = ({text, forText}) => (
+  <StyledLabel htmlFor={forText}>
+    {text}
   </StyledLabel>
-);
+)
 
-
-
-export default Label;
+export default Label
