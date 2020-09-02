@@ -2,7 +2,7 @@ import React from 'react'
 import { css } from 'styled-components'
 import { StyledMenu } from './index.style'
 import { routes } from '../../../routes/index'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../../redux/store'
 import { logout } from '../../../Auth/requests'
 import MenuItem from '../../atoms/Link/index'
@@ -52,6 +52,7 @@ const NavLinkStyles = css`
 
 const Menu = ()=> {
     const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
+    const dispatch = useDispatch()
     return (
         <StyledMenu>
             <MenuItem 
@@ -81,9 +82,9 @@ const Menu = ()=> {
                 to={routes.home}
                 type="NavLink"
                 text="Logout"
+                handleOnClick={()=> logout(dispatch)}
                 styles={NavLinkStyles}
                 children={<LogoutIcon />}
-                handleOnClick={logout}
             /> : null}
         </StyledMenu>
     )

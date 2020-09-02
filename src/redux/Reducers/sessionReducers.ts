@@ -1,6 +1,6 @@
 import { SessionTypes } from '../Types/sessionTypes'
 
-interface SessionState {
+type SessionState = {
     isAuthenticated: boolean
     requestStatus: boolean
     errorMessage: string

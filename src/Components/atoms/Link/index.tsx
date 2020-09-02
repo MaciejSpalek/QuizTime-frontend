@@ -1,16 +1,16 @@
 import React from 'react';
 import { StyledNavLink,  StyledLink } from './index.styled';
 
-interface Props {
-    to: string
-    type: string
-    text?: string
-    styles?: any
-    handleOnClick?: any
-    children?: React.ReactNode
+type Props = {
+  to: string
+  styles?: any
+  type: string
+  text?: string
+  handleOnClick?: any
+  children?: React.ReactNode
 }
 
-const Link: React.FC<Props> = ({ type, text, to, styles, children, handleOnClick }) => {
+const Link: React.FC<Props> = ({ type, text, to, styles, children, handleOnClick}) => {
   if (type === "NavLink") {
     return (
         <StyledNavLink to={to} cssstyles={styles} onClick={handleOnClick}>
