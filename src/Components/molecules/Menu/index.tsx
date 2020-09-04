@@ -5,6 +5,7 @@ import { routes } from '../../../routes/index'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../../redux/store'
 import { logout } from '../../../Auth/requests'
+import { setHamburgerStatus } from '../../../redux/Actions/statusesActions'
 import MenuItem from '../../atoms/Link/index'
 import Image from '../../atoms/Image/index'
 import HomeSVG from '../../../assets/Home.svg'
@@ -12,10 +13,9 @@ import LoginSVG from '../../../assets/Login.svg'
 import LogoutSVG from '../../../assets/Logout.svg'
 import UserSVG from '../../../assets/User.svg'
 
-
 const HomeIcon = () => <Image 
     url={HomeSVG}
-    alt="IkonaStrona główna"
+    alt="Homepage icon"
     width="40px"
     height="40px"
     margin="0 10px 0 0"
@@ -23,7 +23,7 @@ const HomeIcon = () => <Image
 
 const LoginIcon = () => <Image 
     url={LoginSVG}
-    alt="Login Icon"
+    alt="Login icon"
     width="40px"
     height="40px"
     margin="0 10px 0 0"
@@ -31,7 +31,7 @@ const LoginIcon = () => <Image
 
 const LogoutIcon = () => <Image 
     url={LogoutSVG}
-    alt="Logout Icon"
+    alt="Logout icon"
     width="40px"
     height="40px"
     margin="0 10px 0 0"
@@ -39,7 +39,7 @@ const LogoutIcon = () => <Image
 
 const UserIcon = () => <Image 
     url={UserSVG}
-    alt="Logout Icon"
+    alt="User icon"
     width="40px"
     height="40px"
     margin="0 10px 0 0"
@@ -51,10 +51,12 @@ const NavLinkStyles = css`
 `
 
 const Menu = ()=> {
-    const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
+    const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated)
+    const hamburgerStatus = useSelector<RootState, boolean>(state => state.statuses.hamburgerStatus);
+
     const user = useSelector<RootState, string | null>(state => state.user.loggedUser)
-    
     const dispatch = useDispatch()
+
     return (
         <StyledMenu>
             <MenuItem 
@@ -63,6 +65,7 @@ const Menu = ()=> {
                 text="Home"
                 styles={NavLinkStyles}
                 children={<HomeIcon />}
+                handleOnClick={()=>dispatch(setHamburgerStatus(!hamburgerStatus))}
             />
             {!isAuthenticated ? <MenuItem 
                 to={routes.login}
@@ -70,6 +73,7 @@ const Menu = ()=> {
                 text="Sign in"
                 styles={NavLinkStyles}
                 children={<LoginIcon />}
+                handleOnClick={()=>dispatch(setHamburgerStatus(!hamburgerStatus))}
             /> : null}
 
             {isAuthenticated ? <MenuItem 
@@ -78,13 +82,14 @@ const Menu = ()=> {
                 text="Profile"
                 styles={NavLinkStyles}
                 children={<UserIcon />}
+                handleOnClick={()=>dispatch(setHamburgerStatus(!hamburgerStatus))}
             /> : null}
 
             {isAuthenticated ? <MenuItem 
                 to={routes.home}
                 type="NavLink"
                 text="Logout"
-                handleOnClick={()=> logout(dispatch)}
+                handleOnClick={()=> {logout(dispatch); dispatch(setHamburgerStatus(!hamburgerStatus))}}
                 styles={NavLinkStyles}
                 children={<LogoutIcon />}
             /> : null}
