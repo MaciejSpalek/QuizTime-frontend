@@ -47,7 +47,7 @@ export const login = (data: DataType, dispatch: any): void => {
         } else {
 
             // fake logging
-            const expireTokenDate: Date =  getExpireDate(10)
+            const expireTokenDate: Date =  getExpireDate(300)
             setCookie('token', "dsadsad32d2sd", expireTokenDate)
             setCookie('username', data.username, expireTokenDate)
             dispatch(setLoggedUser(data.username))

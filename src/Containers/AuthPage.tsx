@@ -19,8 +19,8 @@ import { setRequestStatus } from '../redux/Actions/sessionActions'
 const validationSchema = yup.object({
     username: yup.string()
         .required('Required')
-        .min(5, 'Username must be at least 5 characters')
-        .max(20, 'Username can be maximum 20 characters'),
+        .min(3, 'Username must be at least 3 characters')
+        .max(15, 'Username can be maximum 15 characters'),
 
     password: yup.string()
         .min(6, 'Password must be at least 6 characters')
@@ -137,6 +137,7 @@ const AuthPage: React.FC<Props> = ({ history }) => {
                             type="submit" 
                             text={isLoginRoute() ? "Log in": "Register"} 
                             isDisabled={isSubmitting}
+                            isWidthExtend={true}
                         />
                         <Link 
                             text={isLoginRoute() ? "Create an acconut" : "Do you have an account ?"}

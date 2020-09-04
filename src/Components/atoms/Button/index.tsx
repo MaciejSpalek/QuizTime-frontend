@@ -5,14 +5,17 @@ interface Props {
     text: string
     type?: any
     isDisabled?: boolean
+    isWidthExtend: boolean
     clickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const Button: React.FC<Props> = ({ text, clickHandler, type, isDisabled }) => (
+const Button: React.FC<Props> = ({ text, clickHandler, type, isDisabled, isWidthExtend }) => (
     <StyledButton 
         onClick={clickHandler} 
         type={type}
-        disabled={isDisabled}>
+        disabled={isDisabled}
+        isWidthExtend={isWidthExtend}
+        >
             {text}
     </StyledButton>
 );

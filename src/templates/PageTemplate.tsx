@@ -4,6 +4,7 @@ import { FlexCenter } from '../theme/Mixins'
 
 const StyledContainer = styled.div`
   ${FlexCenter};
+  align-items: flex-start;
   position: relative;
   height: calc(100vh - 60px);
 `
