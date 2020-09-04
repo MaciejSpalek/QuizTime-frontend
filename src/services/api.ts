@@ -14,7 +14,7 @@ const request = async (
             'Content-Type': 'application/json',
             // 'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(data)
+        // body: JSON.stringify(data)
     }
 
     // if(method === 'POST') {
@@ -24,7 +24,7 @@ const request = async (
     return await fetch(url, config).then(res => res)
 }
 
-const get = (endpoint:string, token: string) => request(endpoint, 'GET', {}, token)
+const get = (endpoint:string, token?: string) => request(endpoint, 'GET', {}, token)
 const post = (endpoint:string, data: any) => request(endpoint, 'POST', data);
 // const put = (endpoint:string, data: any): object => request(endpoint, 'PUT', data);
 // const _delete = (endpoint:string): object => request(endpoint);

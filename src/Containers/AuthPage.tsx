@@ -35,6 +35,7 @@ const AuthPage: React.FC<Props> = ({ history }) => {
     const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
     const requestMessage = useSelector<RootState, string>(state => state.session.errorMessage)
     const requestStatus = useSelector<RootState, boolean>(state => state.session.requestStatus)
+    const user = useSelector<RootState, string | null>(state => state.user.loggedUser)
 
     const dispatch = useDispatch()
 
@@ -43,7 +44,7 @@ const AuthPage: React.FC<Props> = ({ history }) => {
         dispatch(setRequestStatus(true))
     }
 
-    const isLoginRoute = (): boolean => {
+    const isLoginRoute = ()=> {
         return history.location.pathname === routes.login
     }
 
@@ -51,7 +52,7 @@ const AuthPage: React.FC<Props> = ({ history }) => {
         let timeout: number
         if (isAuthenticated) {
             timeout = setTimeout(() => {
-                history.push('/profile');
+                history.push(`/${user}`);
             });
         }
         

@@ -11,44 +11,46 @@ type DataType = {
 
 export const register = (data: DataType, dispatch: any): void => {
     api.post('/register', data)
-    .then(res => {
-        if (res.ok) {
-            dispatch(setRequestStatus(true))
-            dispatch(setRequestMessage(""))
-            return res.json()
-        } else {
-            dispatch(setRequestStatus(false))
-            if(res.status === 409) {
-                dispatch(setRequestMessage('User already exists'))
+        .then(res => {
+            if (res.ok) {
+                dispatch(setRequestStatus(true))
+                dispatch(setRequestMessage(""))
+                return res.json()
             } else {
-                dispatch(setRequestMessage('Disconnected server'))
+                dispatch(setRequestStatus(false))
+                if(res.status === 409) {
+                    dispatch(setRequestMessage('User already exists'))
+                } else {
+                    dispatch(setRequestMessage('Disconnected server'))
+                }
+                throw new Error(res.statusText)
             }
-            throw new Error(res.statusText)
-        }
-    })
-    .then(res => {
-        const { token, jwt_TOKEN_VALIDITY: tokenLifeTime} = res
-        const expireTokenDate: Date =  getExpireDate(tokenLifeTime)
-        setCookie('token', token, expireTokenDate)
-        dispatch(setLoggedUser(data.username))
-    })
-    .catch(error => {
-        console.error(error) 
-    })
-  }
+        }).then(res => {
+            const { token, jwt_TOKEN_VALIDITY: tokenLifeTime} = res
+            const expireTokenDate: Date =  getExpireDate(tokenLifeTime) 
+            setCookie('token', token, expireTokenDate)
+            setCookie('username', data.username, expireTokenDate)
+            dispatch(setLoggedUser(data.username))
+        }).catch(error => {
+            console.error(error) 
+        })
+}
 
  
 export const login = (data: DataType, dispatch: any): void => {
     api.post('/authenticate', data)
-    .then(res => {
+        .then(res => {
         if (res.ok) {
             dispatch(setRequestStatus(true))
             dispatch(setRequestMessage(""))
             return res.json()
         } else {
 
-            // const expireTokenDate: Date =  getExpireDate(300)
-            // setCookie('token', "dsadsad32d2sd", expireTokenDate)
+            // fake logging
+            const expireTokenDate: Date =  getExpireDate(10)
+            setCookie('token', "dsadsad32d2sd", expireTokenDate)
+            setCookie('username', data.username, expireTokenDate)
+            dispatch(setLoggedUser(data.username))
 
             dispatch(setRequestStatus(false))
             if(res.status === 404 || res.status === 401) {
@@ -58,20 +60,21 @@ export const login = (data: DataType, dispatch: any): void => {
             }
             throw new Error(res.statusText)
         }
-    })
-    .then(res => {
-        const { token, jwt_TOKEN_VALIDITY: tokenLifeTime} = res
-        const expireTokenDate: Date =  getExpireDate(tokenLifeTime)
-        setCookie('token', token, expireTokenDate)
-        dispatch(setLoggedUser(data.username))
-    })
-    .catch(error => {
-        console.error(error)
-    })
+        })
+        .then(res => {
+            const { token, jwt_TOKEN_VALIDITY: tokenLifeTime} = res
+            const expireTokenDate: Date =  getExpireDate(tokenLifeTime)
+            setCookie('token', token, expireTokenDate)
+            setCookie('username', data.username, expireTokenDate)
+            dispatch(setLoggedUser(data.username))
+        })
+        .catch(error => {
+            console.error(error)
+        })
   }
 
 export const logout = (dispatch?: any): void => {
     deleteCookie('token')
+    deleteCookie('username')
     dispatch(resetLoggedUser())
-    
 }

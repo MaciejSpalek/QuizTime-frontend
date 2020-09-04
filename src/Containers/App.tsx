@@ -4,8 +4,6 @@ import MainTemplate from '../templates/MainTemplate'
 import Navbar from '../Components/organisms/Navbar/index'
 import Home from './HomePage'
 import AuthPage from './AuthPage'
-import UnknownPage from './UnknownPage'
-import PrivateRoute from '../hoc/PrivateRoute'
 import ProfilePage from './ProfilePage'
 import { routes } from '../routes/index'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
@@ -18,10 +16,9 @@ const App = () => {
         <MainTemplate>
           <Switch>
             <Route exact path={routes.home} component={Home} />
-            <Route exact path={routes.login} component={AuthPage} />
-            <Route exact path={routes.register} component={AuthPage} />
-            <Route exact path={routes.profile} component={ProfilePage} />
-            <Route component={UnknownPage}/>
+            <Route path={routes.login} component={AuthPage} />
+            <Route path={routes.register} component={AuthPage} />
+            <Route path={routes.profile} component={ProfilePage} />
           </Switch>
         </MainTemplate>
       </Router>   

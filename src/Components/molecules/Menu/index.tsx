@@ -52,6 +52,8 @@ const NavLinkStyles = css`
 
 const Menu = ()=> {
     const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
+    const user = useSelector<RootState, string | null>(state => state.user.loggedUser)
+    
     const dispatch = useDispatch()
     return (
         <StyledMenu>
@@ -71,7 +73,7 @@ const Menu = ()=> {
             /> : null}
 
             {isAuthenticated ? <MenuItem 
-                to={routes.profile}
+                to={`/${user}`}
                 type="NavLink"
                 text="Profile"
                 styles={NavLinkStyles}
