@@ -12,7 +12,7 @@ type Props = {
 
 const ProfilePage: React.FC<Props> = ({ match }) => {
   const [ username, setUsername ] = useState(null)
-  const [ doesUserExist, setDoesUserExist ] = useState(true)
+  const [ doesUserExist, setDoesUserExist ] = useState(false)
   const [ requestStatus, setRequestStatus ] = useState(false)
   const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser)
 
@@ -22,20 +22,21 @@ const ProfilePage: React.FC<Props> = ({ match }) => {
   }
 
   useEffect(() => {
-    api.get(`/users/singleuser?username=${match.params.username}`)
+    api.get(`/quiz/all`)
       .then(res => {
-        setRequestStatus(true)
         if(res.ok) {
-            setDoesUserExist(true)
-            return res.json()
+          // setDoesUserExist(true)
+          // setRequestStatus(true)
+          return res.json()
         } else {
             // setDoesUserExist(false)
-            setUsername(match.params.username) //fake
+            // setUsername(match.params.username) //fake
 
             throw new Error(res.statusText)
         }}).then(res => {
-            const { username: responseUsername } = res
-            setUsername(responseUsername)
+            // const { username: responseUsername } = res
+            // setUsername(responseUsername)
+            console.log(res)
         }).catch(error => console.error(error))
   }, [loggedUser])
 

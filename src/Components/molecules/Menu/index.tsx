@@ -89,7 +89,10 @@ const Menu = ()=> {
                 to={routes.home}
                 type="NavLink"
                 text="Logout"
-                handleOnClick={()=> {logout(dispatch); dispatch(setHamburgerStatus(!hamburgerStatus))}}
+                handleOnClick={()=> {
+                    logout(dispatch); 
+                    dispatch(setHamburgerStatus(!hamburgerStatus))
+                }}
                 styles={NavLinkStyles}
                 children={<LogoutIcon />}
             /> : null}

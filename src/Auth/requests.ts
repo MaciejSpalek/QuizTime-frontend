@@ -38,6 +38,12 @@ export const register = (data: DataType, dispatch: any): void => {
 
  
 export const login = (data: DataType, dispatch: any): void => {
+    // fake logging
+    // const expireTokenDate: Date =  getExpireDate(300)
+    // setCookie('token', "dsadsad32d2sd", expireTokenDate)
+    // setCookie('username', data.username, expireTokenDate)
+    // dispatch(setLoggedUser(data.username))
+
     api.post('/authenticate', data)
         .then(res => {
         if (res.ok) {
@@ -46,11 +52,6 @@ export const login = (data: DataType, dispatch: any): void => {
             return res.json()
         } else {
 
-            // fake logging
-            const expireTokenDate: Date =  getExpireDate(300)
-            setCookie('token', "dsadsad32d2sd", expireTokenDate)
-            setCookie('username', data.username, expireTokenDate)
-            dispatch(setLoggedUser(data.username))
 
             dispatch(setRequestStatus(false))
             if(res.status === 404 || res.status === 401) {

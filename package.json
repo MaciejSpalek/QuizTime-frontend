@@ -50,6 +50,7 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.1.5",
     "@types/yup": "^0.29.4",
+    "axios": "^0.20.0",
     "react-router-dom": "^5.2.0"
   }
 }

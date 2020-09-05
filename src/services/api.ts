@@ -7,14 +7,15 @@ const request = async (
     data?: any, 
     token?: string
 ) => {
-    const url = `${CORS_URL}/${API_URL}${endpoint}`
+    const url = `${API_URL}${endpoint}`
     const config = {
         method,
         headers: {
             'Content-Type': 'application/json',
+            // 'mode': 'no-cors'
             // 'Authorization': `Bearer ${token}`
         },
-        // body: JSON.stringify(data)
+        body: JSON.stringify(data)
     }
 
     // if(method === 'POST') {
