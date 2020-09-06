@@ -5,6 +5,8 @@ import { axiosInstance } from '../services/api'
 import ProfileBar from '../Components/molecules/ProfileBar'
 import PlaceholderTemplate from '../templates/PlaceholderTemplate'
 import PageTemplate from '../templates/PageTemplate'
+import Spinner from '../Components/atoms/Spinner/index'
+
 type Props = { match: any }
 
 const ProfilePage: React.FC<Props> = ({ match }) => {
@@ -52,7 +54,8 @@ const ProfilePage: React.FC<Props> = ({ match }) => {
               </PlaceholderTemplate>
               : 
                 <PlaceholderTemplate>
-                  <span> loading... </span>
+                  {/* <span> loading... </span> */}
+                  <Spinner />
                 </PlaceholderTemplate>}
     </PageTemplate>  
   )
