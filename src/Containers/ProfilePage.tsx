@@ -1,14 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import PageTemplate from '../templates/PageTemplate'
-import api from '../services/api'
+// import api from '../services/api'
 import { RootState } from '../redux/store'
 import { useSelector } from 'react-redux'
 import ProfileBar from '../Components/molecules/ProfileBar'
+import { axiosInstance } from '../services/api'
 
-type Props = {
-  history: any
-  match: any
-}
+type Props = { match: any }
 
 const ProfilePage: React.FC<Props> = ({ match }) => {
   const [ username, setUsername ] = useState(null)
@@ -17,27 +15,27 @@ const ProfilePage: React.FC<Props> = ({ match }) => {
   const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser)
 
   const isLoggedUserRoute = ()=> {
-    const usernameMatch = match.params.username
-    return loggedUser === usernameMatch
+    const route = match.params.username
+    return loggedUser === route
+  }
+
+  const manageUser = async ()=> {
+    const route = match.params.username; 
+    try {
+      await axiosInstance.get('/users/singleuser', {
+        params: { username: route }
+      })
+      setDoesUserExist(true)
+      setRequestStatus(true)
+      setUsername(route)
+    } catch {
+      setDoesUserExist(false)
+      setRequestStatus(true)
+    }
   }
 
   useEffect(() => {
-    api.get(`/quiz/all`)
-      .then(res => {
-        if(res.ok) {
-          // setDoesUserExist(true)
-          // setRequestStatus(true)
-          return res.json()
-        } else {
-            // setDoesUserExist(false)
-            // setUsername(match.params.username) //fake
-
-            throw new Error(res.statusText)
-        }}).then(res => {
-            // const { username: responseUsername } = res
-            // setUsername(responseUsername)
-            console.log(res)
-        }).catch(error => console.error(error))
+    manageUser()
   }, [loggedUser])
 
 
