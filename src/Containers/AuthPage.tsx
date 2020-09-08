@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import PageTemplate from '../templates/PageTemplate'
 import AuthForm from '../Components/organisms/AuthForm/index'
 import Button from '../Components/atoms/Button/index'
@@ -8,13 +8,15 @@ import Input from '../Components/atoms/Input/index'
 import Label from '../Components/atoms/Label/index'
 import ErrorMessage from '../Components/atoms/ErrorMessage/index'
 import ErrorHandler from '../helpers/ErrorHandler'
-import * as yup from "yup";
+import * as yup from "yup"
 import { routes } from '../routes/index'
 import { useDispatch, useSelector } from 'react-redux' 
 import { RootState } from '../redux/store'
-import { Formik } from "formik";
+import { Formik } from "formik"
 import { login, register } from '../Auth/requests'
 import { setRequestStatus } from '../redux/Actions/sessionActions'
+import { RouteComponentProps } from 'react-router-dom'
+
 
 const validationSchema = yup.object({
     username: yup.string()
@@ -29,9 +31,8 @@ const validationSchema = yup.object({
 });    
 
 
-type Props = { history?: any }
 
-const AuthPage: React.FC<Props> = ({ history }) => {
+const AuthPage= ({ history }: RouteComponentProps) => {
     const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
     const requestMessage = useSelector<RootState, string>(state => state.session.errorMessage)
     const requestStatus = useSelector<RootState, boolean>(state => state.session.requestStatus)
@@ -88,7 +89,7 @@ const AuthPage: React.FC<Props> = ({ history }) => {
                     errors
                 }) => (
                     <AuthForm handleSubmit={handleSubmit}>
-                      <FormField>
+                        <FormField>
                             <Label 
                                 text="Username"
                                 forText="username"
@@ -152,8 +153,3 @@ const AuthPage: React.FC<Props> = ({ history }) => {
 }
 
 export default AuthPage
-
-
-
-
-

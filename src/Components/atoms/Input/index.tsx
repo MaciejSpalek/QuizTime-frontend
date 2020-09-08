@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyledInput } from './index.styled';
 
-interface Props {
+type Props = {
     id?: string
     type: string
     name?: string
@@ -15,7 +15,7 @@ interface Props {
     ariaDescribedBy?: string 
 }
 
-const Input: React.FC<Props> = ({ 
+const Input = ({ 
   id, 
   name, 
   type, 
@@ -27,7 +27,7 @@ const Input: React.FC<Props> = ({
   placeholder,
   ariaInvalid,
   ariaDescribedBy
-}) => (
+}: Props) => (
     <StyledInput
       id={id}
       name={name}

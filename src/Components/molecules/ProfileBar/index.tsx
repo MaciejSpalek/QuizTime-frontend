@@ -6,12 +6,12 @@ import {
 import Button from '../../atoms/Button'
 
 
-interface Props {
+type Props = {
    username: string | null
    isLoggedUserRoute: any
 }
 
- const ProfileBar: React.FC<Props> = ({ username, isLoggedUserRoute })=> {
+ const ProfileBar= ({ username, isLoggedUserRoute }: Props)=> {
     return (
         <StyledContainer>
             <StyledUserTag> {username} </StyledUserTag>

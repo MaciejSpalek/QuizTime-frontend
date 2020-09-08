@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyledImage } from './index.styled'
 
-interface Props {
+type Props = {
     url: any
     alt: string
     width: string
@@ -9,7 +9,7 @@ interface Props {
     margin?: string
 }
 
-const Image: React.FC<Props> = ({ url, height, width, alt, margin }) => {
+const Image = ({ url, height, width, alt, margin }: Props) => {
     return (
         <StyledImage 
             src={url}

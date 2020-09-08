@@ -8,4 +8,5 @@ export const StyledContainer = styled.div`
     justify-content: flex-start;
     background-color: ${({theme}) => theme.colors.grayscale[0]};
     padding: 10px;
+    border: 10px solid black;
 `

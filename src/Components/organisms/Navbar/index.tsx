@@ -8,7 +8,7 @@ import { RootState } from '../../../redux/store'
 import { setHamburgerStatus } from '../../../redux/Actions/statusesActions'
 
 const Navbar = ()=> {
-    const hamburgerStatus = useSelector<RootState>(state => state.statuses.hamburgerStatus)
+    const hamburgerStatus = useSelector<RootState, boolean>(state => state.statuses.hamburgerStatus)
     const dispatch = useDispatch()
 
     return (

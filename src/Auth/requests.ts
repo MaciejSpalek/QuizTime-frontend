@@ -20,6 +20,8 @@ export const login = async (data: DataType, dispatch: any) => {
         dispatch(setRequestStatus(true))
     } catch(error) {
         const errorMessage = {...error}.response.data
+        const res = {...error}.response
+        console.log(res)
         // dispatch(setRequestStatus(false))
         // dispatch(setRequestMessage(errorMessage))
         console.log(errorMessage)

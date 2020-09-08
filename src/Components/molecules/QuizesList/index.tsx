@@ -1,29 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { StyledList } from './index.styled'
-import QuizThumbnail from '../QuizTestimonial/index'
-import tempImage from '../../../assets/Person.svg'
+import QuizTestimonial from '../QuizTestimonial/index'
+import { Quiz } from '../../../Interfaces/quizInterfaces'
 
-type Quiz = {
-    id: number;
-    title: string;
-    author: string;
-    isDone: boolean;
-    image: any;
-    score: string;
+type Props = {
+    quizes: Quiz[]
 }
 
-const tempQuizes = [
-    {id:1, title: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12"},
-    {id:2, title: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12"},
-    {id:3, title: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12"},
-    {id:4, title: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12"}
-]
-
-const QuizesList = ()=> {
-    const [quizes] = useState<Quiz[]>(tempQuizes)
+const QuizesList = ({ quizes }: Props) => {
     return (
         <StyledList>
-            {quizes.map(quizData => <QuizThumbnail key={quizData.id} quizData={quizData}/>)}
+            {quizes.map(data => <QuizTestimonial key={data.id} parameters={data}/>)}
         </StyledList>
     )
 }

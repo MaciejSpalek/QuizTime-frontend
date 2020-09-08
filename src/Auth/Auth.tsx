@@ -3,6 +3,7 @@ import { showCookie } from '../helpers/cookies'
 import { authenticate } from '../redux/Actions/sessionActions'
 import { useDispatch } from 'react-redux'
 import { resetLoggedUser, setLoggedUser } from '../redux/Actions/userActions'
+import { setAllQuizes } from '../redux/Actions/quizActions'
 
 const Auth = () => {
     const dispatch = useDispatch()
@@ -11,16 +12,17 @@ const Auth = () => {
         const token = showCookie('token')
         const username = showCookie('username')
 
-        if(!token) {
-            dispatch(authenticate(false))
-            dispatch(resetLoggedUser())
-        } else {
+        if(token) {
             dispatch(authenticate(true))
             dispatch(setLoggedUser(username))
+        } else {
+            dispatch(authenticate(false))
+            dispatch(resetLoggedUser())
         }
     }
-
+    
     useEffect(()=> {
+        dispatch(setAllQuizes()) // to change
         setAuthentication()
     }, [])
 

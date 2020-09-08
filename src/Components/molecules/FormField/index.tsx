@@ -2,11 +2,11 @@
 import React from 'react';
 import { StyledFormField } from './index.styled';
 
-interface Props {
+type Props = {
     children: React.ReactNode
 }
 
-const FieldForm: React.FC<Props> = ({ children }) => (
+const FieldForm = ({ children }: Props) => (
     <StyledFormField>
       {children}
     </StyledFormField>

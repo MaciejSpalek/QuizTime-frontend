@@ -10,7 +10,7 @@ type Props = {
   children?: React.ReactNode
 }
 
-const Link: React.FC<Props> = ({ type, text, to, styles, children, handleOnClick}) => {
+const Link = ({ type, text, to, styles, children, handleOnClick}: Props) => {
   if (type === "NavLink") {
     return (
         <StyledNavLink to={to} cssstyles={styles} onClick={handleOnClick}>

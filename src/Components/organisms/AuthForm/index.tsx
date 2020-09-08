@@ -1,14 +1,14 @@
 import React from 'react'
 import { StyledForm } from './index.styled'
 
-interface Props {
+type Props = {
     handleSubmit: (e: any) => void;
     children: React.ReactNode;
 }
 
 
 
-const FormTemplate: React.FC<Props> = ({ children, handleSubmit }) => {
+const FormTemplate = ({ children, handleSubmit }: Props) => {
     return (
         <StyledForm
             noValidate

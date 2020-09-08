@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyledAnchor } from './index.styled';
 
-interface Props {
+type Props = {
     href?: string;
     text: string;
 }
 
-const Anchor: React.FC<Props> = ({ text, href }) => {
+const Anchor = ({ text, href }: Props) => {
     return (
         <StyledAnchor 
             href={href} 

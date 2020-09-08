@@ -1,22 +1,21 @@
 import React from 'react';
 import { StyledButton } from './index.styled';
 
-interface Props {
+type Props = {
     text: string
     type?: any
     isDisabled?: boolean
     isWidthExtend: boolean
-    clickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void
+    handleOnClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const Button: React.FC<Props> = ({ text, clickHandler, type, isDisabled, isWidthExtend }) => (
+const Button= ({ text, handleOnClick, type, isDisabled, isWidthExtend }: Props) => (
     <StyledButton 
-        onClick={clickHandler} 
+        onClick={handleOnClick} 
         type={type}
         disabled={isDisabled}
-        isWidthExtend={isWidthExtend}
-        >
-            {text}
+        isWidthExtend={isWidthExtend}>
+        {text}
     </StyledButton>
 );
 

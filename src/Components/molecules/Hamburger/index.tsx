@@ -1,11 +1,11 @@
 import React from 'react'
 import { StyledButton, StyledInnerBox, StyledOuterBox } from './index.styled'
 
-interface ToggleProps {
+type Props = {
     handleOnClick: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const Hamburger:React.FC<ToggleProps> = ({ handleOnClick })=> {
+const Hamburger = ({ handleOnClick }: Props)=> {
     return (
         <StyledButton aria-expanded="false" onClick={handleOnClick}>
             <StyledOuterBox>

@@ -1,13 +1,13 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { StyledErrorMessage } from './index.styled'
 
 type Props = { 
-    text: string 
     id: string
+    text: string 
 }
 
 
-const ErrorMessage: FC<Props> = ({ text, id })=> {
+const ErrorMessage = ({ text, id }: Props)=> {
     return (
         <StyledErrorMessage id={id}>
             {text} 

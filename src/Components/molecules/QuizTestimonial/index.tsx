@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from '../../atoms/Image/index'
 import Paragraph from '../../atoms/Paragraph/index'
+import { Quiz } from '../../../Interfaces/quizInterfaces'
 import { 
     StyledBottomWrapper,
     StyledImageWrapper, 
@@ -11,25 +12,19 @@ import {
 } from './index.styled'
 
 
-interface Props {
-    quizData: {
-        id: number;
-        image: any;
-        title: string;
-        author: string;
-        isDone: boolean;
-        score: string;
-    }
+type Props = {
+    parameters: Quiz
 }
 
- const QuizThumbnail: React.FC<Props> = ({quizData})=> {
+ const QuizThumbnail = ({ parameters }: Props)=> {
     const { 
         author,
-        title, 
+        name, 
         isDone, 
         image,
         score
-    } = quizData;
+    } = parameters
+    
     return (
         <StyledContainer>
             <StyledTopWrapper>
@@ -43,7 +38,7 @@ interface Props {
                 </StyledImageWrapper>
                 <StyledTextWrapper>
                     <Paragraph 
-                        text={title}
+                        text={name}
                         isBold={true}
                         textAlign={"center"}
                     />

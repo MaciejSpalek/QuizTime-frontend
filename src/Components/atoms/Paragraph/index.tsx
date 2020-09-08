@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { StyledParagraph } from './index.styled'
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 }
 
 
-const Paragraph: FC<Props> = ({text, isBold, textAlign})=> {
+const Paragraph = ({text, isBold, textAlign}: Props)=> {
     return (
         <StyledParagraph 
             isBold={isBold}

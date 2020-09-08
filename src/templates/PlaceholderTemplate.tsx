@@ -4,6 +4,7 @@ import { FlexCenter } from '../theme/Mixins'
 
 const StyledContainer = styled.div`
   ${FlexCenter};
+  flex-direction: column;
   height: 100%;
 `
 
