@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import PageTemplate from '../templates/PageTemplate'
-import AuthForm from '../Components/organisms/AuthForm/index'
+import PageTemplate from '../templates/PageTemplate/PageTemplate'
+import AuthForm from '../Components/organisms/Form/index'
 import Button from '../Components/atoms/Button/index'
 import Link from '../Components/atoms/Link/index'
 import FormField from '../Components/molecules/FormField/index'
@@ -32,7 +32,7 @@ const validationSchema = yup.object({
 
 
 
-const AuthPage= ({ history }: RouteComponentProps) => {
+const AuthPage = ({ history }: RouteComponentProps) => {
     const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
     const requestMessage = useSelector<RootState, string>(state => state.session.errorMessage)
     const requestStatus = useSelector<RootState, boolean>(state => state.session.requestStatus)

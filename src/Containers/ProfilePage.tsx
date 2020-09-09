@@ -3,14 +3,16 @@ import { RootState } from '../redux/store'
 import { useSelector } from 'react-redux'
 import { axiosInstance } from '../services/api'
 import ProfileBar from '../Components/molecules/ProfileBar'
-import PlaceholderTemplate from '../templates/PlaceholderTemplate'
-import PageTemplate from '../templates/PageTemplate'
+import PlaceholderTemplate from '../templates/PlaceholderTemplate/PlaceholderTemplate'
+import PageTemplate from '../templates/PageTemplate/PageTemplate'
 import Spinner from '../Components/atoms/Spinner/index'
 import BugSVG from '../assets/Bug.svg'
 import Image from '../Components/atoms/Image'
 import QuizWrapper from '../Components/organisms/QuizesWrapper/index'
 import QuizList from '../Components/molecules/QuizesList/index'
 import tempImage from '../assets/Person.svg'
+import { routes } from '../routes/index'
+import AddQuizPage from './AddQuizPage'
 
 type IProps = { match: any }
 
@@ -22,8 +24,8 @@ const tempQuizes = [
 ]
 
 const ProfilePage = ({ match }: IProps) => {
-  // const [ username, setUsername ] = useState(null)
-  const [ username, setUsername ] = useState("Maciuś") // fake
+  const [ username, setUsername ] = useState(null)
+  // const [ username, setUsername ] = useState("maciora") // fake
 
   const [ doesUserExist, setDoesUserExist ] = useState(false)
   const [ requestStatus, setRequestStatus ] = useState(false)
@@ -31,8 +33,8 @@ const ProfilePage = ({ match }: IProps) => {
 
   const isLoggedUserRoute = ()=> {
     const route = match.params.username
-    return true // fake
-    // return loggedUser === route
+    // return true // fake
+    return loggedUser === route
   }
 
   const manageUser = async ()=> {
@@ -57,7 +59,7 @@ const ProfilePage = ({ match }: IProps) => {
 
   return (
     <PageTemplate>
-      {/* <> */}
+      {/* <>
         <ProfileBar 
           username={username}
           isLoggedUserRoute={isLoggedUserRoute}
@@ -65,30 +67,33 @@ const ProfilePage = ({ match }: IProps) => {
         <QuizList 
           quizes={tempQuizes} 
         />
-      {/* </> */}
-      {/* {requestStatus ? 
+      </> */}
+      {requestStatus ? 
         doesUserExist ? 
-        <>
+          <>
             <ProfileBar 
               username={username}
               isLoggedUserRoute={isLoggedUserRoute}
             /> 
-            </>
+            <QuizList 
+              quizes={tempQuizes} 
+            />
+          </> 
             : 
-              <PlaceholderTemplate>
-                <h2> User doesn't exist </h2>
-                <Image 
-                  url={BugSVG}
-                  alt="Error icon"
-                  width="80px"
-                  height="80px"
-                  margin="10px 0 0 0"
-                />
-              </PlaceholderTemplate>
+            <PlaceholderTemplate>
+              <h2> User doesn't exist </h2>
+              <Image 
+                url={BugSVG}
+                alt="Error icon"
+                width="80px"
+                height="80px"
+                margin="10px 0 0 0"
+              />
+            </PlaceholderTemplate> 
               : 
-                <PlaceholderTemplate>
-                  <Spinner />
-                </PlaceholderTemplate>} */}
+              <PlaceholderTemplate>
+                <Spinner />
+              </PlaceholderTemplate>}
     </PageTemplate>  
   )
 }  

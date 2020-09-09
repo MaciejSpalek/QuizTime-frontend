@@ -14,14 +14,14 @@ const initialState: QuizState = {
 
 export const quizReducer = (state = initialState, action: any): QuizState => {
     switch (action.type) {
-        case QuizTypes.SET_ALL_QUIZES: {
+        case QuizTypes.FETCH_ALL_QUIZES: {
           return {
             ...state,
             allQuizes: action.payload
           }
         }
 
-        case QuizTypes.SET_USER_QUIZES: {
+        case QuizTypes.FETCH_USER_QUIZES: {
           return {
             ...state,
             userQuizes: action.payload

@@ -9,6 +9,7 @@ type DataType = {
 }
 
 export const login = async (data: DataType, dispatch: any) => {
+
     try {
         const res = await axiosInstance.post(`/authenticate`, data)
         const { token, jwt_TOKEN_VALIDITY: tokenLifeTime} = res.data
@@ -25,6 +26,14 @@ export const login = async (data: DataType, dispatch: any) => {
         // dispatch(setRequestStatus(false))
         // dispatch(setRequestMessage(errorMessage))
         console.log(errorMessage)
+
+        //fake
+        // const expireTokenDate: Date =  getExpireDate(3600)
+        // setCookie('token', "djsakhdksajhd21do21udn1!en1iudnsd21de2.332dsdb3iu2d.dsd32d2e3dnsui", expireTokenDate)
+        // setCookie('username', data.username, expireTokenDate)
+        // dispatch(setLoggedUser(data.username))
+        // dispatch(setRequestMessage(""))
+        // dispatch(setRequestStatus(true))
     }
 }
 

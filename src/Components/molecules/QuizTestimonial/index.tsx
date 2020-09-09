@@ -20,7 +20,6 @@ type Props = {
     const { 
         author,
         name, 
-        isDone, 
         image,
         score
     } = parameters

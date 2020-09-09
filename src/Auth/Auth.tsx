@@ -3,7 +3,7 @@ import { showCookie } from '../helpers/cookies'
 import { authenticate } from '../redux/Actions/sessionActions'
 import { useDispatch } from 'react-redux'
 import { resetLoggedUser, setLoggedUser } from '../redux/Actions/userActions'
-import { setAllQuizes } from '../redux/Actions/quizActions'
+import { fetchAllQuizes } from '../redux/Actions/quizActions'
 
 const Auth = () => {
     const dispatch = useDispatch()
@@ -22,7 +22,7 @@ const Auth = () => {
     }
     
     useEffect(()=> {
-        dispatch(setAllQuizes()) // to change
+        dispatch(fetchAllQuizes()) // to change
         setAuthentication()
     }, [])
 
