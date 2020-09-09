@@ -1,12 +1,10 @@
 import React from 'react'
-import { StyledForm } from './index.styled'
+import { StyledForm } from './FormTemplate.styled'
 
 type Props = {
     handleSubmit: (e: any) => void;
     children: React.ReactNode;
 }
-
-
 
 const FormTemplate = ({ children, handleSubmit }: Props) => {
     return (

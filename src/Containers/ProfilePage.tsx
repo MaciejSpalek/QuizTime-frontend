@@ -14,7 +14,7 @@ import tempImage from '../assets/Person.svg'
 import { routes } from '../routes/index'
 import AddQuizPage from './AddQuizPage'
 
-type IProps = { match: any }
+type Props = { match: any }
 
 const tempQuizes = [
     {id:1, name: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12"},
@@ -23,7 +23,7 @@ const tempQuizes = [
     {id:4, name: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12"}
 ]
 
-const ProfilePage = ({ match }: IProps) => {
+const ProfilePage = ({ match }: Props) => {
   const [ username, setUsername ] = useState(null)
   // const [ username, setUsername ] = useState("maciora") // fake
 

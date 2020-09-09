@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { FlexCenter } from '../../../theme/Mixins'
+import { FlexCenter } from '../../theme/Mixins'
 
 export const StyledForm = styled.form`
     ${FlexCenter};
