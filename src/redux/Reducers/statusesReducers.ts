@@ -2,10 +2,12 @@ import { StatusesTypes } from '../Types/statusesTypes'
 
 type StatusesState = {
   hamburgerStatus: boolean
+  addQuizButtonStatus: boolean
 }
 
 const initialState: StatusesState = {
-  hamburgerStatus: false
+  hamburgerStatus: false,
+  addQuizButtonStatus: false
 }
 
 export const statusesReducer = (state = initialState, action: any): StatusesState => {
@@ -14,6 +16,13 @@ export const statusesReducer = (state = initialState, action: any): StatusesStat
       return {
         ...state,
         hamburgerStatus: action.payload
+      }
+    }
+
+    case StatusesTypes.SET_ADD_QUIZ_BUTTON_STATUS: {
+      return {
+        ...state,
+        addQuizButtonStatus: action.payload
       }
     }
 

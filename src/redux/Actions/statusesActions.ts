@@ -7,3 +7,11 @@ export const setHamburgerStatus = (state: boolean) => (dispatch: any) => {
   })
 };
 
+
+export const setAddQuizButtonStatus = (state: boolean) => (dispatch: any) => {
+  dispatch({
+    type: StatusesTypes.SET_ADD_QUIZ_BUTTON_STATUS,
+    payload: state
+  })
+};
+

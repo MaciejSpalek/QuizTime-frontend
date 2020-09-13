@@ -4,21 +4,27 @@ import {
     StyledUserTag
 } from './index.styled'
 import Button from '../../atoms/Button'
-import Link from '../../atoms/Link'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../../redux/store'
+import { setAddQuizButtonStatus } from '../../../redux/Actions/statusesActions'
 type Props = {
    username: string | null
    isLoggedUserRoute: any
 }
 
  const ProfileBar = ({ username, isLoggedUserRoute }: Props)=> {
+    const dispatch = useDispatch()
+    const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus)
+
     return (
         <StyledContainer>
             <StyledUserTag> {username} </StyledUserTag>
-            {isLoggedUserRoute() && <Button text="New quiz" isWidthExtend={false}/>}
-            {/* {isLoggedUserRoute() && <Link text="New quiz" type="link" to={`/cokolwiek/add-quiz`}/>} */}
-            
-
+            {isLoggedUserRoute() 
+                &&  <Button 
+                        text="New quiz" 
+                        isWidthExtend={false} 
+                        handleOnClick={()=>dispatch(setAddQuizButtonStatus(!addQuizButtonStatus))}
+                    />}            
         </StyledContainer>
     )
 }

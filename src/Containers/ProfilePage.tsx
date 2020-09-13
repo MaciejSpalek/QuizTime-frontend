@@ -12,7 +12,7 @@ import QuizWrapper from '../Components/organisms/QuizesWrapper/index'
 import QuizList from '../Components/molecules/QuizesList/index'
 import tempImage from '../assets/Person.svg'
 import { routes } from '../routes/index'
-import AddQuizPage from './AddQuizPage'
+import AddQuizWrapper from '../Components/organisms/AddQuizWrapper'
 
 type Props = { match: any }
 
@@ -30,6 +30,7 @@ const ProfilePage = ({ match }: Props) => {
   const [ doesUserExist, setDoesUserExist ] = useState(false)
   const [ requestStatus, setRequestStatus ] = useState(false)
   const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser)
+  const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus)
 
   const isLoggedUserRoute = ()=> {
     const route = match.params.username
@@ -75,9 +76,12 @@ const ProfilePage = ({ match }: Props) => {
               username={username}
               isLoggedUserRoute={isLoggedUserRoute}
             /> 
-            <QuizList 
-              quizes={tempQuizes} 
-            />
+            {!addQuizButtonStatus ?
+              <QuizList 
+                quizes={tempQuizes} 
+              /> 
+              : <AddQuizWrapper />
+            }
           </> 
             : 
             <PlaceholderTemplate>
