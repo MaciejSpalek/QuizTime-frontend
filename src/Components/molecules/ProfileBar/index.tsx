@@ -21,7 +21,7 @@ type Props = {
             <StyledUserTag> {username} </StyledUserTag>
             {isLoggedUserRoute() 
                 &&  <Button 
-                        text="New quiz" 
+                        text={addQuizButtonStatus ? 'Your quizes' : 'Add quiz'} 
                         isWidthExtend={false} 
                         handleOnClick={()=>dispatch(setAddQuizButtonStatus(!addQuizButtonStatus))}
                     />}            
