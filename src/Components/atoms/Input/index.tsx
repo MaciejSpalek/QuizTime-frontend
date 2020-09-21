@@ -7,11 +7,11 @@ type Props = {
     name?: string
     onBlur?: any
     onChange?:  any
-    isRequired?: boolean
-    placeholder?: string
-    value?: string | number
     ariaLabel?: string
+    placeholder?: string
+    isRequired?: boolean
     ariaInvalid?: boolean
+    value?: string | number
     ariaDescribedBy?: string 
 }
 

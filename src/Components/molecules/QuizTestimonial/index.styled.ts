@@ -4,7 +4,7 @@ import { FlexCenter } from '../../../theme/Mixins'
 export const StyledContainer = styled.li`
     ${FlexCenter};
     flex-direction: column;
-    height: 300px;
+    /* height: 300px; */
     margin: 10px 0;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, .3);
     background-color: ${({theme}) => theme.colors.white};

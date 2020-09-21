@@ -1,8 +1,8 @@
 export interface Quiz {
-    id: number
+    id?: number
     name: string
     author: string
-    isDone: boolean
+    isDone?: boolean
     image: any
     score: string
 }

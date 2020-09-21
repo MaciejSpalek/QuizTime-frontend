@@ -1,5 +1,4 @@
-  
-import React from 'react';
+import React from 'react'
 import { StyledFormField } from './FormFieldTemplate.styled'
 
 type Props = {
@@ -13,4 +12,4 @@ const FieldFormTemplate = ({ children }: Props) => (
 );
 
 
-export default FieldFormTemplate;
+export default FieldFormTemplate

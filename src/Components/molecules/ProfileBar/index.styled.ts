@@ -7,6 +7,7 @@ export const StyledContainer = styled.div`
     width: 100%;
     border-bottom: 1px solid ${({theme}) => theme.colors.grayscale[5]};
     padding: 10px;
+    height: 60px;
 `
 
 export const StyledUserTag = styled.span`

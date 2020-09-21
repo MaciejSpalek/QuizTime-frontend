@@ -52,7 +52,7 @@ type Props = {
                 <StyledGreenLabel>
                     nowy
                 </StyledGreenLabel>
-                <p> {author} </p>
+                <span> {author} </span>
             </StyledBottomWrapper>
         </StyledContainer>
     )

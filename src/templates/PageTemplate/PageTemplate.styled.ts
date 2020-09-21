@@ -3,7 +3,8 @@ import { FlexCenter } from '../../theme/Mixins'
 
 export const StyledContainer = styled.div`
   ${FlexCenter};
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
   position: relative;
   height: calc(100vh - 60px);
 `
