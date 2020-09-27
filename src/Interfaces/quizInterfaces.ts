@@ -5,4 +5,5 @@ export interface Quiz {
     isDone?: boolean
     image: any
     score: string
+    color: string
 }

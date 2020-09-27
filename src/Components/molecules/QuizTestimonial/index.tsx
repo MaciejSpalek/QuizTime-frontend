@@ -21,7 +21,8 @@ type Props = {
         author,
         name, 
         image,
-        score
+        score,
+        color
     } = parameters
     
     return (

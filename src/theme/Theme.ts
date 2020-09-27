@@ -28,6 +28,10 @@ export const theme = {
             "#9B9A96", 
             "#A19A94"
         ],
+        Neutral20: '#5D6371',
+        Neutral40: '#9096A3',
+        Neutral60: '#B7BDC8',
+        Neutral80: '#dfdfdf',
     },
     responsive: {
         xs: '480px',

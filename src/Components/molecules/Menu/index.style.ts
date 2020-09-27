@@ -14,6 +14,7 @@ export const StyledMenu = styled.ul`
     box-shadow: 0px 0px 5px rgba(0, 0, 0, .3);    
     z-index: 999;
 `
+
 const IconStyles = css`
     width: 40px;
     height: 40px;

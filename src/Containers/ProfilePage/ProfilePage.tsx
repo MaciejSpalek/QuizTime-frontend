@@ -19,10 +19,10 @@ import AddQuizWrapper from '../../Components/organisms/AddQuizWrapper'
 type Props = { match: any }
 
 const tempQuizes = [
-  { id: 1, name: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12" },
-  { id: 2, name: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12" },
-  { id: 3, name: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12" },
-  { id: 4, name: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12" }
+  { id: 1, name: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12", color: "red" },
+  { id: 2, name: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12", color: "red" },
+  { id: 3, name: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12", color: "red" },
+  { id: 4, name: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12", color: "red" }
 ]
 
 const ProfilePage = ({ match }: Props) => {
