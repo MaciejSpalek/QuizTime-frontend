@@ -41,6 +41,7 @@ const Option = ({
     manageIsSelectedState();
   });
 
+
   return (
     <StyledOption
       onClick={() => handleOnOptionClick()}

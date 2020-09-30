@@ -8,6 +8,8 @@ import ProfilePage from './ProfilePage/ProfilePage'
 import { routes } from '../routes/index'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
+
+
 const App = () => {
   return (
     <GlobalTemplate>

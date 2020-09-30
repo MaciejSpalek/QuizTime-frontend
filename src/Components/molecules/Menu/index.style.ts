@@ -1,6 +1,6 @@
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 import { FlexColumn } from "../../../theme/Mixins";
-import { LogoutIcon, LoginIcon, HomeIcon, UserIcon } from '../../../assets';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const StyledMenu = styled.ul`
     ${FlexColumn};
@@ -15,21 +15,9 @@ export const StyledMenu = styled.ul`
     z-index: 999;
 `
 
-const IconStyles = css`
-    width: 40px;
-    height: 40px;
+export const StyledIcon = styled(FontAwesomeIcon)`
+    font-size: 40px;
     margin-right: 10px;
+    color: ${({theme}) => theme.colors.green};
 `
 
-export const StyledLoginIcon = styled(LoginIcon)`
-    ${IconStyles}
-`
-export const StyledHomeIcon = styled(HomeIcon)`
-    ${IconStyles}
-`
-export const StyledUserIcon = styled(UserIcon)`
-    ${IconStyles}
-`
-export const StyledLogoutIcon = styled(LogoutIcon)`
-    ${IconStyles}
-`

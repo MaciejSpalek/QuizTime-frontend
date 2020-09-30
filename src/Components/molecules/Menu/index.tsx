@@ -2,10 +2,7 @@ import React from 'react'
 import { css } from 'styled-components'
 import { 
     StyledMenu, 
-    StyledLoginIcon, 
-    StyledHomeIcon, 
-    StyledUserIcon, 
-    StyledLogoutIcon 
+    StyledIcon
 } from './index.style'
 import { routes } from '../../../routes/index'
 import { useSelector, useDispatch } from 'react-redux'
@@ -13,6 +10,7 @@ import { RootState } from '../../../redux/store'
 import { logout } from '../../../Auth/requests'
 import { setHamburgerStatus } from '../../../redux/Actions/statusesActions'
 import MenuItem from '../../atoms/Link/index'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const NavLinkStyles = css`
     color: ${({theme}) => theme.colors.grayscale[2]};
@@ -33,7 +31,7 @@ const Menu = ()=> {
                 type="NavLink"
                 text="Home"
                 styles={NavLinkStyles}
-                children={<StyledHomeIcon />}
+                children={<StyledIcon icon='home' />}
                 handleOnClick={()=>dispatch(setHamburgerStatus(!hamburgerStatus))}
             />
             {!isAuthenticated ? <MenuItem 
@@ -41,7 +39,7 @@ const Menu = ()=> {
                 type="NavLink"
                 text="Sign in"
                 styles={NavLinkStyles}
-                children={<StyledLoginIcon />}
+                children={<StyledIcon icon='sign-in-alt'/>}
                 handleOnClick={()=>dispatch(setHamburgerStatus(!hamburgerStatus))}
             /> : null}
 
@@ -50,7 +48,7 @@ const Menu = ()=> {
                 type="NavLink"
                 text="Profile"
                 styles={NavLinkStyles}
-                children={<StyledUserIcon />}
+                children={<StyledIcon icon='user'/>}
                 handleOnClick={()=>dispatch(setHamburgerStatus(!hamburgerStatus))}
             /> : null}
 
@@ -63,7 +61,7 @@ const Menu = ()=> {
                     dispatch(setHamburgerStatus(!hamburgerStatus))
                 }}
                 styles={NavLinkStyles}
-                children={<StyledLogoutIcon />}
+                children={<StyledIcon icon='sign-out-alt'/>}
             /> : null}
         </StyledMenu>
     )

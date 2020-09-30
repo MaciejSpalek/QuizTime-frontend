@@ -1,14 +1,6 @@
-// Exports for SVG Components
-
-//Menu icons
-export { ReactComponent as LoginIcon } from './Login.svg';
-export { ReactComponent as LogoutIcon } from './Logout.svg';
-export { ReactComponent as HomeIcon } from './Home.svg';
-export { ReactComponent as UserIcon } from './User.svg';
 
 //Select icons
 export { ReactComponent as PersonIcon } from './Person.svg';
-
 export { ReactComponent as AnimalIcon } from './Animal.svg';
 export { ReactComponent as ScienceIcon } from './Science.svg';
 export { ReactComponent as MoviesIcon } from './Movies.svg';

@@ -8,11 +8,12 @@ type Props = {
 }
 
 
-const Paragraph = ({text, isBold, textAlign}: Props)=> {
+const Paragraph = ({text, isBold, textAlign, ...props}: Props)=> {
     return (
         <StyledParagraph 
             isBold={isBold}
-            textAlign={textAlign}>
+            textAlign={textAlign}
+            {...props}>
             {text} 
         </StyledParagraph>
     )

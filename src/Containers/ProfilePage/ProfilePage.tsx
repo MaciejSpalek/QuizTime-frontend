@@ -18,19 +18,23 @@ import AddQuizWrapper from '../../Components/organisms/AddQuizWrapper'
 
 type Props = { match: any }
 
-const tempQuizes = [
-  { id: 1, name: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12", color: "red" },
-  { id: 2, name: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12", color: "red" },
-  { id: 3, name: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12", color: "red" },
-  { id: 4, name: "Zwierzęta", author: "Maciora", isDone: true, image: tempImage, score: "5/12", color: "red" }
-]
+// const tempQuizes = [
+//   { id: 1, name: "Zwierzęta", author: "Maciora", isDone: true, score: "5/12", color: "red" },
+//   { id: 2, name: "Zwierzęta", author: "Maciora", isDone: true, score: "5/12", color: "red" },
+//   { id: 3, name: "Zwierzęta", author: "Maciora", isDone: true, score: "5/12", color: "red" },
+//   { id: 4, name: "Zwierzęta", author: "Maciora", isDone: true, score: "5/12", color: "red" }
+// ]
 
 const ProfilePage = ({ match }: Props) => {
   // const [ username, setUsername ] = useState(null) // api
   const [username, setUsername] = useState("maciora") // fake
 
-  const [doesUserExist, setDoesUserExist] = useState(false)
-  const [requestStatus, setRequestStatus] = useState(false)
+  // const [doesUserExist, setDoesUserExist] = useState(false) //api
+  // const [requestStatus, setRequestStatus] = useState(false) //api
+
+
+  const [doesUserExist, setDoesUserExist] = useState(true) //fake
+  const [requestStatus, setRequestStatus] = useState(true) //fake
   const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser)
   const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus)
 
@@ -67,7 +71,7 @@ const ProfilePage = ({ match }: Props) => {
         doesUserExist ?
           <StyledWrapper>
             <ProfileBar username={username} isLoggedUserRoute={isLoggedUserRoute} />
-            {!addQuizButtonStatus ? <QuizList quizes={tempQuizes} /> : <AddQuizWrapper />}
+            {!addQuizButtonStatus ? <QuizList quizes={[]} /> : <AddQuizWrapper />}
           </StyledWrapper>
           :
           <PlaceholderTemplate>

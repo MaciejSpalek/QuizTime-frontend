@@ -1,6 +1,4 @@
 import React from 'react'
-import Image from '../../atoms/Image/index'
-import Paragraph from '../../atoms/Paragraph/index'
 import { Quiz } from '../../../Interfaces/quizInterfaces'
 import { 
     StyledBottomWrapper,
@@ -8,9 +6,11 @@ import {
     StyledTextWrapper,
     StyledTopWrapper,
     StyledContainer, 
-    StyledGreenLabel 
+    StyledGreenLabel,
+    StyledTitle,
+    StyledScore
 } from './index.styled'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
     parameters: Quiz
@@ -20,29 +20,23 @@ type Props = {
     const { 
         author,
         name, 
-        image,
+        image: Image,
         score,
         color
     } = parameters
-    
     return (
         <StyledContainer>
-            <StyledTopWrapper>
+            <StyledTopWrapper color={color}>
                 <StyledImageWrapper>
-                    <Image 
-                        url={image}
-                        alt={"Znana osoba"}
-                        width={"45px"}
-                        height={"45px"}
-                    />
+                    <FontAwesomeIcon icon={'home'} />
                 </StyledImageWrapper>
                 <StyledTextWrapper>
-                    <Paragraph 
+                    <StyledTitle 
                         text={name}
                         isBold={true}
                         textAlign={"center"}
                     />
-                    <Paragraph 
+                    <StyledScore 
                         text={score}
                         isBold={false}
                         textAlign={"center"}
@@ -50,9 +44,7 @@ type Props = {
                 </StyledTextWrapper>
             </StyledTopWrapper>
             <StyledBottomWrapper>
-                <StyledGreenLabel>
-                    nowy
-                </StyledGreenLabel>
+                <StyledGreenLabel> nowy </StyledGreenLabel>
                 <span> {author} </span>
             </StyledBottomWrapper>
         </StyledContainer>

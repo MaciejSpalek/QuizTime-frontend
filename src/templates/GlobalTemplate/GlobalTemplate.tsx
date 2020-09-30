@@ -4,6 +4,7 @@ import { StyledContainer } from './GlobalTemplate.styled'
 import { theme } from '../../theme/Theme'
 import GlobalStyle from '../../theme/GlobalStyle'
 import Auth from '../../Auth/Auth'
+import FontAwesomeLibrary from 'Lib/FontAwesomeLib'
 
 
 type Props = {
@@ -12,6 +13,7 @@ type Props = {
 
 const GlobalTemplate = ({ children }: Props) => (
   <StyledContainer>
+    <FontAwesomeLibrary />
     <GlobalStyle />
     <Auth />
     <ThemeProvider theme={theme}> 

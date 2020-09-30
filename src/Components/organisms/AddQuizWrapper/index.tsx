@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyledContainter } from './index.styled'
 import Label from '../../atoms/Label'
 import Input from '../../atoms/Input'
@@ -19,14 +19,32 @@ import {
   YouTubeIcon
 } from '../../../assets'
 
-
 const AddQuizWrapper = () => {
-  const [color, setColor] = useState('');
-  const [name, setName] = useState('Your title');
+  const [color, setColor] = useState('#00D952');
+  const [name, setName] = useState('Example title');
   const [author, setAuthor] = useState('Author');
   const [image, setImage] = useState('Author');
   const [score, setScore] = useState('0/12');
 
+
+  const handleColor = (colorValue: string | undefined) => {
+    if(colorValue) {
+      setColor(colorValue)
+    }
+  }
+
+  const handleTitle = (title: string) => {
+    if(title) {
+      setName(title)
+    } else {
+      setName('Example title')
+    }
+  }
+
+  useEffect(() => {
+    console.log()
+  }, [])
+  
   return (
     <StyledContainter>
       <QuizThumbnail 
@@ -46,18 +64,20 @@ const AddQuizWrapper = () => {
         <Input 
           id="title"
           type="text"
+          onChange={(e: any) => handleTitle(e.target.value)}
         />
       </FormField>
-    
       <ColorSelect 
         options={[
-          {id: "1", title: "Orange", value: "rgb(230, 157, 0)"},
-          {id: "2", title: "Blue", value: " rgb(0, 61, 230)"},
-          {id: "3", title: "Red", value: "rgb(230, 0, 0)"}
+          {id: "1", title: "Green", value: "#00D952"},
+          {id: "2", title: "Orange", value: "rgb(230, 157, 0)"},
+          {id: "3", title: "Blue", value: " rgb(0, 61, 230)"},
+          {id: "4", title: "Red", value: "rgb(230, 0, 0)"},
+          {id: "5", title: "Purple", value: "#A24CCD"},
         ]}
         selectCaption="Select color"
         type={OptionType.COLOR}
-        handleOnClick={(value) => console.log(value())}
+        handleOnClick={(color) => handleColor(color().value)}
       />
       <CategorySelect 
         options={[
@@ -73,7 +93,7 @@ const AddQuizWrapper = () => {
         ]}
         selectCaption="Select category"
         type={OptionType.ICON}
-        handleOnClick={(value) => console.log(value())}
+        handleOnClick={(value) => value()}
       />
     </StyledContainter>  
   )
