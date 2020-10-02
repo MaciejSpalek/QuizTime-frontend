@@ -23,7 +23,7 @@ const Select = ({ handleOnClick, options, selectCaption, type }: ISelect): JSX.E
   };
 
   useEffect(() => {
-    handleOnClick(() => selectedOption);
+    handleOnClick(selectedOption);
   }, [selectedOption, handleOnClick]);
 
   return (

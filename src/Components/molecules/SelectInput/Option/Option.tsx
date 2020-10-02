@@ -5,12 +5,12 @@ import {
   StyledOption,
   StyledOptionTitle,
   StyledIconField,
-  StyledPaletteField,
-  StyledCheckedSquare,
-  StyledNoCheckedSquare,
+  StyledCheckedSquareIcon,
   StyledWrapper,
+  StyledCategoryIcon,
+  StyledPaletteIcon
 } from './Option.styled';
-import { PaletteIcon } from '../../../../assets';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
 
 const Option = ({
   type,
@@ -19,7 +19,7 @@ const Option = ({
   currentOptionId,
   updateSelectedOption,
 }: IOption): JSX.Element => {
-  const { id, title, value, icon: Icon } = option;
+  const { id, title, value, icon } = option;
   const [isSelected, setIsSelected] = useState(() => {
     return selectedOption.id === id
   });
@@ -51,20 +51,18 @@ const Option = ({
     >
       {type == OptionType.COLOR ?
         <StyledWrapper>
-          {isSelected ? <StyledCheckedSquare /> : <StyledNoCheckedSquare />}
-            <StyledPaletteField value={value}>
-              <PaletteIcon />
-            </StyledPaletteField>
+          {isSelected ? <StyledCheckedSquareIcon icon="check-square" /> : <StyledCheckedSquareIcon icon={['far', 'square']}/>}
+            <StyledPaletteIcon icon="palette" value={value ? value.secondary : ''} />
+            <StyledPaletteIcon icon="palette" value={value ? value.primary : ''} />
             <StyledOptionTitle>{title}</StyledOptionTitle>
         </StyledWrapper> :
         <StyledWrapper>
-          {isSelected ? <StyledCheckedSquare /> : <StyledNoCheckedSquare />}
+          {isSelected ? <StyledCheckedSquareIcon icon="check-square"/> : <StyledCheckedSquareIcon icon={['far', 'square']}/>}
             <StyledIconField>
-              <Icon />
+              <StyledCategoryIcon icon={icon as IconName}/>
             </StyledIconField>
             <StyledOptionTitle>{title}</StyledOptionTitle>
-        </StyledWrapper>
-      }
+        </StyledWrapper>}
     </StyledOption>
   );
 };

@@ -5,6 +5,7 @@ type Props = {
     id?: string
     type: string
     name?: string
+    maxLength?: number
     onBlur?: any
     onChange?:  any
     ariaLabel?: string
@@ -18,6 +19,7 @@ type Props = {
 const Input = ({ 
   id, 
   name, 
+  maxLength,
   type, 
   value,
   onBlur,
@@ -26,11 +28,13 @@ const Input = ({
   isRequired,
   placeholder,
   ariaInvalid,
-  ariaDescribedBy
+  ariaDescribedBy,
+  ...props
 }: Props) => (
     <StyledInput
       id={id}
       name={name}
+      maxLength={maxLength}
       type={type}
       value={value}
       onBlur={onBlur}
@@ -40,6 +44,7 @@ const Input = ({
       placeholder={placeholder}
       aria-invalid={ariaInvalid}
       aria-describedby={ariaDescribedBy}
+      {...props}
     />
 );
 

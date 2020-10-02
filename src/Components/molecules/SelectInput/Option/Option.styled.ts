@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { FlexCenter } from "../../../../theme/Mixins";
-import { CheckedSquare, NoCheckedSquare } from '../../../../assets';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const StyledOption = styled.li<{ isSelected: boolean }>`
   display: flex;
@@ -19,14 +19,6 @@ export const StyledOptionTitle = styled.span`
   pointer-events: none;
 `;
 
-export const StyledColorField = styled.span<{ value: string | undefined }>`
-  width: 40px;
-  height: 40px;
-  border-radius: 5px;
-  margin-right: 10px;
-  background-color: ${({ value }) => value};
-`;
-
 export const StyledIconField = styled.div`
   ${FlexCenter};
   border-radius: 5px;
@@ -34,45 +26,24 @@ export const StyledIconField = styled.div`
   width: 40px;
   height: 40px;
   margin-right: 10px;
-
-  svg {
-    width: 30px;
-    height: 30px;
-    path {
-      fill: ${({ theme }) => theme.colors.Neutral20};
-    }
-  }
 `;
 
-
-export const StyledPaletteField = styled.div<{value: string | undefined}>`
-  margin-right: 10px;
-  svg {
-    width: 30px;
-    height: 30px;
-    path {
-      fill: ${({value}) => value};
-    }
-  }
-`;
-
-
-export const StyledNoCheckedSquare = styled(NoCheckedSquare)`
-    width: 30px;
-    height: 30px;
-    margin-right: 20px;
-    path {
-      fill: ${({theme}) => theme.colors.green};
-    }
+export const StyledCategoryIcon = styled(FontAwesomeIcon)`
+  font-size: 24px;
+  color:  ${({ theme }) => theme.colors.Neutral20};
 `
 
-export const StyledCheckedSquare = styled(CheckedSquare)`
-    width: 30px;
-    height: 30px;
-    margin-right: 20px;
-    path {
-      fill: ${({theme}) => theme.colors.green};
-    }
+export const StyledCheckedSquareIcon = styled(FontAwesomeIcon)`
+  font-size: 30px;
+  margin-right: 10px;
+  color: ${({theme}) => theme.colors.green};
+
+`
+
+export const StyledPaletteIcon = styled(FontAwesomeIcon)<{value: string}>`
+  font-size: 30px;
+  margin-right: 10px;
+  color: ${({value}) => value};
 `
 
 export const StyledWrapper = styled.div`
@@ -80,3 +51,5 @@ export const StyledWrapper = styled.div`
   justify-content: flex-start;
   width: 100%;
 `
+
+

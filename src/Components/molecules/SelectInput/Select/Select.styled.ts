@@ -18,7 +18,7 @@ export const StyledTopWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  height: 50px;
+  height: 45px;
   padding: 0 10px;
 `;
 

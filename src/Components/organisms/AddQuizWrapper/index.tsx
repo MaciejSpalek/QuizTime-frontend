@@ -7,51 +7,42 @@ import QuizThumbnail from '../../molecules/QuizTestimonial'
 import CategorySelect from '../../molecules/SelectInput'
 import ColorSelect from '../../molecules/SelectInput'
 import { OptionType } from '../../molecules/SelectInput/SelectInput.model'
-import { 
-  PersonIcon, 
-  GamesIcon, 
-  MoviesIcon,
-  ScienceIcon,
-  AnimalIcon,
-  HistoryIcon,
-  MusicIcon,
-  GeographyIcon,
-  YouTubeIcon
-} from '../../../assets'
+import { IconName } from '@fortawesome/fontawesome-svg-core';
+import { Color } from 'Interfaces/quizInterfaces'
+
 
 const AddQuizWrapper = () => {
-  const [color, setColor] = useState('#00D952');
+  const [color, setColor] = useState<Color>({primary: '#00D952', secondary: '#00a03d'});
   const [name, setName] = useState('Example title');
   const [author, setAuthor] = useState('Author');
-  const [image, setImage] = useState('Author');
+  const [iconName, setIconName] = useState('male');
   const [score, setScore] = useState('0/12');
 
 
-  const handleColor = (colorValue: string | undefined) => {
-    if(colorValue) {
-      setColor(colorValue)
+  const handleColor = (colorValue: Color | undefined, type: string) => {
+    if(type === OptionType.COLOR && colorValue) {
+        setColor(colorValue)
     }
   }
 
   const handleTitle = (title: string) => {
-    if(title) {
-      setName(title)
-    } else {
-      setName('Example title')
+    title ? setName(title) : setName('Example title')
+  }
+
+  const handleIconName = (icon: string, type: string) => {
+    if(type === OptionType.ICON && typeof icon !== 'undefined') {
+      setIconName(icon)
     }
   }
 
-  useEffect(() => {
-    console.log()
-  }, [])
-  
+
   return (
     <StyledContainter>
       <QuizThumbnail 
         parameters={{
           name,
           author,
-          image,
+          iconName,
           score,
           color
         }}
@@ -64,36 +55,41 @@ const AddQuizWrapper = () => {
         <Input 
           id="title"
           type="text"
+          maxLength={20}
           onChange={(e: any) => handleTitle(e.target.value)}
         />
       </FormField>
       <ColorSelect 
         options={[
-          {id: "1", title: "Green", value: "#00D952"},
-          {id: "2", title: "Orange", value: "rgb(230, 157, 0)"},
-          {id: "3", title: "Blue", value: " rgb(0, 61, 230)"},
-          {id: "4", title: "Red", value: "rgb(230, 0, 0)"},
-          {id: "5", title: "Purple", value: "#A24CCD"},
+          {id: "1", title: "Basic", value: {primary:"#00D952", secondary:"#00a03d"}},
+          {id: "2", title: "Sea", value: {primary: '#80D4CD', secondary: '#2982A2'}},
+          {id: "6", title: "Blue", value: {primary: '#99B3E1', secondary: '#4F62A3'}},
+          {id: "4", title: "Blue", value: {primary: '#A0ADBD', secondary: '#372E46'}},
+          {id: "5", title: "Blue", value: {primary: '#ACA398', secondary: '#443C51'}},
+          {id: "7", title: "Blue", value: {primary: '#ECCE8D', secondary: '#2C1931'}},
+          {id: "3", title: "Dessert", value: {primary: '#F7BC14', secondary: '#201F26'}},
+          
         ]}
-        selectCaption="Select color"
+        selectCaption="Select theme"
         type={OptionType.COLOR}
-        handleOnClick={(color) => handleColor(color().value)}
+        handleOnClick={callback => handleColor(callback.value, OptionType.COLOR)}
       />
       <CategorySelect 
         options={[
-          {id: "1", title: "Person", icon: PersonIcon},
-          {id: "2", title: "Games", icon: GamesIcon},
-          {id: "3", title: "Movies", icon: MoviesIcon},
-          {id: "4", title: "Science", icon: ScienceIcon},
-          {id: "5", title: "Animal", icon: AnimalIcon},
-          {id: "6", title: "History", icon: HistoryIcon},
-          {id: "7", title: "Music", icon: MusicIcon},
-          {id: "8", title: "Geography", icon: GeographyIcon},
-          {id: "9", title: "YouTube", icon: YouTubeIcon},
+          {id: "1", title: "Person", icon: 'male'},
+          {id: "2", title: "Games", icon: 'gamepad'},
+          {id: "3", title: "Movies", icon: 'film'},
+          {id: "4", title: "Science", icon: 'flask'},
+          {id: "5", title: "Animals", icon: 'paw'},
+          {id: "6", title: "History", icon: 'landmark'},
+          {id: "7", title: "Music", icon: 'music'},
+          {id: "8", title: "Geography", icon: 'globe-americas'},
+          {id: "9", title: "YouTube", icon: ['fab', 'youtube']},
+          {id: "10", title: "Sport", icon: ['fas', 'volleyball-ball']},
         ]}
         selectCaption="Select category"
         type={OptionType.ICON}
-        handleOnClick={(value) => value()}
+        handleOnClick={callback => handleIconName(callback.icon as IconName, OptionType.ICON)}
       />
     </StyledContainter>  
   )

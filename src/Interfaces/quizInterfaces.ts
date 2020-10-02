@@ -1,9 +1,14 @@
+export interface Color {
+    primary: string;
+    secondary: string;
+}
+
 export interface Quiz {
     id?: number
     name: string
     author: string
     isDone?: boolean
-    image?: any
+    iconName?: any
     score: string
-    color: string
+    color: Color
 }

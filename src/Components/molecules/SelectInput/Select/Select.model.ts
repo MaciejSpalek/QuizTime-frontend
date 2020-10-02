@@ -1,7 +1,7 @@
 import { ISingleOption } from '../SelectInput.model';
 
 export interface ISelect {
-  handleOnClick: (callback: () => ISingleOption) => void;
+  handleOnClick: (selection: ISingleOption) => void;
   options: ISingleOption[];
   selectCaption: string;
   type: string;

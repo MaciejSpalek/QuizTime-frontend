@@ -1,16 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Quiz } from '../../../Interfaces/quizInterfaces'
 import { 
-    StyledBottomWrapper,
-    StyledImageWrapper, 
-    StyledTextWrapper,
-    StyledTopWrapper,
     StyledContainer, 
-    StyledGreenLabel,
+    StyledTextWrapper,
+    StyledImageWrapper, 
     StyledTitle,
-    StyledScore
+    StyledScore,
+    StyledIcon
 } from './index.styled'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
     parameters: Quiz
@@ -20,33 +17,32 @@ type Props = {
     const { 
         author,
         name, 
-        image: Image,
+        iconName,
         score,
         color
-    } = parameters
+    } = parameters;
+
+
     return (
-        <StyledContainer>
-            <StyledTopWrapper color={color}>
-                <StyledImageWrapper>
-                    <FontAwesomeIcon icon={'home'} />
-                </StyledImageWrapper>
-                <StyledTextWrapper>
-                    <StyledTitle 
-                        text={name}
-                        isBold={true}
-                        textAlign={"center"}
-                    />
-                    <StyledScore 
-                        text={score}
-                        isBold={false}
-                        textAlign={"center"}
-                    />
-                </StyledTextWrapper>
-            </StyledTopWrapper>
-            <StyledBottomWrapper>
-                <StyledGreenLabel> nowy </StyledGreenLabel>
-                <span> {author} </span>
-            </StyledBottomWrapper>
+        <StyledContainer primarycolor={color.primary}>
+            <StyledImageWrapper secondarycolor={color.secondary}>
+                <StyledIcon icon={iconName} primarycolor={color.primary}/>
+                <StyledScore 
+                    text={score}
+                    isBold={false}
+                    textAlign={"center"}
+                    color={color.primary}
+                />
+            </StyledImageWrapper>
+            <StyledTextWrapper>
+                <StyledTitle 
+                    text={name}
+                    isBold={true}
+                    textAlign={"center"}
+                />
+            <span> {author} </span>
+
+            </StyledTextWrapper>
         </StyledContainer>
     )
 }

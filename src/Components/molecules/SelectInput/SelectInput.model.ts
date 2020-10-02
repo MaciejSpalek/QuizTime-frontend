@@ -1,12 +1,14 @@
+import { Color } from "Interfaces/quizInterfaces";
+
 export interface ISingleOption {
   id: string;
   title: string;
-  value?: string;
-  icon?: any;
+  value?: Color;
+  icon?: string | string[];
 }
 
 export interface ISelectInput {
-  handleOnClick: (callback: () => ISingleOption) => void;
+  handleOnClick: (selection: ISingleOption) => void;
   options: ISingleOption[];
   selectCaption: string;
   type: string;
