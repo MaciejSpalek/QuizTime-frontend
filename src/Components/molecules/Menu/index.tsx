@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { css } from 'styled-components'
 import { 
     StyledMenu, 
@@ -10,7 +10,7 @@ import { RootState } from '../../../redux/store'
 import { logout } from '../../../Auth/requests'
 import { setHamburgerStatus } from '../../../redux/Actions/statusesActions'
 import MenuItem from '../../atoms/Link/index'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useOutsideClick } from 'hooks'
 
 const NavLinkStyles = css`
     color: ${({theme}) => theme.colors.grayscale[2]};
@@ -23,9 +23,14 @@ const Menu = ()=> {
 
     const user = useSelector<RootState, string | null>(state => state.user.loggedUser)
     const dispatch = useDispatch()
+    const menuRef = useRef<HTMLUListElement>(null);
 
+    useOutsideClick(menuRef, () => {
+        dispatch(setHamburgerStatus(false))
+    })
+    
     return (
-        <StyledMenu>
+        <StyledMenu ref={menuRef}>
             <MenuItem 
                 to={routes.home}
                 type="NavLink"

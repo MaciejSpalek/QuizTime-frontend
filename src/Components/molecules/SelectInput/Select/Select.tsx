@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
   StyledSelectCaption,
   StyledTopWrapper,
@@ -8,14 +8,17 @@ import {
 import Option from '../Option';
 import { ISelect } from './Select.model';
 import { ISingleOption } from '../SelectInput.model';
+import { useOutsideClick } from 'hooks';
 
 const Select = ({ handleOnClick, options, selectCaption, type }: ISelect): JSX.Element => {
+  const selectRef = useRef<HTMLDivElement>(null);
+  const [selectedOption, setSelectedOption] = useState<ISingleOption>({id: "", title: ""});
   const [isSelectOpened, setIsSelectOpened] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<ISingleOption>({
-    id: "",
-    title: ""
-  });
   const [currentOptionId, setCurrentOptionId] = useState<string>("");
+
+  useOutsideClick(selectRef, () => {
+    setIsSelectOpened(false)
+  })
 
   const updateSelectedOption = (option: ISingleOption): void => {
       setCurrentOptionId(option.id)
@@ -27,7 +30,7 @@ const Select = ({ handleOnClick, options, selectCaption, type }: ISelect): JSX.E
   }, [selectedOption, handleOnClick]);
 
   return (
-    <StyledWrapper>
+    <StyledWrapper ref={selectRef}>
       <StyledTopWrapper onClick={() => setIsSelectOpened(!isSelectOpened)}>
         <StyledSelectCaption id="selectCaption">
           {selectCaption}
