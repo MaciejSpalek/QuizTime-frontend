@@ -31,3 +31,10 @@ export const fetchUserQuizes = (username: string)=> async (dispatch: any) => {
     }
 };
 
+
+export const setQuizFormPageCounter = (counter: number) => (dispatch: any) => {
+    dispatch({
+        type: QuizTypes.SET_QUIZ_FORM_PAGE_COUNTER,
+        payload: counter
+    })
+};

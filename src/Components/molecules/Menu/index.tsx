@@ -20,7 +20,6 @@ const NavLinkStyles = css`
 const Menu = ()=> {
     const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated)
     const hamburgerStatus = useSelector<RootState, boolean>(state => state.statuses.hamburgerStatus);
-
     const user = useSelector<RootState, string | null>(state => state.user.loggedUser)
     const dispatch = useDispatch()
     const menuRef = useRef<HTMLUListElement>(null);

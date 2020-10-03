@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import PageTemplate from '../../templates/PageTemplate/PageTemplate'
 import AuthForm from '../../templates/FormTemplate/FormTemplate'
-import Button from '../../Components/atoms/Button/index'
+import Button from '../../Components/atoms/Button/Button'
 import Link from '../../Components/atoms/Link/index'
 import FormField from '../../templates/FormFieldTemplate/FormFieldTemplate'
 import Input from '../../Components/atoms/Input/index'
@@ -16,7 +16,7 @@ import { Formik } from "formik"
 import { login, register } from '../../Auth/requests'
 import { setRequestStatus } from '../../redux/Actions/sessionActions'
 import { RouteComponentProps } from 'react-router-dom'
-
+import { StyledButton } from './AuthPage.styled'
 
 const validationSchema = yup.object({
     username: yup.string()
@@ -134,11 +134,10 @@ const AuthPage = ({ history }: RouteComponentProps) => {
                                 <ErrorMessage id="err_2" text={errors.password} />
                             ) : null}
                         </FormField>
-                        <Button 
+                        <StyledButton 
                             type="submit" 
                             text={isLoginRoute() ? "Log in": "Register"} 
                             isDisabled={isSubmitting}
-                            isWidthExtend={true}
                         />
                         <Link 
                             text={isLoginRoute() ? "Create an acconut" : "Do you have an account ?"}

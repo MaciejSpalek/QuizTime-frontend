@@ -54,7 +54,6 @@ const Option = ({
           {isSelected ? <StyledCheckedSquareIcon icon="check-square" /> : <StyledCheckedSquareIcon icon={['far', 'square']}/>}
             <StyledPaletteIcon icon="palette" value={value ? value.secondary : ''} />
             <StyledPaletteIcon icon="palette" value={value ? value.primary : ''} />
-            <StyledOptionTitle>{title}</StyledOptionTitle>
         </StyledWrapper> :
         <StyledWrapper>
           {isSelected ? <StyledCheckedSquareIcon icon="check-square"/> : <StyledCheckedSquareIcon icon={['far', 'square']}/>}

@@ -10,6 +10,6 @@ export const StyledContainer = styled.div`
     height: 60px;
     justify-content: space-between;
     background-color: ${({theme}) => theme.colors.white};
-    border-bottom: 1px solid ${({theme}) => theme.colors.grayscale[5]};
+    border-bottom: 2px solid ${({theme}) => theme.colors.Neutral80};
     padding: 10px;
 `

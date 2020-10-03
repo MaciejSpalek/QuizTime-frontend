@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Quiz } from '../../../Interfaces/quizInterfaces'
 import { 
     StyledContainer, 
@@ -6,7 +6,8 @@ import {
     StyledImageWrapper, 
     StyledTitle,
     StyledScore,
-    StyledIcon
+    StyledIcon,
+    StyledAuthorTag
 } from './index.styled'
 
 type Props = {
@@ -26,22 +27,18 @@ type Props = {
     return (
         <StyledContainer primarycolor={color.primary}>
             <StyledImageWrapper secondarycolor={color.secondary}>
-                <StyledIcon icon={iconName} primarycolor={color.primary}/>
+                <StyledIcon 
+                    icon={iconName} 
+                    primarycolor={color.primary}
+                />
                 <StyledScore 
                     text={score}
-                    isBold={false}
-                    textAlign={"center"}
                     color={color.primary}
                 />
             </StyledImageWrapper>
             <StyledTextWrapper>
-                <StyledTitle 
-                    text={name}
-                    isBold={true}
-                    textAlign={"center"}
-                />
-            <span> {author} </span>
-
+                <StyledTitle text={name} />
+                <StyledAuthorTag text={author} />
             </StyledTextWrapper>
         </StyledContainer>
     )

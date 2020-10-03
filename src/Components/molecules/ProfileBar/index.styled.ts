@@ -5,7 +5,7 @@ export const StyledContainer = styled.div`
     ${FlexCenter};
     justify-content: space-between;
     width: 100%;
-    border-bottom: 1px solid ${({theme}) => theme.colors.grayscale[5]};
+    border-bottom: 2px solid ${({theme}) => theme.colors.Neutral80};
     padding: 10px;
     height: 60px;
 `

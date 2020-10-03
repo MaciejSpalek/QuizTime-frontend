@@ -3,17 +3,12 @@ import { StyledParagraph } from './index.styled'
 
 type Props = {
     text: string;
-    isBold: boolean;
-    textAlign: string;
 }
 
 
-const Paragraph = ({text, isBold, textAlign, ...props}: Props)=> {
+const Paragraph = ({text, ...props}: Props)=> {
     return (
-        <StyledParagraph 
-            isBold={isBold}
-            textAlign={textAlign}
-            {...props}>
+        <StyledParagraph {...props}>
             {text} 
         </StyledParagraph>
     )

@@ -5,11 +5,13 @@ import { Quiz } from '../../Interfaces/quizInterfaces'
 type QuizState = {
     allQuizes: Quiz[]
     userQuizes: Quiz[]
+    quizFormPageCounter: number
 }
 
 const initialState: QuizState = {
     allQuizes: [],
     userQuizes: [],
+    quizFormPageCounter: 1
   }
 
 export const quizReducer = (state = initialState, action: any): QuizState => {
@@ -25,6 +27,13 @@ export const quizReducer = (state = initialState, action: any): QuizState => {
           return {
             ...state,
             userQuizes: action.payload
+          }
+        }
+
+        case QuizTypes.SET_QUIZ_FORM_PAGE_COUNTER: {
+          return {
+            ...state,
+            quizFormPageCounter: action.payload
           }
         }
 
