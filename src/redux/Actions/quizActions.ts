@@ -1,5 +1,5 @@
 import { QuizTypes } from "../Types/quizTypes";
-import { axiosInstance } from '../../services/api'
+import { axiosInstance } from 'services/api'
 
 export const fetchAllQuizes = ()=> async (dispatch: any) => {
     try {
@@ -32,9 +32,9 @@ export const fetchUserQuizes = (username: string)=> async (dispatch: any) => {
 };
 
 
-export const setQuizFormPageCounter = (counter: number) => (dispatch: any) => {
+export const setFormPageCounter = (counter: number) => (dispatch: any) => {
     dispatch({
-        type: QuizTypes.SET_QUIZ_FORM_PAGE_COUNTER,
+        type: QuizTypes.SET_FORM_PAGE_COUNTER,
         payload: counter
     })
 };

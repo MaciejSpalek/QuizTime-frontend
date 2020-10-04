@@ -8,7 +8,7 @@ export const StyledContainer = styled.div<{primarycolor: string}>`
     ${FlexCenter};
     background-color: ${({primarycolor}) => primarycolor};
     border-radius: 4px;
-    margin: 10px 0;
+    margin: 5px 0;
 
 `
 

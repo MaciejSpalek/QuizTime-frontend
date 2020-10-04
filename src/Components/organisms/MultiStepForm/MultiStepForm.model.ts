@@ -1,5 +1,5 @@
-export interface IPagination {
-    steps: number;
+export interface IMultiStepForm {
+    children: React.ReactNode[]
     counter: number;
     handleRightButton: () => void;
     handleLeftButton: () => void;

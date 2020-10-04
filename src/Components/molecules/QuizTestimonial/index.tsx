@@ -14,7 +14,7 @@ type Props = {
     parameters: Quiz
 }
 
- const QuizThumbnail = ({ parameters }: Props)=> {
+ const QuizThumbnail = ({ parameters, ...props }: Props)=> {
     const { 
         author,
         name, 
@@ -25,7 +25,7 @@ type Props = {
 
 
     return (
-        <StyledContainer primarycolor={color.primary}>
+        <StyledContainer {...props} primarycolor={color.primary}>
             <StyledImageWrapper secondarycolor={color.secondary}>
                 <StyledIcon 
                     icon={iconName} 

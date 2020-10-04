@@ -1,12 +1,14 @@
 import styled from 'styled-components'
 import { FlexColumn } from '../../../theme/Mixins'
 
-export const StyledContainer = styled.div`
+export const StyledMultiStepForm = styled.div`
     ${FlexColumn};
     width: 100%;
-    height: calc(100vh - 60px);
-    justify-content: flex-start;
+    height: calc(100vh - 60px - 60px);
     background-color: ${({theme}) => theme.colors.grayscale[0]};
-    padding: 10px;
-    border: 10px solid black;
+`
+
+export const StyledChild = styled.div`
+    ${FlexColumn};
+    height: calc(100vh - 60px - 60px - 75px);
 `

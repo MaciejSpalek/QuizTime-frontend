@@ -3,7 +3,7 @@ import { StyledArrowButton, StyledIcon } from './ArrowButton.styled';
 import { IArrowButton } from './ArrowButton.model';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 
-const ArrowButton = ({position, handleOnClick}: IArrowButton): JSX.Element => {
+const ArrowButton = ({ position, handleOnClick }: IArrowButton): JSX.Element => {
     const getIcon = ()  => {
         return `angle-${position}` as IconName
     }

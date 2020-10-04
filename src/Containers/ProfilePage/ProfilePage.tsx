@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { RootState } from '../../redux/store'
-import { useSelector } from 'react-redux'
-import { axiosInstance } from '../../services/api'
+import { RootState } from 'redux/store'
+import { useDispatch, useSelector } from 'react-redux'
+import { axiosInstance } from 'services/api'
 import { StyledWrapper } from './ProfilePage.styled'
-import { routes } from '../../routes/index'
-import ProfileBar from '../../Components/molecules/ProfileBar'
-import PlaceholderTemplate from '../../templates/PlaceholderTemplate/PlaceholderTemplate'
-import PageTemplate from '../../templates/PageTemplate/PageTemplate'
-import Spinner from '../../Components/atoms/Spinner/index'
-import BugSVG from '../../assets/Bug.svg'
-import Image from '../../Components/atoms/Image'
-import QuizWrapper from '../../Components/organisms/QuizesWrapper/index'
-import QuizList from '../../Components/molecules/QuizesList/index'
-import tempImage from '../../assets/Person.svg'
-import AddQuizWrapper from '../../Components/organisms/AddQuizWrapper'
+import { routes } from 'routes/index'
+import ProfileBar from 'Components/molecules/ProfileBar'
+import PlaceholderTemplate from 'templates/PlaceholderTemplate/PlaceholderTemplate'
+import PageTemplate from 'templates/PageTemplate/PageTemplate'
+import Spinner from 'Components/atoms/Spinner/index'
+import BugSVG from 'assets/Bug.svg'
+import Image from 'Components/atoms/Image'
+import QuizList from 'Components/molecules/QuizesList/index'
+import MultiStepForm from 'Components/organisms/MultiStepForm'
+import QuizPagination from 'Components/molecules/QuizPagination'
+import { setFormPageCounter } from 'redux/Actions/quizActions'
+import ThumbnailForm from 'Components/organisms/ThumbnailForm'
 
 
 type Props = { match: any }
@@ -31,18 +32,19 @@ const tempQuizes = [
 
 
 const ProfilePage = ({ match }: Props) => {
-  // const [ username, setUsername ] = useState(null) // api
-  const [username, setUsername] = useState("maciora") // fake
-
-  // const [doesUserExist, setDoesUserExist] = useState(false) //api
-  // const [requestStatus, setRequestStatus] = useState(false) //api
-
+  const dispatch = useDispatch()
+  const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus)
+  const formPageCounter = useSelector<RootState, number>(state => state.quizes.formPageCounter)
+  const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser)
 
   const [doesUserExist, setDoesUserExist] = useState(true) //fake
   const [requestStatus, setRequestStatus] = useState(true) //fake
-  const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser)
-  const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus)
-
+  const [username, setUsername] = useState("maciora") // fake
+  
+  // const [doesUserExist, setDoesUserExist] = useState(false) //api
+  // const [requestStatus, setRequestStatus] = useState(false) //api
+  // const [ username, setUsername ] = useState(null) // api
+  
   const isLoggedUserRoute = () => {
     return true // fake
     // const route = match.params.username
@@ -76,7 +78,14 @@ const ProfilePage = ({ match }: Props) => {
         doesUserExist ?
           <StyledWrapper>
             <ProfileBar username={username} isLoggedUserRoute={isLoggedUserRoute} />
-            {!addQuizButtonStatus ? <QuizList quizes={tempQuizes} /> : <AddQuizWrapper />}
+            {!addQuizButtonStatus ? 
+              <QuizList quizes={tempQuizes} /> : 
+              <MultiStepForm
+                counter={formPageCounter}
+                children={[<ThumbnailForm />, <div></div>]}
+                handleLeftButton={() => dispatch(setFormPageCounter(formPageCounter-1))}
+                handleRightButton={() => dispatch(setFormPageCounter(formPageCounter+1))}
+              />}
           </StyledWrapper>
           :
           <PlaceholderTemplate>
