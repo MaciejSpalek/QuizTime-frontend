@@ -12,6 +12,7 @@ type Props = {
     placeholder?: string
     isRequired?: boolean
     ariaInvalid?: boolean
+    defaultValue?: string | number;
     value?: string | number
     ariaDescribedBy?: string 
 }
@@ -28,6 +29,7 @@ const Input = ({
   isRequired,
   placeholder,
   ariaInvalid,
+  defaultValue,
   ariaDescribedBy,
   ...props
 }: Props) => (
@@ -43,6 +45,7 @@ const Input = ({
       aria-label={ariaLabel}
       placeholder={placeholder}
       aria-invalid={ariaInvalid}
+      defaultValue={defaultValue}
       aria-describedby={ariaDescribedBy}
       {...props}
     />

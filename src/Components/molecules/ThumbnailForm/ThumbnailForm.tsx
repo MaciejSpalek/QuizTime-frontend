@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyledContainter, StyledQuizThumbnail } from './ThumbnailForm.styled'
 import Label from '../../atoms/Label'
 import Input from '../../atoms/Input'
@@ -8,14 +8,19 @@ import ColorSelect from '../SelectInput'
 import { OptionType } from '../SelectInput/SelectInput.model'
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { Color } from 'Interfaces/quizInterfaces'
+import { useDispatch, useSelector } from 'react-redux'
+import { setFormTitle } from 'redux/Actions/quizActions'
+import { RootState } from 'redux/store'
 
 const ThumbnailForm = () => {
   const [color, setColor] = useState<Color>({primary: '#00D952', secondary: '#00a03d'});
-  const [name, setName] = useState('Example title');
+  const [title, setTitle] = useState('Example title');
   const [author, setAuthor] = useState('Author');
   const [iconName, setIconName] = useState('male');
   const [score, setScore] = useState('0/12');
-
+  
+  const dispatch = useDispatch();
+  const formInputTitle = useSelector<RootState>(state => state.quizes.formTitle)
 
   const handleColor = (colorValue: Color | undefined, type: string) => {
     if(type === OptionType.COLOR && colorValue) {
@@ -23,8 +28,8 @@ const ThumbnailForm = () => {
     }
   }
 
-  const handleTitle = (title: string) => {
-    title ? setName(title) : setName('Example title')
+  const handleTitle = () => {
+    formInputTitle ? setTitle(`${formInputTitle}`) : setTitle('Example title')
   }
 
   const handleIconName = (icon: string, type: string) => {
@@ -32,17 +37,21 @@ const ThumbnailForm = () => {
       setIconName(icon)
     }
   }
-
+  
+  
+  useEffect(() => {
+    handleTitle()
+  }, [formInputTitle])
 
   return (
     <StyledContainter>
       <StyledQuizThumbnail 
         parameters={{
-          name,
+          name: title,
           author,
           iconName,
           score,
-          color
+          color,
         }}
       />
       <FormField>
@@ -54,7 +63,8 @@ const ThumbnailForm = () => {
           id="title"
           type="text"
           maxLength={20}
-          onChange={(e: any) => handleTitle(e.target.value)}
+          defaultValue={`${formInputTitle}`}
+          onChange={(e: any) =>  dispatch(setFormTitle(e.target.value))}
         />
       </FormField>
       <ColorSelect 

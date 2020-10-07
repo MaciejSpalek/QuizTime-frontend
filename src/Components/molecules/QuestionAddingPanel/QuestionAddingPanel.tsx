@@ -1,18 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Input from 'Components/atoms/Input';
 import Label from 'Components/atoms/Label';
 import Button from 'Components/atoms/Button';
 import RadioButton from 'Components/atoms/RadioButton';
+import { useDispatch, useSelector } from 'react-redux';
 import {
     StyledQuestionPanel,
     StyledFormField,
     StyledQuestionFormField
 } from './QuestionAddingPanel.styled';
+import { RootState } from 'redux/store';
+import { setFormAnswer, setFormQuestion, setFormRadio } from 'redux/Actions/quizActions';
 
 const QuestionAddingPanel = () => {
+    const dispatch = useDispatch();
+    const formRadioButtonValue = useSelector<RootState>(state => state.quizes.formRadioButton)
+
+    const formQuestion = useSelector<RootState>(state => state.quizes.formQuestion)
+    const formAnswerA = useSelector<RootState>(state => state.quizes.formAnswerA)
+    const formAnswerB = useSelector<RootState>(state => state.quizes.formAnswerB)
+    const formAnswerC = useSelector<RootState>(state => state.quizes.formAnswerC)
+    const formAnswerD = useSelector<RootState>(state => state.quizes.formAnswerD)
 
     const isCheckedRadio = (value: string) => {
-        const currentValue = 'A';
+        const currentValue = formRadioButtonValue;
         return currentValue === value;
     }
 
@@ -28,6 +39,8 @@ const QuestionAddingPanel = () => {
                     id="question"
                     name="question"
                     isRequired={true}
+                    defaultValue={`${formQuestion}`}
+                    onChange={(e: any) => dispatch(setFormQuestion(e.target.value))}
                 />
             </StyledQuestionFormField>
             <StyledFormField>
@@ -37,7 +50,7 @@ const QuestionAddingPanel = () => {
                     name="answer"
                     value="A"
                     isCheckedRadio={isCheckedRadio}
-                    handleOnChange={(e) => console.log(e.target.value)}
+                    handleOnChange={(e) => dispatch(setFormRadio(e.target.value))}
                 />
                 <Label
                     text="A."
@@ -48,6 +61,8 @@ const QuestionAddingPanel = () => {
                     id="A"
                     name="A"
                     isRequired={true}
+                    defaultValue={`${formAnswerA}`}
+                    onChange={(e: any) => dispatch(setFormAnswer(e.target.value, 'A'))}
                 />
             </StyledFormField>
             <StyledFormField>
@@ -57,8 +72,7 @@ const QuestionAddingPanel = () => {
                     name="answer"
                     value="B"
                     isCheckedRadio={isCheckedRadio}
-                    handleOnChange={(e) => console.log(e.target.value)}
-
+                    handleOnChange={(e) => dispatch(setFormRadio(e.target.value))}
                 />
                 <Label
                     text="B."
@@ -69,6 +83,8 @@ const QuestionAddingPanel = () => {
                     id="B"
                     name="B"
                     isRequired={true}
+                    defaultValue={`${formAnswerB}`}
+                    onChange={(e: any) => dispatch(setFormAnswer(e.target.value, 'B'))}
                 />
             </StyledFormField>
             <StyledFormField>
@@ -78,7 +94,7 @@ const QuestionAddingPanel = () => {
                     name="answer"
                     value="C"
                     isCheckedRadio={isCheckedRadio}
-                    handleOnChange={(e) => console.log(e.target.value)}
+                    handleOnChange={(e) => dispatch(setFormRadio(e.target.value))}
                 />
                 <Label
                     text="C."
@@ -89,6 +105,8 @@ const QuestionAddingPanel = () => {
                     id="C"
                     name="C"
                     isRequired={true}
+                    defaultValue={`${formAnswerC}`}
+                    onChange={(e: any) => dispatch(setFormAnswer(e.target.value, 'C'))}
                 />
             </StyledFormField>
             <StyledFormField>
@@ -98,7 +116,7 @@ const QuestionAddingPanel = () => {
                     name="answer"
                     value="D"
                     isCheckedRadio={isCheckedRadio}
-                    handleOnChange={(e) => console.log(e.target.value)}
+                    handleOnChange={(e) => dispatch(setFormRadio(e.target.value))}
                 />
                 <Label
                     text="D."
@@ -109,6 +127,8 @@ const QuestionAddingPanel = () => {
                     id="D"
                     name="D"
                     isRequired={true}
+                    defaultValue={`${formAnswerD}`}
+                    onChange={(e: any) => dispatch(setFormAnswer(e.target.value, 'D'))}
                 />
             </StyledFormField>
             <Button text="Add question" />

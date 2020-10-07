@@ -32,9 +32,38 @@ export const fetchUserQuizes = (username: string)=> async (dispatch: any) => {
 };
 
 
-export const setFormPageCounter = (counter: number) => (dispatch: any) => {
+export const setFormCounter = (counter: number) => (dispatch: any) => {
     dispatch({
-        type: QuizTypes.SET_FORM_PAGE_COUNTER,
+        type: QuizTypes.SET_FORM_COUNTER,
         payload: counter
+    })
+};
+
+export const setFormTitle = (value: string) => (dispatch: any) => {
+    dispatch({
+        type: QuizTypes.SET_FORM_INPUT_TITLE,
+        payload: value
+    })
+};
+
+
+export const setFormRadio = (value: string) => (dispatch: any) => {
+    dispatch({
+        type: QuizTypes.SET_FORM_RADIO,
+        payload: value
+    })
+};
+
+export const setFormQuestion = (value: string) => (dispatch: any) => {
+    dispatch({
+        type: QuizTypes.SET_FORM_QUESTION,
+        payload: value
+    })
+};
+
+export const setFormAnswer = (value: string, letter: string) => (dispatch: any) => {
+    dispatch({
+        type: `SET_FORM_ANSWER_${letter}`,
+        payload: value
     })
 };

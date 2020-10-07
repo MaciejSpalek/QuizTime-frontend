@@ -11,7 +11,7 @@ import BugSVG from 'assets/Bug.svg'
 import Image from 'Components/atoms/Image'
 import QuizList from 'Components/molecules/QuizesList/index'
 import MultiStepForm from 'Components/organisms/MultiStepWrapper'
-import { setFormPageCounter } from 'redux/Actions/quizActions'
+import { setFormCounter } from 'redux/Actions/quizActions'
 import ThumbnailPart from 'Components/molecules/ThumbnailForm'
 import QuestionPart from 'Components/molecules/QuestionPart'
 import { Formik } from 'formik'
@@ -60,7 +60,7 @@ const tempQuizes = [
 const ProfilePage = ({ match }: Props) => {
   const dispatch = useDispatch()
   const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus)
-  const formPageCounter = useSelector<RootState, number>(state => state.quizes.formPageCounter)
+  const formPageCounter = useSelector<RootState, number>(state => state.quizes.formCounter)
   const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser)
 
   const [doesUserExist, setDoesUserExist] = useState(true) //fake
@@ -133,13 +133,13 @@ const ProfilePage = ({ match }: Props) => {
               //     values,
               //     errors
               //   }) => (
+              //  </Formik>}
                     <MultiStepForm
                       counter={formPageCounter}
                       children={[<ThumbnailPart />, <QuestionPart />]}
-                      handleLeftButton={() => dispatch(setFormPageCounter(formPageCounter - 1))}
-                      handleRightButton={() => dispatch(setFormPageCounter(formPageCounter + 1))}
+                      handleLeftButton={() => dispatch(setFormCounter(formPageCounter - 1))}
+                      handleRightButton={() => dispatch(setFormCounter(formPageCounter + 1))}
                     />}
-              {/* </Formik>} */}
           </StyledWrapper>
           :
           <PlaceholderTemplate>

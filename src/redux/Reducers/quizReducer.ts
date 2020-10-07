@@ -1,17 +1,31 @@
 import { QuizTypes } from '../Types/quizTypes'
-import { Quiz } from '../../Interfaces/quizInterfaces'
+import { Quiz } from 'Interfaces/quizInterfaces'
 
 
 type QuizState = {
-    allQuizes: Quiz[]
-    userQuizes: Quiz[]
-    formPageCounter: number
+    allQuizes: Quiz[];
+    userQuizes: Quiz[];
+    formCounter: number;
+    formTitle: string;
+    formRadioButton: string;
+    formQuestion: string;
+    formAnswerA: string;
+    formAnswerB: string;
+    formAnswerC: string;
+    formAnswerD: string;
 }
 
 const initialState: QuizState = {
     allQuizes: [],
     userQuizes: [],
-    formPageCounter: 1
+    formCounter: 1,
+    formTitle: '',
+    formRadioButton: 'A',
+    formQuestion: '',
+    formAnswerA: '',
+    formAnswerB: '',
+    formAnswerC: '',
+    formAnswerD: '',
   }
 
 export const quizReducer = (state = initialState, action: any): QuizState => {
@@ -30,13 +44,62 @@ export const quizReducer = (state = initialState, action: any): QuizState => {
           }
         }
 
-        case QuizTypes.SET_FORM_PAGE_COUNTER: {
+        case QuizTypes.SET_FORM_COUNTER: {
           return {
             ...state,
-            formPageCounter: action.payload
+            formCounter: action.payload
           }
         }
 
+        case QuizTypes.SET_FORM_RADIO: {
+          return {
+            ...state,
+            formRadioButton: action.payload
+          }
+        }
+
+        case QuizTypes.SET_FORM_INPUT_TITLE: {
+          return {
+            ...state,
+            formTitle: action.payload
+          }
+        }
+
+        case QuizTypes.SET_FORM_QUESTION: {
+          return {
+            ...state,
+            formQuestion: action.payload
+          }
+        }
+
+        case QuizTypes.SET_FORM_ANSWER_A: {
+          return {
+            ...state,
+            formAnswerA: action.payload
+          }
+        }
+
+        case QuizTypes.SET_FORM_ANSWER_B: {
+          return {
+            ...state,
+            formAnswerB: action.payload
+          }
+        }
+
+        case QuizTypes.SET_FORM_ANSWER_C: {
+          return {
+            ...state,
+            formAnswerC: action.payload
+          }
+        }
+
+        case QuizTypes.SET_FORM_ANSWER_D: {
+          return {
+            ...state,
+            formAnswerD: action.payload
+          }
+        }
+        
       default: {
         return state;
       }
