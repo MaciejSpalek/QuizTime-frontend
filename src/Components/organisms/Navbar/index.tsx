@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyledNavbar } from './index.styled'
-import Hamburger from '../../molecules/Hamburger/index'
+import Hamburger from '../../atoms/Hamburger/index'
 import Logo from '../../atoms/Heading'
 import Menu from '../../molecules/Menu/index'
 import { useSelector, useDispatch } from 'react-redux'

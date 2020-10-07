@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyledMultiStepForm, StyledChild } from './MultiStepForm.styled';
-import { IMultiStepForm } from './MultiStepForm.model';
+import { StyledMultiStepForm, StyledChild } from './MultiStepWrapper.styled';
+import { IMultiStepWrapper } from './MultiStepWrapper.model';
 import Pagination from 'Components/molecules/QuizPagination'
 
-const MultiStepForm = ({children, counter, handleLeftButton, handleRightButton}: IMultiStepForm): JSX.Element=> {
+const MultiStepWrapper = ({children, counter, handleLeftButton, handleRightButton}: IMultiStepWrapper): JSX.Element=> {
     const steps = children.length;
     const getCurrentChild = () => children[counter-1]
 
@@ -22,4 +22,4 @@ const MultiStepForm = ({children, counter, handleLeftButton, handleRightButton}:
     )
 }
 
-export default MultiStepForm
+export default MultiStepWrapper

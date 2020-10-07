@@ -3,10 +3,9 @@ import { StyledContainter, StyledQuizThumbnail } from './ThumbnailForm.styled'
 import Label from '../../atoms/Label'
 import Input from '../../atoms/Input'
 import FormField from 'templates/FormFieldTemplate/FormFieldTemplate'
-import QuizThumbnail from '../../molecules/QuizTestimonial'
-import CategorySelect from '../../molecules/SelectInput'
-import ColorSelect from '../../molecules/SelectInput'
-import { OptionType } from '../../molecules/SelectInput/SelectInput.model'
+import CategorySelect from '../SelectInput'
+import ColorSelect from '../SelectInput'
+import { OptionType } from '../SelectInput/SelectInput.model'
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { Color } from 'Interfaces/quizInterfaces'
 

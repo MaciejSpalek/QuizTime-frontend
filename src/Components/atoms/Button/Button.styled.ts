@@ -13,6 +13,7 @@ export const StyledButton = styled.button`
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     padding: 0 5px;
+    margin: 5px 0;
     cursor: pointer;
 `
 

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import PageTemplate from '../../templates/PageTemplate/PageTemplate'
 import AuthForm from '../../templates/FormTemplate/FormTemplate'
-import Button from '../../Components/atoms/Button/Button'
 import Link from '../../Components/atoms/Link/index'
 import FormField from '../../templates/FormFieldTemplate/FormFieldTemplate'
 import Input from '../../Components/atoms/Input/index'
@@ -96,7 +95,7 @@ const AuthPage = ({ history }: RouteComponentProps) => {
                             />
                             <Input
                                 id="username" 
-                                type="username"
+                                type="text"
                                 name="username"
                                 value={values.username}
                                 ariaInvalid={true}

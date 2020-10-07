@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { FlexColumn } from '../../../theme/Mixins'
 
-export const StyledMultiStepForm = styled.div`
+export const StyledMultiStepForm = styled.form`
     ${FlexColumn};
     width: 100%;
     height: calc(100vh - 60px - 60px);
@@ -10,5 +10,5 @@ export const StyledMultiStepForm = styled.div`
 
 export const StyledChild = styled.div`
     ${FlexColumn};
-    height: calc(100vh - 60px - 60px - 75px);
+    height: calc(100vh - 60px - 60px - 60px);
 `

@@ -5,8 +5,8 @@ type Props = {
     children: React.ReactNode
 }
 
-const FieldFormTemplate = ({ children }: Props) => (
-    <StyledFormField>
+const FieldFormTemplate = ({ children, ...props }: Props) => (
+    <StyledFormField {...props}>
       {children}
     </StyledFormField>
 );

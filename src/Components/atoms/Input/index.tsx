@@ -34,11 +34,11 @@ const Input = ({
     <StyledInput
       id={id}
       name={name}
-      maxLength={maxLength}
       type={type}
       value={value}
       onBlur={onBlur}
       onChange={onChange}
+      maxLength={maxLength}
       required={isRequired}
       aria-label={ariaLabel}
       placeholder={placeholder}

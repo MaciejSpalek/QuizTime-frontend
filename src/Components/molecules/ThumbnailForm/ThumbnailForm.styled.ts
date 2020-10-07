@@ -1,14 +1,13 @@
 import styled from 'styled-components'
 import { FlexColumn } from '../../../theme/Mixins'
-import QuizThumbnail from '../../molecules/QuizTestimonial'
+import QuizThumbnail from '../QuizTestimonial'
 
 export const StyledContainter = styled.div`
     ${FlexColumn};
-    height: auto;
-    padding: 5px 10px;
-    overflow-y: scroll;
     height: 100%;
     background-color: white;
+    padding: 5px 10px;
+    overflow-y: scroll;
 `
 
 export const StyledQuizThumbnail = styled(QuizThumbnail)`

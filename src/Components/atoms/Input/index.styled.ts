@@ -10,4 +10,5 @@ export const StyledInput = styled.input`
   border-radius: 5px;
   transition: box-shadow 0.3s ease-in-out;
   outline: none;
+  margin-bottom: 5px;
 `;

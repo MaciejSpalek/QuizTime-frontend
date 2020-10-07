@@ -11,7 +11,6 @@ export const StyledArrowButton = styled.button`
     border: none;
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
     padding: 0 5px;
-    margin: 10px 0;
     cursor: pointer;
 `
 
