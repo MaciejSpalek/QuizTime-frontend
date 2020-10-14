@@ -9,39 +9,44 @@ import { OptionType } from '../SelectInput/SelectInput.model'
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { Color } from 'Interfaces/quizInterfaces'
 import { useDispatch, useSelector } from 'react-redux'
-import { setFormTitle } from 'redux/Actions/quizActions'
+import { setFormColor, setFormIconName, setFormTitle } from 'redux/Actions/quizActions'
 import { RootState } from 'redux/store'
 
 const ThumbnailForm = () => {
-  const [color, setColor] = useState<Color>({primary: '#00D952', secondary: '#00a03d'});
+  // const [color, setColor] = useState<Color>({primary: '#00D952', secondary: '#00a03d'});
   const [title, setTitle] = useState('Example title');
   const [author, setAuthor] = useState('Author');
-  const [iconName, setIconName] = useState('male');
   const [score, setScore] = useState('0/12');
   
   const dispatch = useDispatch();
-  const formInputTitle = useSelector<RootState>(state => state.quizes.formTitle)
+  const formTitle = useSelector<RootState>(state => state.quizes.formTitle)
+  const formColor = useSelector<RootState, Color>(state => state.quizes.formColor)
+  const formIconName = useSelector<RootState>(state => state.quizes.formIconName)
 
   const handleColor = (colorValue: Color | undefined, type: string) => {
     if(type === OptionType.COLOR && colorValue) {
-        setColor(colorValue)
+        dispatch(setFormColor(colorValue))
     }
   }
 
   const handleTitle = () => {
-    formInputTitle ? setTitle(`${formInputTitle}`) : setTitle('Example title')
+    formTitle ? setTitle(`${formTitle}`) : setTitle('Example title')
   }
 
-  const handleIconName = (icon: string, type: string) => {
-    if(type === OptionType.ICON && typeof icon !== 'undefined') {
-      setIconName(icon)
+  const handleIconName = (iconName: string, type: string) => {
+    if(type === OptionType.ICON && typeof iconName !== 'undefined') {
+      dispatch(setFormIconName(iconName))
     }
   }
   
   
   useEffect(() => {
     handleTitle()
-  }, [formInputTitle])
+  }, [formTitle])
+
+  useEffect(() => {
+    console.log("SelectedColor ThumbnailForm: ", formColor)
+  }, [formColor])
 
   return (
     <StyledContainter>
@@ -49,9 +54,9 @@ const ThumbnailForm = () => {
         parameters={{
           name: title,
           author,
-          iconName,
+          iconName: formIconName,
           score,
-          color,
+          color: formColor
         }}
       />
       <FormField>
@@ -63,7 +68,7 @@ const ThumbnailForm = () => {
           id="title"
           type="text"
           maxLength={20}
-          defaultValue={`${formInputTitle}`}
+          defaultValue={`${formTitle}`}
           onChange={(e: any) =>  dispatch(setFormTitle(e.target.value))}
         />
       </FormField>
@@ -76,10 +81,10 @@ const ThumbnailForm = () => {
           {id: "4", title: "Blue", value: {primary: '#A0ADBD', secondary: '#372E46'}},
           {id: "5", title: "Blue", value: {primary: '#ACA398', secondary: '#443C51'}},
           {id: "6", title: "Blue", value: {primary: '#ECCE8D', secondary: '#2C1931'}},
-          {id: "7", title: "Dessert", value: {primary: '#F7BC14', secondary: '#201F26'}},
         ]}
         selectCaption="Select theme"
         handleOnClick={callback => handleColor(callback.value, OptionType.COLOR)}
+        selectedColor={formColor}
       />
       <CategorySelect 
         type={OptionType.ICON}
@@ -96,6 +101,7 @@ const ThumbnailForm = () => {
           {id: "10", title: "Sport", icon: ['fas', 'volleyball-ball']},
         ]}
         selectCaption="Select category"
+        selectedIconName={`${formIconName}`}
         handleOnClick={callback => handleIconName(callback.icon as IconName, OptionType.ICON)}
       />
     </StyledContainter>  

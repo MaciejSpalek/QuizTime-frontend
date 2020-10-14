@@ -1,7 +1,7 @@
-import React, { 
-  useEffect, 
-  useState, 
-  useRef 
+import React, {
+  useEffect,
+  useState,
+  useRef
 } from 'react';
 import {
   StyledSelectCaption,
@@ -14,19 +14,26 @@ import { ISelect } from './Select.model';
 import { ISingleOption } from '../SelectInput.model';
 import { useOutsideClick } from 'hooks';
 
-const Select = ({ handleOnClick, options, selectCaption, type }: ISelect): JSX.Element => {
+const Select = ({
+  handleOnClick,
+  options,
+  selectCaption,
+  type,
+  selectedColor,
+  selectedIconName
+}: ISelect): JSX.Element => {
   const selectRef = useRef<HTMLDivElement>(null);
-  const [selectedOption, setSelectedOption] = useState<ISingleOption>({id: "", title: ""});
+  const [selectedOption, setSelectedOption] = useState<ISingleOption>({ id: "", title: "" });
   const [isSelectOpened, setIsSelectOpened] = useState<boolean>(false);
   const [currentOptionId, setCurrentOptionId] = useState<string>("");
 
   useOutsideClick(selectRef, () => {
-    setIsSelectOpened(false)
+    setIsSelectOpened(false);
   })
 
   const updateSelectedOption = (option: ISingleOption): void => {
-      setCurrentOptionId(option.id)
-      setSelectedOption(option);
+    setCurrentOptionId(option.id);
+    setSelectedOption(option);
   };
 
   useEffect(() => {
@@ -47,6 +54,8 @@ const Select = ({ handleOnClick, options, selectCaption, type }: ISelect): JSX.E
               key={option.id}
               type={type}
               option={option}
+              selectedColor={selectedColor}
+              selectedIconName={selectedIconName}
               selectedOption={selectedOption}
               currentOptionId={currentOptionId}
               updateSelectedOption={updateSelectedOption}

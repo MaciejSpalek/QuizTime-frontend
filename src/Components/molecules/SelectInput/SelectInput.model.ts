@@ -11,6 +11,8 @@ export interface ISelectInput {
   handleOnClick: (selection: ISingleOption) => void;
   options: ISingleOption[];
   selectCaption: string;
+  selectedIconName?: string;
+  selectedColor?: Color;
   type: string;
 }
 

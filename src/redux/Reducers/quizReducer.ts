@@ -1,5 +1,6 @@
 import { QuizTypes } from '../Types/quizTypes'
 import { Quiz } from 'Interfaces/quizInterfaces'
+import { Color } from 'Interfaces/quizInterfaces'
 
 
 type QuizState = {
@@ -7,6 +8,8 @@ type QuizState = {
     userQuizes: Quiz[];
     formCounter: number;
     formTitle: string;
+    formColor: Color
+    formIconName: string;
     formRadioButton: string;
     formQuestion: string;
     formAnswerA: string;
@@ -18,8 +21,12 @@ type QuizState = {
 const initialState: QuizState = {
     allQuizes: [],
     userQuizes: [],
+
     formCounter: 1,
     formTitle: '',
+    formIconName: 'male',
+    formColor: {
+      primary: '#00D952', secondary: '#00a03d'},
     formRadioButton: 'A',
     formQuestion: '',
     formAnswerA: '',
@@ -44,17 +51,13 @@ export const quizReducer = (state = initialState, action: any): QuizState => {
           }
         }
 
+
+
+        
         case QuizTypes.SET_FORM_COUNTER: {
           return {
             ...state,
             formCounter: action.payload
-          }
-        }
-
-        case QuizTypes.SET_FORM_RADIO: {
-          return {
-            ...state,
-            formRadioButton: action.payload
           }
         }
 
@@ -64,7 +67,30 @@ export const quizReducer = (state = initialState, action: any): QuizState => {
             formTitle: action.payload
           }
         }
+        
+        case QuizTypes.SET_FORM_COLOR: {
+          return {
+            ...state,
+            formColor: action.payload
+          }
+        }
+        
+        case QuizTypes.SET_FORM_ICON_NAME: {
+          return {
+            ...state,
+            formIconName: action.payload
+          }
+        }
 
+
+
+
+        case QuizTypes.SET_FORM_RADIO: {
+          return {
+            ...state,
+            formRadioButton: action.payload
+          }
+        }
         case QuizTypes.SET_FORM_QUESTION: {
           return {
             ...state,

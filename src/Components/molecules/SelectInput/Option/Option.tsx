@@ -15,32 +15,55 @@ import { IconName } from '@fortawesome/fontawesome-svg-core';
 const Option = ({
   type,
   option,
+  selectedColor,
   selectedOption,
+  selectedIconName,
   currentOptionId,
   updateSelectedOption,
 }: IOption): JSX.Element => {
   const { id, title, value, icon } = option;
+
   const [isSelected, setIsSelected] = useState(() => {
-    return selectedOption.id === id
+    if(type === OptionType.COLOR) {
+      return value?.primary === selectedColor?.primary
+    } else {
+      return icon === selectedIconName;
+    }
   });
 
 
+  useEffect(() => {
+    console.log("id: ",  "selectedOption: " ,selectedOption, "selectedIconName: ", selectedIconName, "Type: ", type)
+  }, [selectedOption, selectedIconName])
+
   const handleOnOptionClick = () => {
+    console.log("onclick")
+    manageIsSelectedState();
     updateSelectedOption(option);
   };
 
   const manageIsSelectedState = () => {
-    if (id === currentOptionId) {
-      setIsSelected(true);
+    console.log("manageIsSelectedState")
+    if(type === OptionType.COLOR) {
+      console.log('color')
+      if(value?.primary === selectedColor?.primary) {
+        setIsSelected(true)
+      } else {
+        setIsSelected(false)
+      }
     } else {
-      setIsSelected(false);
+      console.log("icon")
+      if(icon === selectedIconName) {
+        setIsSelected(true)
+      } else {
+        setIsSelected(false)
+      }
     }
   };
 
   useEffect(() => {
     manageIsSelectedState();
-  });
-
+  }, [handleOnOptionClick]);
 
   return (
     <StyledOption
@@ -52,8 +75,8 @@ const Option = ({
       {type == OptionType.COLOR ?
         <StyledWrapper>
           {isSelected ? <StyledCheckedSquareIcon icon="check-square" /> : <StyledCheckedSquareIcon icon={['far', 'square']}/>}
-            <StyledPaletteIcon icon="palette" value={value ? value.secondary : ''} />
-            <StyledPaletteIcon icon="palette" value={value ? value.primary : ''} />
+            <StyledPaletteIcon icon="palette" value={`${value?.secondary}`} />
+            <StyledPaletteIcon icon="palette" value={`${value?.primary}`} />
         </StyledWrapper> :
         <StyledWrapper>
           {isSelected ? <StyledCheckedSquareIcon icon="check-square"/> : <StyledCheckedSquareIcon icon={['far', 'square']}/>}
