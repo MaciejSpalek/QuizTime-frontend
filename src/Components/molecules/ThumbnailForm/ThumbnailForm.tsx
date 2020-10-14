@@ -39,14 +39,9 @@ const ThumbnailForm = () => {
     }
   }
   
-  
   useEffect(() => {
     handleTitle()
   }, [formTitle])
-
-  useEffect(() => {
-    console.log("SelectedColor ThumbnailForm: ", formColor)
-  }, [formColor])
 
   return (
     <StyledContainter>
@@ -81,6 +76,7 @@ const ThumbnailForm = () => {
           {id: "4", title: "Blue", value: {primary: '#A0ADBD', secondary: '#372E46'}},
           {id: "5", title: "Blue", value: {primary: '#ACA398', secondary: '#443C51'}},
           {id: "6", title: "Blue", value: {primary: '#ECCE8D', secondary: '#2C1931'}},
+          {id: "7", title: "Dessert", value: {primary: '#F7BC14', secondary: '#201F26'}},
         ]}
         selectCaption="Select theme"
         handleOnClick={callback => handleColor(callback.value, OptionType.COLOR)}

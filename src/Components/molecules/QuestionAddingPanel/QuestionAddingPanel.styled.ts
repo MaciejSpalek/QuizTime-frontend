@@ -2,9 +2,11 @@ import styled from 'styled-components';
 import { FlexColumn, FlexCenter } from 'theme/Mixins';
 import FormField from 'templates/FormFieldTemplate/FormFieldTemplate';
 
-export const StyledQuestionPanel = styled.div`
+export const StyledAddingPanel = styled.div`
     ${FlexColumn};
+    width: 100%;
     height: 100%;
+    padding: 10px;
     background-color: white;
     overflow-y: scroll;
 `
@@ -19,14 +21,6 @@ export const StyledTemplate = styled.div`
     border: 2px solid ${({theme}) => theme.colors.Neutral80};
 `
 
-export const StyledFormField = styled(FormField)`
-    ${FlexCenter};
-    flex-direction: row;
-    margin: 5px 0;
-    label {
-        margin-right: 5px;
-    }
-`
 
 export const StyledQuestionFormField = styled(FormField)`
     margin: 5px 0;

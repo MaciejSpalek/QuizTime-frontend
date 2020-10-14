@@ -3,6 +3,7 @@ import { RootState } from 'redux/store'
 import { useDispatch, useSelector } from 'react-redux'
 import { axiosInstance } from 'services/api'
 import { StyledWrapper } from './ProfilePage.styled'
+import { setFormCounter } from 'redux/Actions/quizActions'
 import ProfileBar from 'Components/molecules/ProfileBar'
 import PlaceholderTemplate from 'templates/PlaceholderTemplate/PlaceholderTemplate'
 import PageTemplate from 'templates/PageTemplate/PageTemplate'
@@ -11,11 +12,8 @@ import BugSVG from 'assets/Bug.svg'
 import Image from 'Components/atoms/Image'
 import QuizList from 'Components/molecules/QuizesList/index'
 import MultiStepForm from 'Components/organisms/MultiStepWrapper'
-import { setFormCounter } from 'redux/Actions/quizActions'
 import ThumbnailPart from 'Components/molecules/ThumbnailForm'
-import QuestionPart from 'Components/molecules/QuestionPart'
-import { Formik } from 'formik'
-import yup from 'yup';
+import QuestionAddingPanel from 'Components/molecules/QuestionAddingPanel'
 
 type Props = { match: any }
 
@@ -136,7 +134,7 @@ const ProfilePage = ({ match }: Props) => {
               //  </Formik>}
                     <MultiStepForm
                       counter={formPageCounter}
-                      children={[<ThumbnailPart />, <QuestionPart />]}
+                      children={[<ThumbnailPart />, <QuestionAddingPanel />]}
                       handleLeftButton={() => dispatch(setFormCounter(formPageCounter - 1))}
                       handleRightButton={() => dispatch(setFormCounter(formPageCounter + 1))}
                     />}

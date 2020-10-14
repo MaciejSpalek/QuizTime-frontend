@@ -18,10 +18,9 @@ const Option = ({
   selectedColor,
   selectedOption,
   selectedIconName,
-  currentOptionId,
   updateSelectedOption,
 }: IOption): JSX.Element => {
-  const { id, title, value, icon } = option;
+  const { title, value, icon } = option;
 
   const [isSelected, setIsSelected] = useState(() => {
     if(type === OptionType.COLOR) {
@@ -33,26 +32,21 @@ const Option = ({
 
 
   useEffect(() => {
-    console.log("id: ",  "selectedOption: " ,selectedOption, "selectedIconName: ", selectedIconName, "Type: ", type)
   }, [selectedOption, selectedIconName])
 
   const handleOnOptionClick = () => {
-    console.log("onclick")
     manageIsSelectedState();
     updateSelectedOption(option);
   };
 
   const manageIsSelectedState = () => {
-    console.log("manageIsSelectedState")
     if(type === OptionType.COLOR) {
-      console.log('color')
       if(value?.primary === selectedColor?.primary) {
         setIsSelected(true)
       } else {
         setIsSelected(false)
       }
     } else {
-      console.log("icon")
       if(icon === selectedIconName) {
         setIsSelected(true)
       } else {
