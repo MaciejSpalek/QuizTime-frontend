@@ -1,9 +1,9 @@
-import { Color } from "Interfaces/quizInterfaces";
+import { IFormColor } from "Interfaces/quizInterfaces";
 
 export interface ISingleOption {
   id: string;
   title: string;
-  value?: Color;
+  value?: IFormColor;
   icon?: string | string[];
 }
 
@@ -12,7 +12,7 @@ export interface ISelectInput {
   options: ISingleOption[];
   selectCaption: string;
   selectedIconName?: string;
-  selectedColor?: Color;
+  selectedColor?: IFormColor;
   type: string;
 }
 

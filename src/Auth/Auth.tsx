@@ -3,18 +3,18 @@ import { showCookie } from '../helpers/cookies'
 import { authenticate } from '../redux/Actions/sessionActions'
 import { useDispatch } from 'react-redux'
 import { resetLoggedUser, setLoggedUser } from '../redux/Actions/userActions'
-import { fetchAllQuizes } from '../redux/Actions/quizActions'
+// import { fetchAllQuizes } from '../redux/Actions/quizActions'
 
 const Auth = () => {
     const dispatch = useDispatch()
     
     const setAuthentication = () => {
         const token = showCookie('token')
-        const username = showCookie('username')
+        const name = showCookie('name')
 
         if(token) {
             dispatch(authenticate(true))
-            dispatch(setLoggedUser(username))
+            dispatch(setLoggedUser(name))
         } else {
             dispatch(authenticate(false))
             dispatch(resetLoggedUser())
@@ -22,13 +22,13 @@ const Auth = () => {
     }
     
     useEffect(()=> {
-        dispatch(fetchAllQuizes()) // to change
+        // dispatch(fetchAllQuizes()) // to change
         setAuthentication()
     }, [])
 
     useEffect(()=> {
         setInterval(()=> {
-            setAuthentication()
+            setAuthentication();
         }, 3000)
     })
 
@@ -36,4 +36,4 @@ const Auth = () => {
 }
 
 
-export default Auth
+export default Auth;

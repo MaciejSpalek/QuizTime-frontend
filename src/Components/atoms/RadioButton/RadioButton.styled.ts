@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { FlexCenter } from 'theme/Mixins';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const StyledWrapper = styled.div`
     ${FlexCenter};

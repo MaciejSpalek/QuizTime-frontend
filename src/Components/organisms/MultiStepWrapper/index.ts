@@ -1,2 +1,2 @@
-import MultiStepWrapper from './MultiStepWrapper'
-export default MultiStepWrapper;
+import MultiStepForm from './MultiStepForm'
+export default MultiStepForm;

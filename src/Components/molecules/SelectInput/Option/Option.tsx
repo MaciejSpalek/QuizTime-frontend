@@ -41,17 +41,9 @@ const Option = ({
 
   const manageIsSelectedState = () => {
     if(type === OptionType.COLOR) {
-      if(value?.primary === selectedColor?.primary) {
-        setIsSelected(true)
-      } else {
-        setIsSelected(false)
-      }
+        setIsSelected(value?.primary === selectedColor?.primary)
     } else {
-      if(icon === selectedIconName) {
-        setIsSelected(true)
-      } else {
-        setIsSelected(false)
-      }
+        setIsSelected(icon === selectedIconName);
     }
   };
 

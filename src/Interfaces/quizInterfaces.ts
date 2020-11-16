@@ -1,14 +1,25 @@
-export interface Color {
+export interface IFormColor {
     primary: string;
     secondary: string;
 }
 
-export interface Quiz {
+export interface IQuizTemplate {
     id?: number
     name: string
     author: string
     isDone?: boolean
     iconName?: any
     score: string
-    color: Color
+    color: IFormColor
+}
+
+export interface IFormAnswer {
+    option: string;
+    content: string | number;
+    isCorrect: boolean;
+}
+
+export interface IFormQuestions {
+    question: string;
+    answers: IFormAnswer[]
 }

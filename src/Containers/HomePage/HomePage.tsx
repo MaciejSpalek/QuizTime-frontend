@@ -4,10 +4,10 @@ import SearchPanel from '../../Components/molecules/SearchPanel/index'
 import QuizesList from '../../Components/molecules/QuizesList'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
-import { Quiz } from '../../Interfaces/quizInterfaces'
+import { IQuizTemplate } from '../../Interfaces/quizInterfaces'
 
 const HomePage = () => {
-  // const allQuizes = useSelector<RootState, Quiz[]>(state => state.quizes.allQuizes)
+  // const allQuizes = useSelector<RootState, IQuizTemplate[]>(state => state.quizes.allQuizes)
   const tempQuizes = [
     { id: 1, name: "Example 1", author: "Maciora", isDone: true, score: "5/12", color: {primary:"#00D952", secondary:"#00a03d"}, iconName: 'male'},
     { id: 2, name: "Example 2", author: "Maciora", isDone: true, score: "5/12", color: {primary: '#80D4CD', secondary: '#2982A2'}, iconName: 'gamepad'},

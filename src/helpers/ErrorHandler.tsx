@@ -1,5 +1,5 @@
 import React from 'react';
-import ErrorMessage from '../Components/atoms/ErrorMessage/index'
+import ErrorMessage from '../Components/atoms/ErrorMessage';
 
 type Props = {
     id: string

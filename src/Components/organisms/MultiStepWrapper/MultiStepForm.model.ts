@@ -1,4 +1,4 @@
-export interface IMultiStepWrapper {
+export interface IMultiStepForm {
     children: React.ReactNode[]
     counter: number;
     handleRightButton: () => void;

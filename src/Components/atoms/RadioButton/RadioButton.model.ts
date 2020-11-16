@@ -1,8 +1,11 @@
+import { ChangeEvent } from "react";
+
 export interface IRadioButton {
-    id: string;
+    id?: string;
     name: string;
     label?: string;
     value: string;
-    isCheckedRadio: (value: string) => boolean;
-    handleOnChange?: (e: any) => void;
+    checked: boolean;
+    onChange: (e: ChangeEvent<HTMLElement>) => void;
+    onBlur: (e: ChangeEvent<HTMLElement>) => void;
 }

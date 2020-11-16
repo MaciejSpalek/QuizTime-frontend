@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyledList } from './index.styled'
 import QuizTestimonial from '../QuizTestimonial/index'
-import { Quiz } from '../../../Interfaces/quizInterfaces'
+import { IQuizTemplate } from '../../../Interfaces/quizInterfaces'
 
 type Props = {
-    quizes: Quiz[]
+    quizes: IQuizTemplate[];
 }
 
 const QuizesList = ({ quizes }: Props) => {

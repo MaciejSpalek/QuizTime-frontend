@@ -9,14 +9,15 @@ type Props = {
     margin?: string
 }
 
-const Image = ({ url, height, width, alt, margin }: Props) => {
+const Image = ({ url, height, width, alt, margin, ...props }: Props) => {
     return (
         <StyledImage 
             src={url}
             alt={alt}
             width={width}
             height={height}
-            margin={margin}>
+            margin={margin}
+            {...props}>
         </StyledImage>
     )
 }

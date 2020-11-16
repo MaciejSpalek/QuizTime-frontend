@@ -5,23 +5,23 @@ import Link from '../../Components/atoms/Link/index'
 import FormField from '../../templates/FormFieldTemplate/FormFieldTemplate'
 import Input from '../../Components/atoms/Input/index'
 import Label from '../../Components/atoms/Label/index'
-import ErrorMessage from '../../Components/atoms/ErrorMessage/index'
+import ErrorMessage from '../../Components/atoms/ErrorMessage/ErrorMessage'
 import ErrorHandler from '../../helpers/ErrorHandler'
 import * as yup from "yup"
 import { routes } from '../../routes/index'
 import { useDispatch, useSelector } from 'react-redux' 
 import { RootState } from '../../redux/store'
 import { Formik } from "formik"
-import { login, register } from '../../Auth/requests'
+import { authRequest } from '../../Auth/requests'
 import { setRequestStatus } from '../../redux/Actions/sessionActions'
 import { RouteComponentProps } from 'react-router-dom'
 import { StyledButton } from './AuthPage.styled'
 
 const validationSchema = yup.object({
-    username: yup.string()
+    name: yup.string()
         .required('Required')
-        .min(3, 'Username must be at least 3 characters')
-        .max(15, 'Username can be maximum 15 characters'),
+        .min(3, 'Name must be at least 3 characters')
+        .max(15, 'Name can be maximum 15 characters'),
 
     password: yup.string()
         .min(6, 'Password must be at least 6 characters')
@@ -67,14 +67,16 @@ const AuthPage = ({ history }: RouteComponentProps) => {
                 validationSchema={validationSchema}
                 validateOnChange={true}
                 initialValues={{
-                    username: "",
+                    name: "",
                     password: ""
                 }}
                 onSubmit={(data, {setSubmitting, resetForm}) => {
-                    isLoginRoute() ? login(data, dispatch) : register(data, dispatch)
+                    isLoginRoute() ? 
+                        authRequest('login', data, dispatch) : 
+                        authRequest('register', data, dispatch);
                     setSubmitting(true);
                     setTimeout(() => {
-                        resetForm()
+                        resetForm();
                         setSubmitting(false)
                     }, 2000)
                 }}>
@@ -90,14 +92,14 @@ const AuthPage = ({ history }: RouteComponentProps) => {
                     <AuthForm handleSubmit={handleSubmit}>
                         <FormField>
                             <Label 
-                                text="Username"
-                                forText="username"
+                                text="Name"
+                                forText="name"
                             />
                             <Input
-                                id="username" 
+                                id="name" 
                                 type="text"
-                                name="username"
-                                value={values.username}
+                                name="name"
+                                value={values.name}
                                 ariaInvalid={true}
                                 ariaDescribedBy="err_1"
                                 onChange={(e: Event)=> inputFunctionsHandler(handleChange, e)}
@@ -106,7 +108,7 @@ const AuthPage = ({ history }: RouteComponentProps) => {
                             />
                             <ErrorHandler 
                                 id="err_1"
-                                value="username"
+                                value="name"
                                 requestMessage={requestMessage}
                                 requestStatus={requestStatus}
                                 touched={touched}

@@ -1,10 +1,10 @@
 import { ISingleOption } from '../SelectInput.model';
-import { Color } from "Interfaces/quizInterfaces";
+import { IFormColor } from "Interfaces/quizInterfaces";
 
 export interface IOption {
   type: string;
   option: ISingleOption;
-  selectedColor?: Color;
+  selectedColor?: IFormColor;
   selectedIconName?: string;
   selectedOption: ISingleOption;
   currentOptionId: string;

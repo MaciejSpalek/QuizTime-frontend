@@ -1,5 +1,5 @@
 import React from 'react'
-import { Quiz } from '../../../Interfaces/quizInterfaces'
+import { IQuizTemplate } from 'Interfaces/quizInterfaces'
 import { 
     StyledContainer, 
     StyledTextWrapper,
@@ -11,7 +11,7 @@ import {
 } from './index.styled'
 
 type Props = {
-    parameters: Quiz
+    parameters: IQuizTemplate
 }
 
  const QuizThumbnail = ({ parameters, ...props }: Props)=> {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { 
+import {
     StyledContainer,
     StyledUserTag
 } from './index.styled'
@@ -8,22 +8,22 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../redux/store'
 import { setAddQuizButtonStatus } from '../../../redux/Actions/statusesActions'
 type Props = {
-   username: string | null
-   isLoggedUserRoute: any
+    username: string | null
+    isLoggedUserRoute: any
 }
 
- const ProfileBar = ({ username, isLoggedUserRoute }: Props)=> {
+const ProfileBar = ({ username, isLoggedUserRoute }: Props) => {
     const dispatch = useDispatch()
-    const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus)
+    const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
 
     return (
         <StyledContainer>
             <StyledUserTag> {username} </StyledUserTag>
-            {isLoggedUserRoute() 
-                &&  <Button 
-                        text={addQuizButtonStatus ? 'Your quizes' : 'Add quiz'} 
-                        handleOnClick={()=>dispatch(setAddQuizButtonStatus(!addQuizButtonStatus))}
-                    />}            
+            {isLoggedUserRoute() &&
+                <Button
+                    text={addQuizButtonStatus ? 'Your quizes' : 'Add quiz'}
+                    handleOnClick={() => dispatch(setAddQuizButtonStatus(!addQuizButtonStatus))}
+                />}
         </StyledContainer>
     )
 }

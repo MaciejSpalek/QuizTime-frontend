@@ -2,16 +2,17 @@ import React from 'react'
 import { StyledForm } from './FormTemplate.styled'
 
 type Props = {
-    handleSubmit: (e: any) => void;
+    handleSubmit?: (e: any) => void;
     children: React.ReactNode;
 }
 
-const FormTemplate = ({ children, handleSubmit }: Props) => {
+const FormTemplate = ({ children, handleSubmit, ...props }: Props) => {
     return (
         <StyledForm
             noValidate
             autoComplete="off"
-            onSubmit={(e) => handleSubmit(e)}>
+            onSubmit={handleSubmit}
+            {...props}>
             {children}
         </StyledForm>
     )

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FlexCenter } from "../../../../theme/Mixins";
+import { FlexCenter } from 'theme/Mixins';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const StyledOption = styled.li<{ isSelected: boolean }>`
@@ -37,7 +37,6 @@ export const StyledCheckedSquareIcon = styled(FontAwesomeIcon)`
   font-size: 30px;
   margin-right: 10px;
   color: ${({theme}) => theme.colors.green};
-
 `
 
 export const StyledPaletteIcon = styled(FontAwesomeIcon)<{value: string}>`
