@@ -22,12 +22,13 @@ const ThumbnailStep = ({
   handleChange
 }: IThumbnail): JSX.Element => {
   const [title, setTitle] = useState('Example title');
-  const [author, setAuthor] = useState('Author');
   const [score, setScore] = useState('0/12');
 
   const dispatch = useDispatch();
   const formColor = useSelector<RootState, IFormColor>(state => state.quizes.formColor)
   const formIconName = useSelector<RootState>(state => state.quizes.formIconName)
+  const author = useSelector<RootState>(state => state.user.loggedUser)
+
 
   const handleColor = (colorValue: IFormColor | undefined, type: string) => {
     if (type === OptionType.COLOR && colorValue) {
@@ -57,7 +58,7 @@ const ThumbnailStep = ({
       <StyledQuizThumbnail
         parameters={{
           name: title,
-          author,
+          author: `${author}`,
           iconName: formIconName,
           score,
           color: formColor

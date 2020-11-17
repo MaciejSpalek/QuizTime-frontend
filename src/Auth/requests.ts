@@ -25,10 +25,10 @@ export const authRequest = async (option: AuthType, data: DataType, dispatch: an
             dispatch(setRequestStatus(false));
             dispatch(setRequestMessage(errorMessage));
         })
-}
+};
 
 export const logout = (dispatch?: any): void => {
-    deleteCookie('token')
-    deleteCookie('name')
-    dispatch(resetLoggedUser())
-}
+    deleteCookie('token');
+    deleteCookie('name');
+    dispatch(resetLoggedUser());
+};

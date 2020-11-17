@@ -2,10 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 import { FlexCenter } from 'theme/Mixins';
 
-export const StyledArrowButton = styled.button`
+export const StyledIconButton = styled.button`
     ${FlexCenter};
-    min-height: 45px;
-    width: 45px;
+    min-height: 35px;
+    width: 35px;
     background-color: ${({ theme }) => theme.colors.green};
     border-radius: 5px;
     border: none;

@@ -3,10 +3,11 @@ import {
     StyledPagination,
     StyledCenterSquare,
     StyledCounter,
-    StyledEmptySquare
+    StyledEmptySquare,
+    StyledIconButton
 } from './QuizPagination.styled';
 import { IPagination } from './QuizPagination.model'
-import ArrowButton from 'Components/atoms/ArrowButton';
+
 
 const QuizPagination = ({
     counter,
@@ -17,20 +18,20 @@ const QuizPagination = ({
 }: IPagination) => {
     const handleCounter = () => `${counter}/${steps}`;
     const testFunc = (position: string) => {
-        if(position === 'left' && counter === 1) {
+        if (position === 'left' && counter === 1) {
             return false;
-        } else if(position === 'right' && counter === steps) {
+        } else if (position === 'right' && counter === steps) {
             return false;
         } else {
             return true
         }
     }
-  
+
     return (
         <StyledPagination {...props}>
-            { testFunc('left') ? 
-                <ArrowButton 
-                    position='left'
+            { testFunc('left') ?
+                <StyledIconButton
+                    icon={'angle-left'}
                     handleOnClick={handleLeftButton}
                 /> : <StyledEmptySquare />
             }
@@ -39,11 +40,11 @@ const QuizPagination = ({
                     {handleCounter()}
                 </StyledCounter>
             </StyledCenterSquare>
-            { testFunc('right') ? 
-                <ArrowButton 
-                    position='right'
+            { testFunc('right') ?
+                <StyledIconButton
+                    icon={'angle-right'}
                     handleOnClick={handleRightButton}
-                /> : <StyledEmptySquare /> 
+                /> : <StyledEmptySquare />
             }
         </StyledPagination>
     );

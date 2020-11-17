@@ -14,7 +14,8 @@ export const StyledWrapper = styled.div`
 `;
 
 export const StyledList = styled.ul`
-  ${FlexColumn};
+  display: grid;
+  grid-template-columns: 1fr;
 `;
 
 export const StyledHeading = styled.h2`

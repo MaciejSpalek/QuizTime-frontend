@@ -1,5 +1,7 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 import { FlexCenter } from 'theme/Mixins';
+import IconButton from 'Components/atoms/IconButton';
 
 export const StyledPagination = styled.div`
     ${FlexCenter};
@@ -28,3 +30,9 @@ export const StyledEmptySquare = styled.div`
     min-height: 45px;
     width: 45px;
 `
+
+export const StyledIconButton = styled(IconButton)`
+    min-height: 45px;
+    width: 45px;
+`
+
