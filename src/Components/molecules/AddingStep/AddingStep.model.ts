@@ -1,5 +1,5 @@
 import { IErrors, IFormikValues } from "Containers/ProfilePage/ProfilePage.model";
-import { FormikErrors, FormikState, FormikValues } from "formik";
+import { FormikErrors, FormikValues } from "formik";
 import { ChangeEvent } from "react";
 
 export interface IPanel {

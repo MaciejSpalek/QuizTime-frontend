@@ -5,7 +5,7 @@ import { setAddQuizButtonStatus } from 'redux/Actions/statusesActions';
 import { StyledWrapper } from './ProfilePage.styled';
 import { setFormCounter } from 'redux/Actions/quizActions';
 import { Formik } from 'formik';
-import { answers } from './ProfilePage.model';
+import { answers, IFormikValues } from './ProfilePage.model';
 import ProfileBar from 'Components/molecules/ProfileBar';
 import PlaceholderTemplate from 'templates/PlaceholderTemplate/PlaceholderTemplate';
 import PageTemplate from 'templates/PageTemplate/PageTemplate';
@@ -14,10 +14,12 @@ import BugSVG from 'assets/Bug.svg';
 import Image from 'Components/atoms/Image';
 import QuizList from 'Components/molecules/QuizesList/index';
 import MultiStepForm from 'Components/organisms/MultiStepWrapper';
-import ThumbnailPart from 'Components/molecules/ThumbnailStep';
-import QuestionAddingPanel from 'Components/molecules/AddingStep';
-import QuestionsPanel from 'Components/molecules/SubmitStep';
+import ThumbnailStep from 'Components/molecules/ThumbnailStep';
+import AddingStep from 'Components/molecules/AddingStep';
+import SubmitStep from 'Components/molecules/SubmitStep';
 import * as yup from 'yup';
+import { axiosInstance } from 'services/api';
+import { IFormColor, IFormQuestion } from 'Interfaces/quizInterfaces';
 
 type Props = { match: any }
 
@@ -32,22 +34,31 @@ const tempQuizes = [
 ];
 
 
-const validationSchema = yup.object({
+const validationSchema = (questionsLength: number) => yup.object({
   title: yup.string()
     .required('Required')
-    .min(3, 'Title must be at least 3 characters')
-    .max(15, 'Title can be maximum 15 characters'),
-  question: yup.string()
+    .min(2, 'min 2 characters')
+    .max(15, 'max 15 characters'),
+
+  question: questionsLength < 5  ? 
+    yup.string()
     .required('Required')
-    .min(10, 'Minimum 10 characters')
-    .max(75, 'Maximum 75 characters'),
+    .min(5, 'min 5 characters')
+    .max(120, 'max 120 characters') :
+    yup.string()
+    .min(5, 'min 5 characters')
+    .max(120, 'max 120 characters'), 
 
   answers: yup.array().of(
     yup.object().shape({
-      content: yup.string()
-        .required('Required')
-        .min(1, 'Minimum 1 character')
-        .max(50, 'Maximum 50 characters')
+      content: questionsLength < 5 ? 
+        yup.string()
+          .required('Required')
+          .min(1, 'Minimum 1 character')
+          .max(30, 'max 30 characters') :
+        yup.string()
+          .min(1, 'Minimum 1 character')
+          .max(30, 'max 30 characters') 
     })
   )
 });
@@ -55,37 +66,58 @@ const validationSchema = yup.object({
 const ProfilePage = ({ match }: Props) => {
   const dispatch = useDispatch();
   const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
+  const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions); 
   const formPageCounter = useSelector<RootState, number>(state => state.quizes.formCounter);
   const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser);
+  const formColors = useSelector<RootState, IFormColor>(state => state.quizes.formColor);
+  const formIconName = useSelector<RootState>(state => state.quizes.formIconName);
 
   const [doesUserExist, setDoesUserExist] = useState(false);
   const [requestStatus, setRequestStatus] = useState(false);
-  const [username, setUsername] = useState(null); 
+  const [username, setUsername] = useState(null);
+
+
+
+
+  const getData = (values: IFormikValues) => {
+      return {
+          title: values.title,
+          author: loggedUser,
+          iconName: formIconName,
+          amountOfQuestions: formQuestions.length,
+          colors: {
+            primaryColor: formColors.primary,
+            secondaryColor: formColors.secondary,
+          },
+          questions: formQuestions
+      }
+  }
+
 
   const isLoggedUserRoute = () => {
     const route = match.params.username
-    return loggedUser === route 
+    return loggedUser === route
   }
 
   const manageUser = async () => {
     const route = match.params.username;
-    try {
-      // await axiosInstance.get('/users/singleuser', {
-      //   params: { username: route }
-      // })
-      setDoesUserExist(true)
-      setRequestStatus(true)
-      setUsername(route)
-    } catch {
-      setDoesUserExist(false) 
-      setRequestStatus(true)
-    }
+    await axiosInstance.get('/user/singleUser', {
+      params: {'name': route}
+    }).then(({data}) => {
+      if (data) {
+        setDoesUserExist(true)
+        setRequestStatus(true)
+        setUsername(data.name)
+      } else {
+        setDoesUserExist(false)
+        setRequestStatus(true)
+      }
+    })
   }
 
   useEffect(() => {
     manageUser();
     dispatch(setAddQuizButtonStatus(false));
-    console.log("Zmiana, ", loggedUser)
   }, [loggedUser])
 
 
@@ -107,12 +139,14 @@ const ProfilePage = ({ match }: Props) => {
                 }}
                 validationSchema={validationSchema}
                 onSubmit={(data, { setSubmitting, resetForm }) => {
+                  axiosInstance.post('/quizes/addQuiz', getData(data)
+                  ).then((res) => { console.log(res) })
                 }}>
                 {({
                   isSubmitting,
                   handleReset,
                   resetForm,
-                  // handleSubmit,
+                  handleSubmit,
                   handleChange,
                   handleBlur,
                   touched,
@@ -120,18 +154,19 @@ const ProfilePage = ({ match }: Props) => {
                   errors
                 }) => (
                     <MultiStepForm
+                      handleSubmit={handleSubmit}
                       handleLeftButton={() => dispatch(setFormCounter(formPageCounter - 1))}
                       handleRightButton={() => dispatch(setFormCounter(formPageCounter + 1))}
                       counter={formPageCounter}
                       children={[
-                        <ThumbnailPart
+                        <ThumbnailStep
                           handleBlur={handleBlur}
                           handleChange={handleChange}
                           values={values}
                           touched={touched}
                           errors={errors}
                         />,
-                        <QuestionAddingPanel
+                        <AddingStep
                           handleBlur={handleBlur}
                           handleChange={handleChange}
                           resetForm={resetForm}
@@ -139,7 +174,7 @@ const ProfilePage = ({ match }: Props) => {
                           touched={touched}
                           errors={errors}
                         />,
-                        <QuestionsPanel />
+                        <SubmitStep />
                       ]}
                     />
                   )}

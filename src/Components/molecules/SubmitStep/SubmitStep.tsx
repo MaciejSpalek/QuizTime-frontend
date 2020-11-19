@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import Question from './Question';
-import { IFormQuestions } from 'Interfaces/quizInterfaces';
+import { IFormColor, IFormQuestion } from 'Interfaces/quizInterfaces';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import { 
@@ -14,25 +14,24 @@ import Button from 'Components/atoms/Button';
 import Placeholder from 'templates/PlaceholderTemplate/PlaceholderTemplate';
 
 const SubmitStep = (): JSX.Element => {
-    const formQuestions = useSelector<RootState, IFormQuestions[]>(state => state.quizes.formQuestions);
-    const [questionsCounter] = useState(formQuestions.length)
+    const questions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
 
     return (
         <StyledSubmitStep>
-            {questionsCounter ? 
+            {questions.length ? 
                 <StyledWrapper>
                     <StyledHeading> Your questions (at least 5) </StyledHeading>
                     <StyledList> 
-                        {formQuestions.map(({ question, answers }, index) =>
+                        {questions.map(({ content, answers }, index) =>
                             <Question
-                                question={question}
+                                question={content}
                                 answers={answers}
                                 index={index+1}
-                                key={question}
+                                key={content}
                             />)
                         }
                     </StyledList>
-                    {questionsCounter >= 5 ? <Button text="Submit" type="submit" /> : null}
+                    {questions.length >= 5 ? <Button text="Submit" type="submit" /> : null}
                 </StyledWrapper> 
                 : 
                 <Placeholder>

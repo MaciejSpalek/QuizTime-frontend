@@ -4,22 +4,21 @@ export interface IFormColor {
 }
 
 export interface IQuizTemplate {
-    id?: number
-    name: string
-    author: string
-    isDone?: boolean
-    iconName?: any
-    score: string
-    color: IFormColor
-}
+    id?: number;
+    name: string;
+    author: string;
+    iconName: string;
+    score: string;
+    color: IFormColor;
+};
 
 export interface IFormAnswer {
     option: string;
     content: string | number;
     isCorrect: boolean;
-}
+};
 
-export interface IFormQuestions {
-    question: string;
-    answers: IFormAnswer[]
-}
+export interface IFormQuestion {
+    content: string;
+    answers: IFormAnswer[];
+};

@@ -9,7 +9,7 @@ import ErrorMessage from 'Components/atoms/ErrorMessage';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import { setFormQuestions } from 'redux/Actions/quizActions';
-import { IFormQuestions } from 'Interfaces/quizInterfaces';
+import { IFormQuestion } from 'Interfaces/quizInterfaces';
 
 const AddingStep = ({
     handleChange,
@@ -19,26 +19,26 @@ const AddingStep = ({
     values,
     errors
 }: IPanel): JSX.Element => {
+    const { question, answers, radioValue } = values;
+    const [ isFirstRender, setIsFirstRender ] = useState(true);
+    const [ buttonState, setButtonState ] = useState(true);
+    const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
     const dispatch = useDispatch();
-    const formQuestions = useSelector<RootState, IFormQuestions[]>(state => state.quizes.formQuestions);
-    const [isFirstRender, setIsFirstRender] = useState(true);
-    const [buttonState, setButtonState] = useState(true);
-
 
     const isPossibleAddQuestion = () => {
         const allAnswersState = !errors.answers && !isFirstRender;
         const questionState = !errors.question && !isFirstRender;
         return allAnswersState && questionState;
-    }
+    };
 
     const getCurrentQuestion = () => {
         return {
-            question: values.question,
-            answers: values.answers.map(({ content, option }) =>
+            content: question,
+            answers: answers.map(({ content, option }) =>
                 ({
                     option,
                     content,
-                    isCorrect: option === values.radioValue
+                    isCorrect: option === radioValue
                 }))
         }
     };
@@ -48,11 +48,11 @@ const AddingStep = ({
             values: {
                 ...values,
                 question: "",
-                answers: values.answers.map(({ option }) =>
+                answers: answers.map(({ option }) =>
                     ({
                         option,
                         content: "",
-                        isCorrect: option === values.radioValue
+                        isCorrect: option === radioValue
                     }))
             }
         })
@@ -91,7 +91,7 @@ const AddingStep = ({
                     isRequired={true}
                     ariaInvalid={true}
                     ariaDescribedBy="question_error"
-                    value={values.question}
+                    value={question}
                     onChange={handleChange}
                     onBlur={handleBlur}
                 />
@@ -102,7 +102,7 @@ const AddingStep = ({
                     />
                 ) : null}
             </FormField>
-            {values.answers.map(({ option, content }, index) =>
+            {answers.map(({ option, content }, index) =>
                 <InputField
                     handleChange={handleChange}
                     handleBlur={handleBlur}
@@ -110,7 +110,7 @@ const AddingStep = ({
                     content={content}
                     key={option}
                     index={index}
-                    radioValue={values.radioValue}
+                    radioValue={radioValue}
                     touched={touched.answers ? touched.answers[index] : null}
                     error={errors.answers ? errors.answers[index] : null}
                 />

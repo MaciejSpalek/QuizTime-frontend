@@ -59,7 +59,7 @@ const ThumbnailStep = ({
         parameters={{
           name: title,
           author: `${author}`,
-          iconName: formIconName,
+          iconName: `${formIconName}`,
           score,
           color: formColor
         }}

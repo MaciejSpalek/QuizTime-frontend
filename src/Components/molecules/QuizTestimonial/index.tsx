@@ -9,6 +9,7 @@ import {
     StyledIcon,
     StyledAuthorTag
 } from './index.styled'
+import { IconName } from '@fortawesome/fontawesome-svg-core'
 
 type Props = {
     parameters: IQuizTemplate
@@ -28,7 +29,7 @@ type Props = {
         <StyledContainer {...props} primarycolor={color.primary}>
             <StyledImageWrapper secondarycolor={color.secondary}>
                 <StyledIcon 
-                    icon={iconName} 
+                    icon={iconName as IconName} 
                     primarycolor={color.primary}
                 />
                 <StyledScore 

@@ -1,6 +1,6 @@
 import { QuizTypes } from "../Types/quizTypes";
 import { axiosInstance } from "services/api";
-import { IFormColor, IFormQuestions } from "Interfaces/quizInterfaces";
+import { IFormColor, IFormQuestion } from "Interfaces/quizInterfaces";
 
 // export const fetchAllQuizes = () => async (dispatch: any) => {
 //   try {
@@ -34,7 +34,7 @@ import { IFormColor, IFormQuestions } from "Interfaces/quizInterfaces";
 //   }
 // };
 
-export const setFormQuestions = (array: IFormQuestions[]) => (dispatch: any) => {
+export const setFormQuestions = (array: IFormQuestion[]) => (dispatch: any) => {
   dispatch({
     type: QuizTypes.SET_FORM_QUESTIONS,
     payload: array
