@@ -19,6 +19,7 @@ export const theme = {
     colors: {
         white: 'rgb(255,255,255)',
         green: '#00D952',
+        green40: '#008332',
         red: "red",
         grayscale: [
             "#202020", 

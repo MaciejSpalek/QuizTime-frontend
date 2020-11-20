@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from 'react';
+import React, { MouseEvent, useEffect, useState } from 'react';
 import Question from './Question';
 import { IFormColor, IFormQuestion } from 'Interfaces/quizInterfaces';
 import { useSelector } from 'react-redux';
@@ -12,9 +12,14 @@ import {
 } from './SubmitStep.styled';
 import Button from 'Components/atoms/Button';
 import Placeholder from 'templates/PlaceholderTemplate/PlaceholderTemplate';
+import { ISubmitStep } from './SubmitStep.model';
+import { Constants } from 'helpers/constants';
 
-const SubmitStep = (): JSX.Element => {
+const SubmitStep = ({ errors }: ISubmitStep): JSX.Element => {
     const questions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
+    const isDisabled = () => {
+        return questions.length < Constants.MinFormQuestions || !!errors.title
+    };
 
     return (
         <StyledSubmitStep>
@@ -31,7 +36,7 @@ const SubmitStep = (): JSX.Element => {
                             />)
                         }
                     </StyledList>
-                    {questions.length >= 5 ? <Button text="Submit" type="submit" /> : null}
+                    <Button text="Submit" type="submit" isDisabled={isDisabled()} /> 
                 </StyledWrapper> 
                 : 
                 <Placeholder>

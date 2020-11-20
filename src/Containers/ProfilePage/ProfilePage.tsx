@@ -20,6 +20,7 @@ import SubmitStep from 'Components/molecules/SubmitStep';
 import * as yup from 'yup';
 import { axiosInstance } from 'services/api';
 import { IFormColor, IFormQuestion } from 'Interfaces/quizInterfaces';
+import { Constants } from 'helpers/constants';
 
 type Props = { match: any }
 
@@ -34,31 +35,31 @@ const tempQuizes = [
 ];
 
 
-const validationSchema = (questionsLength: number) => yup.object({
+const validationSchema = (formCouter: number) => yup.object({
   title: yup.string()
     .required('Required')
     .min(2, 'min 2 characters')
     .max(15, 'max 15 characters'),
 
-  question: questionsLength < 5  ? 
+  question: formCouter === 2 ?
     yup.string()
-    .required('Required')
-    .min(5, 'min 5 characters')
-    .max(120, 'max 120 characters') :
+      .required('Required')
+      .min(5, 'min 5 characters')
+      .max(120, 'max 120 characters') :
     yup.string()
-    .min(5, 'min 5 characters')
-    .max(120, 'max 120 characters'), 
+      .min(5, 'min 5 characters')
+      .max(120, 'max 120 characters'),
 
   answers: yup.array().of(
     yup.object().shape({
-      content: questionsLength < 5 ? 
+      content: formCouter === 2 ?
         yup.string()
           .required('Required')
           .min(1, 'Minimum 1 character')
           .max(30, 'max 30 characters') :
         yup.string()
           .min(1, 'Minimum 1 character')
-          .max(30, 'max 30 characters') 
+          .max(30, 'max 30 characters')
     })
   )
 });
@@ -66,7 +67,7 @@ const validationSchema = (questionsLength: number) => yup.object({
 const ProfilePage = ({ match }: Props) => {
   const dispatch = useDispatch();
   const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
-  const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions); 
+  const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
   const formPageCounter = useSelector<RootState, number>(state => state.quizes.formCounter);
   const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser);
   const formColors = useSelector<RootState, IFormColor>(state => state.quizes.formColor);
@@ -80,17 +81,17 @@ const ProfilePage = ({ match }: Props) => {
 
 
   const getData = (values: IFormikValues) => {
-      return {
-          title: values.title,
-          author: loggedUser,
-          iconName: formIconName,
-          amountOfQuestions: formQuestions.length,
-          colors: {
-            primaryColor: formColors.primary,
-            secondaryColor: formColors.secondary,
-          },
-          questions: formQuestions
-      }
+    return {
+      title: values.title,
+      author: loggedUser,
+      iconName: formIconName,
+      amountOfQuestions: formQuestions.length,
+      colors: {
+        primaryColor: formColors.primary,
+        secondaryColor: formColors.secondary,
+      },
+      questions: formQuestions
+    }
   }
 
 
@@ -102,8 +103,8 @@ const ProfilePage = ({ match }: Props) => {
   const manageUser = async () => {
     const route = match.params.username;
     await axiosInstance.get('/user/singleUser', {
-      params: {'name': route}
-    }).then(({data}) => {
+      params: { 'name': route }
+    }).then(({ data }) => {
       if (data) {
         setDoesUserExist(true)
         setRequestStatus(true)
@@ -119,6 +120,11 @@ const ProfilePage = ({ match }: Props) => {
     manageUser();
     dispatch(setAddQuizButtonStatus(false));
   }, [loggedUser])
+
+  // useEffect(() => {
+  //   manageUser();
+  //   console.log("Less than 5 ?", formQuestions.length < 5)
+  // }, [formQuestions.length])
 
 
   return (
@@ -137,7 +143,7 @@ const ProfilePage = ({ match }: Props) => {
                   radioValue: 'A',
                   answers: answers
                 }}
-                validationSchema={validationSchema}
+                validationSchema={validationSchema(formPageCounter)}
                 onSubmit={(data, { setSubmitting, resetForm }) => {
                   axiosInstance.post('/quizes/addQuiz', getData(data)
                   ).then((res) => { console.log(res) })
@@ -174,7 +180,7 @@ const ProfilePage = ({ match }: Props) => {
                           touched={touched}
                           errors={errors}
                         />,
-                        <SubmitStep />
+                        <SubmitStep errors={errors}/>
                       ]}
                     />
                   )}

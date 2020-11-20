@@ -20,26 +20,23 @@ const AddingStep = ({
     errors
 }: IPanel): JSX.Element => {
     const { question, answers, radioValue } = values;
-    const [ isFirstRender, setIsFirstRender ] = useState(true);
-    const [ buttonState, setButtonState ] = useState(true);
+    const [isFirstRender, setIsFirstRender] = useState(true);
     const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
     const dispatch = useDispatch();
 
-    const isPossibleAddQuestion = () => {
-        const allAnswersState = !errors.answers && !isFirstRender;
-        const questionState = !errors.question && !isFirstRender;
-        return allAnswersState && questionState;
+    const isDisabled = () => {
+        if (isFirstRender) return true;
+        return !!((errors.answers || errors.question) && touched);
     };
 
     const getCurrentQuestion = () => {
         return {
             content: question,
-            answers: answers.map(({ content, option }) =>
-                ({
-                    option,
-                    content,
-                    isCorrect: option === radioValue
-                }))
+            answers: answers.map(({ content, option }) => ({
+                option,
+                content,
+                isCorrect: option === radioValue
+            }))
         }
     };
 
@@ -48,12 +45,11 @@ const AddingStep = ({
             values: {
                 ...values,
                 question: "",
-                answers: answers.map(({ option }) =>
-                    ({
-                        option,
-                        content: "",
-                        isCorrect: option === radioValue
-                    }))
+                answers: answers.map(({ option }) => ({
+                    option,
+                    content: "",
+                    isCorrect: option === radioValue
+                }))
             }
         })
     };
@@ -62,19 +58,15 @@ const AddingStep = ({
         e.preventDefault();
         dispatch(setFormQuestions([...formQuestions, getCurrentQuestion()]));
         manageResetForm();
-        setButtonState(true);
         setIsFirstRender(true);
     }
 
 
     useEffect(() => {
-        setIsFirstRender(false);
-    }, [touched, errors, values]);
-
-    useEffect(() => {
-        setButtonState(!isPossibleAddQuestion());
-    }, [errors, values]);
-
+        if (question) {
+            setIsFirstRender(false);
+        }
+    }, [values, errors, question, isDisabled]);
 
 
     return (
@@ -119,7 +111,7 @@ const AddingStep = ({
                 text="Add question"
                 type="text"
                 handleOnClick={(e) => addQuestion(e)}
-                isDisabled={buttonState}
+                isDisabled={isDisabled()}
             />
         </StyledContainer>
     )
