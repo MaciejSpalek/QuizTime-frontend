@@ -21,6 +21,7 @@ import * as yup from 'yup';
 import { axiosInstance } from 'services/api';
 import { IFormColor, IFormQuestion } from 'Interfaces/quizInterfaces';
 import { Constants } from 'helpers/constants';
+import ModalWindow from 'Components/molecules/ModalWindow';
 
 type Props = { match: any }
 
@@ -74,9 +75,11 @@ const ProfilePage = ({ match }: Props) => {
   const formIconName = useSelector<RootState>(state => state.quizes.formIconName);
 
   const [doesUserExist, setDoesUserExist] = useState(false);
+  const [isModalWindowOpen, setIsModalWindowOpen] = useState(false);
   const [requestStatus, setRequestStatus] = useState(false);
   const [username, setUsername] = useState(null);
 
+  
 
 
 
@@ -116,23 +119,30 @@ const ProfilePage = ({ match }: Props) => {
     })
   }
 
+  const handleConfirmButton = () => {
+    dispatch(setAddQuizButtonStatus(!addQuizButtonStatus));
+    setIsModalWindowOpen(false);
+  }
+
+  const handleDeclineButton = () => {
+    setIsModalWindowOpen(false)
+  }
+  
   useEffect(() => {
     manageUser();
     dispatch(setAddQuizButtonStatus(false));
   }, [loggedUser])
-
-  // useEffect(() => {
-  //   manageUser();
-  //   console.log("Less than 5 ?", formQuestions.length < 5)
-  // }, [formQuestions.length])
-
 
   return (
     <PageTemplate>
       {requestStatus ?
         doesUserExist ?
           <StyledWrapper>
-            <ProfileBar username={username} isLoggedUserRoute={isLoggedUserRoute} />
+            <ProfileBar 
+              username={username} 
+              isLoggedUserRoute={isLoggedUserRoute} 
+              setIsModalWindowOpen={() => setIsModalWindowOpen(true)}
+            />
             {!addQuizButtonStatus ?
               <QuizList quizes={tempQuizes} /> :
               <Formik
@@ -202,6 +212,11 @@ const ProfilePage = ({ match }: Props) => {
           <Spinner />
         </PlaceholderTemplate>
       }
+      {isModalWindowOpen ? <ModalWindow 
+        description="Are you sure, you wanna leave?"
+        handleConfirmButton={() => handleConfirmButton()}
+        handleDeclineButton={() => handleDeclineButton()}
+      /> : null}
     </PageTemplate >
   )
 }

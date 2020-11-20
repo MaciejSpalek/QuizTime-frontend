@@ -9,12 +9,21 @@ import { RootState } from '../../../redux/store'
 import { setAddQuizButtonStatus } from '../../../redux/Actions/statusesActions'
 type Props = {
     username: string | null
-    isLoggedUserRoute: any
+    isLoggedUserRoute: any,
+    setIsModalWindowOpen: ()=> void;
 }
 
-const ProfileBar = ({ username, isLoggedUserRoute }: Props) => {
+const ProfileBar = ({ username, isLoggedUserRoute, setIsModalWindowOpen }: Props) => {
     const dispatch = useDispatch()
     const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
+
+    const handleButton = () => {
+        if(addQuizButtonStatus) {
+            setIsModalWindowOpen();
+        } else {
+            dispatch(setAddQuizButtonStatus(!addQuizButtonStatus))
+        }
+    }
 
     return (
         <StyledContainer>
@@ -22,7 +31,7 @@ const ProfileBar = ({ username, isLoggedUserRoute }: Props) => {
             {isLoggedUserRoute() &&
                 <Button
                     text={addQuizButtonStatus ? 'Your quizes' : 'Add quiz'}
-                    handleOnClick={() => dispatch(setAddQuizButtonStatus(!addQuizButtonStatus))}
+                    handleOnClick={handleButton}
                 />}
         </StyledContainer>
     )
