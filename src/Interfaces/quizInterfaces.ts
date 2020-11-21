@@ -4,12 +4,12 @@ export interface IFormColor {
 }
 
 export interface IQuizTemplate {
-    id?: number;
-    name: string;
+    _id?: string;
+    title: string;
     author: string;
     iconName: string;
-    score: string;
-    color: IFormColor;
+    colors: IFormColor;
+    amountOfQuestions?: number;
 };
 
 export interface IFormAnswer {

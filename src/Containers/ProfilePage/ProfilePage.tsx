@@ -20,21 +20,9 @@ import SubmitStep from 'Components/molecules/SubmitStep';
 import * as yup from 'yup';
 import { axiosInstance } from 'services/api';
 import { IFormColor, IFormQuestion } from 'Interfaces/quizInterfaces';
-import { Constants } from 'helpers/constants';
 import ModalWindow from 'Components/molecules/ModalWindow';
 
 type Props = { match: any }
-
-const tempQuizes = [
-  { id: 1, name: 'Example 1', author: 'Maciora', isDone: true, score: '5/12', color: { primary: '#00D952', secondary: '#00a03d' }, iconName: 'male' },
-  { id: 2, name: 'Example 2', author: 'Maciora', isDone: true, score: '5/12', color: { primary: '#80D4CD', secondary: '#2982A2' }, iconName: 'gamepad' },
-  { id: 3, name: 'Example 3', author: 'Maciora', isDone: true, score: '5/12', color: { primary: '#99B3E1', secondary: '#4F62A3' }, iconName: 'film' },
-  { id: 4, name: 'Example 4', author: 'Maciora', isDone: true, score: '5/12', color: { primary: '#A0ADBD', secondary: '#372E46' }, iconName: 'flask' },
-  { id: 5, name: 'Example 5', author: 'Maciora', isDone: true, score: '5/12', color: { primary: '#ACA398', secondary: '#443C51' }, iconName: 'paw' },
-  { id: 6, name: 'Example 6', author: 'Maciora', isDone: true, score: '5/12', color: { primary: '#ECCE8D', secondary: '#2C1931' }, iconName: 'landmark' },
-  { id: 7, name: 'Example 7', author: 'Maciora', isDone: true, score: '5/12', color: { primary: '#F7BC14', secondary: '#201F26' }, iconName: 'music' }
-];
-
 
 const validationSchema = (formCouter: number) => yup.object({
   title: yup.string()
@@ -78,7 +66,7 @@ const ProfilePage = ({ match }: Props) => {
   const [isModalWindowOpen, setIsModalWindowOpen] = useState(false);
   const [requestStatus, setRequestStatus] = useState(false);
   const [username, setUsername] = useState(null);
-
+  const [quizes, setQuizes] = useState([]);
   
 
 
@@ -89,11 +77,11 @@ const ProfilePage = ({ match }: Props) => {
       author: loggedUser,
       iconName: formIconName,
       amountOfQuestions: formQuestions.length,
+      questions: formQuestions,
       colors: {
-        primaryColor: formColors.primary,
-        secondaryColor: formColors.secondary,
-      },
-      questions: formQuestions
+        primary: formColors.primary,
+        secondary: formColors.secondary,
+      }
     }
   }
 
@@ -119,6 +107,14 @@ const ProfilePage = ({ match }: Props) => {
     })
   }
 
+  const fetchQuizes = async () => {
+    const route = match.params.username;
+    await axiosInstance.get('/quizes/userQuizzes', {
+      params: { 'author': route }
+    }).then(({ data }) => {setQuizes(data)});
+  }
+
+
   const handleConfirmButton = () => {
     dispatch(setAddQuizButtonStatus(!addQuizButtonStatus));
     setIsModalWindowOpen(false);
@@ -127,11 +123,17 @@ const ProfilePage = ({ match }: Props) => {
   const handleDeclineButton = () => {
     setIsModalWindowOpen(false)
   }
-  
+
   useEffect(() => {
     manageUser();
+    fetchQuizes();
     dispatch(setAddQuizButtonStatus(false));
   }, [loggedUser])
+
+  useEffect(() => {
+    fetchQuizes();
+  }, [addQuizButtonStatus])
+
 
   return (
     <PageTemplate>
@@ -144,7 +146,7 @@ const ProfilePage = ({ match }: Props) => {
               setIsModalWindowOpen={() => setIsModalWindowOpen(true)}
             />
             {!addQuizButtonStatus ?
-              <QuizList quizes={tempQuizes} /> :
+              <QuizList quizes={quizes} /> :
               <Formik
                 validateOnChange={true}
                 initialValues={{
@@ -155,8 +157,7 @@ const ProfilePage = ({ match }: Props) => {
                 }}
                 validationSchema={validationSchema(formPageCounter)}
                 onSubmit={(data, { setSubmitting, resetForm }) => {
-                  axiosInstance.post('/quizes/addQuiz', getData(data)
-                  ).then((res) => { console.log(res) })
+                  axiosInstance.post('/quizes/addQuiz', getData(data));
                 }}>
                 {({
                   isSubmitting,

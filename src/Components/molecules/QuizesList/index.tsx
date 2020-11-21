@@ -8,9 +8,10 @@ type Props = {
 }
 
 const QuizesList = ({ quizes }: Props) => {
+
     return (
         <StyledList>
-            {quizes.map(data => <QuizTestimonial key={data.id} parameters={data}/>)}
+            {quizes.map(data => <QuizTestimonial key={data._id} parameters={data}/>)}
         </StyledList>
     )
 }

@@ -14,7 +14,6 @@ const ModalWindow = ({
     handleDeclineButton, 
     description
 }: IModalWindow) => {
-    const [ isOpen, setIsOpen ] = useState(false);
     return (
         <StyledContainer>
             <StyledWindow>
@@ -23,7 +22,7 @@ const ModalWindow = ({
                     <StyledButton text="Exit" handleOnClick={handleConfirmButton}/>
                     <StyledButton text="Cancel" handleOnClick={handleDeclineButton} />
                 </StyledButtonWrapper>
-                <StyledIconButton icon={'times'} handleOnClick={() => console.log("close")} /> 
+                {/* <StyledIconButton icon={'times'} handleOnClick={() => console.log("close")} />  */}
             </StyledWindow>
         </StyledContainer>
     )

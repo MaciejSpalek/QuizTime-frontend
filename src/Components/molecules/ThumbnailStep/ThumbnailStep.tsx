@@ -22,10 +22,8 @@ const ThumbnailStep = ({
   handleChange
 }: IThumbnail): JSX.Element => {
   const [title, setTitle] = useState('Example title');
-  const [score, setScore] = useState('0/12');
-
   const dispatch = useDispatch();
-  const formColor = useSelector<RootState, IFormColor>(state => state.quizes.formColor)
+  const formColors = useSelector<RootState, IFormColor>(state => state.quizes.formColor)
   const formIconName = useSelector<RootState>(state => state.quizes.formIconName)
   const author = useSelector<RootState>(state => state.user.loggedUser)
 
@@ -57,11 +55,12 @@ const ThumbnailStep = ({
     <StyledContainter>
       <StyledQuizThumbnail
         parameters={{
-          name: title,
+          title,
           author: `${author}`,
           iconName: `${formIconName}`,
-          score,
-          color: formColor
+          colors: formColors,
+          amountOfQuestions: 5
+          
         }}
       />
       <FormField>
@@ -97,7 +96,7 @@ const ThumbnailStep = ({
         ]}
         selectCaption="Select theme"
         handleOnClick={callback => handleColor(callback.value, OptionType.COLOR)}
-        selectedColor={formColor}
+        selectedColor={formColors}
       />
       <CategorySelect
         type={OptionType.ICON}

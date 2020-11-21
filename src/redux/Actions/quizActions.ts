@@ -2,42 +2,30 @@ import { QuizTypes } from "../Types/quizTypes";
 import { axiosInstance } from "services/api";
 import { IFormColor, IFormQuestion } from "Interfaces/quizInterfaces";
 
-// export const fetchAllQuizes = () => async (dispatch: any) => {
-//   try {
-//     const quizes = await axiosInstance.get("/quiz/all");
-//     dispatch({
-//       type: QuizTypes.FETCH_ALL_QUIZES,
-//       payload: quizes.data,
-//     });
-//   } catch {
-//     dispatch({
-//       type: QuizTypes.FETCH_ALL_QUIZES,
-//       payload: [],
-//     });
-//   }
-// };
+export const fetchAllQuizes = () => async (dispatch: any) => {
+  await axiosInstance.get("/quizes/allQuizzes").then(({ data }) =>
+    dispatch({
+      type: QuizTypes.FETCH_ALL_QUIZZES,
+      payload: data
+    })
+  );
+};
 
-// export const fetchUserQuizes = (username: string) => async (dispatch: any) => {
-//   try {
-//     const quizes = await axiosInstance.get("/quiz", {
-//       params: { username: username },
-//     });
-//     dispatch({
-//       type: QuizTypes.FETCH_USER_QUIZES,
-//       payload: quizes.data,
-//     });
-//   } catch {
-//     dispatch({
-//       type: QuizTypes.FETCH_USER_QUIZES,
-//       payload: [],
-//     });
-//   }
-// };
+export const fetchUserQuizzes = (author: string) => async (dispatch: any) => {
+  await axiosInstance
+    .get("/quizes/userQuizzes", { params: { author }})
+    .then(({ data }) => {
+      dispatch({
+        type: QuizTypes.FETCH_USER_QUIZZES,
+        payload: data
+      });
+    });
+};
 
 export const setFormQuestions = (array: IFormQuestion[]) => (dispatch: any) => {
   dispatch({
     type: QuizTypes.SET_FORM_QUESTIONS,
-    payload: array
+    payload: array,
   });
 };
 

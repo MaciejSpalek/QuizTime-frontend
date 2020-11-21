@@ -6,8 +6,8 @@ import {
 } from "Interfaces/quizInterfaces";
 
 type QuizState = {
-  allQuizes: IQuizTemplate[];
-  userQuizes: IQuizTemplate[];
+  allQuizzes: IQuizTemplate[];
+  userQuizzes: IQuizTemplate[];
   formQuestions: IFormQuestion[];
   formColor: IFormColor;
   formCounter: number;
@@ -15,8 +15,8 @@ type QuizState = {
 };
 
 const initialState: QuizState = {
-  allQuizes: [],
-  userQuizes: [],
+  allQuizzes: [],
+  userQuizzes: [],
   formQuestions: [],
   formCounter: 1,
   formIconName: "male",
@@ -28,17 +28,17 @@ const initialState: QuizState = {
 
 export const quizReducer = (state = initialState, action: any): QuizState => {
   switch (action.type) {
-    case QuizTypes.FETCH_ALL_QUIZES: {
+    case QuizTypes.FETCH_ALL_QUIZZES: {
       return {
         ...state,
-        allQuizes: action.payload,
+        allQuizzes: action.payload,
       };
     }
 
-    case QuizTypes.FETCH_USER_QUIZES: {
+    case QuizTypes.FETCH_USER_QUIZZES: {
       return {
         ...state,
-        userQuizes: action.payload,
+        userQuizzes: action.payload,
       };
     }
 

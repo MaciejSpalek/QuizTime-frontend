@@ -10,7 +10,7 @@ import {
     StyledAuthorTag
 } from './index.styled'
 import { IconName } from '@fortawesome/fontawesome-svg-core'
-
+import { getScore } from 'helpers/getters';
 type Props = {
     parameters: IQuizTemplate
 }
@@ -18,27 +18,28 @@ type Props = {
  const QuizThumbnail = ({ parameters, ...props }: Props)=> {
     const { 
         author,
-        name, 
+        title, 
         iconName,
-        score,
-        color
+        colors,
+        amountOfQuestions
     } = parameters;
 
+  
 
     return (
-        <StyledContainer {...props} primarycolor={color.primary}>
-            <StyledImageWrapper secondarycolor={color.secondary}>
+        <StyledContainer {...props} primarycolor={colors.primary}>
+            <StyledImageWrapper secondarycolor={colors.secondary}>
                 <StyledIcon 
                     icon={iconName as IconName} 
-                    primarycolor={color.primary}
+                    primarycolor={colors.primary}
                 />
                 <StyledScore 
-                    text={score}
-                    color={color.primary}
+                    text={getScore(+`${amountOfQuestions}`)}
+                    color={colors.primary}
                 />
             </StyledImageWrapper>
             <StyledTextWrapper>
-                <StyledTitle text={name} />
+                <StyledTitle text={title} />
                 <StyledAuthorTag text={author} />
             </StyledTextWrapper>
         </StyledContainer>

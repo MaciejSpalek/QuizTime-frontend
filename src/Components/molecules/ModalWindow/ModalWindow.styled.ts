@@ -22,6 +22,7 @@ export const StyledWindow = styled.div`
     height: 180px;
     width: 280px;
     border-radius: 5px;
+    padding-top: 20px;
     background-color: ${({theme}) => theme.colors.white};
 `;
 
