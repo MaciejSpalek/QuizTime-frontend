@@ -7,24 +7,23 @@ import { axiosInstance } from 'services/api'
 const HomePage = () => {
   const [quizes, setQuizes] = useState([]);
 
-  const fetchQuizes = async () =>  {
+  const fetchAllQuizes = async () => {
     await axiosInstance.get('/quizes/allQuizzes')
       .then(res => {
-        setQuizes(res.data)
-      })
+        setQuizes(res.data);
+      });
   };
-  
+
   useEffect(() => {
-    fetchQuizes();
-  }, [quizes])
+    fetchAllQuizes();
+  }, []);
 
   return (
     <PageTemplate>
       <SearchPanel />
-      <QuizesList quizes={quizes}/>
-    </PageTemplate>  
+      <QuizesList quizes={quizes} />
+    </PageTemplate>
   )
-}  
+}
 
-export default HomePage
-
+export default HomePage;

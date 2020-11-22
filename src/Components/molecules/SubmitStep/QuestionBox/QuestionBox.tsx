@@ -1,5 +1,9 @@
+import { IFormQuestion } from 'Interfaces/quizInterfaces';
 import React, { useState, MouseEvent } from 'react';
-import { IQuestion } from './Question.model';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFormQuestions } from 'redux/Actions/quizActions';
+import { RootState } from 'redux/store';
+import { IQuestionBox } from './QuestionBox.model';
 import {
     StyledIconButton,
     StyledParagraph,
@@ -10,10 +14,12 @@ import {
     StyledTopBar,
     StyledNumber,
     StyledList
-} from './Question.styled';
+} from './QuestionBox.styled';
 
-const Question = ({ question, answers, index }: IQuestion): JSX.Element => {
+const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
+    const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
+    const dispatch = useDispatch();
 
     const handleArrowButton = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -21,7 +27,8 @@ const Question = ({ question, answers, index }: IQuestion): JSX.Element => {
     }
 
     const handleRemoveButton = () => {
-
+        const newArray = formQuestions.filter(el => el.id !== id)
+        dispatch(setFormQuestions(newArray));
     }
 
     return (
@@ -57,4 +64,4 @@ const Question = ({ question, answers, index }: IQuestion): JSX.Element => {
     )
 };
 
-export default Question;
+export default QuestionBox;

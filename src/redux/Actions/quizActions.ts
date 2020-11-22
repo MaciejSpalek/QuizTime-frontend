@@ -49,3 +49,11 @@ export const setFormIconName = (value: string) => (dispatch: any) => {
     payload: value,
   });
 };
+
+
+export const setFormQuestionsCounter = (value: number) => (dispatch: any) => {
+  dispatch({
+    type: QuizTypes.SET_FORM_QUESTIONS_COUNTER,
+    payload: value,
+  });
+};

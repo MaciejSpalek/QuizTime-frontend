@@ -1,5 +1,4 @@
 import React, { MouseEvent, useEffect, useState } from 'react';
-import Question from './Question';
 import { IFormColor, IFormQuestion } from 'Interfaces/quizInterfaces';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
@@ -14,6 +13,7 @@ import Button from 'Components/atoms/Button';
 import Placeholder from 'templates/PlaceholderTemplate/PlaceholderTemplate';
 import { ISubmitStep } from './SubmitStep.model';
 import { Constants } from 'helpers/constants';
+import QuestionBox from './QuestionBox';
 
 const SubmitStep = ({ errors }: ISubmitStep): JSX.Element => {
     const questions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
@@ -27,12 +27,13 @@ const SubmitStep = ({ errors }: ISubmitStep): JSX.Element => {
                 <StyledWrapper>
                     <StyledHeading> Your questions (at least 5) </StyledHeading>
                     <StyledList> 
-                        {questions.map(({ content, answers }, index) =>
-                            <Question
+                        {questions.map(({ content, answers, id }, index) =>
+                            <QuestionBox
                                 question={content}
                                 answers={answers}
                                 index={index+1}
                                 key={content}
+                                id={id}
                             />)
                         }
                     </StyledList>

@@ -8,7 +8,7 @@ import FormField from 'templates/FormFieldTemplate/FormFieldTemplate';
 import ErrorMessage from 'Components/atoms/ErrorMessage';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
-import { setFormQuestions } from 'redux/Actions/quizActions';
+import { setFormQuestions, setFormQuestionsCounter } from 'redux/Actions/quizActions';
 import { IFormQuestion } from 'Interfaces/quizInterfaces';
 
 const AddingStep = ({
@@ -20,8 +20,9 @@ const AddingStep = ({
     errors
 }: IPanel): JSX.Element => {
     const { question, answers, radioValue } = values;
-    const [isFirstRender, setIsFirstRender] = useState(true);
+    const [ isFirstRender, setIsFirstRender ] = useState(true);
     const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
+    const formQuestionsCounter = useSelector<RootState, number>(state => state.quizes.formQuestionsCounter);
     const dispatch = useDispatch();
 
     const isDisabled = () => {
@@ -31,6 +32,7 @@ const AddingStep = ({
 
     const getCurrentQuestion = () => {
         return {
+            id: formQuestionsCounter,
             content: question,
             answers: answers.map(({ content, option }) => ({
                 option,
@@ -57,10 +59,10 @@ const AddingStep = ({
     const addQuestion = (e: MouseEvent<HTMLElement>) => {
         e.preventDefault();
         dispatch(setFormQuestions([...formQuestions, getCurrentQuestion()]));
+        dispatch(setFormQuestionsCounter(formQuestionsCounter+1))
         manageResetForm();
         setIsFirstRender(true);
     }
-
 
     useEffect(() => {
         if (question) {
@@ -110,7 +112,7 @@ const AddingStep = ({
             <StyledButton
                 text="Add question"
                 type="text"
-                handleOnClick={(e) => addQuestion(e)}
+                handleOnClick={addQuestion}
                 isDisabled={isDisabled()}
             />
         </StyledContainer>
