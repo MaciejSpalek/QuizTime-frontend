@@ -111,7 +111,7 @@ const AddingStep = ({
             )}
             <StyledButton
                 text="Add question"
-                type="text"
+                type='button'
                 handleOnClick={addQuestion}
                 isDisabled={isDisabled()}
             />

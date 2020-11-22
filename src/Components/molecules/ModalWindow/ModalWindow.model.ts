@@ -1,7 +1,7 @@
 
 export interface IModalWindow {
     description: string;
-    handleConfirmButton?: () => void;
-    handleDeclineButton?: () => void;
+    handleConfirmButton: () => void;
+    handleDeclineButton: () => void;
 
 }

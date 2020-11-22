@@ -1,3 +1,4 @@
+import ModalWindow from 'Components/molecules/ModalWindow';
 import { IFormQuestion } from 'Interfaces/quizInterfaces';
 import React, { useState, MouseEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,6 +19,7 @@ import {
 
 const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isModalWindowOpen, setIsModalWindowOpen] = useState(false);
     const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
     const dispatch = useDispatch();
 
@@ -26,9 +28,10 @@ const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Elemen
         setIsOpen(prev => !prev);
     }
 
-    const handleRemoveButton = () => {
-        const newArray = formQuestions.filter(el => el.id !== id)
+    const handleConfirmButton = () => {
+        const newArray = formQuestions.filter(question => question.id !== id)
         dispatch(setFormQuestions(newArray));
+        setIsModalWindowOpen(false);
     }
 
     return (
@@ -38,11 +41,11 @@ const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Elemen
                 <StyledWrapper>
                     <StyledIconButton 
                         icon={'trash-alt'} 
-                        handleOnClick={handleRemoveButton}
+                        handleOnClick={() => setIsModalWindowOpen(true)}
                     />
                     <StyledIconButton 
                         icon={isOpen ? 'angle-up' : 'angle-down'} 
-                        handleOnClick={(e) => handleArrowButton(e)}
+                        handleOnClick={handleArrowButton}
                     />
                 </StyledWrapper>
             </StyledTopBar>
@@ -60,6 +63,11 @@ const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Elemen
                         </StyledListItem>
                     )}
                 </StyledList> : null}
+                {isModalWindowOpen ? <ModalWindow 
+                    description={'Do you wanna remove element?'}
+                    handleConfirmButton={handleConfirmButton}
+                    handleDeclineButton={() => setIsModalWindowOpen(false)}
+                /> : null}
         </StyledQuestion>
     )
 };

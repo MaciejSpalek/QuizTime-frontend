@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { useOutsideClick } from 'hooks';
+import React, { useRef } from 'react'
 import { IModalWindow } from './ModalWindow.model';
 import {
     StyledContainer,
@@ -14,13 +15,19 @@ const ModalWindow = ({
     handleDeclineButton, 
     description
 }: IModalWindow) => {
+    const windowRef = useRef(null);
+
+    useOutsideClick(windowRef, () => {
+        handleDeclineButton();
+    });
+
     return (
         <StyledContainer>
-            <StyledWindow>
+            <StyledWindow ref={windowRef}>
                 <StyledParagraph text={description} />
                 <StyledButtonWrapper>
-                    <StyledButton text="Exit" handleOnClick={handleConfirmButton}/>
-                    <StyledButton text="Cancel" handleOnClick={handleDeclineButton} />
+                    <StyledButton type='button' text="Exit" handleOnClick={handleConfirmButton}/>
+                    <StyledButton type='button' text="Cancel" handleOnClick={handleDeclineButton} />
                 </StyledButtonWrapper>
                 {/* <StyledIconButton icon={'times'} handleOnClick={() => console.log("close")} />  */}
             </StyledWindow>

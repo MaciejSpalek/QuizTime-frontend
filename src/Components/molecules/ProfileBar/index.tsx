@@ -1,16 +1,14 @@
 import React from 'react'
-import {
-    StyledContainer,
-    StyledUserTag
-} from './index.styled'
-import Button from '../../atoms/Button/Button'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../../redux/store'
-import { setAddQuizButtonStatus } from '../../../redux/Actions/statusesActions'
+import Button from 'Components/atoms/Button/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
+import { setAddQuizButtonStatus } from 'redux/Actions/statusesActions';
+import { StyledContainer, StyledUserTag } from './index.styled';
+
 type Props = {
     username: string | null
     isLoggedUserRoute: any,
-    setIsModalWindowOpen: ()=> void;
+    setIsModalWindowOpen: () => void;
 }
 
 const ProfileBar = ({ username, isLoggedUserRoute, setIsModalWindowOpen }: Props) => {
@@ -18,7 +16,7 @@ const ProfileBar = ({ username, isLoggedUserRoute, setIsModalWindowOpen }: Props
     const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
 
     const handleButton = () => {
-        if(addQuizButtonStatus) {
+        if (addQuizButtonStatus) {
             setIsModalWindowOpen();
         } else {
             dispatch(setAddQuizButtonStatus(!addQuizButtonStatus))
@@ -30,11 +28,11 @@ const ProfileBar = ({ username, isLoggedUserRoute, setIsModalWindowOpen }: Props
             <StyledUserTag> {username} </StyledUserTag>
             {isLoggedUserRoute() &&
                 <Button
-                    text={addQuizButtonStatus ? 'Your quizes' : 'Add quiz'}
+                    text={addQuizButtonStatus ? 'QuizBoard' : 'Add quiz'}
                     handleOnClick={handleButton}
                 />}
         </StyledContainer>
     )
 }
 
-export default ProfileBar
+export default ProfileBar;
