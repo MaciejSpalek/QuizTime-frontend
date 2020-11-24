@@ -18,7 +18,7 @@ import {
 } from './QuestionBox.styled';
 
 const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Element => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const [isModalWindowOpen, setIsModalWindowOpen] = useState(false);
     const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
     const dispatch = useDispatch();
@@ -40,16 +40,18 @@ const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Elemen
                 <StyledNumber> {`${index}.`} </StyledNumber>
                 <StyledWrapper>
                     <StyledIconButton 
-                        icon={'trash-alt'} 
+                        type='button'
+                        icon='trash-alt'
                         handleOnClick={() => setIsModalWindowOpen(true)}
                     />
                     <StyledIconButton 
+                        type='button'
                         icon={isOpen ? 'angle-up' : 'angle-down'} 
                         handleOnClick={handleArrowButton}
                     />
                 </StyledWrapper>
             </StyledTopBar>
-            <StyledHeading> {`${question}`} </StyledHeading>
+            <StyledHeading> {question} </StyledHeading>
             {isOpen ? 
                 <StyledList>
                     {answers.map(({ option, content, isCorrect }) =>
@@ -64,9 +66,11 @@ const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Elemen
                     )}
                 </StyledList> : null}
                 {isModalWindowOpen ? <ModalWindow 
-                    description={'Do you wanna remove element?'}
-                    handleConfirmButton={handleConfirmButton}
-                    handleDeclineButton={() => setIsModalWindowOpen(false)}
+                    description={'Wanna remove it ?'}
+                    handleConfirmationButton={handleConfirmButton}
+                    handleCancelButton={() => setIsModalWindowOpen(false)}
+                    confirmationButtonText='Yes'
+                    cancelButtonText='Cancel'
                 /> : null}
         </StyledQuestion>
     )

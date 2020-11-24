@@ -31,6 +31,7 @@ const QuizPagination = ({
         <StyledPagination {...props}>
             { testFunc('left') ?
                 <StyledIconButton
+                    type='button'
                     icon={'angle-left'}
                     handleOnClick={handleLeftButton}
                 /> : <StyledEmptySquare />
@@ -42,6 +43,7 @@ const QuizPagination = ({
             </StyledCenterSquare>
             { testFunc('right') ?
                 <StyledIconButton
+                    type='button'
                     icon={'angle-right'}
                     handleOnClick={handleRightButton}
                 /> : <StyledEmptySquare />

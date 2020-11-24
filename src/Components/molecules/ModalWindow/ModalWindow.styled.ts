@@ -28,18 +28,36 @@ export const StyledContainer = styled.div`
 export const StyledWindow = styled.div`
     position: relative; 
     ${FlexColumn};
-    justify-content: space-evenly;
-    height: 180px;
+    justify-content: space-between;
+    height: 220px;
     width: 280px;
-    border-radius: 5px;
-    padding-top: 20px;
     background-color: ${({theme}) => theme.colors.white};
 `;
 
 
-export const StyledButtonWrapper = styled.div`
+export const StyledWrapper = styled.div`
     ${FlexCenter};
-    justify-content: space-evenly;
+    padding: 5px;
+
+    :first-of-type {
+        flex: 1;
+        background-color: ${({theme}) => theme.colors.white};
+        border-bottom: 2px solid ${({theme}) => theme.colors.Neutral80};
+        justify-content: flex-end;
+    };
+    
+    :nth-of-type(2) {
+        flex: 3;
+        background-color: ${({theme}) => theme.colors.white};
+        padding: 5px 10px;
+    };
+
+    :nth-of-type(3) {
+        flex: 1;
+        justify-content: space-between;
+        background-color: ${({theme}) => theme.colors.Neutral80};
+        padding: 5px 10px;
+    };
 `;
 
 export const StyledButton = styled(Button)`
@@ -48,15 +66,11 @@ export const StyledButton = styled(Button)`
 
 export const StyledParagraph = styled(Paragraph)`
     color: ${({theme}) => theme.colors.Neutral20};
-    font-size: 24px;
+    font-size: 20px;
 `;
 
 export const StyledIconButton = styled(IconButton)`
-    position: absolute;
-    top: -10px;
-    right: -10px;
     width: 36px;
     height: 36px;
     color: ${({theme}) => theme.colors.Neutral40};
-    border-radius: 50%;
 `;

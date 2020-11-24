@@ -5,7 +5,10 @@ export interface IQuizTemplate {
   iconName: string;
   colors: IFormColor;
   amountOfQuestions?: number;
+  questions?: IFormQuestion[];
 }
+
+
 
 export interface IFormColor {
   primary: string;

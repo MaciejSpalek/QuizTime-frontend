@@ -4,32 +4,42 @@ import { IModalWindow } from './ModalWindow.model';
 import {
     StyledContainer,
     StyledParagraph,
-    StyledButtonWrapper,
+    StyledWrapper,
     StyledButton,
     StyledWindow,
     StyledIconButton
 } from './ModalWindow.styled'
 
-const ModalWindow = ({ 
-    handleConfirmButton, 
-    handleDeclineButton, 
+const ModalWindow = ({
+    handleConfirmationButton,
+    handleCancelButton,
+    confirmationButtonText,
+    cancelButtonText,
     description
 }: IModalWindow) => {
     const windowRef = useRef(null);
 
     useOutsideClick(windowRef, () => {
-        handleDeclineButton();
+        handleCancelButton();
     });
 
     return (
         <StyledContainer>
             <StyledWindow ref={windowRef}>
-                <StyledParagraph text={description} />
-                <StyledButtonWrapper>
-                    <StyledButton type='button' text="Exit" handleOnClick={handleConfirmButton}/>
-                    <StyledButton type='button' text="Cancel" handleOnClick={handleDeclineButton} />
-                </StyledButtonWrapper>
-                {/* <StyledIconButton icon={'times'} handleOnClick={() => console.log("close")} />  */}
+                <StyledWrapper>
+                    <StyledIconButton
+                        type='button'
+                        icon='times'
+                        handleOnClick={handleCancelButton}
+                    />
+                </StyledWrapper>
+                <StyledWrapper>
+                    <StyledParagraph text={description} />
+                </StyledWrapper>
+                <StyledWrapper>
+                    <StyledButton type='button' text={confirmationButtonText} handleOnClick={handleConfirmationButton} />
+                    <StyledButton type='button' text={cancelButtonText} handleOnClick={handleCancelButton} />
+                </StyledWrapper>
             </StyledWindow>
         </StyledContainer>
     )

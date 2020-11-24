@@ -3,9 +3,9 @@ import { RootState } from 'redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAddQuizButtonStatus } from 'redux/Actions/statusesActions';
 import { StyledWrapper } from './ProfilePage.styled';
-import { setFormCounter } from 'redux/Actions/quizActions';
+import { setFormCounter, setFormQuestions, setFormQuestionsCounter } from 'redux/Actions/quizActions';
 import { Formik } from 'formik';
-import { answers, IFormikValues } from './ProfilePage.model';
+import { answers } from './ProfilePage.model';
 import ProfileBar from 'Components/molecules/ProfileBar';
 import PlaceholderTemplate from 'templates/PlaceholderTemplate/PlaceholderTemplate';
 import PageTemplate from 'templates/PageTemplate/PageTemplate';
@@ -19,8 +19,11 @@ import AddingStep from 'Components/molecules/AddingStep';
 import SubmitStep from 'Components/molecules/SubmitStep';
 import * as yup from 'yup';
 import { axiosInstance } from 'services/api';
-import { IFormColor, IFormQuestion } from 'Interfaces/quizInterfaces';
+import { IFormColor, IFormQuestion, IQuizTemplate } from 'Interfaces/quizInterfaces';
 import ModalWindow from 'Components/molecules/ModalWindow';
+import { useHistory } from 'react-router-dom';
+import Toast from 'Components/atoms/Toast';
+import { ToastType } from 'Components/atoms/Toast/Toast.model';
 
 type Props = { match: any }
 
@@ -67,15 +70,15 @@ const ProfilePage = ({ match }: Props) => {
   const [requestStatus, setRequestStatus] = useState(false);
   const [username, setUsername] = useState(null);
   const [quizes, setQuizes] = useState([]);
-  
+  const [isToastActive, setIsToastActive] = useState(false)
+  const [toastType, setToastType] = useState<ToastType>('success')
 
 
-
-  const getData = (values: IFormikValues) => {
+  const getData = (title: string): IQuizTemplate => {
     return {
-      title: values.title,
-      author: loggedUser,
-      iconName: formIconName,
+      title,
+      author: `${loggedUser}`,
+      iconName: `${formIconName}`,
       amountOfQuestions: formQuestions.length,
       questions: formQuestions,
       colors: {
@@ -84,7 +87,6 @@ const ProfilePage = ({ match }: Props) => {
       }
     }
   }
-
 
   const isLoggedUserRoute = () => {
     const route = match.params.username
@@ -107,31 +109,38 @@ const ProfilePage = ({ match }: Props) => {
     })
   }
 
-  const fetchQuizes = async () => {
+  const fetchUserQuizzes = async () => {
     const route = match.params.username;
     await axiosInstance.get('/quizes/userQuizzes', {
       params: { 'author': route }
-    }).then(({ data }) => {setQuizes(data)});
+    }).then(({ data }) => { setQuizes(data) });
   }
-
 
   const handleConfirmButton = () => {
     dispatch(setAddQuizButtonStatus(!addQuizButtonStatus));
     setIsModalWindowOpen(false);
+    resetParameters()
   }
 
-  const handleDeclineButton = () => {
-    setIsModalWindowOpen(false)
+  const addQuiz = (data: IQuizTemplate) => {
+    return axiosInstance.post('/quizes/addQuiz', data);
+  }
+
+  const resetParameters = () => {
+    dispatch(setFormQuestionsCounter(0))
+    dispatch(setFormCounter(1));
+    dispatch(setAddQuizButtonStatus(false));
+    dispatch(setFormQuestions([]))
   }
 
   useEffect(() => {
     manageUser();
-    fetchQuizes();
+    fetchUserQuizzes();
     dispatch(setAddQuizButtonStatus(false));
   }, [loggedUser])
 
   useEffect(() => {
-    fetchQuizes();
+    fetchUserQuizzes();
   }, [addQuizButtonStatus])
 
 
@@ -140,9 +149,9 @@ const ProfilePage = ({ match }: Props) => {
       {requestStatus ?
         doesUserExist ?
           <StyledWrapper>
-            <ProfileBar 
-              username={username} 
-              isLoggedUserRoute={isLoggedUserRoute} 
+            <ProfileBar
+              username={username}
+              isLoggedUserRoute={isLoggedUserRoute}
               setIsModalWindowOpen={() => setIsModalWindowOpen(true)}
             />
             {!addQuizButtonStatus ?
@@ -153,11 +162,28 @@ const ProfilePage = ({ match }: Props) => {
                   title: '',
                   question: '',
                   radioValue: 'A',
-                  answers: answers
+                  answers
                 }}
                 validationSchema={validationSchema(formPageCounter)}
                 onSubmit={(data, { setSubmitting, resetForm }) => {
-                  axiosInstance.post('/quizes/addQuiz', getData(data));
+                  addQuiz(getData(data.title)).then(res => {
+                    setIsToastActive(true);
+                    setSubmitting(true);
+
+                    if(res.data.message) { //error
+                      setToastType('error');
+                      setTimeout(() => {
+                        setSubmitting(false)
+                      }, 3000);
+                    } else {
+                      setToastType('success');
+                      setTimeout(() => {
+                        resetForm();
+                        setSubmitting(false)
+                        resetParameters();
+                      }, 500);
+                    }
+                  })
                 }}>
                 {({
                   isSubmitting,
@@ -191,13 +217,14 @@ const ProfilePage = ({ match }: Props) => {
                           touched={touched}
                           errors={errors}
                         />,
-                        <SubmitStep errors={errors}/>
+                        <SubmitStep
+                          errors={errors}
+                          isSubmitting={isSubmitting}
+                        />
                       ]}
                     />
                   )}
-              </Formik>
-            }
-
+              </Formik>}
           </StyledWrapper> :
           <PlaceholderTemplate>
             <h2> User doesn't exist </h2>
@@ -213,11 +240,19 @@ const ProfilePage = ({ match }: Props) => {
           <Spinner />
         </PlaceholderTemplate>
       }
-      {isModalWindowOpen ? <ModalWindow 
-        description="Are you sure, you wanna leave?"
-        handleConfirmButton={() => handleConfirmButton()}
-        handleDeclineButton={() => handleDeclineButton()}
+      {isModalWindowOpen ? <ModalWindow
+        description="Wanna exit?"
+        handleConfirmationButton={handleConfirmButton}
+        handleCancelButton={() => setIsModalWindowOpen(false)}
+        confirmationButtonText='Yes'
+        cancelButtonText='Cancel'
       /> : null}
+
+      <Toast 
+        isActive={isToastActive}
+        type={toastType}
+        deactivate={() => setIsToastActive(false)}
+      />
     </PageTemplate >
   )
 }
