@@ -1,12 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
-import Paragraph from '../Paragraph';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FlexCenter } from 'theme/Mixins';
 
-const toastStyle = css`
-  width: 200px;
-  height: 50px;
-`;
 
 const animation = keyframes`
   0% {
@@ -32,19 +27,23 @@ const animation = keyframes`
   }
 `;
 
-export const StyledToast = styled.div<{color: string}>`
+export const StyledToast = styled.div`
   ${FlexCenter};
-  ${toastStyle};
+  width: 240px;
+  height: 50px;
   position: fixed;
   bottom: 50px;
   left: 50%;
   transform: translate(-50%, 0) translateY(200px);
   background-color: ${({theme}) => theme.colors.transparentBlack};
   animation: ${animation} 3s ease-in-out;
+  border-radius: 2px;
+  padding: 5px;
+  z-index: 999999;
 `;
 
 export const StyledText = styled.span`
-  font-size: 20px;
+  font-size: 16px;
   color: ${({theme}) => theme.colors.white};
 `;
 

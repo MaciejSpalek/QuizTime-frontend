@@ -22,8 +22,7 @@ import { axiosInstance } from 'services/api';
 import { IFormColor, IFormQuestion, IQuizTemplate } from 'Interfaces/quizInterfaces';
 import ModalWindow from 'Components/molecules/ModalWindow';
 import { useHistory } from 'react-router-dom';
-import Toast from 'Components/atoms/Toast';
-import { ToastType } from 'Components/atoms/Toast/Toast.model';
+import { setToastParameters } from 'redux/Actions/toastActions';
 
 type Props = { match: any }
 
@@ -70,8 +69,6 @@ const ProfilePage = ({ match }: Props) => {
   const [requestStatus, setRequestStatus] = useState(false);
   const [username, setUsername] = useState(null);
   const [quizes, setQuizes] = useState([]);
-  const [isToastActive, setIsToastActive] = useState(false)
-  const [toastType, setToastType] = useState<ToastType>('success')
 
 
   const getData = (title: string): IQuizTemplate => {
@@ -167,16 +164,15 @@ const ProfilePage = ({ match }: Props) => {
                 validationSchema={validationSchema(formPageCounter)}
                 onSubmit={(data, { setSubmitting, resetForm }) => {
                   addQuiz(getData(data.title)).then(res => {
-                    setIsToastActive(true);
                     setSubmitting(true);
 
-                    if(res.data.message) { //error
-                      setToastType('error');
+                    if(res.data.message) {
+                      dispatch(setToastParameters(true, 'Something went wrong...', 'exclamation-circle'))
                       setTimeout(() => {
                         setSubmitting(false)
                       }, 3000);
-                    } else {
-                      setToastType('success');
+                    } else {  
+                      dispatch(setToastParameters(true, 'Successfully added!'))
                       setTimeout(() => {
                         resetForm();
                         setSubmitting(false)
@@ -206,19 +202,21 @@ const ProfilePage = ({ match }: Props) => {
                           handleBlur={handleBlur}
                           handleChange={handleChange}
                           values={values}
-                          touched={touched}
                           errors={errors}
+                          touched={touched}
                         />,
                         <AddingStep
                           handleBlur={handleBlur}
                           handleChange={handleChange}
                           resetForm={resetForm}
                           values={values}
-                          touched={touched}
                           errors={errors}
+                          touched={touched}
                         />,
                         <SubmitStep
+                          values={values}
                           errors={errors}
+                          touched={touched}
                           isSubmitting={isSubmitting}
                         />
                       ]}
@@ -247,12 +245,6 @@ const ProfilePage = ({ match }: Props) => {
         confirmationButtonText='Yes'
         cancelButtonText='Cancel'
       /> : null}
-
-      <Toast 
-        isActive={isToastActive}
-        type={toastType}
-        deactivate={() => setIsToastActive(false)}
-      />
     </PageTemplate >
   )
 }

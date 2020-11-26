@@ -1,3 +1,4 @@
+import { setToastParameters } from 'redux/Actions/toastActions'
 import { getExpireDate, setCookie, deleteCookie } from '../helpers/cookies'
 import { setRequestMessage, setRequestStatus } from '../redux/Actions/sessionActions'
 import { setLoggedUser, resetLoggedUser } from '../redux/Actions/userActions'
@@ -20,11 +21,14 @@ export const authRequest = async (option: AuthType, data: DataType, dispatch: an
             dispatch(setLoggedUser(name));
             dispatch(setRequestMessage(""));
             dispatch(setRequestStatus(true));
+            option === 'login' ?
+                dispatch(setToastParameters(true, 'Successfully logged in')) :
+                dispatch(setToastParameters(true, 'Successfully registered'))
         }).catch((error) => {
             const errorMessage = {...error.response}.data;
             dispatch(setRequestStatus(false));
-            dispatch(setRequestMessage(errorMessage));
-        })
+            dispatch(setToastParameters(true, `${errorMessage}`, 'exclamation-circle'));
+        });
 };
 
 export const logout = (dispatch?: any): void => {

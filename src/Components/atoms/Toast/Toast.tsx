@@ -1,70 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import { IParameters, IToast } from './Toast.model';
-import { IconName } from '@fortawesome/fontawesome-svg-core';
+import React, { useEffect } from 'react';
 import {
   StyledToast,
   StyledText,
   StyledIcon
 } from './Toast.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
+import { setToastParameters } from 'redux/Actions/toastActions';
 
-const Toast = ({ isActive, type, deactivate, ...props }: IToast): JSX.Element => {
-  const [icon, setIcon] = useState('');
-  const [color, setColor] = useState('');
-  const [text, setText] = useState('');
-
-  const getParameters = (): IParameters => {
-    switch (type) {
-      case 'success': {
-        return {
-          text: 'Success!',
-          color: 'green',
-          icon: 'check-circle'
-        }
-      }
-
-      case 'error': {
-        return {
-          text: 'Error!',
-          color: 'red',
-          icon: 'exclamation-circle'
-        }
-      }
-
-      default: {
-        return {
-          text: 'Info!',
-          color: 'blue',
-          icon: 'exclamation-circle'
-        }
-      }
-    }
-  }
+const Toast = ({ ...props }): JSX.Element => {
+  const isActive = useSelector<RootState>(state => state.toast.isActive);
+  const icon = useSelector<RootState, string>(state => state.toast.icon);
+  const description = useSelector<RootState, string>(state => state.toast.description);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const { icon, color, text } = getParameters();
-    setIcon(icon);
-    setColor(color);
-    setText(text)
-  }, [type]);
-
-  useEffect(() => {
-    if(isActive) {
+    if (isActive) {
       setTimeout(() => {
-        deactivate()
+        dispatch(setToastParameters(false));
       }, 3000)
     }
   }, [isActive]);
 
+  if (!isActive) return <></>;
+  
   return (
-    <>
-      {isActive ?
-        <StyledToast color={color} {...props}>
-          <StyledIcon icon={icon as IconName} />
-          <StyledText>
-            {text}
-          </StyledText>
-        </StyledToast> : null}
-    </>
+    <StyledToast {...props}>
+      <StyledIcon icon={icon as IconName} />
+      <StyledText>
+        {description}
+      </StyledText>
+    </StyledToast>
   )
 };
 

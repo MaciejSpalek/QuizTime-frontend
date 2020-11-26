@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'Components/atoms/Button';
 import Placeholder from 'templates/PlaceholderTemplate/PlaceholderTemplate';
 import QuestionBox from './QuestionBox';
@@ -6,7 +6,6 @@ import { RootState } from 'redux/store';
 import { IFormQuestion } from 'Interfaces/quizInterfaces';
 import { useSelector } from 'react-redux';
 import { ISubmitStep } from './SubmitStep.model';
-import { Constants } from 'helpers/constants';
 import { 
     StyledSubmitStep, 
     StyledPlaceholderText, 
@@ -15,17 +14,27 @@ import {
     StyledList 
 } from './SubmitStep.styled';
 
-const SubmitStep = ({ errors, isSubmitting }: ISubmitStep): JSX.Element => {
+const SubmitStep = ({ errors, touched, values, isSubmitting }: ISubmitStep): JSX.Element => {
     const questions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
+    const [isFirstRender, setIsFirstRender] = useState(true);
+
     const isDisabled = () => {
-        return questions.length < Constants.MinFormQuestions || !!errors.title || isSubmitting;
+        if(isFirstRender) return true;
+        return !!(errors.title && touched) || isSubmitting;
     };
+
+    useEffect(() => {
+        if (values.title) {
+            setIsFirstRender(false);
+        }
+    }, [values.title]);
+
 
     return (
         <StyledSubmitStep>
             {questions.length ? 
                 <StyledWrapper>
-                    <StyledHeading> Your questions (at least 5) </StyledHeading>
+                    <StyledHeading> Your questions </StyledHeading>
                     <StyledList> 
                         {questions.map(({ content, answers, id }, index) =>
                             <QuestionBox
@@ -37,7 +46,7 @@ const SubmitStep = ({ errors, isSubmitting }: ISubmitStep): JSX.Element => {
                             />)
                         }
                     </StyledList>
-                    <Button text="Submit" type="submit" isDisabled={isSubmitting} /> 
+                    <Button text="Submit" type="submit" isDisabled={isDisabled()} /> 
                 </StyledWrapper> : 
                 <Placeholder>
                     <StyledPlaceholderText> No questions </StyledPlaceholderText>

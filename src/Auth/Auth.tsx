@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
-import { showCookie } from '../helpers/cookies'
-import { authenticate } from '../redux/Actions/sessionActions'
+import { showCookie } from 'helpers/cookies'
+import { authenticate } from 'redux/Actions/sessionActions'
 import { useDispatch } from 'react-redux'
-import { resetLoggedUser, setLoggedUser } from '../redux/Actions/userActions'
-// import { fetchAllQuizes } from '../redux/Actions/quizActions'
+import { resetLoggedUser, setLoggedUser } from 'redux/Actions/userActions'
 
 const Auth = () => {
     const dispatch = useDispatch()
@@ -22,7 +21,6 @@ const Auth = () => {
     }
     
     useEffect(()=> {
-        // dispatch(fetchAllQuizes()) // to change
         setAuthentication()
     }, [])
 

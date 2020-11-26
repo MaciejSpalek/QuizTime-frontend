@@ -1,0 +1,5 @@
+export enum ToastTypes {
+    SET_ACTIVE_STATE = 'SET_ACTIVE_STATE',
+    SET_DESCRIPTION = 'SET_DESCRIPTION',
+    SET_ICON = 'SET_ICON'
+}
