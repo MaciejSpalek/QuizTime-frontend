@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { RootState } from 'redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAddQuizButtonStatus } from 'redux/Actions/statusesActions';
@@ -90,7 +90,7 @@ const ProfilePage = ({ match }: Props) => {
     return loggedUser === route;
   }
 
-  const manageUser = async () => {
+  const manageUser =  useCallback(async () => {
     const route = match.params.username;
     await axiosInstance.get('/user/singleUser', {
       params: { 'name': route }
@@ -104,14 +104,14 @@ const ProfilePage = ({ match }: Props) => {
         setRequestStatus(true);
       }
     })
-  }
+  }, [match.params.username])
 
-  const fetchUserQuizzes = async () => {
+  const fetchUserQuizzes =  useCallback(async () => {
     const route = match.params.username;
     await axiosInstance.get('/quizes/userQuizzes', {
       params: { 'author': route }
     }).then(({ data }) => { setQuizes(data) });
-  }
+  }, [match.params.username, setQuizes])
 
   const handleConfirm = () => {
     dispatch(setAddQuizButtonStatus(!addQuizButtonStatus));
@@ -138,11 +138,11 @@ const ProfilePage = ({ match }: Props) => {
     dispatch(setAddQuizButtonStatus(false));
     fetchUserQuizzes();
     manageUser();
-  }, [loggedUser]);
+  }, [loggedUser, dispatch, manageUser, fetchUserQuizzes]);
 
   useEffect(() => {
     fetchUserQuizzes();
-  }, [addQuizButtonStatus]);
+  }, [addQuizButtonStatus, fetchUserQuizzes]);
 
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { OptionType } from '../SelectInput.model';
 import { IOption } from './Option.model';
 import {
@@ -30,26 +30,23 @@ const Option = ({
     }
   });
 
-
-  useEffect(() => {
-  }, [selectedOption, selectedIconName])
-
-  const handleOnOptionClick = () => {
-    manageIsSelectedState();
-    updateSelectedOption(option);
-  };
-
-  const manageIsSelectedState = () => {
+  const manageIsSelectedState = useCallback(() => {
     if(type === OptionType.COLOR) {
         setIsSelected(value?.primary === selectedColor?.primary)
     } else {
         setIsSelected(icon === selectedIconName);
     }
-  };
+  }, [icon, type, value, setIsSelected, selectedColor, selectedIconName]);
+
+  const handleOnOptionClick = useCallback(() => {
+    manageIsSelectedState();
+    updateSelectedOption(option);
+  }, [manageIsSelectedState, updateSelectedOption, option]);
+
 
   useEffect(() => {
     manageIsSelectedState();
-  }, [handleOnOptionClick]);
+  }, [handleOnOptionClick, manageIsSelectedState]);
 
   return (
     <StyledOption
@@ -58,7 +55,7 @@ const Option = ({
       isSelected={isSelected}
       role="option"
     >
-      {type == OptionType.COLOR ?
+      {type === OptionType.COLOR ?
         <StyledWrapper>
           {isSelected ? <StyledCheckedSquareIcon icon="check-square" /> : <StyledCheckedSquareIcon icon={['far', 'square']}/>}
             <StyledPaletteIcon icon="palette" value={`${value?.secondary}`} />

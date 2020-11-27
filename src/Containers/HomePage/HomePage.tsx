@@ -13,7 +13,7 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(fetchAllQuizes());
-  }, []);
+  }, [dispatch]);
 
   return (
     <PageTemplate>

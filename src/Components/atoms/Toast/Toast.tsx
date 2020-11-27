@@ -21,7 +21,7 @@ const Toast = ({ ...props }): JSX.Element => {
         dispatch(setToastParameters(false));
       }, 3000)
     }
-  }, [isActive]);
+  }, [isActive, dispatch]);
 
   if (!isActive) return <></>;
   

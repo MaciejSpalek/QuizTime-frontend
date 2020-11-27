@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
+import React, { MouseEvent, useCallback, useEffect, useState } from 'react';
 import Input from 'Components/atoms/Input';
 import Label from 'Components/atoms/Label';
 import InputField from './InputField';
@@ -25,10 +25,10 @@ const AddingStep = ({
     const formQuestionsCounter = useSelector<RootState, number>(state => state.quizes.formQuestionsCounter);
     const dispatch = useDispatch();
 
-    const isDisabled = () => {
+    const isDisabled = useCallback(() => {
         if (isFirstRender) return true;
         return !!((errors.answers || errors.question) && touched);
-    };
+    }, [isFirstRender, errors, touched]);
 
     const getCurrentQuestion = () => {
         return {

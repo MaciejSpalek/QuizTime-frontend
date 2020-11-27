@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import PageTemplate from '../../templates/PageTemplate/PageTemplate'
-import AuthForm from '../../templates/FormTemplate/FormTemplate'
-import Link from '../../Components/atoms/Link/index'
-import FormField from '../../templates/FormFieldTemplate/FormFieldTemplate'
-import Input from '../../Components/atoms/Input/index'
-import Label from '../../Components/atoms/Label/index'
-import ErrorMessage from '../../Components/atoms/ErrorMessage/ErrorMessage'
-import ErrorHandler from '../../helpers/ErrorHandler'
+import PageTemplate from 'templates/PageTemplate/PageTemplate'
+import AuthForm from 'templates/FormTemplate/FormTemplate'
+import Link from 'Components/atoms/Link/index'
+import FormField from 'templates/FormFieldTemplate/FormFieldTemplate'
+import Input from 'Components/atoms/Input/index'
+import Label from 'Components/atoms/Label/index'
+import ErrorMessage from 'Components/atoms/ErrorMessage/ErrorMessage'
 import * as yup from "yup"
-import { routes } from '../../routes/index'
+import { routes } from 'routes/index'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../redux/store'
+import { RootState } from 'redux/store'
 import { Formik } from "formik"
-import { authRequest } from '../../Auth/requests'
-import { setRequestStatus } from '../../redux/Actions/sessionActions'
+import { authRequest } from 'Auth/requests'
+import { setRequestStatus } from 'redux/Actions/sessionActions'
 import { RouteComponentProps } from 'react-router-dom'
 import { StyledButton } from './AuthPage.styled'
-import { IFormikValues } from 'Containers/ProfilePage/ProfilePage.model'
 
 const validationSchema = yup.object({
     name: yup.string()
@@ -34,14 +32,12 @@ const validationSchema = yup.object({
 
 const AuthPage = ({ history }: RouteComponentProps) => {
     const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
-    const requestMessage = useSelector<RootState, string>(state => state.session.errorMessage)
-    const requestStatus = useSelector<RootState, boolean>(state => state.session.requestStatus)
-    const user = useSelector<RootState, string | null>(state => state.user.loggedUser)
-    const [isFirstRender, setIsFirstRender] = useState(true)
-    const dispatch = useDispatch()
+    const user = useSelector<RootState, string | null>(state => state.user.loggedUser);
+    const [isFirstRender, setIsFirstRender] = useState(true);
+    const dispatch = useDispatch();
 
     const isDisabledButton = (errors: any, touched: any, isSubmitting: boolean) => {
-        if(isFirstRender) return true        
+        if(isFirstRender) return true;     
         return (!!(errors.name || errors.password) && touched) || isSubmitting;
     }
 
@@ -66,7 +62,7 @@ const AuthPage = ({ history }: RouteComponentProps) => {
         return () => {
             clearTimeout(timeout);
         }
-    }, [isAuthenticated, history]);
+    }, [isAuthenticated, history, user]);
 
     return (
         <PageTemplate>

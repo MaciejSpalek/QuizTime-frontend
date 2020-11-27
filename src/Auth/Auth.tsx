@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { showCookie } from 'helpers/cookies'
 import { authenticate } from 'redux/Actions/sessionActions'
 import { useDispatch } from 'react-redux'
@@ -6,8 +6,7 @@ import { resetLoggedUser, setLoggedUser } from 'redux/Actions/userActions'
 
 const Auth = () => {
     const dispatch = useDispatch()
-    
-    const setAuthentication = () => {
+    const setAuthentication = useCallback(() => {
         const token = showCookie('token');
         const name = showCookie('name');
 
@@ -18,11 +17,11 @@ const Auth = () => {
             dispatch(authenticate(false));
             dispatch(resetLoggedUser());
         }
-    };
+    }, [dispatch]);
     
     useEffect(()=> {
         setAuthentication();
-    }, []);
+    }, [setAuthentication]);
 
     useEffect(()=> {
         setInterval(()=> {

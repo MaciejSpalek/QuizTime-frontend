@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { StyledContainter, StyledQuizThumbnail } from './ThumbnailStep.styled'
 import Label from '../../atoms/Label'
 import Input from '../../atoms/Input'
@@ -34,11 +34,11 @@ const ThumbnailStep = ({
     }
   }
 
-  const handleTitle = () => {
+  const handleTitle = useCallback(() => {
     values.title ?
       setTitle(values.title) :
       setTitle('Example title')
-  }
+  }, [values, setTitle])
 
   const handleIconName = (iconName: string, type: string) => {
     if (type === OptionType.ICON && typeof iconName !== 'undefined') {
@@ -48,7 +48,7 @@ const ThumbnailStep = ({
 
   useEffect(() => {
     handleTitle()
-  }, [values.title])
+  }, [values.title, handleTitle])
 
 
   return (
