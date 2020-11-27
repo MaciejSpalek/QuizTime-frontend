@@ -2,12 +2,12 @@ import React from 'react';
 import ErrorMessage from '../Components/atoms/ErrorMessage';
 
 type Props = {
-    id: string
-    errors: any
-    touched: any 
-    value: string
-    requestMessage:string
-    requestStatus:boolean
+    id: string;
+    errors: any;
+    touched: any; 
+    value: string;
+    requestMessage: string;
+    requestStatus: boolean;
 }
 
 const ErrorHandler: React.FC<Props> = ({

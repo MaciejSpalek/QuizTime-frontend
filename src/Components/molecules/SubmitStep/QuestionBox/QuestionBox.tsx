@@ -71,7 +71,7 @@ const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Elemen
                 </StyledList> : null}
                 <ModalWindow
                     isActive={isModalActive}
-                    description='Wanna exit?'
+                    description='Wanna remove question?'
                     handleConfirm={handleConfirm}
                     handleCancel={handleCancel}
                 />

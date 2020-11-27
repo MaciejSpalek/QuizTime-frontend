@@ -2,15 +2,22 @@ import React from 'react';
 import { StyledNavLink,  StyledLink } from './index.styled';
 
 type Props = {
-  to: string
-  styles?: any
-  type: string
-  text?: string
-  handleOnClick?: any
-  children?: React.ReactNode
+  to: string;
+  styles?: any;
+  type: string;
+  text?: string;
+  handleOnClick?: any;
+  children?: React.ReactNode;
 }
 
-const Link = ({ type, text, to, styles, children, handleOnClick}: Props) => {
+const Link = ({ 
+  type, 
+  text, 
+  to, 
+  styles, 
+  children, 
+  handleOnClick
+}: Props) => {
   if (type === "NavLink") {
     return (
         <StyledNavLink to={to} cssstyles={styles} onClick={handleOnClick}>

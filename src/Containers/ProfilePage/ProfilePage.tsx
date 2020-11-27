@@ -3,7 +3,7 @@ import { RootState } from 'redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAddQuizButtonStatus } from 'redux/Actions/statusesActions';
 import { StyledWrapper } from './ProfilePage.styled';
-import { setFormCounter, setFormQuestions, setFormQuestionsCounter } from 'redux/Actions/quizActions';
+import { setFormCounter } from 'redux/Actions/quizActions';
 import { Formik } from 'formik';
 import { answers } from './ProfilePage.model';
 import ProfileBar from 'Components/molecules/ProfileBar/ProfileBar';
@@ -22,6 +22,7 @@ import { axiosInstance } from 'services/api';
 import { IFormColor, IFormQuestion, IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { setToastParameters } from 'redux/Actions/toastActions';
 import ModalWindow from 'Components/molecules/ModalWindow';
+import { resetParameters } from 'helpers/reduxHandlers';
 
 type Props = { match: any }
 
@@ -55,21 +56,19 @@ const validationSchema = (formCouter: number) => yup.object({
 });
 
 const ProfilePage = ({ match }: Props) => {
-  const dispatch = useDispatch();
   const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
   const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
   const formPageCounter = useSelector<RootState, number>(state => state.quizes.formCounter);
   const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser);
   const formColors = useSelector<RootState, IFormColor>(state => state.quizes.formColor);
   const formIconName = useSelector<RootState>(state => state.quizes.formIconName);
-
+  const [isModalActive, setIsModalActive] = useState(false);
   const [doesUserExist, setDoesUserExist] = useState(false);
   const [requestStatus, setRequestStatus] = useState(false);
   const [username, setUsername] = useState(null);
   const [quizes, setQuizes] = useState([]);
-
-  //ModalWindow
-  const [isModalActive, setIsModalActive] = useState(false);
+  const dispatch = useDispatch();
+  
 
   const getData = (title: string): IQuizTemplate => {
     return {
@@ -113,26 +112,20 @@ const ProfilePage = ({ match }: Props) => {
     }).then(({ data }) => { setQuizes(data) });
   }, [match.params.username, setQuizes])
 
+
+  const handleCancel = () => setIsModalActive(false);
   const handleConfirm = () => {
     dispatch(setAddQuizButtonStatus(!addQuizButtonStatus));
-    resetParameters();
+    resetParameters(dispatch);
     setIsModalActive(false);
   }
 
-  const handleCancel = () => {
-    setIsModalActive(false);
-  }
 
   const addQuiz = (data: IQuizTemplate) => {
     return axiosInstance.post('/quizes/addQuiz', data);
   }
 
-  const resetParameters = () => {
-    dispatch(setAddQuizButtonStatus(false));
-    dispatch(setFormQuestionsCounter(0));
-    dispatch(setFormQuestions([]));
-    dispatch(setFormCounter(1));
-  }
+ 
 
   useEffect(() => {
     dispatch(setAddQuizButtonStatus(false));
@@ -171,7 +164,7 @@ const ProfilePage = ({ match }: Props) => {
                     setSubmitting(true);
 
                     if (res.data.message) {
-                      dispatch(setToastParameters(true, 'Something went wrong...', 'exclamation-circle'))
+                      dispatch(setToastParameters(true, 'Add at least 5 questions...', 'exclamation-circle'))
                       setTimeout(() => {
                         setSubmitting(false)
                       }, 3000);
@@ -180,14 +173,13 @@ const ProfilePage = ({ match }: Props) => {
                       setTimeout(() => {
                         resetForm();
                         setSubmitting(false)
-                        resetParameters();
+                        resetParameters(dispatch);
                       }, 500);
                     }
                   })
                 }}>
                 {({
                   isSubmitting,
-                  handleReset,
                   resetForm,
                   handleSubmit,
                   handleChange,

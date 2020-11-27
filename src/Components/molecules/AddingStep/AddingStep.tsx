@@ -65,10 +65,8 @@ const AddingStep = ({
     }
 
     useEffect(() => {
-        if (question) {
-            setIsFirstRender(false);
-        }
-    }, [values, errors, question, isDisabled]);
+        question && setIsFirstRender(false);
+    }, [values, question]);
 
 
     return (

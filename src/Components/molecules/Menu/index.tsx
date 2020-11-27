@@ -4,13 +4,14 @@ import {
     StyledMenu, 
     StyledIcon
 } from './index.style'
-import { routes } from '../../../routes/index'
+import { routes } from 'routes/index'
 import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from '../../../redux/store'
-import { logout } from '../../../Auth/requests'
-import { setHamburgerStatus } from '../../../redux/Actions/statusesActions'
-import MenuItem from '../../atoms/Link/index'
+import { RootState } from 'redux/store'
+import { logout } from 'Auth/requests'
+import { setHamburgerStatus } from 'redux/Actions/statusesActions'
+import MenuItem from 'Components/atoms/Link/index'
 import { useOutsideClick } from 'hooks'
+import { resetParameters } from 'helpers/reduxHandlers'
 
 const NavLinkStyles = css`
     color: ${({theme}) => theme.colors.grayscale[2]};
@@ -18,16 +19,20 @@ const NavLinkStyles = css`
 `
 
 const Menu = ()=> {
-    const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated)
+    const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
     const hamburgerStatus = useSelector<RootState, boolean>(state => state.statuses.hamburgerStatus);
-    const user = useSelector<RootState, string | null>(state => state.user.loggedUser)
-    const dispatch = useDispatch()
+    const user = useSelector<RootState, string | null>(state => state.user.loggedUser);
     const menuRef = useRef<HTMLUListElement>(null);
+    const dispatch = useDispatch();
 
     useOutsideClick(menuRef, () => {
-        dispatch(setHamburgerStatus(false))
-    })
+        dispatch(setHamburgerStatus(false));
+    });
     
+    const handleOnClick = () => {
+        dispatch(setHamburgerStatus(!hamburgerStatus));
+        resetParameters(dispatch);
+    }
     return (
         <StyledMenu ref={menuRef}>
             <MenuItem 
@@ -36,7 +41,7 @@ const Menu = ()=> {
                 text="Home"
                 styles={NavLinkStyles}
                 children={<StyledIcon icon='home' />}
-                handleOnClick={()=>dispatch(setHamburgerStatus(!hamburgerStatus))}
+                handleOnClick={handleOnClick}
             />
             {!isAuthenticated ? <MenuItem 
                 to={routes.login}
@@ -44,25 +49,23 @@ const Menu = ()=> {
                 text="Sign in"
                 styles={NavLinkStyles}
                 children={<StyledIcon icon='sign-in-alt'/>}
-                handleOnClick={()=>dispatch(setHamburgerStatus(!hamburgerStatus))}
+                handleOnClick={handleOnClick}
             /> : null}
-
             {isAuthenticated ? <MenuItem 
                 to={`/${user}`}
                 type="NavLink"
                 text="Profile"
                 styles={NavLinkStyles}
                 children={<StyledIcon icon='user'/>}
-                handleOnClick={()=>dispatch(setHamburgerStatus(!hamburgerStatus))}
+                handleOnClick={handleOnClick}
             /> : null}
-
             {isAuthenticated ? <MenuItem 
                 to={routes.home}
                 type="NavLink"
                 text="Logout"
                 handleOnClick={()=> {
                     logout(dispatch); 
-                    dispatch(setHamburgerStatus(!hamburgerStatus))
+                    handleOnClick()
                 }}
                 styles={NavLinkStyles}
                 children={<StyledIcon icon='sign-out-alt'/>}

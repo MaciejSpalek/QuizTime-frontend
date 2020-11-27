@@ -1,5 +1,5 @@
-import { useOutsideClick } from 'hooks';
 import React, { useRef } from 'react';
+import { useOutsideClick } from 'hooks';
 import { IModalWindow, ModalConstants } from './ModalWindow.model';
 import {
     StyledContainer,
@@ -51,11 +51,3 @@ const ModalWindow = ({
 }
 
 export default ModalWindow;
-
-// {isModalWindowOpen ? <ModalWindow 
-//     description={'Wanna remove it ?'}
-//     handleConfirmationButton={handleConfirmButton}
-//     handleCancelButton={() => setIsModalWindowOpen(false)}
-//     confirmationButtonText='Yes'
-//     cancelButtonText='Cancel'
-// /> : null}
