@@ -2,12 +2,12 @@
 import React from 'react'
 import { StyledLabel } from './index.styled'
 
-interface Props {
+type Props = {
   text?: string
   forText?: string
 }
 
-const Label: React.FC<Props> = ({text, forText}) => (
+const Label = ({text, forText}: Props) => (
   <StyledLabel htmlFor={forText}>
     {text}
   </StyledLabel>

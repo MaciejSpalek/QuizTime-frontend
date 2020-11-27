@@ -1,10 +1,9 @@
 import { SessionTypes } from '../Types/sessionTypes'
 
-interface SessionState {
+type SessionState = {
     isAuthenticated: boolean
     requestStatus: boolean
     errorMessage: string
-    requestDate: string
     tokenLifeTime: number | null
 }
 
@@ -13,7 +12,6 @@ const initialState: SessionState = {
     requestStatus: true,
     tokenLifeTime: null,
     errorMessage: "",
-    requestDate: ""
   };
 
 export const sessionReducer = (state = initialState, action: any): SessionState => {
@@ -43,13 +41,6 @@ export const sessionReducer = (state = initialState, action: any): SessionState 
           return {
             ...state,
             tokenLifeTime: action.payload,
-          }
-        }
-
-        case SessionTypes.SET_REQUEST_DATE: {
-          return {
-            ...state,
-            requestDate: action.payload,
           }
         }
 

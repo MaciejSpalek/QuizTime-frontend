@@ -1,63 +1,38 @@
+import { setToastParameters } from 'redux/Actions/toastActions'
 import { getExpireDate, setCookie, deleteCookie } from '../helpers/cookies'
 import { setRequestMessage, setRequestStatus } from '../redux/Actions/sessionActions'
-import api from '../services/api'
+import { setLoggedUser, resetLoggedUser } from '../redux/Actions/userActions'
+import { axiosInstance } from '../services/api'
 
-
-export const register = (data: object, dispatch: any): void => {
-    api.post('/register', data)
-    .then(res => {
-        if (res.ok) {
-            dispatch(setRequestStatus(true))
-            dispatch(setRequestMessage(""))
-            return res.json()
-        } else {
-            dispatch(setRequestStatus(false))
-            if(res.status === 409) {
-                dispatch(setRequestMessage('User already exists'))
-            } else {
-                dispatch(setRequestMessage('Disconnected server'))
-            }
-            throw new Error(res.statusText)
-        }
-    })
-    .then(res => {
-        const { token, jwt_TOKEN_VALIDITY: tokenLifeTime} = res
-        const expireTokenDate: Date =  getExpireDate(tokenLifeTime)
-        setCookie('token', token, expireTokenDate)
-    })
-    .catch(error => {
-        console.error(error) 
-    })
-  }
-
- 
-export const login = (data: object, dispatch: any): void => {
-    api.post('/authenticate', data)
-    .then(res => {
-        if (res.ok) {
-            dispatch(setRequestStatus(true))
-            dispatch(setRequestMessage(""))
-            return res.json()
-        } else {
-            dispatch(setRequestStatus(false))
-            if(res.status === 404 || res.status === 401) {
-                dispatch(setRequestMessage('Invalid username or password'))
-            } else {
-                dispatch(setRequestMessage('Disconnected server'))
-            }
-            throw new Error(res.statusText)
-        }
-    })
-    .then(res => {
-        const { token, jwt_TOKEN_VALIDITY: tokenLifeTime} = res
-        const expireTokenDate: Date =  getExpireDate(tokenLifeTime)
-        setCookie('token', token, expireTokenDate)
-    })
-    .catch(error => {
-        console.error(error)
-    })
-  }
-
-export const logout = (): void => {
-    deleteCookie('token')
+type DataType = {
+    name: string
+    password: string
 }
+
+type AuthType = 'login' | 'register';
+
+export const authRequest = async (option: AuthType, data: DataType, dispatch: any) => {
+    await axiosInstance.post(`/auth/${option}`, data)
+        .then((res) => {
+            const { name, token, tokenLifeTime } = res.data;
+            const expireTokenDate: Date =  getExpireDate(tokenLifeTime);
+            setCookie('token', token, expireTokenDate);
+            setCookie('name', name, expireTokenDate);
+            dispatch(setLoggedUser(name));
+            dispatch(setRequestMessage(""));
+            dispatch(setRequestStatus(true));
+            option === 'login' ?
+                dispatch(setToastParameters(true, 'Successfully logged in')) :
+                dispatch(setToastParameters(true, 'Successfully registered'))
+        }).catch((error) => {
+            const errorMessage = {...error.response}.data;
+            dispatch(setRequestStatus(false));
+            dispatch(setToastParameters(true, `${errorMessage}`, 'exclamation-circle'));
+        });
+};
+
+export const logout = (dispatch?: any): void => {
+    deleteCookie('token');
+    deleteCookie('name');
+    dispatch(resetLoggedUser());
+};

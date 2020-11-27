@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 
-export const StyledParagraph = styled.p<{isBold: boolean; textAlign: string}>`
+export const StyledParagraph = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.sm};
   color: ${({theme}) => theme.colors.grayscale[2]};
-  text-align: ${({textAlign}) => textAlign};
-  font-weight: ${({ theme, isBold }) => isBold ? theme.fontWeights.bold : theme.fontWeights.light};
-    line-height: 1.5;
+  text-align: center;
+  font-weight: ${({ theme}) => theme.fontWeights.bold};
+  line-height: 1.5;
 `

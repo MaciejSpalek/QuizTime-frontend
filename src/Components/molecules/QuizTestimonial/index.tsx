@@ -1,65 +1,47 @@
 import React from 'react'
-import Image from '../../atoms/Image/index'
-import Paragraph from '../../atoms/Paragraph/index'
+import { IQuizTemplate } from 'Interfaces/quizInterfaces'
 import { 
-    StyledBottomWrapper,
-    StyledImageWrapper, 
-    StyledTextWrapper,
-    StyledTopWrapper,
     StyledContainer, 
-    StyledGreenLabel 
+    StyledTextWrapper,
+    StyledImageWrapper, 
+    StyledTitle,
+    StyledScore,
+    StyledIcon,
+    StyledAuthorTag
 } from './index.styled'
-
-
-interface Props {
-    quizData: {
-        id: number;
-        image: any;
-        title: string;
-        author: string;
-        isDone: boolean;
-        score: string;
-    }
+import { IconName } from '@fortawesome/fontawesome-svg-core'
+import { getScore } from 'helpers/getters';
+type Props = {
+    parameters: IQuizTemplate
 }
 
- const QuizThumbnail: React.FC<Props> = ({quizData})=> {
+ const QuizThumbnail = ({ parameters, ...props }: Props)=> {
     const { 
         author,
         title, 
-        isDone, 
-        image,
-        score
-    } = quizData;
+        iconName,
+        colors,
+        amountOfQuestions
+    } = parameters;
+
+  
+
     return (
-        <StyledContainer>
-            <StyledTopWrapper>
-                <StyledImageWrapper>
-                    <Image 
-                        url={image}
-                        alt={"Znana osoba"}
-                        width={"45px"}
-                        height={"45px"}
-                    />
-                </StyledImageWrapper>
-                <StyledTextWrapper>
-                    <Paragraph 
-                        text={title}
-                        isBold={true}
-                        textAlign={"center"}
-                    />
-                    <Paragraph 
-                        text={score}
-                        isBold={false}
-                        textAlign={"center"}
-                    />
-                </StyledTextWrapper>
-            </StyledTopWrapper>
-            <StyledBottomWrapper>
-                <StyledGreenLabel>
-                    nowy
-                </StyledGreenLabel>
-                <p> {author} </p>
-            </StyledBottomWrapper>
+        <StyledContainer {...props} primarycolor={colors.primary}>
+            <StyledImageWrapper secondarycolor={colors.secondary}>
+                <StyledIcon 
+                    icon={iconName as IconName} 
+                    primarycolor={colors.primary}
+                />
+                <StyledScore 
+                    text={getScore(+`${amountOfQuestions}`)}
+                    color={colors.primary}
+                />
+            </StyledImageWrapper>
+            <StyledTextWrapper>
+                <StyledTitle text={title} />
+                <StyledAuthorTag text={author} />
+            </StyledTextWrapper>
         </StyledContainer>
     )
 }

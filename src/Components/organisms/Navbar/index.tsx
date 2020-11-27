@@ -1,21 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { StyledNavbar } from './index.styled'
-import Hamburger from '../../molecules/Hamburger/index'
+import Hamburger from '../../atoms/Hamburger/index'
 import Logo from '../../atoms/Heading'
 import Menu from '../../molecules/Menu/index'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../../../redux/store'
+import { setHamburgerStatus } from '../../../redux/Actions/statusesActions'
 
 const Navbar = ()=> {
-    const [ isMenuOpened, setMenuStatus ] = useState(false)
-    const handleMenuStatus = (): void => {
-        setMenuStatus(!isMenuOpened)
-    }
+    const hamburgerStatus = useSelector<RootState, boolean>(state => state.statuses.hamburgerStatus)
+    const dispatch = useDispatch()
 
     return (
         <StyledNavbar>
             <Logo />
-            <Hamburger clickHandler={handleMenuStatus}/>
-            {isMenuOpened ? <Menu /> : null}
+            <Hamburger handleOnClick={()=>dispatch(setHamburgerStatus(!hamburgerStatus))}/>
+            {hamburgerStatus ? <Menu /> : null}
         </StyledNavbar>
     )
 }

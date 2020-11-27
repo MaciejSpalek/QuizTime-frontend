@@ -1,14 +1,14 @@
 import React from 'react'
-import GlobalTemplate from '../templates/GlobalTemplate'
-import MainTemplate from '../templates/MainTemplate'
+import GlobalTemplate from '../templates/GlobalTemplate/GlobalTemplate'
+import MainTemplate from '../templates/MainTemplate/MainTemplate'
 import Navbar from '../Components/organisms/Navbar/index'
-import Home from './HomePage'
-import AuthPage from './AuthPage'
-import UnknownPage from './UnknownPage'
-import PrivateRoute from '../hoc/PrivateRoute'
-import ProfilePage from './ProfilePage'
+import Home from './HomePage/HomePage'
+import AuthPage from './AuthPage/AuthPage'
+import ProfilePage from './ProfilePage/ProfilePage'
 import { routes } from '../routes/index'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
+
 
 const App = () => {
   return (
@@ -17,11 +17,10 @@ const App = () => {
         <Navbar />
         <MainTemplate>
           <Switch>
-            <PrivateRoute exact path={routes.profile} component={ProfilePage} />
             <Route exact path={routes.home} component={Home} />
-            <Route exact path={routes.login} component={AuthPage} />
-            <Route exact path={routes.register} component={AuthPage} />
-            <Route component={UnknownPage}/>
+            <Route path={routes.login} component={AuthPage} />
+            <Route path={routes.register} component={AuthPage} />
+            <Route exact path={routes.profile} component={ProfilePage} />
           </Switch>
         </MainTemplate>
       </Router>   

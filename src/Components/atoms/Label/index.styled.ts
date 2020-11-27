@@ -4,7 +4,7 @@ export const StyledLabel = styled.label`
   display: block;
   width: auto;
   height: auto;
-  font-size: ${({ theme }) => theme.fontSizes.sm};
-  font-weight: ${({ theme }) => theme.fontWeights.light};
-  line-height: 1.8;
+  font-size: 18px;
+  line-height: 1;
+  color: ${({theme}) => theme.colors.Neutral20};
 `;

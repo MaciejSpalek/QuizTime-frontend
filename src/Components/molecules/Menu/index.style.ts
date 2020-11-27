@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FlexColumn } from "../../../theme/Mixins";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const StyledMenu = styled.ul`
     ${FlexColumn};
@@ -13,3 +14,10 @@ export const StyledMenu = styled.ul`
     box-shadow: 0px 0px 5px rgba(0, 0, 0, .3);    
     z-index: 999;
 `
+
+export const StyledIcon = styled(FontAwesomeIcon)`
+    font-size: 40px;
+    margin-right: 10px;
+    color: ${({theme}) => theme.colors.green};
+`
+
