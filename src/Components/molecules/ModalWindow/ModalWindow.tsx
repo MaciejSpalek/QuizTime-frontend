@@ -1,6 +1,6 @@
 import { useOutsideClick } from 'hooks';
-import React, { useRef } from 'react'
-import { IModalWindow } from './ModalWindow.model';
+import React, { useRef } from 'react';
+import { IModalWindow, ModalConstants } from './ModalWindow.model';
 import {
     StyledContainer,
     StyledParagraph,
@@ -8,21 +8,18 @@ import {
     StyledButton,
     StyledWindow,
     StyledIconButton
-} from './ModalWindow.styled'
+} from './ModalWindow.styled';
 
-const ModalWindow = ({
-    handleConfirmationButton,
-    handleCancelButton,
-    confirmationButtonText,
-    cancelButtonText,
-    description
-}: IModalWindow) => {
+const ModalWindow = ({ 
+    isActive,
+    description,
+    handleConfirm,
+    handleCancel
+} :IModalWindow) => {
     const windowRef = useRef(null);
+    useOutsideClick(windowRef, () => isActive && handleCancel());
 
-    useOutsideClick(windowRef, () => {
-        handleCancelButton();
-    });
-
+    if (!isActive) return <></>;
     return (
         <StyledContainer>
             <StyledWindow ref={windowRef}>
@@ -30,15 +27,23 @@ const ModalWindow = ({
                     <StyledIconButton
                         type='button'
                         icon='times'
-                        handleOnClick={handleCancelButton}
+                        handleOnClick={handleCancel}
                     />
                 </StyledWrapper>
                 <StyledWrapper>
                     <StyledParagraph text={description} />
                 </StyledWrapper>
                 <StyledWrapper>
-                    <StyledButton type='button' text={confirmationButtonText} handleOnClick={handleConfirmationButton} />
-                    <StyledButton type='button' text={cancelButtonText} handleOnClick={handleCancelButton} />
+                    <StyledButton
+                        type='button'
+                        text={ModalConstants.CONFIRM_BUTTON_TEXT}
+                        handleOnClick={handleConfirm}
+                    />
+                    <StyledButton
+                        type='button'
+                        text={ModalConstants.CANCEL_BUTTON_TEXT}
+                        handleOnClick={handleCancel} 
+                    />
                 </StyledWrapper>
             </StyledWindow>
         </StyledContainer>
@@ -46,3 +51,11 @@ const ModalWindow = ({
 }
 
 export default ModalWindow;
+
+// {isModalWindowOpen ? <ModalWindow 
+//     description={'Wanna remove it ?'}
+//     handleConfirmationButton={handleConfirmButton}
+//     handleCancelButton={() => setIsModalWindowOpen(false)}
+//     confirmationButtonText='Yes'
+//     cancelButtonText='Cancel'
+// /> : null}

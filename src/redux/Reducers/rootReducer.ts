@@ -5,12 +5,13 @@ import { statusesReducer } from './statusesReducers'
 import { quizReducer } from './quizReducer'
 import { toastReducer } from './toastReducer'
 
+
 const rootReducer = combineReducers({
     session: sessionReducer,
     user: userReducer,
     statuses: statusesReducer,
     quizes: quizReducer,
-    toast: toastReducer
+    toast: toastReducer,
 })
 
 export default rootReducer

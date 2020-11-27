@@ -6,9 +6,16 @@ import {
     StyledPagination
 } from './MultiStepForm.styled';
 
-const MultiStepform = ({ children, counter, handleLeftButton, handleRightButton, handleSubmit }: IMultiStepForm): JSX.Element => {
+const MultiStepform = ({ 
+    children, 
+    counter, 
+    handleLeftButton, 
+    handleRightButton, 
+    handleSubmit 
+}: IMultiStepForm): JSX.Element => {
+    
     const steps = children.length;
-    const getCurrentChild = () => children[counter - 1]
+    const getCurrentChild = () => children[counter - 1];
 
     return (
         <StyledContainer>

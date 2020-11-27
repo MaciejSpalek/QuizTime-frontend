@@ -8,29 +8,29 @@ const Auth = () => {
     const dispatch = useDispatch()
     
     const setAuthentication = () => {
-        const token = showCookie('token')
-        const name = showCookie('name')
+        const token = showCookie('token');
+        const name = showCookie('name');
 
         if(token) {
-            dispatch(authenticate(true))
-            dispatch(setLoggedUser(name))
+            dispatch(authenticate(true));
+            dispatch(setLoggedUser(name));
         } else {
-            dispatch(authenticate(false))
-            dispatch(resetLoggedUser())
+            dispatch(authenticate(false));
+            dispatch(resetLoggedUser());
         }
-    }
+    };
     
     useEffect(()=> {
-        setAuthentication()
-    }, [])
+        setAuthentication();
+    }, []);
 
     useEffect(()=> {
         setInterval(()=> {
             setAuthentication();
         }, 3000)
-    })
+    });
 
-    return (<></>)
+    return (<></>);
 }
 
 

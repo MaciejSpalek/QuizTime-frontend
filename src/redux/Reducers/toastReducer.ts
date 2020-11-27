@@ -14,21 +14,21 @@ const initialState: ToastState = {
 
 export const toastReducer = (state = initialState, action: any): ToastState => {
   switch (action.type) {
-    case ToastTypes.SET_ACTIVE_STATE: {
+    case ToastTypes.SET_TOAST_ACTIVE_STATE: {
       return {
         ...state,
         isActive: action.payload,
       };
     };
 
-    case ToastTypes.SET_DESCRIPTION: {
+    case ToastTypes.SET_TOAST_DESCRIPTION: {
       return {
         ...state,
         description: action.payload,
       };
     };
 
-    case ToastTypes.SET_ICON: {
+    case ToastTypes.SET_TOAST_ICON: {
       return {
         ...state,
         icon: action.payload,

@@ -3,23 +3,22 @@ import Button from 'Components/atoms/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import { setAddQuizButtonStatus } from 'redux/Actions/statusesActions';
-import { StyledContainer, StyledUserTag } from './index.styled';
+import { StyledContainer, StyledUserTag } from './ProfileBar.styled';
+import { IProfileBar } from './ProfileBar.model';
 
-type Props = {
-    username: string | null
-    isLoggedUserRoute: any,
-    setIsModalWindowOpen: () => void;
-}
-
-const ProfileBar = ({ username, isLoggedUserRoute, setIsModalWindowOpen }: Props) => {
+const ProfileBar = ({ 
+    username, 
+    isLoggedUserRoute, 
+    openModal 
+}: IProfileBar) => {
     const dispatch = useDispatch()
     const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
 
     const handleButton = () => {
         if (addQuizButtonStatus) {
-            setIsModalWindowOpen();
+            openModal();
         } else {
-            dispatch(setAddQuizButtonStatus(!addQuizButtonStatus))
+            dispatch(setAddQuizButtonStatus(true));
         }
     }
 

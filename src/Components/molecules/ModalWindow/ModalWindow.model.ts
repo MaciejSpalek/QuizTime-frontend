@@ -1,9 +1,11 @@
-
 export interface IModalWindow {
+    isActive: boolean;
     description: string;
-    confirmationButtonText: string;
-    cancelButtonText: string;
-    handleConfirmationButton: () => void;
-    handleCancelButton: () => void;
+    handleConfirm: ()=> void;
+    handleCancel: ()=> void;
+}
 
+export enum ModalConstants {
+    CONFIRM_BUTTON_TEXT = "Yes",
+    CANCEL_BUTTON_TEXT= "No"
 }

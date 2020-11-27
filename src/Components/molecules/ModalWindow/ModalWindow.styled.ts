@@ -21,7 +21,7 @@ export const StyledContainer = styled.div`
     height: 100vh;
     background-color: ${({theme}) => theme.colors.transparentBlack};
     animation: ${fadeInAnimation} .3s ease-in both;
-    z-index: 999;
+    z-index: 99999999;
 `;
 
 

@@ -6,7 +6,7 @@ import { StyledWrapper } from './ProfilePage.styled';
 import { setFormCounter, setFormQuestions, setFormQuestionsCounter } from 'redux/Actions/quizActions';
 import { Formik } from 'formik';
 import { answers } from './ProfilePage.model';
-import ProfileBar from 'Components/molecules/ProfileBar';
+import ProfileBar from 'Components/molecules/ProfileBar/ProfileBar';
 import PlaceholderTemplate from 'templates/PlaceholderTemplate/PlaceholderTemplate';
 import PageTemplate from 'templates/PageTemplate/PageTemplate';
 import Spinner from 'Components/atoms/Spinner/index';
@@ -20,9 +20,8 @@ import SubmitStep from 'Components/molecules/SubmitStep';
 import * as yup from 'yup';
 import { axiosInstance } from 'services/api';
 import { IFormColor, IFormQuestion, IQuizTemplate } from 'Interfaces/quizInterfaces';
-import ModalWindow from 'Components/molecules/ModalWindow';
-import { useHistory } from 'react-router-dom';
 import { setToastParameters } from 'redux/Actions/toastActions';
+import ModalWindow from 'Components/molecules/ModalWindow';
 
 type Props = { match: any }
 
@@ -65,11 +64,12 @@ const ProfilePage = ({ match }: Props) => {
   const formIconName = useSelector<RootState>(state => state.quizes.formIconName);
 
   const [doesUserExist, setDoesUserExist] = useState(false);
-  const [isModalWindowOpen, setIsModalWindowOpen] = useState(false);
   const [requestStatus, setRequestStatus] = useState(false);
   const [username, setUsername] = useState(null);
   const [quizes, setQuizes] = useState([]);
 
+  //ModalWindow
+  const [isModalActive, setIsModalActive] = useState(false);
 
   const getData = (title: string): IQuizTemplate => {
     return {
@@ -82,12 +82,12 @@ const ProfilePage = ({ match }: Props) => {
         primary: formColors.primary,
         secondary: formColors.secondary,
       }
-    }
-  }
+    };
+  };
 
   const isLoggedUserRoute = () => {
-    const route = match.params.username
-    return loggedUser === route
+    const route = match.params.username;
+    return loggedUser === route;
   }
 
   const manageUser = async () => {
@@ -96,12 +96,12 @@ const ProfilePage = ({ match }: Props) => {
       params: { 'name': route }
     }).then(({ data }) => {
       if (data) {
-        setDoesUserExist(true)
-        setRequestStatus(true)
-        setUsername(data.name)
+        setDoesUserExist(true);
+        setRequestStatus(true);
+        setUsername(data.name);
       } else {
-        setDoesUserExist(false)
-        setRequestStatus(true)
+        setDoesUserExist(false);
+        setRequestStatus(true);
       }
     })
   }
@@ -113,10 +113,14 @@ const ProfilePage = ({ match }: Props) => {
     }).then(({ data }) => { setQuizes(data) });
   }
 
-  const handleConfirmButton = () => {
+  const handleConfirm = () => {
     dispatch(setAddQuizButtonStatus(!addQuizButtonStatus));
-    setIsModalWindowOpen(false);
-    resetParameters()
+    resetParameters();
+    setIsModalActive(false);
+  }
+
+  const handleCancel = () => {
+    setIsModalActive(false);
   }
 
   const addQuiz = (data: IQuizTemplate) => {
@@ -124,21 +128,21 @@ const ProfilePage = ({ match }: Props) => {
   }
 
   const resetParameters = () => {
-    dispatch(setFormQuestionsCounter(0))
-    dispatch(setFormCounter(1));
     dispatch(setAddQuizButtonStatus(false));
-    dispatch(setFormQuestions([]))
+    dispatch(setFormQuestionsCounter(0));
+    dispatch(setFormQuestions([]));
+    dispatch(setFormCounter(1));
   }
 
   useEffect(() => {
-    manageUser();
-    fetchUserQuizzes();
     dispatch(setAddQuizButtonStatus(false));
-  }, [loggedUser])
+    fetchUserQuizzes();
+    manageUser();
+  }, [loggedUser]);
 
   useEffect(() => {
     fetchUserQuizzes();
-  }, [addQuizButtonStatus])
+  }, [addQuizButtonStatus]);
 
 
   return (
@@ -149,7 +153,7 @@ const ProfilePage = ({ match }: Props) => {
             <ProfileBar
               username={username}
               isLoggedUserRoute={isLoggedUserRoute}
-              setIsModalWindowOpen={() => setIsModalWindowOpen(true)}
+              openModal={()=> setIsModalActive(true)}
             />
             {!addQuizButtonStatus ?
               <QuizList quizes={quizes} /> :
@@ -166,12 +170,12 @@ const ProfilePage = ({ match }: Props) => {
                   addQuiz(getData(data.title)).then(res => {
                     setSubmitting(true);
 
-                    if(res.data.message) {
+                    if (res.data.message) {
                       dispatch(setToastParameters(true, 'Something went wrong...', 'exclamation-circle'))
                       setTimeout(() => {
                         setSubmitting(false)
                       }, 3000);
-                    } else {  
+                    } else {
                       dispatch(setToastParameters(true, 'Successfully added!'))
                       setTimeout(() => {
                         resetForm();
@@ -196,31 +200,29 @@ const ProfilePage = ({ match }: Props) => {
                       handleSubmit={handleSubmit}
                       handleLeftButton={() => dispatch(setFormCounter(formPageCounter - 1))}
                       handleRightButton={() => dispatch(setFormCounter(formPageCounter + 1))}
-                      counter={formPageCounter}
-                      children={[
-                        <ThumbnailStep
-                          handleBlur={handleBlur}
-                          handleChange={handleChange}
-                          values={values}
-                          errors={errors}
-                          touched={touched}
-                        />,
-                        <AddingStep
-                          handleBlur={handleBlur}
-                          handleChange={handleChange}
-                          resetForm={resetForm}
-                          values={values}
-                          errors={errors}
-                          touched={touched}
-                        />,
-                        <SubmitStep
-                          values={values}
-                          errors={errors}
-                          touched={touched}
-                          isSubmitting={isSubmitting}
-                        />
-                      ]}
-                    />
+                      counter={formPageCounter}>
+                      <ThumbnailStep
+                        handleBlur={handleBlur}
+                        handleChange={handleChange}
+                        values={values}
+                        errors={errors}
+                        touched={touched}
+                      />
+                      <AddingStep
+                        handleBlur={handleBlur}
+                        handleChange={handleChange}
+                        resetForm={resetForm}
+                        values={values}
+                        errors={errors}
+                        touched={touched}
+                      />
+                      <SubmitStep
+                        values={values}
+                        errors={errors}
+                        touched={touched}
+                        isSubmitting={isSubmitting}
+                      />
+                    </MultiStepForm>
                   )}
               </Formik>}
           </StyledWrapper> :
@@ -238,15 +240,14 @@ const ProfilePage = ({ match }: Props) => {
           <Spinner />
         </PlaceholderTemplate>
       }
-      {isModalWindowOpen ? <ModalWindow
-        description="Wanna exit?"
-        handleConfirmationButton={handleConfirmButton}
-        handleCancelButton={() => setIsModalWindowOpen(false)}
-        confirmationButtonText='Yes'
-        cancelButtonText='Cancel'
-      /> : null}
+      <ModalWindow
+        isActive={isModalActive}
+        description='Wanna exit?'
+        handleConfirm={handleConfirm}
+        handleCancel={handleCancel}
+      />
     </PageTemplate >
   )
 }
 
-export default ProfilePage
+export default ProfilePage;

@@ -19,7 +19,7 @@ import {
 
 const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Element => {
     const [isOpen, setIsOpen] = useState(true);
-    const [isModalWindowOpen, setIsModalWindowOpen] = useState(false);
+    const [isModalActive, setIsModalActive] = useState(false);
     const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
     const dispatch = useDispatch();
 
@@ -28,11 +28,15 @@ const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Elemen
         setIsOpen(prev => !prev);
     }
 
-    const handleConfirmButton = () => {
+    const handleConfirm = () => {
         const newArray = formQuestions.filter(question => question.id !== id)
         dispatch(setFormQuestions(newArray));
-        setIsModalWindowOpen(false);
-    }
+        setIsModalActive(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalActive(false);
+    };
 
     return (
         <StyledQuestion>
@@ -42,7 +46,7 @@ const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Elemen
                     <StyledIconButton 
                         type='button'
                         icon='trash-alt'
-                        handleOnClick={() => setIsModalWindowOpen(true)}
+                        handleOnClick={() => setIsModalActive(true)}
                     />
                     <StyledIconButton 
                         type='button'
@@ -65,13 +69,12 @@ const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Elemen
                         </StyledListItem>
                     )}
                 </StyledList> : null}
-                {isModalWindowOpen ? <ModalWindow 
-                    description={'Wanna remove it ?'}
-                    handleConfirmationButton={handleConfirmButton}
-                    handleCancelButton={() => setIsModalWindowOpen(false)}
-                    confirmationButtonText='Yes'
-                    cancelButtonText='Cancel'
-                /> : null}
+                <ModalWindow
+                    isActive={isModalActive}
+                    description='Wanna exit?'
+                    handleConfirm={handleConfirm}
+                    handleCancel={handleCancel}
+                />
         </StyledQuestion>
     )
 };
