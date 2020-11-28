@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { FlexColumn } from '../../../styles/Mixins'
+import { FlexColumn } from '../../../styles/mixins'
 
 export const StyledList = styled.ul`
     position: absolute;

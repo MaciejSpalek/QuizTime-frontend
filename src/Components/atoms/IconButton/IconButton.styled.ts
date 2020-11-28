@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
-import { FlexCenter } from 'styles/Mixins';
+import { FlexCenter } from 'styles/mixins';
 
 export const StyledIconButton = styled.button`
     ${FlexCenter};

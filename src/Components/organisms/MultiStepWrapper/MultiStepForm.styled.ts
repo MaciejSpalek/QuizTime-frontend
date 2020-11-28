@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { FlexColumn } from 'styles/Mixins'
+import { FlexColumn } from 'styles/mixins'
 import FormTemplate from 'templates/FormTemplate/FormTemplate';
 import QuizPagination from 'Components/molecules/QuizPagination';
 

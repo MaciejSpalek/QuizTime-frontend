@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { FlexColumn } from 'styles/Mixins'
+import { FlexColumn } from 'styles/mixins'
 import QuizThumbnail from '../QuizTestimonial'
 
 export const StyledContainter = styled.div`

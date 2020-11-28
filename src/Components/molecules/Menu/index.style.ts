@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FlexColumn } from "../../../styles/Mixins";
+import { FlexColumn } from "../../../styles/mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const StyledMenu = styled.ul`

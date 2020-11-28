@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AbbreviateText, FlexCenter } from 'styles/Mixins';
+import { AbbreviateText, FlexCenter } from 'styles/mixins';
 import Paragraph from '../../atoms/Paragraph/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

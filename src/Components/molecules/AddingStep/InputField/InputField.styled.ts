@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexColumn, FlexCenter } from 'styles/Mixins';
+import { FlexColumn, FlexCenter } from 'styles/mixins';
 import FormField from 'templates/FormFieldTemplate/FormFieldTemplate';
 import ErrorMessage from 'Components/atoms/ErrorMessage';
 
