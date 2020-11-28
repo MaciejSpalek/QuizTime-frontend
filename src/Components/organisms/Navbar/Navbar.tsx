@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyledNavbar } from './Navbar.styled';
 import Hamburger from 'Components/atoms/Hamburger/Hamburger';
-import Logo from 'Components/atoms/Heading';
+import Logo from 'Components/atoms/Logo';
 import Menu from 'Components/molecules/Menu/index';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';

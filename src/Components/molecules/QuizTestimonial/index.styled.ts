@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { AbbreviateText, FlexCenter } from 'styles/mixins';
-import Paragraph from '../../atoms/Paragraph/index';
+import Paragraph from '../../atoms/Paragraph';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 

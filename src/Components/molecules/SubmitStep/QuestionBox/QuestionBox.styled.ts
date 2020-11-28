@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Paragraph from "Components/atoms/Paragraph";
+import Paragraph from "Components/atoms/Paragraph/Paragraph";
 import { FlexCenter } from "styles/mixins";
 import IconButton from "Components/atoms/IconButton";
 

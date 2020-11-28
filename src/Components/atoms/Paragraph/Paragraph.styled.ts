@@ -7,4 +7,4 @@ export const StyledParagraph = styled.p`
   text-align: center;
   font-weight: ${({ theme}) => theme.fontWeights.bold};
   line-height: 1.5;
-`
+`;

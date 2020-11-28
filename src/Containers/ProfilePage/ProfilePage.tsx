@@ -9,7 +9,7 @@ import { answers } from './ProfilePage.model';
 import ProfileBar from 'Components/molecules/ProfileBar/ProfileBar';
 import PlaceholderTemplate from 'templates/PlaceholderTemplate/PlaceholderTemplate';
 import PageTemplate from 'templates/PageTemplate/PageTemplate';
-import Spinner from 'Components/atoms/Spinner/index';
+import Spinner from 'Components/atoms/Spinner/Spinner';
 import BugSVG from 'assets/Bug.svg';
 import Image from 'Components/atoms/Image';
 import QuizList from 'Components/molecules/QuizesList/index';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledLoader } from './index.styled'
+import { StyledLoader } from './Spinner.styled'
 
 const Spinner = () => {
     return (
@@ -7,7 +7,7 @@ const Spinner = () => {
             animation="border" 
             role="status" 
         />
-    )
-}
+    );
+};
 
 export default Spinner;
