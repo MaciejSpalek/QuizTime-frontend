@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components'
-import { FlexCenter, FlexColumn } from 'theme/Mixins'
+import { FlexCenter, FlexColumn } from 'styles/Mixins'
 import Button from 'Components/atoms/Button';
 import Paragraph from 'Components/atoms/Paragraph';
 import IconButton from 'Components/atoms/IconButton';

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from 'Components/atoms/Button';
-import { FlexColumn } from 'theme/Mixins';
+import { FlexColumn } from 'styles/Mixins';
 
 
 export const StyledContainer = styled.div`

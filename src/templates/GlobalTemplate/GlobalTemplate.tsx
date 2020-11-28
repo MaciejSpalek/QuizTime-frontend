@@ -1,8 +1,8 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { StyledContainer } from './GlobalTemplate.styled';
-import { theme } from 'theme/Theme';
-import GlobalStyle from 'theme/GlobalStyle';
+import { theme } from 'styles/Theme';
+import GlobalStyle from 'styles/GlobalStyle';
 import Auth from 'Auth/Auth';
 import FontAwesomeLibrary from 'Lib/FontAwesomeLib';
 import Toast from 'Components/atoms/Toast';

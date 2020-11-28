@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Paragraph from "Components/atoms/Paragraph";
-import { FlexCenter } from "theme/Mixins";
+import { FlexCenter } from "styles/Mixins";
 import IconButton from "Components/atoms/IconButton";
 
 export const StyledQuestion = styled.li`

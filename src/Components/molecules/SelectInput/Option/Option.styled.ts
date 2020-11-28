@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FlexCenter } from 'theme/Mixins';
+import { FlexCenter } from 'styles/Mixins';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const StyledOption = styled.li<{ isSelected: boolean }>`

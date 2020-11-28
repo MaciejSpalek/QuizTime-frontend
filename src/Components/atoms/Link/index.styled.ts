@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { NavLink, Link } from 'react-router-dom'
-import { FlexCenter } from '../../../theme/Mixins'
+import { FlexCenter } from '../../../styles/Mixins'
 
 const styles = css`
   ${FlexCenter};

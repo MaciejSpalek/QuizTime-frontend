@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FlexCenter } from 'theme/Mixins';
+import { FlexCenter } from 'styles/Mixins';
 
 
 const animation = keyframes`
