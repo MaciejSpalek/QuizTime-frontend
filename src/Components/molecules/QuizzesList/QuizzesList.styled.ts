@@ -14,3 +14,9 @@ export const StyledList = styled.ul`
     justify-content: flex-start;
     background-color: ${colors.White};
 `;
+
+
+export const StyledListItem = styled.li`
+    width: 100%;
+    margin: 5px 0;
+`;

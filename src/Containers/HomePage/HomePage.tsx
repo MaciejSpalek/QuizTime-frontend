@@ -1,24 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PageTemplate from 'templates/PageTemplate/PageTemplate';
-import SearchPanel from 'Components/molecules/SearchPanel/SearchPanel';
-import QuizesList from 'Components/molecules/QuizzesList/QuizzesList';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'redux/store';
-import { IQuizTemplate } from 'Interfaces/quizInterfaces';
-import { fetchAllQuizes } from 'redux/Actions/quizActions';
+import SearchPanel from 'Components/molecules/SearchPanel';
+import QuizesList from 'Components/molecules/QuizzesList';
+import { axiosInstance } from 'services/api';
+import PreloaderScreen from 'Components/molecules/PreloaderScreen';
 
 const HomePage = () => {
-  const dispatch = useDispatch()
-  const allQuizzes = useSelector<RootState, IQuizTemplate[]>(state => state.quizes.allQuizzes)
+  const [quizzes, setQuizes] = useState([]);
+  const [isFetch, setIsFetch] = useState(false);
+
+  const fetchAllQuizzes = async () => {
+    await axiosInstance.get("/quizes/allQuizzes")
+      .then(({ data }) => { 
+        setQuizes(data);
+        setIsFetch(true) ;
+      })
+    };
 
   useEffect(() => {
-    dispatch(fetchAllQuizes());
-  }, [dispatch]);
+    fetchAllQuizzes();
+  }, []);
 
   return (
     <PageTemplate>
       <SearchPanel />
-      <QuizesList quizes={allQuizzes} />
+      {isFetch ?
+        <QuizesList quizzes={quizzes} /> : 
+        <PreloaderScreen />}
     </PageTemplate>
   );
 };

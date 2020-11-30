@@ -1,14 +1,15 @@
 import React from 'react';
-import QuizThumbnail from '../QuizTestimonial/QuizThumbnail';
-import { StyledList } from './QuizzesList.styled';
+import QuizThumbnail from '../QuizThumbnail';
+import { StyledList, StyledListItem } from './QuizzesList.styled';
 import { IQuizzesList } from './QuizzesList.model';
 
-
-
-const QuizesList = ({ quizes }: IQuizzesList) => {
+const QuizesList = ({ quizzes }: IQuizzesList) => {
     return (
         <StyledList>
-            {quizes.map(data => <QuizThumbnail key={data._id} parameters={data}/>)}
+            {quizzes.map(data =>
+                <StyledListItem>
+                    <QuizThumbnail key={data._id} parameters={data} />
+                </StyledListItem>)}
         </StyledList>
     );
 };

@@ -17,43 +17,17 @@ import MultiStepForm from 'Components/organisms/MultiStepWrapper';
 import ThumbnailStep from 'Components/molecules/ThumbnailStep';
 import AddingStep from 'Components/molecules/AddingStep';
 import SubmitStep from 'Components/molecules/SubmitStep';
-import * as yup from 'yup';
 import { axiosInstance } from 'services/api';
 import { IFormColor, IFormQuestion, IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { setToastParameters } from 'redux/Actions/toastActions';
 import ModalWindow from 'Components/molecules/ModalWindow';
 import { resetParameters } from 'helpers/reduxHandlers';
+import { profilePageValidation } from './validation';
+import PreloaderScreen from 'Components/molecules/PreloaderScreen';
 
 type Props = { match: any }
 
-const validationSchema = (formCouter: number) => yup.object({
-  title: yup.string()
-    .required('Required')
-    .min(2, 'min 2 characters')
-    .max(15, 'max 15 characters'),
 
-  question: formCouter === 2 ?
-    yup.string()
-      .required('Required')
-      .min(5, 'min 5 characters')
-      .max(120, 'max 120 characters') :
-    yup.string()
-      .min(5, 'min 5 characters')
-      .max(120, 'max 120 characters'),
-
-  answers: yup.array().of(
-    yup.object().shape({
-      content: formCouter === 2 ?
-        yup.string()
-          .required('Required')
-          .min(1, 'Minimum 1 character')
-          .max(30, 'max 30 characters') :
-        yup.string()
-          .min(1, 'Minimum 1 character')
-          .max(30, 'max 30 characters')
-    })
-  )
-});
 
 const ProfilePage = ({ match }: Props) => {
   const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
@@ -66,9 +40,12 @@ const ProfilePage = ({ match }: Props) => {
   const [doesUserExist, setDoesUserExist] = useState(false);
   const [requestStatus, setRequestStatus] = useState(false);
   const [username, setUsername] = useState(null);
-  const [quizes, setQuizes] = useState([]);
+  const [quizzes, setQuizzes] = useState([]);
   const dispatch = useDispatch();
   
+  const addQuiz = (data: IQuizTemplate) => axiosInstance.post('/quizes/addQuiz', data);
+  const isLoggedUserRoute = () =>  loggedUser === match.params.username;
+  const handleCancel = () => setIsModalActive(false);
 
   const getData = (title: string): IQuizTemplate => {
     return {
@@ -84,10 +61,6 @@ const ProfilePage = ({ match }: Props) => {
     };
   };
 
-  const isLoggedUserRoute = () => {
-    const route = match.params.username;
-    return loggedUser === route;
-  }
 
   const manageUser =  useCallback(async () => {
     const route = match.params.username;
@@ -103,29 +76,22 @@ const ProfilePage = ({ match }: Props) => {
         setRequestStatus(true);
       }
     })
-  }, [match.params.username])
+  }, [match.params.username]);
 
   const fetchUserQuizzes =  useCallback(async () => {
     const route = match.params.username;
     await axiosInstance.get('/quizes/userQuizzes', {
       params: { 'author': route }
-    }).then(({ data }) => { setQuizes(data) });
-  }, [match.params.username, setQuizes])
+    }).then(({ data }) => { setQuizzes(data) });
+  }, [match.params.username, setQuizzes]);
 
 
-  const handleCancel = () => setIsModalActive(false);
+
   const handleConfirm = () => {
     dispatch(setAddQuizButtonStatus(!addQuizButtonStatus));
     resetParameters(dispatch);
     setIsModalActive(false);
-  }
-
-
-  const addQuiz = (data: IQuizTemplate) => {
-    return axiosInstance.post('/quizes/addQuiz', data);
-  }
-
- 
+  };
 
   useEffect(() => {
     dispatch(setAddQuizButtonStatus(false));
@@ -149,7 +115,7 @@ const ProfilePage = ({ match }: Props) => {
               openModal={()=> setIsModalActive(true)}
             />
             {!addQuizButtonStatus ?
-              <QuizList quizes={quizes} /> :
+              <QuizList quizzes={quizzes} /> :
               <Formik
                 validateOnChange={true}
                 initialValues={{
@@ -158,7 +124,7 @@ const ProfilePage = ({ match }: Props) => {
                   radioValue: 'A',
                   answers
                 }}
-                validationSchema={validationSchema(formPageCounter)}
+                validationSchema={profilePageValidation(formPageCounter)}
                 onSubmit={(data, { setSubmitting, resetForm }) => {
                   addQuiz(getData(data.title)).then(res => {
                     setSubmitting(true);
@@ -166,24 +132,24 @@ const ProfilePage = ({ match }: Props) => {
                     if (res.data.message) {
                       dispatch(setToastParameters(true, 'Add at least 5 questions...', 'exclamation-circle'))
                       setTimeout(() => {
-                        setSubmitting(false)
+                        setSubmitting(false);
                       }, 3000);
                     } else {
                       dispatch(setToastParameters(true, 'Successfully added!'))
                       setTimeout(() => {
                         resetForm();
-                        setSubmitting(false)
+                        setSubmitting(false);
                         resetParameters(dispatch);
                       }, 500);
                     }
                   })
                 }}>
                 {({
-                  isSubmitting,
-                  resetForm,
-                  handleSubmit,
                   handleChange,
+                  isSubmitting,
+                  handleSubmit,
                   handleBlur,
+                  resetForm,
                   touched,
                   values,
                   errors
@@ -228,9 +194,7 @@ const ProfilePage = ({ match }: Props) => {
               margin='10px 0 0 0'
             />
           </PlaceholderTemplate> :
-        <PlaceholderTemplate>
-          <Spinner />
-        </PlaceholderTemplate>
+        <PreloaderScreen />
       }
       <ModalWindow
         isActive={isModalActive}
@@ -239,7 +203,7 @@ const ProfilePage = ({ match }: Props) => {
         handleCancel={handleCancel}
       />
     </PageTemplate >
-  )
-}
+  );
+};
 
 export default ProfilePage;

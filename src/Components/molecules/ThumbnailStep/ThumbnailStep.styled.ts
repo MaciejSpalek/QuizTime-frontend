@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import colors from 'styles/colors';
+import QuizThumbnail from '../QuizThumbnail';
 import { FlexColumn } from 'styles/mixins';
-import QuizThumbnail from '../QuizTestimonial/QuizThumbnail';
 
 export const StyledContainter = styled.div`
     ${FlexColumn};

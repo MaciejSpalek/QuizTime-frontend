@@ -1,10 +1,6 @@
 import React from 'react';
 import { IMultiStepForm } from './MultiStepForm.model';
-import {
-    StyledContainer,
-    StyledForm,
-    StyledPagination
-} from './MultiStepForm.styled';
+import { StyledContainer, StyledForm, StyledPagination } from './MultiStepForm.styled';
 
 const MultiStepform = ({ 
     children, 
@@ -13,7 +9,6 @@ const MultiStepform = ({
     handleRightButton, 
     onSubmit 
 }: IMultiStepForm): JSX.Element => {
-    
     const steps = children.length;
     const getCurrentChild = () => children[counter - 1];
 
