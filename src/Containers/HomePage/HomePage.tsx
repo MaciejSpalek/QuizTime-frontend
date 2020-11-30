@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PageTemplate from 'templates/PageTemplate/PageTemplate';
-import SearchPanel from 'Components/molecules/SearchPanel/index';
-import QuizesList from 'Components/molecules/QuizesList';
+import SearchPanel from 'Components/molecules/SearchPanel/SearchPanel';
+import QuizesList from 'Components/molecules/QuizzesList/QuizzesList';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import { IQuizTemplate } from 'Interfaces/quizInterfaces';
@@ -20,7 +20,7 @@ const HomePage = () => {
       <SearchPanel />
       <QuizesList quizes={allQuizzes} />
     </PageTemplate>
-  )
-}
+  );
+};
 
 export default HomePage;

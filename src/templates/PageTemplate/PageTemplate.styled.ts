@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { FlexCenter } from '../../styles/mixins'
+import styled from 'styled-components';
+import { FlexCenter } from 'styles/mixins';
 
 export const StyledContainer = styled.div`
   ${FlexCenter};
@@ -7,4 +7,4 @@ export const StyledContainer = styled.div`
   justify-content: flex-start;
   position: relative;
   height: calc(100vh - 60px);
-`
+`;

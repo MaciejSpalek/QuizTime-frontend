@@ -1,21 +1,6 @@
 import React from 'react';
-import { StyledInput } from './index.styled';
-
-type Props = {
-    id?: string
-    type: string
-    name?: string
-    maxLength?: number
-    onBlur?: any
-    onChange?:  any
-    ariaLabel?: string
-    placeholder?: string
-    isRequired?: boolean
-    ariaInvalid?: boolean
-    defaultValue?: string | number;
-    value?: string | number
-    ariaDescribedBy?: string 
-}
+import { IInput } from './Input.model';
+import { StyledInput } from './Input.styled';
 
 const Input = ({ 
   id, 
@@ -32,7 +17,7 @@ const Input = ({
   defaultValue,
   ariaDescribedBy,
   ...props
-}: Props) => (
+}: IInput) => (
     <StyledInput
       id={id}
       name={name}

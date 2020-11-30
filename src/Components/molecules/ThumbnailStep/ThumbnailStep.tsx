@@ -1,18 +1,18 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { StyledContainter, StyledQuizThumbnail } from './ThumbnailStep.styled'
-import Label from '../../atoms/Label'
-import Input from '../../atoms/Input'
-import FormField from 'templates/FormFieldTemplate/FormFieldTemplate'
-import CategorySelect from '../SelectInput'
-import ColorSelect from '../SelectInput'
-import { OptionType } from '../SelectInput/SelectInput.model'
+import React, { useCallback, useEffect, useState } from 'react';
+import { StyledContainter, StyledQuizThumbnail } from './ThumbnailStep.styled';
+import { OptionType } from '../SelectInput/SelectInput.model';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
-import { IFormColor } from 'Interfaces/quizInterfaces'
-import { useDispatch, useSelector } from 'react-redux'
-import { setFormColor, setFormIconName } from 'redux/Actions/quizActions'
-import { RootState } from 'redux/store'
-import { IThumbnail } from './ThumbnailStep.model'
-import ErrorMessage from 'Components/atoms/ErrorMessage'
+import { IFormColor } from 'Interfaces/quizInterfaces';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFormColor, setFormIconName } from 'redux/Actions/quizActions';
+import { RootState } from 'redux/store';
+import { IThumbnailStep } from './ThumbnailStep.model';
+import Label from 'Components/atoms/Label';
+import ColorSelect from '../SelectInput';
+import Input from 'Components/atoms/Input/Input';
+import FormField from 'templates/FormFieldTemplate/FormFieldTemplate';
+import CategorySelect from '../SelectInput';
+import ErrorMessage from 'Components/atoms/ErrorMessage';
 
 const ThumbnailStep = ({
   values,
@@ -20,35 +20,35 @@ const ThumbnailStep = ({
   touched,
   handleBlur,
   handleChange
-}: IThumbnail): JSX.Element => {
+}: IThumbnailStep): JSX.Element => {
   const [title, setTitle] = useState('Example title');
   const dispatch = useDispatch();
-  const formColors = useSelector<RootState, IFormColor>(state => state.quizes.formColor)
-  const formIconName = useSelector<RootState>(state => state.quizes.formIconName)
-  const author = useSelector<RootState>(state => state.user.loggedUser)
+  const formColors = useSelector<RootState, IFormColor>(state => state.quizes.formColor);
+  const formIconName = useSelector<RootState>(state => state.quizes.formIconName);
+  const author = useSelector<RootState>(state => state.user.loggedUser);
 
 
   const handleColor = (colorValue: IFormColor | undefined, type: string) => {
     if (type === OptionType.COLOR && colorValue) {
-      dispatch(setFormColor(colorValue))
+      dispatch(setFormColor(colorValue));
     }
-  }
+  };
 
   const handleTitle = useCallback(() => {
     values.title ?
       setTitle(values.title) :
       setTitle('Example title')
-  }, [values, setTitle])
+  }, [values, setTitle]);
 
   const handleIconName = (iconName: string, type: string) => {
     if (type === OptionType.ICON && typeof iconName !== 'undefined') {
-      dispatch(setFormIconName(iconName))
+      dispatch(setFormIconName(iconName));
     }
-  }
+  };
 
   useEffect(() => {
-    handleTitle()
-  }, [values.title, handleTitle])
+    handleTitle();
+  }, [values.title, handleTitle]);
 
 
   return (
@@ -60,7 +60,6 @@ const ThumbnailStep = ({
           iconName: `${formIconName}`,
           colors: formColors,
           amountOfQuestions: 5
-          
         }}
       />
       <FormField>

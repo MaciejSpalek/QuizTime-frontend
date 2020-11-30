@@ -3,17 +3,14 @@ import colors from 'styles/colors';
 import { FlexCenter } from 'styles/mixins';
 
 export const StyledContainer = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
     ${FlexCenter};
-    justify-content: space-between;
     width: 100%;
+    height: 60px;
+    justify-content: space-between;
+    background-color: ${colors.White};
     border-bottom: 2px solid ${colors.Gray80};
     padding: 10px;
-    height: 60px;
-`;
-
-export const StyledUserTag = styled.span`
-    color: ${colors.Gray20};
-    font-size: 20px;
-    font-weight: bold;
-    margin-right: 30px;
 `;

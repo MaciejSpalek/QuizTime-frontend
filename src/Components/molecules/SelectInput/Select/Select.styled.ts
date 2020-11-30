@@ -1,15 +1,16 @@
 import styled from 'styled-components';
+import colors from 'styles/colors';
 
 export const StyledWrapper = styled.div`
   border-radius: 4px;
   width: 100%;
   height: auto;
-  border: 2px solid ${({theme}) => theme.colors.Neutral80};
+  border: 2px solid ${colors.Gray80};
   margin: 10px 0;
 `;
 
 export const StyledSelectCaption = styled.span`
-  color: ${({theme}) => theme.colors.Neutral20};
+  color: ${colors.Gray20};
   font-weight: bold;
 `;
 
@@ -17,9 +18,9 @@ export const StyledTopWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
   height: 45px;
   padding: 0 10px;
+  cursor: pointer;
 `;
 
 export const StyledSelect = styled.ul`

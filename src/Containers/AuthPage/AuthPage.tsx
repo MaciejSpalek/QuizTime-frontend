@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import PageTemplate from 'templates/PageTemplate/PageTemplate'
 import AuthForm from 'templates/FormTemplate/FormTemplate'
 import Link from 'Components/atoms/Link/index'
 import FormField from 'templates/FormFieldTemplate/FormFieldTemplate'
-import Input from 'Components/atoms/Input/index'
+import Input from 'Components/atoms/Input/Input'
 import Label from 'Components/atoms/Label/index'
 import ErrorMessage from 'Components/atoms/ErrorMessage/ErrorMessage'
 import * as yup from "yup"
@@ -41,8 +41,8 @@ const AuthPage = ({ history }: RouteComponentProps) => {
         return (!!(errors.name || errors.password) && touched) || isSubmitting;
     }
 
-    const inputFunctionsHandler = (handleOnFunction: any, e: Event) => {
-        handleOnFunction(e)
+    const inputFunctionsHandler = (handleOnFunction: (e: ChangeEvent<HTMLInputElement>)=> void, e: ChangeEvent<HTMLInputElement>) => {
+        handleOnFunction(e);
         dispatch(setRequestStatus(true))
         setIsFirstRender(false);
     }
@@ -93,7 +93,7 @@ const AuthPage = ({ history }: RouteComponentProps) => {
                     values,
                     errors
                 }) => (
-                        <AuthForm handleSubmit={handleSubmit}>
+                        <AuthForm onSubmit={handleSubmit}>
                             <FormField>
                                 <Label
                                     text="Name"
@@ -106,8 +106,8 @@ const AuthPage = ({ history }: RouteComponentProps) => {
                                     value={values.name}
                                     ariaInvalid={true}
                                     ariaDescribedBy="err_1"
-                                    onChange={(e: Event) => inputFunctionsHandler(handleChange, e)}
-                                    onBlur={(e: Event) => inputFunctionsHandler(handleBlur, e)}
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) => inputFunctionsHandler(handleChange, e)}
+                                    onBlur={(e: ChangeEvent<HTMLInputElement>) => inputFunctionsHandler(handleBlur, e)}
                                     isRequired={true}
                                 />
                                 {errors.name && touched.name ? 
@@ -125,8 +125,8 @@ const AuthPage = ({ history }: RouteComponentProps) => {
                                     value={values.password}
                                     ariaInvalid={true}
                                     ariaDescribedBy="err_2"
-                                    onChange={(e: Event) => inputFunctionsHandler(handleChange, e)}
-                                    onBlur={(e: Event) => inputFunctionsHandler(handleBlur, e)}
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) => inputFunctionsHandler(handleChange, e)}
+                                    onBlur={(e: ChangeEvent<HTMLInputElement>) => inputFunctionsHandler(handleBlur, e)}
                                     isRequired={true}
                                 />
                                 {errors.password && touched.password ? 

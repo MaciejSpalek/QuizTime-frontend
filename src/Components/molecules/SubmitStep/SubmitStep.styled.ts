@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import colors from "styles/colors";
 import { FlexColumn } from "styles/mixins";
 
 export const StyledSubmitStep = styled.div`
   ${FlexColumn};
   width: 100%;
   height: 100%;
-  background-color: white;
+  background-color: ${colors.White};
   overflow-y: scroll;
 `;
 
@@ -19,13 +20,13 @@ export const StyledList = styled.ul`
 `;
 
 export const StyledHeading = styled.h2`
-  color: ${({ theme }) => theme.colors.Neutral20};
+  color: ${colors.Gray20};
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 30px;
 `;
 
 export const StyledPlaceholderText = styled.span`
-  color: ${({ theme }) => theme.colors.Neutral20};
+  color: ${colors.Gray20};
   font-size: 30px;
 `;

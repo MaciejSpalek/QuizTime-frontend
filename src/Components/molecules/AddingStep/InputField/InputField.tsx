@@ -1,7 +1,7 @@
 import React from 'react';
 import RadioButton from 'Components/atoms/RadioButton';
 import Label from 'Components/atoms/Label';
-import Input from 'Components/atoms/Input';
+import Input from 'Components/atoms/Input/Input';
 import { StyledInputField, StyledWrapper, StyledErrorMessage } from './InputField.styled';
 import { IInputField } from './InputField.model';
 

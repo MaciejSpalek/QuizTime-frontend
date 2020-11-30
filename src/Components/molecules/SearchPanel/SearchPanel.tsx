@@ -1,9 +1,9 @@
-import React from 'react'
-import { StyledContainer } from './index.styled'
-import Label from '../../atoms/Label'
-import Input from '../../atoms/Input'
-import Image from '../../atoms/Image'
-import ReadingGlassImage from '../../../assets/ReadingGlass.svg'
+import React from 'react';
+import Label from 'Components/atoms/Label';
+import Input from 'Components/atoms/Input/Input';
+import Image from 'Components/atoms/Image';
+import ReadingGlassImage from 'assets/ReadingGlass.svg';
+import { StyledContainer } from './SearchPanel.styled';
 
 const SearchPanel = ()=> {
     return (
@@ -23,7 +23,7 @@ const SearchPanel = ()=> {
                 margin="0 0 0 10px"
             />
         </StyledContainer>
-    )
-}
+    );
+};
 
-export default SearchPanel
+export default SearchPanel;

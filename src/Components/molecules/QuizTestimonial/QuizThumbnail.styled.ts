@@ -1,6 +1,6 @@
 import styled from 'styled-components';
+import Paragraph from 'Components/atoms/Paragraph';
 import { AbbreviateText, FlexCenter } from 'styles/mixins';
-import Paragraph from '../../atoms/Paragraph';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
@@ -9,8 +9,7 @@ export const StyledContainer = styled.div<{primarycolor: string}>`
     background-color: ${({primarycolor}) => primarycolor};
     border-radius: 4px;
     margin: 5px 0;
-
-`
+`;
 
 export const StyledImageWrapper = styled.picture<{secondarycolor: string}>`
     ${FlexCenter};
@@ -20,7 +19,7 @@ export const StyledImageWrapper = styled.picture<{secondarycolor: string}>`
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
     background-color: ${({secondarycolor}) => secondarycolor};
-`
+`;
 
 export const StyledTextWrapper = styled.div`
     position: relative;
@@ -29,24 +28,24 @@ export const StyledTextWrapper = styled.div`
     flex-direction: column;
     height: 100%;
     padding: 10px;
-`
+`;
 
 export const StyledTitle = styled(Paragraph)`
     color: white;
     ${AbbreviateText};
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
-`
+`;
 export const StyledScore = styled(Paragraph)<{color: string}>`
     color: white;
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
     margin: 0;
-`
+`;
 
 export const StyledIcon = styled(FontAwesomeIcon)<{primarycolor: string}>`
     font-size: 56px;
     color: ${({primarycolor}) => primarycolor};
     margin-bottom: 5px;
-`
+`;
 
 export const StyledAuthorTag = styled(Paragraph)`
     position: absolute;
@@ -56,6 +55,5 @@ export const StyledAuthorTag = styled(Paragraph)`
     color: white;
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
     margin: 0;
-
-`
+`;
 

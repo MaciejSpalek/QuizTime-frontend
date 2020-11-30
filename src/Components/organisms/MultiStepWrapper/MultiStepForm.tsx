@@ -11,7 +11,7 @@ const MultiStepform = ({
     counter, 
     handleLeftButton, 
     handleRightButton, 
-    handleSubmit 
+    onSubmit 
 }: IMultiStepForm): JSX.Element => {
     
     const steps = children.length;
@@ -19,7 +19,7 @@ const MultiStepform = ({
 
     return (
         <StyledContainer>
-            <StyledForm handleSubmit={handleSubmit}>
+            <StyledForm onSubmit={onSubmit}>
                 {getCurrentChild()}
             </StyledForm>
             <StyledPagination 

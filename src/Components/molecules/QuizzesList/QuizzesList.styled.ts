@@ -1,5 +1,6 @@
-import styled from 'styled-components'
-import { FlexColumn } from '../../../styles/mixins'
+import styled from 'styled-components';
+import colors from 'styles/colors';
+import { FlexColumn } from 'styles/mixins';
 
 export const StyledList = styled.ul`
     position: absolute;
@@ -11,5 +12,5 @@ export const StyledList = styled.ul`
     padding: 10px;
     overflow: auto;
     justify-content: flex-start;
-    background-color: ${({theme}) => theme.colors.white};
-`
+    background-color: ${colors.White};
+`;

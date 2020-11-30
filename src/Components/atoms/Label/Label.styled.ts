@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import colors from 'styles/colors';
 
 export const StyledLabel = styled.label`
   display: block;
@@ -6,5 +7,5 @@ export const StyledLabel = styled.label`
   height: auto;
   font-size: 18px;
   line-height: 1;
-  color: ${({theme}) => theme.colors.Neutral20};
+  color: ${colors.Gray20};
 `;

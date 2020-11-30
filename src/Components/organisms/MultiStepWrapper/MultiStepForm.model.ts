@@ -3,5 +3,5 @@ export interface IMultiStepForm {
     counter: number;
     handleRightButton: () => void;
     handleLeftButton: () => void;
-    handleSubmit: () => void;
+    onSubmit: () => void;
 }

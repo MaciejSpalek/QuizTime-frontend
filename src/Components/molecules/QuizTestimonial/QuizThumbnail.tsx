@@ -1,21 +1,19 @@
 import React from 'react'
-import { IQuizTemplate } from 'Interfaces/quizInterfaces'
-import { 
-    StyledContainer, 
-    StyledTextWrapper,
-    StyledImageWrapper, 
-    StyledTitle,
-    StyledScore,
-    StyledIcon,
-    StyledAuthorTag
-} from './index.styled'
 import { IconName } from '@fortawesome/fontawesome-svg-core'
 import { getScore } from 'helpers/getters';
-type Props = {
-    parameters: IQuizTemplate
-}
+import { IQuizThumbnail } from './QuizThumbnail.model';
+import { 
+    StyledImageWrapper, 
+    StyledTextWrapper,
+    StyledContainer, 
+    StyledAuthorTag,
+    StyledTitle,
+    StyledScore,
+    StyledIcon
+} from './QuizThumbnail.styled';
 
- const QuizThumbnail = ({ parameters, ...props }: Props)=> {
+
+ const QuizThumbnail = ({ parameters, ...props }: IQuizThumbnail)=> {
     const { 
         author,
         title, 
@@ -23,8 +21,6 @@ type Props = {
         colors,
         amountOfQuestions
     } = parameters;
-
-  
 
     return (
         <StyledContainer {...props} primarycolor={colors.primary}>
@@ -43,7 +39,7 @@ type Props = {
                 <StyledAuthorTag text={author} />
             </StyledTextWrapper>
         </StyledContainer>
-    )
-}
+    );
+};
 
-export default QuizThumbnail
+export default QuizThumbnail;

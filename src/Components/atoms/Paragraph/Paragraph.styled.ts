@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-
+import colors from 'styles/colors';
 
 export const StyledParagraph = styled.p`
-  font-size: ${({ theme }) => theme.fontSizes.sm};
-  color: ${({theme}) => theme.colors.grayscale[2]};
+  font-size: 20px;
+  color: ${colors.Gray20};
   text-align: center;
-  font-weight: ${({ theme}) => theme.fontWeights.bold};
+  font-weight: bold;
   line-height: 1.5;
 `;

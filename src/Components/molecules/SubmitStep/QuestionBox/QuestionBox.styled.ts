@@ -2,17 +2,18 @@ import styled from "styled-components";
 import Paragraph from "Components/atoms/Paragraph/Paragraph";
 import { FlexCenter } from "styles/mixins";
 import IconButton from "Components/atoms/IconButton";
+import colors from "styles/colors";
 
 export const StyledQuestion = styled.li`
   list-style: none;
   border-radius: 5px;
   margin-bottom: 20px;
-  border: 2px solid ${({ theme }) => theme.colors.Neutral80};
+  border: 2px solid ${colors.Gray80};
 `;
 
 export const StyledHeading = styled.h3`
-  color: ${({ theme }) => theme.colors.Neutral40};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.Neutral80};
+  color: ${colors.Gray40};
+  border-bottom: 1px solid ${colors.Gray80};
   font-size: 16px;
   font-weight: bold;
   padding: 20px 10px;
@@ -27,8 +28,8 @@ export const StyledList = styled.ul`
 `;
 
 export const StyledListItem = styled.li<{ isCorrect: boolean }>`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.Neutral80};
-  border-top: 1px solid ${({ theme }) => theme.colors.Neutral80};
+  border-bottom: 1px solid ${colors.Gray80};
+  border-top: 1px solid ${colors.Gray80};
   padding: 10px;
   margin: 0;
 
@@ -40,8 +41,8 @@ export const StyledListItem = styled.li<{ isCorrect: boolean }>`
 export const StyledParagraph = styled(Paragraph)<{ isCorrect: boolean }>`
   font-size: 16px;
   text-align: left;
-  color: ${({ isCorrect, theme }) =>
-    isCorrect ? theme.colors.green : theme.colors.Neutral40};
+  color: ${({ isCorrect }) =>
+    isCorrect ? colors.BasicGreen : colors.Gray40};
   margin: 0;
 `;
 
@@ -49,8 +50,8 @@ export const StyledTopBar = styled.div`
   ${FlexCenter};
   justify-content: space-between;
   padding: 5px;
-  background-color: ${({ theme }) => theme.colors.Neutral80};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.Neutral80};
+  background-color: ${colors.Gray80};
+  border-bottom: 1px solid ${colors.Gray80};
   margin: 0;
 `;
 
@@ -67,7 +68,7 @@ export const StyledNumber = styled.span`
   ${FlexCenter};
   min-height: 35px;
   width: 35px;
-  background-color: ${({ theme }) => theme.colors.green};
+  background-color: ${colors.BasicGreen};
   border-radius: 5px;
   color: white;
   font-size: 24px;

@@ -1,26 +1,26 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
+import colors from 'styles/colors';
 
 export const HamburgerLine = css`
     width: 100%;
     height: 4px;
-    background-color: ${({theme}) => theme.colors.green};
+    background-color: ${colors.BasicGreen};
     position: absolute;
-`
+`;
 
 export const StyledButton = styled.button`
     cursor: pointer;
     display: inline-block;
     background-color: transparent;
     border-radius: 50%;
-`
+`;
 
 export const StyledOuterBox = styled.span`
+    position: relative;
+    display: inline-block;
     width: 38px;
     height: 24px;
-    display: inline-block;
-    position: relative;
-
-`
+`;
 
 export const StyledInnerBox = styled.span`
     ${HamburgerLine};
@@ -42,4 +42,4 @@ export const StyledInnerBox = styled.span`
     &::after {
         top: 12px;
     }
-`
+`;

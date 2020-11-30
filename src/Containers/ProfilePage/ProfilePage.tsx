@@ -12,7 +12,7 @@ import PageTemplate from 'templates/PageTemplate/PageTemplate';
 import Spinner from 'Components/atoms/Spinner/Spinner';
 import BugSVG from 'assets/Bug.svg';
 import Image from 'Components/atoms/Image';
-import QuizList from 'Components/molecules/QuizesList/index';
+import QuizList from 'Components/molecules/QuizzesList/QuizzesList';
 import MultiStepForm from 'Components/organisms/MultiStepWrapper';
 import ThumbnailStep from 'Components/molecules/ThumbnailStep';
 import AddingStep from 'Components/molecules/AddingStep';
@@ -189,7 +189,7 @@ const ProfilePage = ({ match }: Props) => {
                   errors
                 }) => (
                     <MultiStepForm
-                      handleSubmit={handleSubmit}
+                      onSubmit={handleSubmit}
                       handleLeftButton={() => dispatch(setFormCounter(formPageCounter - 1))}
                       handleRightButton={() => dispatch(setFormCounter(formPageCounter + 1))}
                       counter={formPageCounter}>
