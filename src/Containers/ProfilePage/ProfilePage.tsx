@@ -6,28 +6,23 @@ import { StyledWrapper } from './ProfilePage.styled';
 import { setFormCounter } from 'redux/Actions/quizActions';
 import { Formik } from 'formik';
 import { answers } from './ProfilePage.model';
+import { IFormColor, IFormQuestion, IQuizTemplate } from 'Interfaces/quizInterfaces';
+import { axiosInstance } from 'services/api';
+import { setToastParameters } from 'redux/Actions/toastActions';
+import { resetParameters } from 'helpers/reduxHandlers';
+import { profilePageValidation } from './validation';
 import ProfileBar from 'Components/molecules/ProfileBar/ProfileBar';
-import PlaceholderTemplate from 'templates/PlaceholderTemplate/PlaceholderTemplate';
 import PageTemplate from 'templates/PageTemplate/PageTemplate';
-import Spinner from 'Components/atoms/Spinner/Spinner';
-import BugSVG from 'assets/Bug.svg';
-import Image from 'Components/atoms/Image';
 import QuizList from 'Components/molecules/QuizzesList/QuizzesList';
 import MultiStepForm from 'Components/organisms/MultiStepWrapper';
 import ThumbnailStep from 'Components/molecules/ThumbnailStep';
 import AddingStep from 'Components/molecules/AddingStep';
 import SubmitStep from 'Components/molecules/SubmitStep';
-import { axiosInstance } from 'services/api';
-import { IFormColor, IFormQuestion, IQuizTemplate } from 'Interfaces/quizInterfaces';
-import { setToastParameters } from 'redux/Actions/toastActions';
 import ModalWindow from 'Components/molecules/ModalWindow';
-import { resetParameters } from 'helpers/reduxHandlers';
-import { profilePageValidation } from './validation';
 import PreloaderScreen from 'Components/molecules/PreloaderScreen';
+import ErrorPage from 'Containers/ErrorPage';
 
 type Props = { match: any }
-
-
 
 const ProfilePage = ({ match }: Props) => {
   const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
@@ -42,9 +37,9 @@ const ProfilePage = ({ match }: Props) => {
   const [username, setUsername] = useState(null);
   const [quizzes, setQuizzes] = useState([]);
   const dispatch = useDispatch();
-  
+
   const addQuiz = (data: IQuizTemplate) => axiosInstance.post('/quizes/addQuiz', data);
-  const isLoggedUserRoute = () =>  loggedUser === match.params.username;
+  const isLoggedUserRoute = () => loggedUser === match.params.username;
   const handleCancel = () => setIsModalActive(false);
 
   const getData = (title: string): IQuizTemplate => {
@@ -62,7 +57,7 @@ const ProfilePage = ({ match }: Props) => {
   };
 
 
-  const manageUser =  useCallback(async () => {
+  const manageUser = useCallback(async () => {
     const route = match.params.username;
     await axiosInstance.get('/user/singleUser', {
       params: { 'name': route }
@@ -78,7 +73,7 @@ const ProfilePage = ({ match }: Props) => {
     })
   }, [match.params.username]);
 
-  const fetchUserQuizzes =  useCallback(async () => {
+  const fetchUserQuizzes = useCallback(async () => {
     const route = match.params.username;
     await axiosInstance.get('/quizes/userQuizzes', {
       params: { 'author': route }
@@ -112,7 +107,7 @@ const ProfilePage = ({ match }: Props) => {
             <ProfileBar
               username={username}
               isLoggedUserRoute={isLoggedUserRoute}
-              openModal={()=> setIsModalActive(true)}
+              openModal={() => setIsModalActive(true)}
             />
             {!addQuizButtonStatus ?
               <QuizList quizzes={quizzes} /> :
@@ -184,21 +179,12 @@ const ProfilePage = ({ match }: Props) => {
                   )}
               </Formik>}
           </StyledWrapper> :
-          <PlaceholderTemplate>
-            <h2> User doesn't exist </h2>
-            <Image
-              url={BugSVG}
-              alt='Error icon'
-              width='80px'
-              height='80px'
-              margin='10px 0 0 0'
-            />
-          </PlaceholderTemplate> :
+          <ErrorPage /> :
         <PreloaderScreen />
       }
       <ModalWindow
-        isActive={isModalActive}
         description='Wanna exit?'
+        isActive={isModalActive}
         handleConfirm={handleConfirm}
         handleCancel={handleCancel}
       />

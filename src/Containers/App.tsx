@@ -1,14 +1,13 @@
-import React from 'react'
-import GlobalTemplate from '../templates/GlobalTemplate/GlobalTemplate'
-import MainTemplate from '../templates/MainTemplate/MainTemplate'
-import Navbar from '../Components/organisms/Navbar/Navbar'
-import Home from './HomePage/HomePage'
-import AuthPage from './AuthPage/AuthPage'
-import ProfilePage from './ProfilePage/ProfilePage'
-import { routes } from '../routes/index'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
-
+import React from 'react';
+import GlobalTemplate from '../templates/GlobalTemplate/GlobalTemplate';
+import MainTemplate from '../templates/MainTemplate/MainTemplate';
+import Navbar from '../Components/organisms/Navbar/Navbar';
+import Home from './HomePage/HomePage';
+import AuthPage from './AuthPage/AuthPage';
+import ProfilePage from './ProfilePage/ProfilePage';
+import { routes } from '../routes/index';
+import ErrorPage from './ErrorPage';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {
   return (
@@ -18,9 +17,10 @@ const App = () => {
         <MainTemplate>
           <Switch>
             <Route exact path={routes.home} component={Home} />
-            <Route path={routes.login} component={AuthPage} />
-            <Route path={routes.register} component={AuthPage} />
+            <Route exact path={routes.login} component={AuthPage} />
+            <Route exact path={routes.register} component={AuthPage} />
             <Route exact path={routes.profile} component={ProfilePage} />
+            <Route component={ErrorPage} />
           </Switch>
         </MainTemplate>
       </Router>   

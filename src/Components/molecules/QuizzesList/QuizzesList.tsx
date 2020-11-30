@@ -7,8 +7,8 @@ const QuizesList = ({ quizzes }: IQuizzesList) => {
     return (
         <StyledList>
             {quizzes.map(data =>
-                <StyledListItem>
-                    <QuizThumbnail key={data._id} parameters={data} />
+                <StyledListItem key={data._id}>
+                    <QuizThumbnail  parameters={data} />
                 </StyledListItem>)}
         </StyledList>
     );
