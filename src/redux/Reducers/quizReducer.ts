@@ -1,23 +1,18 @@
 import { QuizTypes } from "../Types/quizTypes";
 import {
   IFormColor,
-  IQuizTemplate,
-  IFormQuestion,
+  IFormQuestion
 } from "Interfaces/quizInterfaces";
 
 type QuizState = {
-  allQuizzes: IQuizTemplate[];
-  userQuizzes: IQuizTemplate[];
   formQuestions: IFormQuestion[];
   formColor: IFormColor;
   formCounter: number;
   formIconName: string;
-  formQuestionsCounter: number
+  formQuestionsCounter: number;
 };
 
 const initialState: QuizState = {
-  allQuizzes: [],
-  userQuizzes: [],
   formQuestions: [],
   formQuestionsCounter: 0,
   formCounter: 1,
@@ -30,20 +25,6 @@ const initialState: QuizState = {
 
 export const quizReducer = (state = initialState, action: any): QuizState => {
   switch (action.type) {
-    case QuizTypes.FETCH_ALL_QUIZZES: {
-      return {
-        ...state,
-        allQuizzes: action.payload,
-      };
-    }
-
-    case QuizTypes.FETCH_USER_QUIZZES: {
-      return {
-        ...state,
-        userQuizzes: action.payload,
-      };
-    }
-
     case QuizTypes.SET_FORM_COUNTER: {
       return {
         ...state,

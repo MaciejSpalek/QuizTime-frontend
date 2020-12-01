@@ -1,14 +1,11 @@
 import React from 'react';
-import { IFormFieldTemplate } from './FormFieldTemplate.model';
+import { IChildren } from 'Interfaces/children';
 import { StyledFormField } from './FormFieldTemplate.styled';
 
-
-
-const FieldFormTemplate = ({ children, ...props }: IFormFieldTemplate) => (
+const FieldFormTemplate = ({ children, ...props }: IChildren) => (
     <StyledFormField {...props}>
       {children}
     </StyledFormField>
 );
-
 
 export default FieldFormTemplate;

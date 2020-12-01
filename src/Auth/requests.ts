@@ -1,13 +1,13 @@
-import { setToastParameters } from 'redux/Actions/toastActions'
-import { getExpireDate, setCookie, deleteCookie } from '../helpers/cookies'
-import { setRequestMessage, setRequestStatus } from '../redux/Actions/sessionActions'
-import { setLoggedUser, resetLoggedUser } from '../redux/Actions/userActions'
-import { axiosInstance } from '../services/api'
+import { setToastParameters } from 'redux/Actions/toastActions';
+import { getExpireDate, setCookie, deleteCookie } from 'helpers/cookies';
+import { setRequestMessage, setRequestStatus } from 'redux/Actions/sessionActions';
+import { setLoggedUser, resetLoggedUser } from 'redux/Actions/userActions';
+import { axiosInstance } from 'services/api';
 
 type DataType = {
-    name: string
-    password: string
-}
+    name: string;
+    password: string;
+};
 
 type AuthType = 'login' | 'register';
 

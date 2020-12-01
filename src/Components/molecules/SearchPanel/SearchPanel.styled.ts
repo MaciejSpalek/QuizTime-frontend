@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import { FlexCenter } from 'styles/mixins';
+import { ReadingGlass } from 'assets';
 
 export const StyledContainer = styled.div`
     position: absolute;
@@ -13,4 +14,10 @@ export const StyledContainer = styled.div`
     background-color: ${colors.White};
     border-bottom: 2px solid ${colors.Gray80};
     padding: 10px;
+`;
+
+export const StyledReadingGlass = styled(ReadingGlass)`
+    width: 25px;
+    height: 25px;
+    margin: 0 0 0 10px;
 `;

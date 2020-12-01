@@ -25,8 +25,8 @@ const App = () => {
         </MainTemplate>
       </Router>   
     </GlobalTemplate>     
-  )
-}  
+  );
+};  
 
 export default App;
 

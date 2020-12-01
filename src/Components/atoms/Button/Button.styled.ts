@@ -13,7 +13,6 @@ export const StyledButton = styled.button.attrs(props => ({
     background-color: ${({isDisabled}) => isDisabled ? colors.DarkGreen : colors.BasicGreen};
     border-radius: 5px;
     border: none;
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     padding: 0 5px;
     margin: 5px 0;

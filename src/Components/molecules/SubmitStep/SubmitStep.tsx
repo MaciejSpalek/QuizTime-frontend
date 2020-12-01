@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'Components/atoms/Button';
-import Placeholder from 'templates/PlaceholderTemplate/PlaceholderTemplate';
+import Placeholder from 'templates/PlaceholderTemplate';
 import QuestionBox from './QuestionBox';
 import { RootState } from 'redux/store';
 import { IFormQuestion } from 'Interfaces/quizInterfaces';
@@ -24,9 +24,7 @@ const SubmitStep = ({ errors, touched, values, isSubmitting }: ISubmitStep): JSX
     };
 
     useEffect(() => {
-        if (values.title) {
-            setIsFirstRender(false);
-        }
+       values.title && setIsFirstRender(false);
     }, [values.title]);
 
 
@@ -46,7 +44,7 @@ const SubmitStep = ({ errors, touched, values, isSubmitting }: ISubmitStep): JSX
                             />)
                         }
                     </StyledList>
-                    <Button text="Submit" type="submit" isDisabled={isDisabled()} /> 
+                    <Button text="Create quiz" type="submit" isDisabled={isDisabled()} /> 
                 </StyledWrapper> : 
                 <Placeholder>
                     <StyledPlaceholderText> No questions </StyledPlaceholderText>
@@ -54,7 +52,7 @@ const SubmitStep = ({ errors, touched, values, isSubmitting }: ISubmitStep): JSX
             }
 
         </StyledSubmitStep>
-    )
-}
+    );
+};
 
 export default SubmitStep;
