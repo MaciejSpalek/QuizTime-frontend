@@ -1,11 +1,8 @@
-import React from 'react'
-import { StyledContainer } from './MainTemplate.styled'
+import React from 'react';
+import { IChildren } from 'Interfaces/children';
+import { StyledContainer } from './MainTemplate.styled';
 
-type Props = {
-  children: React.ReactNode;
-}
-
-const MainTemplate = ({ children }: Props) => (
+const MainTemplate = ({ children }: IChildren) => (
   <StyledContainer>
     {children} 
   </StyledContainer>

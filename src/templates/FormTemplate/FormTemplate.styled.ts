@@ -1,5 +1,6 @@
-import styled from 'styled-components'
-import { FlexCenter } from '../../theme/Mixins'
+import styled from 'styled-components';
+import colors from 'styles/colors';
+import { FlexCenter } from 'styles/mixins';
 
 export const StyledForm = styled.form`
     ${FlexCenter};
@@ -7,5 +8,5 @@ export const StyledForm = styled.form`
     width: 100%;
     height: 100%;
     padding: 10px;
-    background-color: white;
-`
+    background-color: ${colors.White};
+`;

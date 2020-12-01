@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux'
-import { sessionReducer } from './sessionReducers'
-import { userReducer } from './userReducers'
-import { statusesReducer } from './statusesReducers'
-import { quizReducer } from './quizReducer'
-import { toastReducer } from './toastReducer'
+import { combineReducers } from 'redux';
+import { sessionReducer } from './sessionReducers';
+import { userReducer } from './userReducers';
+import { statusesReducer } from './statusesReducers';
+import { quizReducer } from './quizReducer';
+import { toastReducer } from './toastReducer';
 
 
 const rootReducer = combineReducers({
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     statuses: statusesReducer,
     quizes: quizReducer,
     toast: toastReducer,
-})
+});
 
-export default rootReducer
+export default rootReducer;
 

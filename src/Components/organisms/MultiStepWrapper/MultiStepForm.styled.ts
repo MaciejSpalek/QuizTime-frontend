@@ -1,7 +1,8 @@
-import styled from 'styled-components'
-import { FlexColumn } from 'theme/Mixins'
+import styled from 'styled-components';
 import FormTemplate from 'templates/FormTemplate/FormTemplate';
 import QuizPagination from 'Components/molecules/QuizPagination';
+import colors from 'styles/colors';
+import { FlexColumn } from 'styles/mixins';
 
 export const StyledContainer = styled.div`
     position: relative;
@@ -10,8 +11,8 @@ export const StyledContainer = styled.div`
     width: 100%;
     height: calc(100vh - 2 * 60px);
     height: 100%;
-    background-color: white;
-`
+    background-color: ${colors.White};
+`;
 
 
 export const StyledForm = styled(FormTemplate)`
@@ -20,10 +21,9 @@ export const StyledForm = styled(FormTemplate)`
     top: 0;
     left: 0;
     height: calc(100vh - 3 * 60px);
-`
+`;
 
 export const StyledPagination = styled(QuizPagination)`
     position: absolute;
     top: calc(100vh - 3 * 60px);
-
-`
+`;

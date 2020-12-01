@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { FlexCenter } from 'theme/Mixins';
+import colors from "styles/colors";
+import { FlexCenter } from 'styles/mixins';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const StyledOption = styled.li<{ isSelected: boolean }>`
@@ -15,14 +16,14 @@ export const StyledOption = styled.li<{ isSelected: boolean }>`
 `;
 
 export const StyledOptionTitle = styled.span`
-  color: ${({ theme }) => theme.colors.Neutral20};
+  color: ${colors.Gray20};
   pointer-events: none;
 `;
 
 export const StyledIconField = styled.div`
   ${FlexCenter};
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.colors.Neutral80};
+  background-color: ${colors.Gray80};
   width: 40px;
   height: 40px;
   margin-right: 10px;
@@ -30,25 +31,25 @@ export const StyledIconField = styled.div`
 
 export const StyledCategoryIcon = styled(FontAwesomeIcon)`
   font-size: 24px;
-  color:  ${({ theme }) => theme.colors.Neutral20};
-`
+  color:  ${colors.Gray20};
+`;
 
 export const StyledCheckedSquareIcon = styled(FontAwesomeIcon)`
   font-size: 30px;
   margin-right: 10px;
-  color: ${({theme}) => theme.colors.green};
-`
+  color: ${colors.BasicGreen};
+`;
 
 export const StyledPaletteIcon = styled(FontAwesomeIcon)<{value: string}>`
   font-size: 30px;
   margin-right: 10px;
   color: ${({value}) => value};
-`
+`;
 
 export const StyledWrapper = styled.div`
   ${FlexCenter};
   justify-content: flex-start;
   width: 100%;
-`
+`;
 
 

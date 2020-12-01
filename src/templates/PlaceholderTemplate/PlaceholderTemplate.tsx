@@ -1,11 +1,8 @@
-import React from 'react'
-import { StyledContainer } from './PlaceholderTemplate.styled'
+import React from 'react';
+import { IChildren } from 'Interfaces/children';
+import { StyledContainer } from './PlaceholderTemplate.styled';
 
-type Props = {
-  children: React.ReactNode;
-}
-
-const PlaceholderTemplate = ({ children }: Props) => (
+const PlaceholderTemplate = ({ children }: IChildren) => (
   <StyledContainer>
     {children} 
   </StyledContainer>

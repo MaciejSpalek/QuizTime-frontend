@@ -1,21 +1,18 @@
-import React from 'react'
-import { StyledForm } from './FormTemplate.styled'
+import React from 'react';
+import { IFormTemplate } from './FormTemplate.model';
+import { StyledForm } from './FormTemplate.styled';
 
-type Props = {
-    handleSubmit?: (e: any) => void;
-    children: React.ReactNode;
-}
 
-const FormTemplate = ({ children, handleSubmit, ...props }: Props) => {
+const FormTemplate = ({ children, onSubmit, ...props }: IFormTemplate) => {
     return (
         <StyledForm
             noValidate
             autoComplete="off"
-            onSubmit={handleSubmit}
+            onSubmit={onSubmit}
             {...props}>
             {children}
         </StyledForm>
-    )
-}
+    );
+};
 
-export default FormTemplate
+export default FormTemplate;
