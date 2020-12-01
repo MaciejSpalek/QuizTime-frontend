@@ -1,21 +1,21 @@
 import styled from 'styled-components';
+import colors from 'styles/colors';
 
 export const StyledButton = styled.button.attrs(props => ({
     isDisabled: props.disabled
 }))`
     position: relative;
-    color: ${({ theme, isDisabled }) => isDisabled ? theme.colors.Neutral60 : theme.colors.white};
+    color: ${({isDisabled}) => isDisabled ? colors.Gray60 : colors.White};
     min-height: 45px;
     font-size: 24px;
-    font-weight: ${({ theme }) => theme.fontWeights.bold};  
-    font-size: ${({ theme }) => theme.fontSizes.sm};  
-    background-color: ${({ theme, isDisabled }) => isDisabled ? theme.colors.green40 : theme.colors.green};
+    font-weight: bold;
+    font-size: 22px;
+    background-color: ${({isDisabled}) => isDisabled ? colors.DarkGreen : colors.BasicGreen};
     border-radius: 5px;
     border: none;
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     padding: 0 5px;
     margin: 5px 0;
     cursor: pointer;
-`
+`;
 

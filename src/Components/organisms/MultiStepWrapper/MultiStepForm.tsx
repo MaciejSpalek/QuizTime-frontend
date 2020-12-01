@@ -1,25 +1,20 @@
 import React from 'react';
 import { IMultiStepForm } from './MultiStepForm.model';
-import {
-    StyledContainer,
-    StyledForm,
-    StyledPagination
-} from './MultiStepForm.styled';
+import { StyledContainer, StyledForm, StyledPagination } from './MultiStepForm.styled';
 
 const MultiStepform = ({ 
     children, 
     counter, 
     handleLeftButton, 
     handleRightButton, 
-    handleSubmit 
+    onSubmit 
 }: IMultiStepForm): JSX.Element => {
-    
     const steps = children.length;
     const getCurrentChild = () => children[counter - 1];
 
     return (
         <StyledContainer>
-            <StyledForm handleSubmit={handleSubmit}>
+            <StyledForm onSubmit={onSubmit}>
                 {getCurrentChild()}
             </StyledForm>
             <StyledPagination 

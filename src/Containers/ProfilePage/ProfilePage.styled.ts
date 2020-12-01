@@ -1,7 +1,7 @@
-import styled from 'styled-components'
-import { FlexColumn } from '../../theme/Mixins'
+import styled from 'styled-components';
+import { FlexColumn } from 'styles/mixins';
 
 export const StyledWrapper = styled.div`
     ${FlexColumn};
     justify-content: space-between;
-`
+`;

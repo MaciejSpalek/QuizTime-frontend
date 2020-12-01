@@ -15,12 +15,10 @@ const ProfileBar = ({
     const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
 
     const handleButton = () => {
-        if (addQuizButtonStatus) {
-            openModal();
-        } else {
+        addQuizButtonStatus ?
+            openModal() :
             dispatch(setAddQuizButtonStatus(true));
-        }
-    }
+    };
 
     return (
         <StyledContainer>
@@ -31,7 +29,7 @@ const ProfileBar = ({
                     handleOnClick={handleButton}
                 />}
         </StyledContainer>
-    )
-}
+    );
+};
 
 export default ProfileBar;

@@ -1,11 +1,8 @@
-import React from 'react'
-import { StyledContainer } from './PageTemplate.styled'
+import React from 'react';
+import { IChildren } from 'Interfaces/children';
+import { StyledContainer } from './PageTemplate.styled';
 
-type Props = {
-  children: React.ReactNode;
-}
-
-const PageTemplate = ({ children }: Props) => (
+const PageTemplate = ({ children }: IChildren) => (
   <StyledContainer>
     {children} 
   </StyledContainer>

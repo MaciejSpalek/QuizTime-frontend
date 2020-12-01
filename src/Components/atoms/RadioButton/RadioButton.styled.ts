@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { FlexCenter } from 'theme/Mixins';
+import colors from 'styles/colors';
+import { FlexCenter } from 'styles/mixins';
 
 export const StyledWrapper = styled.div`
     ${FlexCenter};
@@ -15,7 +16,7 @@ export const StyledWrapper = styled.div`
             width: 30px;
             height: 30px;
             border-radius: 50%;
-            border: 2px solid ${({theme}) => theme.colors.green};
+            border: 2px solid ${colors.BasicGreen};
             transform: translate(0, -50%);
             transition: .3s ease-in-out;
         }
@@ -27,7 +28,7 @@ export const StyledWrapper = styled.div`
             height: 22px;
             border-radius: 50%;
             transform: translate(0, -50%);
-            background-color: ${({theme}) => theme.colors.green};
+            background-color: ${colors.BasicGreen};
             transition: .3s ease-in-out;
             opacity:0;
             margin-right: 4px;

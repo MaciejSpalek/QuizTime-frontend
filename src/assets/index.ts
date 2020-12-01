@@ -15,3 +15,4 @@ export { ReactComponent as PaletteIcon } from './Palette.svg';
 export { ReactComponent as CheckedSquare } from './Checked-square.svg';
 export { ReactComponent as NoCheckedSquare } from './No-checked-square.svg';
 
+export { ReactComponent as ReadingGlass } from './ReadingGlass.svg';

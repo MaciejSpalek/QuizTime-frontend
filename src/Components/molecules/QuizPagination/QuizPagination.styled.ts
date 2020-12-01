@@ -1,19 +1,20 @@
 import styled from 'styled-components';
-import { FlexCenter } from 'theme/Mixins';
+import { FlexCenter } from 'styles/mixins';
 import IconButton from 'Components/atoms/IconButton';
+import colors from 'styles/colors';
 
 export const StyledPagination = styled.div`
     ${FlexCenter};
     justify-content: center;
     height: 60px;
-    background-color: white;
+    background-color: ${colors.White};
 `
 
 export const StyledCenterSquare = styled.div`
     ${FlexCenter};
     width: 90px;
     height: 45px;
-    background-color: ${({theme}) => theme.colors.green};
+    background-color: ${colors.BasicGreen};
     border-radius: 5px;
     margin: 0 10px;
 `

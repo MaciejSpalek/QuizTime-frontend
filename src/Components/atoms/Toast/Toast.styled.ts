@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
+import colors from 'styles/colors';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FlexCenter } from 'theme/Mixins';
+import { FlexCenter } from 'styles/mixins';
 
 
 const animation = keyframes`
@@ -35,7 +36,7 @@ export const StyledToast = styled.div`
   bottom: 50px;
   left: 50%;
   transform: translate(-50%, 0) translateY(200px);
-  background-color: ${({theme}) => theme.colors.transparentBlack};
+  background-color: ${colors.TransparentBlack};
   animation: ${animation} 3s ease-in-out;
   border-radius: 2px;
   padding: 5px;
@@ -44,11 +45,11 @@ export const StyledToast = styled.div`
 
 export const StyledText = styled.span`
   font-size: 16px;
-  color: ${({theme}) => theme.colors.white};
+  color: ${colors.White};
 `;
 
 export const StyledIcon = styled(FontAwesomeIcon)`
   font-size: 30px;
   margin-right: 5px;
-  color: ${({theme}) => theme.colors.white};
+  color: ${colors.White};
 `;

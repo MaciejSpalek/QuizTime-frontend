@@ -1,5 +1,5 @@
 import React, { MouseEvent, useCallback, useEffect, useState } from 'react';
-import Input from 'Components/atoms/Input';
+import Input from 'Components/atoms/Input/Input';
 import Label from 'Components/atoms/Label';
 import InputField from './InputField';
 import { StyledButton, StyledContainer } from './AddingStep.styled';

@@ -1,11 +1,11 @@
-import { SessionTypes } from '../Types/sessionTypes'
+import { SessionTypes } from '../Types/sessionTypes';
 
 type SessionState = {
-    isAuthenticated: boolean
-    requestStatus: boolean
-    errorMessage: string
-    tokenLifeTime: number | null
-}
+    isAuthenticated: boolean;
+    requestStatus: boolean;
+    errorMessage: string;
+    tokenLifeTime: number | null;
+};
 
 const initialState: SessionState = {
     isAuthenticated: false,
@@ -47,5 +47,5 @@ export const sessionReducer = (state = initialState, action: any): SessionState 
       default: {
         return state;
       }
-    }
-  }
+    };
+  };
