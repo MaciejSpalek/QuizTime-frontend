@@ -28,7 +28,7 @@ const QuizPagination = ({
     }
 
     return (
-        <StyledPagination {...props}>
+        <StyledPagination id="pagination" {...props}>
             { testFunc('left') ?
                 <StyledIconButton
                     type='button'

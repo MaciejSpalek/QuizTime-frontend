@@ -45,13 +45,13 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
 
     const getFormChildren = () => {
         const lastStep = <LastStep />
-        const newArray = quiz?.questions?.map(({ _id, answers, content }) => (
+        const newArray = quiz?.questions?.map(({ _id, answers, content }, index) => 
             <QuestionStep
+                index={index + 1}
                 answers={answers}
                 content={content}
                 key={_id}
             />
-        )
         );
         if (typeof newArray !== "undefined") {
             return [...newArray, lastStep];

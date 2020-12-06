@@ -3,5 +3,4 @@ import { FlexColumn } from 'styles/mixins';
 
 export const StyledWrapper = styled.div`
     ${FlexColumn};
-    justify-content: space-between;
 `;

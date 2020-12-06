@@ -1,19 +1,33 @@
 import React from 'react';
+import Answer from './Answer';
 import { IQuestionStep } from './QuestionStep.model';
 import {
     StyledQuestionWrapper,
-    StyledWrapperTitle,
+    StyledLegend,
     StyledContainer,
+    StyledAnswersList,
+    StyledListItem,
     StyledContent
 } from './QuestionStep.styled';
 
-const QuestionStep = ({ content, answers, ...props }: IQuestionStep): JSX.Element => {
+const QuestionStep = ({ index, content, answers, ...props }: IQuestionStep): JSX.Element => {
     return (
         <StyledContainer {...props}>
             <StyledQuestionWrapper>
-                <StyledWrapperTitle> Question 1 </StyledWrapperTitle>
-                <StyledContent text={content} />
+                <StyledLegend> Question {index} </StyledLegend>
+                <StyledContent> {content} </StyledContent>
             </StyledQuestionWrapper>
+            <StyledAnswersList>
+                {answers.map(({ option, content, isCorrect }) =>
+                    <StyledListItem key={option}>
+                        <Answer 
+                            option={option}
+                            content={content}
+                            isCorrect={isCorrect}
+                        />
+                    </StyledListItem>
+                )}
+            </StyledAnswersList>
         </StyledContainer>
     )
 };

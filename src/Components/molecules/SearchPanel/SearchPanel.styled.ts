@@ -12,7 +12,6 @@ export const StyledContainer = styled.div`
     height: 60px;
     justify-content: space-between;
     background-color: ${colors.White};
-    border-bottom: 2px solid ${colors.Gray80};
     padding: 10px;
 `;
 
