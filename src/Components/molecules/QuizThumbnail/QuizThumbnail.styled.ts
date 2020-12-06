@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const StyledContainer = styled.div<{ primarycolor: string }>`
   ${FlexCenter};
+  min-width: 200px;
   position: relative;
   background-color: ${({ primarycolor }) => primarycolor};
   border-radius: 4px;

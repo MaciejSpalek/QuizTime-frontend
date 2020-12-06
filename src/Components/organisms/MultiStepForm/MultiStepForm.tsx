@@ -7,13 +7,14 @@ const MultiStepform = ({
     counter, 
     handleLeftButton, 
     handleRightButton, 
-    onSubmit 
+    onSubmit,
+    ...props 
 }: IMultiStepForm): JSX.Element => {
     const steps = children.length;
     const getCurrentChild = () => children[counter - 1];
 
     return (
-        <StyledContainer>
+        <StyledContainer {...props}>
             <StyledForm onSubmit={onSubmit}>
                 {getCurrentChild()}
             </StyledForm>

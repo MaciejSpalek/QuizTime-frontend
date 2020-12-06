@@ -39,7 +39,7 @@ const AddingStep = ({
                 content,
                 isCorrect: option === radioValue
             }))
-        }
+        };
     };
 
     const manageResetForm = () => {
@@ -53,7 +53,7 @@ const AddingStep = ({
                     isCorrect: option === radioValue
                 }))
             }
-        })
+        });
     };
 
     const addQuestion = (e: MouseEvent<HTMLElement>) => {
@@ -62,7 +62,7 @@ const AddingStep = ({
         dispatch(setFormQuestionsCounter(formQuestionsCounter+1))
         manageResetForm();
         setIsFirstRender(true);
-    }
+    };
 
     useEffect(() => {
         question && setIsFirstRender(false);

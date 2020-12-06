@@ -7,6 +7,7 @@ export const StyledButton = styled.button.attrs(props => ({
     position: relative;
     color: ${({isDisabled}) => isDisabled ? colors.Gray60 : colors.White};
     min-height: 45px;
+    max-width: 300px;
     font-size: 24px;
     font-weight: bold;
     font-size: 22px;

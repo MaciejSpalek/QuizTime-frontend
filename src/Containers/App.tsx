@@ -5,9 +5,9 @@ import Navbar from '../Components/organisms/Navbar/Navbar';
 import Home from './HomePage/HomePage';
 import AuthPage from './AuthPage/AuthPage';
 import ProfilePage from './ProfilePage/ProfilePage';
-import { routes } from '../routes/index';
 import ErrorPage from './ErrorPage';
 import QuizPage from './QuizPage';
+import { routes } from '../routes/index';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {
@@ -21,7 +21,7 @@ const App = () => {
             <Route exact path={routes.login} component={AuthPage} />
             <Route exact path={routes.register} component={AuthPage} />
             <Route exact path={routes.profile} component={ProfilePage} />
-            <Route exact path={routes.quiz} component={QuizPage} />
+            <Route path={routes.quiz} component={QuizPage} />
             <Route component={ErrorPage} />
           </Switch>
         </MainTemplate>

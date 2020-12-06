@@ -14,7 +14,7 @@ import { profilePageValidation } from './validation';
 import ProfileBar from 'Components/molecules/ProfileBar/ProfileBar';
 import PageTemplate from 'templates/PageTemplate/PageTemplate';
 import QuizList from 'Components/molecules/QuizzesList/QuizzesList';
-import MultiStepForm from 'Components/organisms/MultiStepWrapper';
+import MultiStepForm from 'Components/organisms/MultiStepForm';
 import ThumbnailStep from 'Components/molecules/ThumbnailStep';
 import AddingStep from 'Components/molecules/AddingStep';
 import SubmitStep from 'Components/molecules/SubmitStep';
@@ -123,7 +123,7 @@ const ProfilePage = ({ match }: Props) => {
                 onSubmit={(data, { setSubmitting, resetForm }) => {
                   addQuiz(getData(data.title)).then(res => {
                     setSubmitting(true);
-
+                    console.log(res)
                     if (res.data.message) {
                       dispatch(setToastParameters(true, 'Add at least 5 questions...', 'exclamation-circle'))
                       setTimeout(() => {

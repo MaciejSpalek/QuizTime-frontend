@@ -9,12 +9,14 @@ export const StyledList = styled.ul`
   align-items: flex-start;
   position: fixed;
   top: 60px;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  max-width: 900px;
   background-color: ${colors.White};
   padding: 10px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   z-index: 999;
+  list-style: none;
 `;
 
 export const StyledIcon = styled(FontAwesomeIcon)`

@@ -1,10 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import PageTemplate from 'templates/PageTemplate/PageTemplate';
-import AuthForm from 'templates/FormTemplate/FormTemplate';
-import FormField from 'templates/FormFieldTemplate/FormFieldTemplate';
+import FormField from 'templates/FormFieldTemplate';
 import Input from 'Components/atoms/Input/Input';
-import Label from 'Components/atoms/Label/index';
-import ErrorMessage from 'Components/atoms/ErrorMessage/ErrorMessage';
+import ErrorMessage from 'Components/atoms/ErrorMessage';
 import { routes } from 'routes/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
@@ -12,7 +9,7 @@ import { Formik } from "formik";
 import { authRequest } from 'Auth/requests';
 import { setRequestStatus } from 'redux/Actions/sessionActions';
 import { RouteComponentProps } from 'react-router-dom';
-import { StyledButton, StyledLink } from './AuthPage.styled';
+import { StyledButton, StyledLink, StyledContainer, StyledAuthForm, StyledLabel } from './AuthPage.styled';
 import { authPageValidation } from './validation';
 
 const AuthPage = ({ history }: RouteComponentProps) => {
@@ -48,7 +45,7 @@ const AuthPage = ({ history }: RouteComponentProps) => {
     }, [isAuthenticated, history, user]);
 
     return (
-        <PageTemplate>
+        <StyledContainer>
             <Formik
                 validationSchema={authPageValidation}
                 validateOnChange={true}
@@ -76,9 +73,9 @@ const AuthPage = ({ history }: RouteComponentProps) => {
                     values,
                     errors
                 }) => (
-                        <AuthForm onSubmit={handleSubmit}>
+                        <StyledAuthForm onSubmit={handleSubmit}>
                             <FormField>
-                                <Label
+                                <StyledLabel
                                     text="Name"
                                     forText="name"
                                 />
@@ -97,7 +94,7 @@ const AuthPage = ({ history }: RouteComponentProps) => {
                                     <ErrorMessage id="err_1" text={errors.name} /> : null}
                             </FormField>
                             <FormField>
-                                <Label
+                                <StyledLabel
                                     text="Password"
                                     forText="password"
                                 />
@@ -125,10 +122,10 @@ const AuthPage = ({ history }: RouteComponentProps) => {
                                 to={isLoginRoute() ? routes.register : routes.login}
                                 type="Link"
                             />
-                        </AuthForm>
+                        </StyledAuthForm>
                     )}
             </Formik>
-        </PageTemplate>
+        </StyledContainer>
     );
 };
 

@@ -4,7 +4,7 @@ import colors from 'styles/colors';
 export const HamburgerLine = css`
     width: 100%;
     height: 4px;
-    background-color: ${colors.BasicGreen};
+    background-color: ${colors.Gray20};
     position: absolute;
 `;
 

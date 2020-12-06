@@ -31,7 +31,7 @@ export const authRequest = async (option: AuthType, data: DataType, dispatch: an
         });
 };
 
-export const logout = (dispatch?: any): void => {
+export const logout = (dispatch: any): void => {
     deleteCookie('token');
     deleteCookie('name');
     dispatch(resetLoggedUser());

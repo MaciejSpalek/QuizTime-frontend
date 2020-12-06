@@ -5,7 +5,7 @@ import { FlexCenter } from 'styles/mixins';
 export const StyledNavbar = styled.nav`
     ${FlexCenter};
     justify-content: space-between;
-    background-color: ${colors.Gray80};
+    /* background-color: ${colors.Gray80}; */
     height: 60px;
     padding: 10px;
 `;

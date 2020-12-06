@@ -4,10 +4,13 @@ import PageTemplate from 'templates/PageTemplate';
 import { RouteComponentProps } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setToastParameters } from 'redux/Actions/toastActions';
-import MultiStepForm from 'Components/organisms/MultiStepWrapper';
 import ErrorPage from 'Containers/ErrorPage';
 import { IQuizTemplate } from 'Interfaces/quizInterfaces';
 import PreloaderScreen from 'Components/molecules/PreloaderScreen';
+import { StyledMultiStepForm } from './QuizPage.styled';
+import StartStep from 'Components/molecules/StartStep';
+import LastStep from 'Components/molecules/LastStep';
+import QuestionStep from 'Components/molecules/QuestionStep';
 
 type Match = {
     id: string;
@@ -15,52 +18,72 @@ type Match = {
 };
 
 const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
-    const dispatch = useDispatch();
     const [quiz, setQuiz] = useState<IQuizTemplate | null>(null);
-    const [step, setStep] = useState(1);
     const [isFetch, setIsFetch] = useState(false);
-    const getId = () => match.params.id;
+    const [isOpen, setIsOpen] = useState(false);
+    const [step, setStep] = useState(1);
+    const dispatch = useDispatch();
 
-    const doesExistQuiz = async (id: string) => {
+    const getId = () => match.params.id;
+    const getName = () => match.params.username;
+
+    const fetchQuiz = async (id: string, author: string) => {
         await axiosInstance.get('/quizes/singleQuiz', {
-            params: { id }
+            params: { id, author }
         }).then(res => {
             setIsFetch(true);
             res.data.message ?
                 dispatch(setToastParameters(true, res.data.message, 'exclamation-circle')) :
                 setQuiz(res.data);
         }).catch(error => {
-            setIsFetch(true);
             const errorMessage = { ...error.response }.data.message;
             dispatch(setToastParameters(true, errorMessage, 'exclamation-circle'));
+            setIsFetch(true);
         })
     }
 
-    useEffect(() => {
-        doesExistQuiz(getId());
-    }, [])
+
+    const getFormChildren = () => {
+        const lastStep = <LastStep />
+        const newArray = quiz?.questions?.map(({ _id, answers, content }) => (
+            <QuestionStep
+                answers={answers}
+                content={content}
+                key={_id}
+            />
+        )
+        );
+        if (typeof newArray !== "undefined") {
+            return [...newArray, lastStep];
+        } else {
+            return [];
+        }
+    };
 
     useEffect(() => {
-        console.log('Quiz: ', quiz);
-    }, [quiz])
+        fetchQuiz(getId(), getName());
+    }, []);
 
     return (
         <PageTemplate>
             {isFetch ?
                 quiz ?
-                <MultiStepForm
-                    onSubmit={() => console.log("Submit")}
-                    handleLeftButton={() => setStep(prev => prev - 1)}
-                    handleRightButton={() => setStep(prev => prev + 1)}
-                    counter={step}>
-                    <div>elo</div>
-                    <div>dsdsa</div>
-                    <div>dsadsa</div>
-                    <div>fdsfdsgdew</div>
-                </MultiStepForm> :
-                <ErrorPage /> :
-                <PreloaderScreen />
-            }
+                    isOpen ?
+                        <StyledMultiStepForm
+                            handleRightButton={() => setStep(prev => prev + 1)}
+                            handleLeftButton={() => setStep(prev => prev - 1)}
+                            onSubmit={() => console.log("Submit")}
+                            children={getFormChildren()}
+                            counter={step}
+                        /> :
+                        <StartStep
+                            onClick={() => setIsOpen(true)}
+                            colors={quiz.colors}
+                            icon={quiz.iconName}
+                            title={quiz.title}
+                        /> :
+                    <ErrorPage /> :
+                <PreloaderScreen />}
         </PageTemplate>
     );
 };
