@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Answer from './Answer';
 import { IQuestionStep } from './QuestionStep.model';
 import {
@@ -10,23 +10,38 @@ import {
     StyledContent
 } from './QuestionStep.styled';
 
-const QuestionStep = ({ index, content, answers, ...props }: IQuestionStep): JSX.Element => {
+const QuestionStep = ({ 
+    index, 
+    values, 
+    content, 
+    answers, 
+    handleBlur, 
+    handleChange,
+    ...props }: IQuestionStep): JSX.Element => {
+
+    useEffect(() => {
+        console.log(values.answers)
+    }, [values])
+
     return (
         <StyledContainer {...props}>
             <StyledQuestionWrapper>
-                <StyledLegend> Question {index} </StyledLegend>
+                <StyledLegend> Question {index+1} </StyledLegend>
                 <StyledContent> {content} </StyledContent>
             </StyledQuestionWrapper>
             <StyledAnswersList>
                 {answers.map(({ option, content, isCorrect }) =>
                     <StyledListItem key={option}>
-                        <Answer 
+                        <Answer
                             option={option}
+                            questionIndex={index}
                             content={content}
                             isCorrect={isCorrect}
+                            values={values}
+                            handleBlur={handleBlur}
+                            handleChange={handleChange}
                         />
-                    </StyledListItem>
-                )}
+                    </StyledListItem>)}
             </StyledAnswersList>
         </StyledContainer>
     )

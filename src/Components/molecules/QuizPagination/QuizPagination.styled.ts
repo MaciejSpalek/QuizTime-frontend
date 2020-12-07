@@ -32,7 +32,12 @@ export const StyledEmptySquare = styled.div`
 `
 
 export const StyledIconButton = styled(IconButton)`
+    background-color: transparent;
     min-height: 45px;
     width: 45px;
+    svg {
+        color: ${colors.BasicGreen};
+        font-size: 40px;
+    }
 `
 

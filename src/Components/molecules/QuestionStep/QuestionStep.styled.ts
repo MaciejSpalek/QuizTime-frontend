@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import colors from "styles/colors";
-import Paragraph from "Components/atoms/Paragraph";
 import { FlexCenter, FlexColumn } from "styles/mixins";
 
 export const StyledContainer = styled.div`
@@ -40,13 +39,13 @@ export const StyledLegend = styled.span`
 
 export const StyledContent = styled.span`
   color: ${colors.Gray40};
-  font-size: 18px;
+  font-size: 16px;
 `;
 
 export const StyledAnswersList = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 5px;
+  grid-gap: 10px;
   @media (min-width: 600px) {
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
@@ -56,11 +55,5 @@ export const StyledAnswersList = styled.ul`
 
 export const StyledListItem = styled.li`
   width: 100%;
-  height: 65px;
-  border: 2px solid ${colors.Gray80};
-  margin: 10px 0;
-  :last-of-type {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-  }
+  height: 65px;  
 `;

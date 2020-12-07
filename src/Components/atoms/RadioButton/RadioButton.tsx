@@ -12,8 +12,8 @@ const RadioButton = ({
     name, 
     label, 
     value, 
-    checked, 
     onBlur, 
+    checked, 
     onChange,
     ...props 
 }: IRadioButton): JSX.Element=> {

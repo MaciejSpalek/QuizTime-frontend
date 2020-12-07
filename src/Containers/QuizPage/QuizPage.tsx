@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { axiosInstance } from 'services/api';
 import PageTemplate from 'templates/PageTemplate';
 import { RouteComponentProps } from 'react-router-dom';
@@ -11,6 +11,8 @@ import { StyledMultiStepForm } from './QuizPage.styled';
 import StartStep from 'Components/molecules/StartStep';
 import LastStep from 'Components/molecules/LastStep';
 import QuestionStep from 'Components/molecules/QuestionStep';
+import { quizPageValidation } from './validation';
+import { Formik } from 'formik';
 
 type Match = {
     id: string;
@@ -43,13 +45,16 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
     }
 
 
-    const getFormChildren = () => {
+    const getFormChildren = (handleChange: (e: ChangeEvent<HTMLElement>) => void, handleBlur: (e: ChangeEvent<HTMLElement>) => void, values: any) => {
         const lastStep = <LastStep />
-        const newArray = quiz?.questions?.map(({ _id, answers, content }, index) => 
+        const newArray = quiz?.questions?.map(({ _id, answers, content }, index) =>
             <QuestionStep
-                index={index + 1}
+                index={index}
                 answers={answers}
                 content={content}
+                values={values}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
                 key={_id}
             />
         );
@@ -69,13 +74,31 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
             {isFetch ?
                 quiz ?
                     isOpen ?
-                        <StyledMultiStepForm
-                            handleRightButton={() => setStep(prev => prev + 1)}
-                            handleLeftButton={() => setStep(prev => prev - 1)}
-                            onSubmit={() => console.log("Submit")}
-                            children={getFormChildren()}
-                            counter={step}
-                        /> :
+                        <Formik
+                            validateOnChange={true}
+                            initialValues={{ answers: [] }}
+                            validationSchema={quizPageValidation}
+                            onSubmit={(data, { setSubmitting }) => {
+
+                            }}>
+                            {({
+                                handleChange,
+                                isSubmitting,
+                                handleSubmit,
+                                handleBlur,
+                                touched,
+                                values,
+                                errors
+                            }) => (
+                                    <StyledMultiStepForm
+                                        children={getFormChildren(handleChange, handleBlur, values)}
+                                        handleRightButton={() => setStep(prev => prev + 1)}
+                                        handleLeftButton={() => setStep(prev => prev - 1)}
+                                        onSubmit={handleSubmit}
+                                        counter={step}
+                                    />
+                                )}
+                        </Formik> :
                         <StartStep
                             onClick={() => setIsOpen(true)}
                             colors={quiz.colors}
@@ -84,7 +107,7 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
                         /> :
                     <ErrorPage /> :
                 <PreloaderScreen />}
-        </PageTemplate>
+        </PageTemplate >
     );
 };
 

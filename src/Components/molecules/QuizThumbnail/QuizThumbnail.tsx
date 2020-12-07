@@ -2,10 +2,10 @@ import React from 'react'
 import { IconName } from '@fortawesome/fontawesome-svg-core'
 import { getScore } from 'helpers/getters';
 import { IQuizThumbnail } from './QuizThumbnail.model';
-import { 
-    StyledImageWrapper, 
+import {
+    StyledImageWrapper,
     StyledTextWrapper,
-    StyledContainer, 
+    StyledContainer,
     StyledAuthorTag,
     StyledTitle,
     StyledScore,
@@ -13,25 +13,28 @@ import {
 } from './QuizThumbnail.styled';
 
 
- const QuizThumbnail = ({ parameters, ...props }: IQuizThumbnail)=> {
-    const { 
+const QuizThumbnail = ({ parameters, ...props }: IQuizThumbnail) => {
+    const {
         author,
-        title, 
+        title,
         iconName,
-        colors,
-        amountOfQuestions
+        amountOfQuestions,
+        colors: {
+            primary,
+            secondary
+        },
     } = parameters;
 
     return (
-        <StyledContainer {...props} primarycolor={colors.primary}>
-            <StyledImageWrapper secondarycolor={colors.secondary}>
-                <StyledIcon 
-                    icon={iconName as IconName} 
-                    primarycolor={colors.primary}
+        <StyledContainer {...props} primarycolor={primary}>
+            <StyledImageWrapper secondarycolor={secondary}>
+                <StyledIcon
+                    icon={iconName as IconName}
+                    primarycolor={primary}
                 />
-                <StyledScore 
+                <StyledScore
                     text={getScore(+`${amountOfQuestions}`)}
-                    color={colors.primary}
+                    color={primary}
                 />
             </StyledImageWrapper>
             <StyledTextWrapper>
