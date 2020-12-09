@@ -6,7 +6,7 @@ import { FlexColumn } from 'styles/mixins';
 export const StyledContainter = styled.div`
     ${FlexColumn};
     height: 100%;
-    background-color: ${colors.White};
+    background-color: ${colors.Gray100};
     overflow: auto;
 `;
 

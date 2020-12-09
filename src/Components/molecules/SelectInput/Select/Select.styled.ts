@@ -19,6 +19,7 @@ export const StyledTopWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 45px;
+  background-color: ${colors.White};
   padding: 0 10px;
   cursor: pointer;
 `;
@@ -27,10 +28,10 @@ export const StyledSelect = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  background-color: ${colors.White};
   width: 100%;
   max-height: 250px;
-  list-style: none;
-  margin-top: 10px;
   padding: 0 10px;
+  list-style: none;
   overflow-y: auto;
 `;

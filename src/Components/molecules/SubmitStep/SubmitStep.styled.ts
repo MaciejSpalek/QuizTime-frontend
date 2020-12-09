@@ -6,7 +6,7 @@ export const StyledSubmitStep = styled.div`
   ${FlexColumn};
   width: 100%;
   height: 100%;
-  background-color: ${colors.White};
+  background-color: ${colors.Gray100};
   overflow-y: scroll;
 `;
 

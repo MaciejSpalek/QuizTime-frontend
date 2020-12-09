@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import colors from 'styles/colors';
 import { FlexCenter } from 'styles/mixins';
 
 export const StyledContainer = styled.div`
@@ -7,4 +8,5 @@ export const StyledContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   height: calc(100vh - 60px);
+  background-color: ${colors.Gray100}
 `;

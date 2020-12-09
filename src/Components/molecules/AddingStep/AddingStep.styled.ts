@@ -7,7 +7,7 @@ import { FlexColumn } from 'styles/mixins';
 export const StyledContainer = styled.div`
     ${FlexColumn};
     height: 100%;
-    background-color: ${colors.White};
+    background-color: ${colors.Gray100};
     overflow: auto;
 `;
 
@@ -16,7 +16,7 @@ export const StyledWrapper = styled.div`
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, 1fr);
     width: 100%;
-    background-color: ${colors.White};
+    background-color: ${colors.Gray100};
 `;
 
 export const StyledButton = styled(Button)`

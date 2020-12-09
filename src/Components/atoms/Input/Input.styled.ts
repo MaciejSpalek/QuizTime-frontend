@@ -9,5 +9,4 @@ export const StyledInput = styled.input`
   background-color: ${colors.White};
   border: 2px solid ${colors.Gray80};
   border-radius: 5px;
-  transition: box-shadow 0.3s ease-in-out;
 `;

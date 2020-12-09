@@ -11,12 +11,12 @@ export const StyledContainer = styled.div`
     width: 100%;
     height: 60px;
     justify-content: space-between;
-    background-color: ${colors.White};
+    background-color: ${colors.Gray100};
     padding: 10px;
 `;
 
 export const StyledReadingGlass = styled(ReadingGlass)`
     width: 25px;
     height: 25px;
-    margin: 0 0 0 10px;
+    margin-left: 10px;
 `;

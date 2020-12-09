@@ -7,7 +7,7 @@ export const StyledPagination = styled.div`
     ${FlexCenter};
     justify-content: center;
     height: 60px;
-    background-color: ${colors.White};
+    background-color: ${colors.Gray100};
 `
 
 export const StyledCenterSquare = styled.div`
