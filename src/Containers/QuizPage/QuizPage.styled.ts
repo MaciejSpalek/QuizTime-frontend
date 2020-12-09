@@ -7,6 +7,7 @@ export const StyledMultiStepForm = styled(MultiStepForm)`
 
   form {
     height: calc(100vh - 2 * 60px);
+    padding: 0;
   }
 
   #pagination {

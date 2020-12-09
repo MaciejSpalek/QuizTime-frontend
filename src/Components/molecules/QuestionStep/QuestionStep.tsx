@@ -17,12 +17,8 @@ const QuestionStep = ({
     answers, 
     handleBlur, 
     handleChange,
-    ...props }: IQuestionStep): JSX.Element => {
-
-    useEffect(() => {
-        console.log(values.answers)
-    }, [values])
-
+    ...props 
+}: IQuestionStep): JSX.Element => {
     return (
         <StyledContainer {...props}>
             <StyledQuestionWrapper>

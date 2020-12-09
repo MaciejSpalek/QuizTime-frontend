@@ -20,7 +20,6 @@ export const StyledForm = styled(FormTemplate)`
     top: 0;
     left: 0;
     height: calc(100vh - 3 * 60px);
-
 `;
 
 export const StyledPagination = styled(QuizPagination)`

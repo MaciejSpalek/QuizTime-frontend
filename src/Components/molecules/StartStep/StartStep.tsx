@@ -1,5 +1,5 @@
 import Button from 'Components/atoms/Button';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { IStartStep } from './StartStep.model';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -18,7 +18,6 @@ const StartStep = ({ onClick, icon, colors, title }: IStartStep): JSX.Element =>
         history.push('/')
     };
     
- 
     return (
         <StyledPageTemplate>
             <StyledWrapper secondary={colors.secondary}>

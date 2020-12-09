@@ -1,5 +1,5 @@
 import { IFormAnswer } from 'Interfaces/quizInterfaces';
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
 import { IAnswer } from './Answer.model';
 import {
     StyledAnswer,

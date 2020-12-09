@@ -8,6 +8,8 @@ export const StyledContainer = styled.div`
   height: calc(100vh - 2 * 60px);
   padding-top: 20px;
   overflow: auto;
+  background-color: ${colors.Gray100};
+  padding: 20px 10px;
   @media (min-width: 1024px) {
     justify-content: center;
   }
@@ -19,7 +21,7 @@ export const StyledQuestionWrapper = styled.div`
   justify-content: flex-start;
   width: 100%;
   min-height: 100px;
-  border: 2px solid ${colors.Gray80};
+  border: 2px solid ${colors.Gray60};
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   margin-bottom: 10px;
@@ -33,12 +35,12 @@ export const StyledLegend = styled.span`
   font-size: 20px;
   font-weight: bold;
   color: ${colors.Gray20};
-  background-color: ${colors.White};
+  background-color: ${colors.Gray100};
   padding: 0 10px;
 `;
 
 export const StyledContent = styled.span`
-  color: ${colors.Gray40};
+  color: ${colors.Gray20};
   font-size: 16px;
 `;
 

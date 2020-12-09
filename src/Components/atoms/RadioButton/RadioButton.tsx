@@ -28,7 +28,7 @@ const RadioButton = ({
                 onBlur={onBlur} 
                 onChange={onChange} 
                 checked={checked}
-                />
+            />
             <Label text={label} forText={id}/>
         </StyledWrapper>
     )

@@ -45,8 +45,13 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
     }
 
 
-    const getFormChildren = (handleChange: (e: ChangeEvent<HTMLElement>) => void, handleBlur: (e: ChangeEvent<HTMLElement>) => void, values: any) => {
-        const lastStep = <LastStep />
+    const getFormChildren = (
+        handleChange: (e: ChangeEvent<HTMLElement>) => void, 
+        handleBlur: (e: ChangeEvent<HTMLElement>) => void, 
+        values: any,
+        errors: any,
+        ) => {
+        const lastStep = <LastStep errors={errors}  values={values} />
         const newArray = quiz?.questions?.map(({ _id, answers, content }, index) =>
             <QuestionStep
                 index={index}
@@ -79,7 +84,7 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
                             initialValues={{ answers: [] }}
                             validationSchema={quizPageValidation}
                             onSubmit={(data, { setSubmitting }) => {
-
+                                console.log(data)
                             }}>
                             {({
                                 handleChange,
@@ -91,7 +96,7 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
                                 errors
                             }) => (
                                     <StyledMultiStepForm
-                                        children={getFormChildren(handleChange, handleBlur, values)}
+                                        children={getFormChildren(handleChange, handleBlur, values, errors)}
                                         handleRightButton={() => setStep(prev => prev + 1)}
                                         handleLeftButton={() => setStep(prev => prev - 1)}
                                         onSubmit={handleSubmit}
