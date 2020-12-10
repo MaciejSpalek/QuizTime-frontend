@@ -15,6 +15,7 @@ import { quizPageValidation } from './validation';
 import { Formik } from 'formik';
 import { IValues } from './QuizPage.model';
 import ScoreWindow from 'Components/molecules/ScoreWindow';
+import { setCurrentScore } from 'redux/Actions/quizActions';
 
 type Match = {
     id: string;
@@ -47,8 +48,17 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
         })
     };
 
+    const getScore = (data: IValues, amountOfQuestions: number) => {
+        const correctAnswersArray = quiz?.questions?.map(question => question.answers.find(answer => answer.isCorrect )).map(answer => answer?.option);
+        const userAnswersArray = data.answers;
+        const amountOfCorrectAnswers = userAnswersArray.filter((answer, index) => correctAnswersArray && answer === correctAnswersArray[index]).length;
+        console.log(correctAnswersArray)
+        return `${amountOfCorrectAnswers}/${amountOfQuestions}`;
+    };
+
+
     const onSubmit = (
-        data: { answers: string[] },
+        data: IValues,
         amountOfQuestions: number,
         setSubmitting: (isSubmitting: boolean) => void
     ) => {
@@ -58,6 +68,7 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
             dispatch(setToastParameters(true, 'Successfuly done!'));
             setIsTheQuizSolved(true);
             setIsTheQuizOpen(false);
+            dispatch(setCurrentScore(getScore(data, amountOfQuestions)))
             // 1 dodanie score
             // 2 pokazanie wyników
         } else {
@@ -95,7 +106,11 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
 
     useEffect(() => {
         fetchQuiz(getId(), getName());
+        
     }, []);
+
+    useEffect(() => {
+    }, [quiz]);
 
     return (
         <PageTemplate>
