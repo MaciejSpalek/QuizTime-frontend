@@ -13,6 +13,8 @@ import LastStep from 'Components/molecules/LastStep';
 import QuestionStep from 'Components/molecules/QuestionStep';
 import { quizPageValidation } from './validation';
 import { Formik } from 'formik';
+import { IValues } from './QuizPage.model';
+import ScoreWindow from 'Components/molecules/ScoreWindow';
 
 type Match = {
     id: string;
@@ -22,7 +24,8 @@ type Match = {
 const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
     const [quiz, setQuiz] = useState<IQuizTemplate | null>(null);
     const [isFetch, setIsFetch] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
+    const [isTheQuizOpen, setIsTheQuizOpen] = useState(false);
+    const [isTheQuizSolved, setIsTheQuizSolved] = useState(false);
     const [step, setStep] = useState(1);
     const dispatch = useDispatch();
 
@@ -42,47 +45,44 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
             dispatch(setToastParameters(true, errorMessage, 'exclamation-circle'));
             setIsFetch(true);
         })
-    }
-
+    };
 
     const onSubmit = (
         data: { answers: string[] },
         amountOfQuestions: number,
         setSubmitting: (isSubmitting: boolean) => void
     ) => {
-        console.log(data);
         setSubmitting(true)
         const didSelectAllQuestions = () => data.answers.filter(el => el).length >= amountOfQuestions;
         if (didSelectAllQuestions()) {
-            dispatch(setToastParameters(true, 'Successfuly done!'))
-            setTimeout(() => {
-                setSubmitting(false);
-            }, 3000);
+            dispatch(setToastParameters(true, 'Successfuly done!'));
+            setIsTheQuizSolved(true);
+            setIsTheQuizOpen(false);
             // 1 dodanie score
             // 2 pokazanie wyników
         } else {
-            dispatch(setToastParameters(true, `Answer all questions`, 'exclamation-circle'))
+            dispatch(setToastParameters(true, `Answer all questions...`, 'exclamation-circle'));
             setTimeout(() => {
                 setSubmitting(false);
             }, 3000);
         }
-    }
+    };
 
     const getFormChildren = (
         handleChange: (e: ChangeEvent<HTMLElement>) => void,
         handleBlur: (e: ChangeEvent<HTMLElement>) => void,
         isSubmitting: boolean,
-        values: any
+        values: IValues
     ) => {
         const lastStep = <LastStep isSubmitting={isSubmitting} />
         const newArray = quiz?.questions?.map(({ _id, answers, content }, index) =>
             <QuestionStep
-                index={index}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
                 answers={answers}
                 content={content}
                 values={values}
-                handleBlur={handleBlur}
-                handleChange={handleChange}
+                index={index}
                 key={_id}
             />
         );
@@ -101,7 +101,7 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
         <PageTemplate>
             {isFetch ?
                 quiz ?
-                    isOpen ?
+                    isTheQuizOpen ?
                         <Formik
                             validateOnChange={true}
                             initialValues={{ answers: [] }}
@@ -114,12 +114,10 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
                                 isSubmitting,
                                 handleSubmit,
                                 handleBlur,
-                                touched,
-                                values,
-                                errors
+                                values
                             }) => (
                                     <StyledMultiStepForm
-                                        children={getFormChildren(handleChange, handleBlur, isSubmitting, values )}
+                                        children={getFormChildren(handleChange, handleBlur, isSubmitting, values)}
                                         handleRightButton={() => setStep(prev => prev + 1)}
                                         handleLeftButton={() => setStep(prev => prev - 1)}
                                         onSubmit={handleSubmit}
@@ -127,12 +125,14 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
                                     />
                                 )}
                         </Formik> :
-                        <StartStep
-                            onClick={() => setIsOpen(true)}
-                            colors={quiz.colors}
-                            icon={quiz.iconName}
-                            title={quiz.title}
-                        /> :
+                        (isTheQuizSolved ?
+                            <ScoreWindow /> :
+                            <StartStep
+                                onClick={() => setIsTheQuizOpen(true)}
+                                colors={quiz.colors}
+                                icon={quiz.iconName}
+                                title={quiz.title}
+                            />) :
                     <ErrorPage /> :
                 <PreloaderScreen />}
         </PageTemplate >
