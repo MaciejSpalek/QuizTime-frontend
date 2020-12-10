@@ -8,6 +8,7 @@ export const StyledContainer = styled.div`
     width: 100%;
     padding: 10px;
     height: 60px;
+    background-color: ${colors.Gray80};
 `;
 
 export const StyledUserTag = styled.span`

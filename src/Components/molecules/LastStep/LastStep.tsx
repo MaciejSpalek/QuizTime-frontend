@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ILastStep } from './LastStep.model';
 import {
     StyledContainer,
@@ -7,17 +7,7 @@ import {
     StyledIcon
 } from './LastStep.styled';
 
-const LastStep = ({ errors, values }: ILastStep) => {
-    const [ isFirstRender, setIsFirstRender ] = useState(true);
-    const isDisabled = () => {
-        if(isFirstRender) return true; 
-        return errors.answers && !!errors.answers.length
-    };
-       
-    useEffect(() => {
-        values.answers.length && setIsFirstRender(false);
-    }, [values]);
-
+const LastStep = ({ isSubmitting }: ILastStep) => {
     return (
         <StyledContainer>
             <StyledIcon icon={['far', 'list-alt']} />
@@ -27,7 +17,7 @@ const LastStep = ({ errors, values }: ILastStep) => {
             <StyledButton
                 type='submit'
                 text='Check answers'
-                isDisabled={isDisabled()}
+                isDisabled={isSubmitting}
             />
         </StyledContainer>
     );

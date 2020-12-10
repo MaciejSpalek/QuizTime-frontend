@@ -45,13 +45,36 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
     }
 
 
+    const onSubmit = (
+        data: { answers: string[] },
+        amountOfQuestions: number,
+        setSubmitting: (isSubmitting: boolean) => void
+    ) => {
+        console.log(data);
+        setSubmitting(true)
+        const didSelectAllQuestions = () => data.answers.filter(el => el).length >= amountOfQuestions;
+        if (didSelectAllQuestions()) {
+            dispatch(setToastParameters(true, 'Successfuly done!'))
+            setTimeout(() => {
+                setSubmitting(false);
+            }, 3000);
+            // 1 dodanie score
+            // 2 pokazanie wyników
+        } else {
+            dispatch(setToastParameters(true, `Answer all questions`, 'exclamation-circle'))
+            setTimeout(() => {
+                setSubmitting(false);
+            }, 3000);
+        }
+    }
+
     const getFormChildren = (
-        handleChange: (e: ChangeEvent<HTMLElement>) => void, 
-        handleBlur: (e: ChangeEvent<HTMLElement>) => void, 
-        values: any,
-        errors: any,
-        ) => {
-        const lastStep = <LastStep errors={errors}  values={values} />
+        handleChange: (e: ChangeEvent<HTMLElement>) => void,
+        handleBlur: (e: ChangeEvent<HTMLElement>) => void,
+        isSubmitting: boolean,
+        values: any
+    ) => {
+        const lastStep = <LastStep isSubmitting={isSubmitting} />
         const newArray = quiz?.questions?.map(({ _id, answers, content }, index) =>
             <QuestionStep
                 index={index}
@@ -84,7 +107,7 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
                             initialValues={{ answers: [] }}
                             validationSchema={quizPageValidation}
                             onSubmit={(data, { setSubmitting }) => {
-                                console.log(data)
+                                onSubmit(data, +`${quiz.amountOfQuestions}`, setSubmitting)
                             }}>
                             {({
                                 handleChange,
@@ -96,7 +119,7 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
                                 errors
                             }) => (
                                     <StyledMultiStepForm
-                                        children={getFormChildren(handleChange, handleBlur, values, errors)}
+                                        children={getFormChildren(handleChange, handleBlur, isSubmitting, values )}
                                         handleRightButton={() => setStep(prev => prev + 1)}
                                         handleLeftButton={() => setStep(prev => prev - 1)}
                                         onSubmit={handleSubmit}
