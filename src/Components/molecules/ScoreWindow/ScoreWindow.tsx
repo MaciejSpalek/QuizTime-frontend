@@ -1,10 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
 import { StyledContainer, StyledScore } from './ScoreWindow.styled';
 
-const  ScoreWindow = (): JSX.Element => {
+const ScoreWindow = (): JSX.Element => {
+    const score = useSelector<RootState>(state => state.quizes.formColor)
     return (
         <StyledContainer>
-            <StyledScore> 10/20 </StyledScore>
+            <StyledScore> {score} </StyledScore>
         </StyledContainer>
     );
 };
