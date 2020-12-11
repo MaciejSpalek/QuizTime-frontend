@@ -23,6 +23,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const [isTheQuizSolved, setIsTheQuizSolved] = useState(false);
     const [step, setStep] = useState(1);
     const [score, setScore] = useState('');
+
     const dispatch = useDispatch();
 
     const getId = () => match.params.id;
@@ -71,6 +72,12 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
         }
     };
 
+    const resetQuiz = () => {
+        setIsTheQuizSolved(false);
+        setScore('');
+        setStep(1);
+    } 
+
     const getFormChildren = (
         handleChange: (e: ChangeEvent<HTMLElement>) => void,
         handleBlur: (e: ChangeEvent<HTMLElement>) => void,
@@ -99,6 +106,10 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     useEffect(() => {
         fetchQuiz(getId(), getName());
     }, []);
+
+    useEffect(() => {
+        console.log("Open ?: ", isTheQuizOpen, "solved ?: ",isTheQuizSolved)
+    }, [isTheQuizOpen, isTheQuizSolved]);
 
 
     return (
@@ -130,7 +141,11 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                                 )}
                         </Formik> :
                         (isTheQuizSolved ?
-                            <ScoreWindow score={score} questions={quiz.questions} /> :
+                            <ScoreWindow 
+                                score={score} 
+                                questions={quiz.questions} 
+                                closeTheQuiz={resetQuiz}
+                            /> :
                             <StartStep
                                 onClick={() => setIsTheQuizOpen(true)}
                                 colors={quiz.colors}

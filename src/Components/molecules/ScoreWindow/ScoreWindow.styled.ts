@@ -17,6 +17,7 @@ export const StyledTopWrapper = styled.div`
     border-radius: 5px;
     background-color: ${colors.White};
     padding: 20px;
+    margin-bottom: 5px;
 `;
 
 export const StyledText = styled.span`
