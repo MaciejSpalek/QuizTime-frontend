@@ -5,7 +5,6 @@ import {
 } from "Interfaces/quizInterfaces";
 
 type QuizState = {
-  currentScore: string;
   formQuestions: IFormQuestion[];
   formColor: IFormColor;
   formCounter: number;
@@ -14,7 +13,6 @@ type QuizState = {
 };
 
 const initialState: QuizState = {
-  currentScore: '',
   formQuestions: [],
   formQuestionsCounter: 0,
   formCounter: 1,
@@ -27,13 +25,6 @@ const initialState: QuizState = {
 
 export const quizReducer = (state = initialState, action: any): QuizState => {
   switch (action.type) {
-    case QuizTypes.SET_CURRENT_SCORE: {
-      return {
-        ...state,
-        currentScore: action.payload,
-      };
-    }
-
     case QuizTypes.SET_FORM_COUNTER: {
       return {
         ...state,

@@ -1,14 +1,6 @@
 import { QuizTypes } from "../Types/quizTypes";
 import { IFormColor, IFormQuestion } from "Interfaces/quizInterfaces";
 
-export const setCurrentScore = (score: string) => (dispatch: any) => {
-  dispatch({
-    type: QuizTypes.SET_CURRENT_SCORE,
-    payload: score,
-  });
-};
-
-
 export const setFormQuestions = (array: IFormQuestion[]) => (dispatch: any) => {
   dispatch({
     type: QuizTypes.SET_FORM_QUESTIONS,

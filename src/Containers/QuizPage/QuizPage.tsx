@@ -13,21 +13,16 @@ import LastStep from 'Components/molecules/LastStep';
 import QuestionStep from 'Components/molecules/QuestionStep';
 import { quizPageValidation } from './validation';
 import { Formik } from 'formik';
-import { IValues } from './QuizPage.model';
+import { IValues, TQuizPage } from './QuizPage.model';
 import ScoreWindow from 'Components/molecules/ScoreWindow';
-import { setCurrentScore } from 'redux/Actions/quizActions';
 
-type Match = {
-    id: string;
-    username: string;
-};
-
-const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
+const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const [quiz, setQuiz] = useState<IQuizTemplate | null>(null);
     const [isFetch, setIsFetch] = useState(false);
     const [isTheQuizOpen, setIsTheQuizOpen] = useState(false);
     const [isTheQuizSolved, setIsTheQuizSolved] = useState(false);
     const [step, setStep] = useState(1);
+    const [score, setScore] = useState('');
     const dispatch = useDispatch();
 
     const getId = () => match.params.id;
@@ -52,7 +47,6 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
         const correctAnswersArray = quiz?.questions?.map(question => question.answers.find(answer => answer.isCorrect )).map(answer => answer?.option);
         const userAnswersArray = data.answers;
         const amountOfCorrectAnswers = userAnswersArray.filter((answer, index) => correctAnswersArray && answer === correctAnswersArray[index]).length;
-        console.log(correctAnswersArray)
         return `${amountOfCorrectAnswers}/${amountOfQuestions}`;
     };
 
@@ -68,9 +62,7 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
             dispatch(setToastParameters(true, 'Successfuly done!'));
             setIsTheQuizSolved(true);
             setIsTheQuizOpen(false);
-            dispatch(setCurrentScore(getScore(data, amountOfQuestions)))
-            // 1 dodanie score
-            // 2 pokazanie wyników
+            setScore(getScore(data, amountOfQuestions))
         } else {
             dispatch(setToastParameters(true, `Answer all questions...`, 'exclamation-circle'));
             setTimeout(() => {
@@ -106,11 +98,8 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
 
     useEffect(() => {
         fetchQuiz(getId(), getName());
-        
     }, []);
 
-    useEffect(() => {
-    }, [quiz]);
 
     return (
         <PageTemplate>
@@ -141,7 +130,7 @@ const QuizPage = ({ match }: RouteComponentProps<Match>): JSX.Element => {
                                 )}
                         </Formik> :
                         (isTheQuizSolved ?
-                            <ScoreWindow /> :
+                            <ScoreWindow score={score} questions={quiz.questions} /> :
                             <StartStep
                                 onClick={() => setIsTheQuizOpen(true)}
                                 colors={quiz.colors}
