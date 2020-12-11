@@ -107,11 +107,6 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
         fetchQuiz(getId(), getName());
     }, []);
 
-    useEffect(() => {
-        console.log("Open ?: ", isTheQuizOpen, "solved ?: ",isTheQuizSolved)
-    }, [isTheQuizOpen, isTheQuizSolved]);
-
-
     return (
         <PageTemplate>
             {isFetch ?
