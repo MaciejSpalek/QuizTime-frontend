@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Answer from './Answer';
 import { IQuestionStep } from './QuestionStep.model';
 import {
@@ -15,6 +15,7 @@ const QuestionStep = ({
     values, 
     content, 
     answers, 
+    readonly,
     handleBlur, 
     handleChange,
     ...props 
@@ -29,6 +30,7 @@ const QuestionStep = ({
                 {answers.map(({ option, content, isCorrect }) =>
                     <StyledListItem key={option}>
                         <Answer
+                        readonly={readonly}
                             option={option}
                             questionIndex={index}
                             content={content}

@@ -9,27 +9,29 @@ import {
 } from './Answer.styled';
 
 const Answer = ({
-    questionIndex,
-    values,
-    handleChange,
-    handleBlur,
     option,
+    values,
     content,
+    readonly,
     isCorrect,
+    handleBlur,
+    handleChange,
+    questionIndex,
     ...props
 }: IFormAnswer & IAnswer): JSX.Element => {
-    const isSelect = () => values.answers[questionIndex] === option;
+    const isSelect = () => values?.answers[questionIndex] === option;
     return (
         <StyledAnswer isSelect={isSelect()} {...props}>
-            <StyledRadioButton
-                name={`answers[${questionIndex}]`}
-                onChange={handleChange}
-                id={`radio-${option}`}
-                checked={isSelect()}
-                onBlur={handleBlur}
-                value={option}
-                label=""
-            />
+            {!readonly &&
+                <StyledRadioButton
+                    name={`answers[${questionIndex}]`}
+                    onChange={handleChange}
+                    id={`radio-${option}`}
+                    checked={isSelect()}
+                    onBlur={handleBlur}
+                    value={option}
+                    label=""
+                />}
             <StyledLegend isSelect={isSelect()}>
                 {`${option}.`}
             </StyledLegend>

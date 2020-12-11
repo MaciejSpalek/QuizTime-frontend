@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import PageTemplate from 'templates/PageTemplate';
-import { FlexCenter } from 'styles/mixins';
 import Button from 'Components/atoms/Button';
+import QuestionStep from '../QuestionStep';
+import { FlexCenter, FlexColumn } from 'styles/mixins';
 
 
 export const StyledContainer = styled(PageTemplate)`
+    overflow: auto;
     padding: 20px 10px;
 `;
-
 
 export const StyledTopWrapper = styled.div`
     ${FlexCenter}
@@ -30,16 +31,25 @@ export const StyledScore = styled.span`
     color: ${colors.BasicGreen};
 `;
 
-export const StyledList = styled.ul`
+export const StyledQuestionList = styled.ul`
+    ${FlexColumn};
+    justify-content: flex-start;
     list-style: none;
+    margin-top: 20px;
 `;
 
-export const StyledListItem = styled.li`
+export const StyledQuestionListItem = styled.li`
 
 `;
+
 
 export const StyledButton = styled(Button)`
     width: 300px;
 
 `;
+export const StyledQuestionStep = styled(QuestionStep)`
+    height: auto;
+    padding: 20px 0;
+`;
+
 

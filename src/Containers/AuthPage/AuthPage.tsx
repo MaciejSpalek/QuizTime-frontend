@@ -32,7 +32,7 @@ const AuthPage = ({ history }: RouteComponentProps) => {
     const isLoginRoute = () => history.location.pathname === routes.login;
 
     useEffect(() => {
-        let timeout: number
+        let timeout: number;
         if (isAuthenticated) {
             timeout = setTimeout(() => {
                 history.push(`/${user}`);

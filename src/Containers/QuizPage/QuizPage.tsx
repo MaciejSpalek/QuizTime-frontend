@@ -23,11 +23,16 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const [isTheQuizSolved, setIsTheQuizSolved] = useState(false);
     const [step, setStep] = useState(1);
     const [score, setScore] = useState('');
-
     const dispatch = useDispatch();
 
     const getId = () => match.params.id;
     const getName = () => match.params.username;
+
+    const resetQuiz = () => {
+        setIsTheQuizSolved(false);
+        setScore('');
+        setStep(1);
+    } ;
 
     const fetchQuiz = async (id: string, author: string) => {
         await axiosInstance.get('/quizes/singleQuiz', {
@@ -72,11 +77,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
         }
     };
 
-    const resetQuiz = () => {
-        setIsTheQuizSolved(false);
-        setScore('');
-        setStep(1);
-    } 
+   
 
     const getFormChildren = (
         handleChange: (e: ChangeEvent<HTMLElement>) => void,
@@ -91,6 +92,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                 handleBlur={handleBlur}
                 answers={answers}
                 content={content}
+                readonly={false}
                 values={values}
                 index={index}
                 key={_id}
