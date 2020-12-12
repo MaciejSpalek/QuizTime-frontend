@@ -6,6 +6,7 @@ export interface IQuestionStep {
     content: string;
     readonly: boolean;
     answers: IFormAnswer [];
+    array?: (string | null)[]; 
     values?: {answers: string[]};
     handleBlur?: (e:ChangeEvent<HTMLElement>) => void;
     handleChange?: (e:ChangeEvent<HTMLElement>) => void;

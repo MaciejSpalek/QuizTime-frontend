@@ -15,6 +15,7 @@ import { quizPageValidation } from './validation';
 import { Formik } from 'formik';
 import { IValues, TQuizPage } from './QuizPage.model';
 import ScoreWindow from 'Components/molecules/ScoreWindow';
+import { setCorrectAnswersArray, setUserAnswersArray } from 'redux/Actions/quizActions';
 
 const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const [quiz, setQuiz] = useState<IQuizTemplate | null>(null);
@@ -50,9 +51,12 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     };
 
     const getScore = (data: IValues, amountOfQuestions: number) => {
-        const correctAnswersArray = quiz?.questions?.map(question => question.answers.find(answer => answer.isCorrect )).map(answer => answer?.option);
+        const correctAnswersArray: any = quiz?.questions?.map(question => question.answers.find(answer => answer.isCorrect )).map(answer => answer?.option);
         const userAnswersArray = data.answers;
         const amountOfCorrectAnswers = userAnswersArray.filter((answer, index) => correctAnswersArray && answer === correctAnswersArray[index]).length;
+        dispatch(setCorrectAnswersArray(correctAnswersArray));
+        dispatch(setUserAnswersArray(userAnswersArray));
+        
         return `${amountOfCorrectAnswers}/${amountOfQuestions}`;
     };
 
@@ -60,12 +64,14 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const onSubmit = (
         data: IValues,
         amountOfQuestions: number,
-        setSubmitting: (isSubmitting: boolean) => void
+        setSubmitting: (isSubmitting: boolean) => void,
+        resetForm: () => void
     ) => {
         setSubmitting(true)
         const didSelectAllQuestions = () => data.answers.filter(el => el).length >= amountOfQuestions;
         if (didSelectAllQuestions()) {
             dispatch(setToastParameters(true, 'Successfuly done!'));
+            resetForm();
             setIsTheQuizSolved(true);
             setIsTheQuizOpen(false);
             setScore(getScore(data, amountOfQuestions))
@@ -118,8 +124,8 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                             validateOnChange={true}
                             initialValues={{ answers: [] }}
                             validationSchema={quizPageValidation}
-                            onSubmit={(data, { setSubmitting }) => {
-                                onSubmit(data, +`${quiz.amountOfQuestions}`, setSubmitting)
+                            onSubmit={(data, { setSubmitting, resetForm }) => {
+                                onSubmit(data, +`${quiz.amountOfQuestions}`, setSubmitting, resetForm)
                             }}>
                             {({
                                 handleChange,

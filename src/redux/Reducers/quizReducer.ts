@@ -10,9 +10,13 @@ type QuizState = {
   formCounter: number;
   formIconName: string;
   formQuestionsCounter: number;
+  correctAnswersArray: any;
+  userAnswersArray: string[];
 };
 
 const initialState: QuizState = {
+  correctAnswersArray: [],
+  userAnswersArray: [],
   formQuestions: [],
   formQuestionsCounter: 0,
   formCounter: 1,
@@ -20,11 +24,23 @@ const initialState: QuizState = {
   formColor: {
     primary: "#00D952",
     secondary: "#00a03d",
-  },
+  }
 };
 
 export const quizReducer = (state = initialState, action: any): QuizState => {
   switch (action.type) {
+    case QuizTypes.SET_CORRECT_ANSWERS_ARRAY: {
+      return {
+        ...state,
+        correctAnswersArray: action.payload,
+      };
+    }
+    case QuizTypes.SET_USER_ANSWERS_ARRAY: {
+      return {
+        ...state,
+        userAnswersArray: action.payload,
+      };
+    }
     case QuizTypes.SET_FORM_COUNTER: {
       return {
         ...state,

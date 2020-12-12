@@ -12,6 +12,7 @@ import {
 
 const QuestionStep = ({ 
     index, 
+    array,
     values, 
     content, 
     answers, 
@@ -27,10 +28,10 @@ const QuestionStep = ({
                 <StyledContent> {content} </StyledContent>
             </StyledQuestionWrapper>
             <StyledAnswersList>
-                {answers.map(({ option, content, isCorrect }) =>
+                {answers.map(({ option, content, isCorrect }, aIndex) =>
                     <StyledListItem key={option}>
                         <Answer
-                        readonly={readonly}
+                            readonly={readonly}
                             option={option}
                             questionIndex={index}
                             content={content}
@@ -38,6 +39,7 @@ const QuestionStep = ({
                             values={values}
                             handleBlur={handleBlur}
                             handleChange={handleChange}
+                            outlineColor={array ? array[aIndex]: null}
                         />
                     </StyledListItem>)}
             </StyledAnswersList>

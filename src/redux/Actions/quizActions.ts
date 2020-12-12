@@ -1,6 +1,20 @@
 import { QuizTypes } from "../Types/quizTypes";
 import { IFormColor, IFormQuestion } from "Interfaces/quizInterfaces";
 
+export const setCorrectAnswersArray = (array: string[]) => (dispatch: any) => {
+  dispatch({
+    type: QuizTypes.SET_CORRECT_ANSWERS_ARRAY,
+    payload: array,
+  });
+};
+
+export const setUserAnswersArray = (array: string[]) => (dispatch: any) => {
+  dispatch({
+    type: QuizTypes.SET_USER_ANSWERS_ARRAY,
+    payload: array,
+  });
+};
+
 export const setFormQuestions = (array: IFormQuestion[]) => (dispatch: any) => {
   dispatch({
     type: QuizTypes.SET_FORM_QUESTIONS,

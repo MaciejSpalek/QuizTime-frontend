@@ -16,12 +16,16 @@ const Answer = ({
     isCorrect,
     handleBlur,
     handleChange,
+    outlineColor,
     questionIndex,
     ...props
 }: IFormAnswer & IAnswer): JSX.Element => {
     const isSelect = () => values?.answers[questionIndex] === option;
     return (
-        <StyledAnswer isSelect={isSelect()} {...props}>
+        <StyledAnswer 
+            isSelect={isSelect()} 
+            outlineColor={`${outlineColor}`} 
+            {...props}>
             {!readonly &&
                 <StyledRadioButton
                     name={`answers[${questionIndex}]`}
@@ -32,7 +36,9 @@ const Answer = ({
                     value={option}
                     label=""
                 />}
-            <StyledLegend isSelect={isSelect()}>
+            <StyledLegend 
+                isSelect={isSelect()} 
+                outlineColor={`${outlineColor}`}>
                 {`${option}.`}
             </StyledLegend>
             <StyledContent > {`${content}`} </StyledContent>

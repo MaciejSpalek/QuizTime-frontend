@@ -6,4 +6,5 @@ export interface IAnswer {
     handleChange?: (e:ChangeEvent<HTMLElement>) => void;
     handleBlur?: (e:ChangeEvent<HTMLElement>) => void;
     readonly: boolean;
+    outlineColor?: string | null;
 }

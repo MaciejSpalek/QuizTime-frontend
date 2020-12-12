@@ -45,8 +45,8 @@ export const StyledQuestionListItem = styled.li`
 
 export const StyledButton = styled(Button)`
     width: 300px;
-
 `;
+
 export const StyledQuestionStep = styled(QuestionStep)`
     height: auto;
     padding: 20px 0;
