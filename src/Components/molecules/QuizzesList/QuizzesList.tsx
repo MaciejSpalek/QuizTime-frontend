@@ -2,13 +2,20 @@ import React from 'react';
 import QuizThumbnail from '../QuizThumbnail';
 import { StyledList, StyledListItem, StyledContainer } from './QuizzesList.styled';
 import { IQuizzesList } from './QuizzesList.model';
+import { useHistory } from 'react-router-dom';
 
-const QuizesList = ({ quizzes }: IQuizzesList) => {
+const QuizzesList = ({ quizzes }: IQuizzesList ) => {
+    const history = useHistory();
+    const handleOnClick = (id: string, author: string) => history.push(`${author}/${id}`);
+    
     return (
         <StyledContainer>
             <StyledList>
                 {quizzes.map(data =>
-                    <StyledListItem key={data._id}>
+                    <StyledListItem 
+                        key={data._id} 
+                        id={data._id}
+                        onClick={() => handleOnClick(`${data._id}`, `${data.author}`)}>
                         <QuizThumbnail parameters={data} />
                     </StyledListItem>)}
             </StyledList>
@@ -16,4 +23,4 @@ const QuizesList = ({ quizzes }: IQuizzesList) => {
     );
 };
 
-export default QuizesList;
+export default QuizzesList;
