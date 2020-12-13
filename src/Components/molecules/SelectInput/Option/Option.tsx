@@ -16,7 +16,6 @@ const Option = ({
   type,
   option,
   selectedColor,
-  selectedOption,
   selectedIconName,
   updateSelectedOption,
 }: IOption): JSX.Element => {

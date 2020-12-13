@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import colors from "styles/colors";
-import { FlexCenter } from "styles/mixins";
 
 export const StyledContainer = styled.div`
   position: absolute;
@@ -28,4 +27,5 @@ export const StyledList = styled.ul`
 export const StyledListItem = styled.li`
   width: 100%;
   height: 140px;
+  cursor: pointer;
 `;

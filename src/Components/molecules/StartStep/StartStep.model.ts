@@ -5,4 +5,4 @@ export interface IStartStep {
     title: string;
     icon: string;
     colors: IFormColor;
-}
+};
