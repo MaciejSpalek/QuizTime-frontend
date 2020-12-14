@@ -55,7 +55,9 @@ export const StyledAnswersList = styled.ul`
   list-style: none;
 `;
 
-export const StyledListItem = styled.li`
+export const StyledListItem = styled.li<{readonly: boolean}>`
   width: 100%;
   height: 65px;  
+  cursor: ${({ readonly }) => !readonly && 'pointer'};
+
 `;

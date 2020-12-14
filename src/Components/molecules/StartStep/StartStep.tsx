@@ -10,7 +10,7 @@ import {
     StyledButton
 } from './StartStep.styled';
 import { useHistory } from 'react-router-dom';
-import CircularProgressBar from 'Components/atoms/CircularProgressBar';
+import CircularProgressBar from 'Components/molecules/CircularProgressBar';
 
 
 const StartStep = ({ onClick, icon, colors, title }: IStartStep): JSX.Element => {

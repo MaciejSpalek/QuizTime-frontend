@@ -13,6 +13,7 @@ export const StyledAnswer = styled.div<{ isSelect: boolean, outlineColor: string
   padding: 0 18px;
   border: ${({ isSelect }) => isSelect ? '3px' : '2px'} solid ${({ isSelect }) => isSelect ? colors.BasicGreen : colors.Gray60};
   border: ${({ outlineColor }) => outlineColor && `3px solid ${outlineColor}`};
+  cursor: inherit;
 `;
 
 export const StyledLegend = styled.span<{ isSelect: boolean, outlineColor: string | null }>`
@@ -25,6 +26,7 @@ export const StyledLegend = styled.span<{ isSelect: boolean, outlineColor: strin
   color: ${({ outlineColor }) => outlineColor};
   background-color: ${colors.Gray100};
   padding: 0 10px;
+  pointer-events: none;
 `;
 
 export const StyledContent = styled.span`
@@ -41,6 +43,7 @@ export const StyledRadioButton = styled(RadioButton)`
   height: 100%;
   margin: 0;
   label {
+  cursor: inherit;
     width: 100%;
     height: 100%;
     ::before, ::after {

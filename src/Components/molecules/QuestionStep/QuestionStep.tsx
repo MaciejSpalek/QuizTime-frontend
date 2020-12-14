@@ -29,7 +29,7 @@ const QuestionStep = ({
             </StyledQuestionWrapper>
             <StyledAnswersList>
                 {answers.map(({ option, content, isCorrect }, aIndex) =>
-                    <StyledListItem key={option}>
+                    <StyledListItem readonly={readonly} key={option}>
                         <Answer
                             readonly={readonly}
                             option={option}

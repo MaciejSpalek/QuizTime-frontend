@@ -3,5 +3,4 @@ export interface IProgressBar {
     score: string;
     progress: number;
     strokeWidth: number;
-    cos: number;
 };

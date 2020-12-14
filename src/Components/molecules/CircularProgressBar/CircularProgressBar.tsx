@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { StyledCircle, StyledSVG, StyledScore, StyledText, StyledWrapper, StyledContainer } from './CircularProgressBar.styled';
 import { IProgressBar } from './CircularProgressBar.model';
 
-const ProgressBar = ({
+const CircularProgressBar = ({
     size,
     score,
     progress,
@@ -17,7 +17,7 @@ const ProgressBar = ({
     const manageProgress = () => {
         const progressOffset = (progress / 100) * circumference;
         setOffset(progressOffset);
-        (circleRef as any).current.style = 'transition: stroke-dashoffset 850ms ease-in-out';
+        (circleRef as any).current.style = 'transition: stroke-dashoffset 1s ease-in-out';
     };
 
     useEffect(() => {
@@ -29,7 +29,7 @@ const ProgressBar = ({
         <StyledContainer>
             <StyledSVG
                 className="svg"
-                width={size}
+                width={size}  
                 height={size}>
                 <StyledCircle
                     className="svg-circle-bg"
@@ -59,4 +59,4 @@ const ProgressBar = ({
 
 
 
-export default ProgressBar;
+export default CircularProgressBar;

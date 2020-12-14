@@ -1,21 +1,18 @@
-import CircularProgressBar from 'Components/atoms/CircularProgressBar';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react';
+import colors from 'styles/colors';
+import CircularProgressBar from 'Components/molecules/CircularProgressBar';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { RootState } from 'redux/store';
 import { routes } from 'routes';
-import colors from 'styles/colors';
 import { IScoreWindow } from './ScoreWindow.model';
 
 import {
-    StyledTopWrapper,
-    StyledContainer,
-    StyledButton,
-    StyledScore,
-    StyledText,
-    StyledQuestionList,
     StyledQuestionListItem,
-    StyledQuestionStep
+    StyledQuestionList,
+    StyledQuestionStep,
+    StyledContainer,
+    StyledButton
 } from './ScoreWindow.styled';
 
 const ScoreWindow = ({ score, questions, closeTheQuiz }: IScoreWindow): JSX.Element => {
@@ -46,21 +43,18 @@ const ScoreWindow = ({ score, questions, closeTheQuiz }: IScoreWindow): JSX.Elem
     }
 
     const countProgress = (score: string) => {
-        const [first, second] = score.split('/');
-        const nominator = +first;
-        const denominator = +second;
-        return (nominator/denominator)*100;
+        const [nominator, denominator] = score.split('/');
+        return (+nominator/+denominator)*100;
     };
 
   
     return (
         <StyledContainer>
             <CircularProgressBar
-                score={score}
                 progress={countProgress(score)}
-                cos={countProgress(score)}
-                size={250}
                 strokeWidth={10}
+                score={score}
+                size={300}
             />
             <StyledButton handleOnClick={handleOnFirstButton} text='Try again' />
             <StyledButton handleOnClick={handleOnSecondButton} text='Back' />
