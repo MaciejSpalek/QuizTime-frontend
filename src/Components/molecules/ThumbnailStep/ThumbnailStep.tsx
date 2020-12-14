@@ -13,6 +13,7 @@ import Input from 'Components/atoms/Input/Input';
 import FormField from 'templates/FormFieldTemplate/FormFieldTemplate';
 import CategorySelect from '../SelectInput';
 import ErrorMessage from 'Components/atoms/ErrorMessage';
+import { QuizIcons, QuizThemes } from 'helpers/constants';
 
 const ThumbnailStep = ({
   values,
@@ -84,33 +85,14 @@ const ThumbnailStep = ({
       </FormField>
       <ColorSelect
         type={OptionType.COLOR}
-        options={[
-          { id: "1", title: "Basic", value: { primary: '#00D952', secondary: '#00a03d' } },
-          { id: "2", title: "Sea", value: { primary: '#80D4CD', secondary: '#2982A2' } },
-          { id: "3", title: "Blue", value: { primary: '#99B3E1', secondary: '#4F62A3' } },
-          { id: "4", title: "Blue", value: { primary: '#A0ADBD', secondary: '#372E46' } },
-          { id: "5", title: "Blue", value: { primary: '#ACA398', secondary: '#443C51' } },
-          { id: "6", title: "Blue", value: { primary: '#ECCE8D', secondary: '#2C1931' } },
-          { id: "7", title: "Dessert", value: { primary: '#F7BC14', secondary: '#201F26' } },
-        ]}
+        options={QuizThemes}
         selectCaption="Select theme"
         handleOnClick={callback => handleColor(callback.value, OptionType.COLOR)}
         selectedColor={formColors}
       />
       <CategorySelect
         type={OptionType.ICON}
-        options={[
-          { id: "1", title: "Person", icon: 'male' },
-          { id: "2", title: "Games", icon: 'gamepad' },
-          { id: "3", title: "Movies", icon: 'film' },
-          { id: "4", title: "Science", icon: 'flask' },
-          { id: "5", title: "Animals", icon: 'paw' },
-          { id: "6", title: "History", icon: 'landmark' },
-          { id: "7", title: "Music", icon: 'music' },
-          { id: "8", title: "Geography", icon: 'globe-americas' },
-          { id: "9", title: "YouTube", icon: ['fab', 'youtube'] },
-          { id: "10", title: "Sport", icon: ['fas', 'volleyball-ball'] },
-        ]}
+        options={QuizIcons}
         selectCaption="Select category"
         selectedIconName={`${formIconName}`}
         handleOnClick={callback => handleIconName(callback.icon as IconName, OptionType.ICON)}

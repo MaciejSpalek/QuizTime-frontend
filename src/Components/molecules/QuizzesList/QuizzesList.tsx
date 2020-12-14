@@ -7,7 +7,6 @@ import { useHistory } from 'react-router-dom';
 const QuizzesList = ({ quizzes }: IQuizzesList ) => {
     const history = useHistory();
     const handleOnClick = (id: string, author: string) => history.push(`${author}/${id}`);
-    
     return (
         <StyledContainer>
             <StyledList>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import colors from 'styles/colors';
 import CircularProgressBar from 'Components/molecules/CircularProgressBar';
 import { useSelector } from 'react-redux';
@@ -14,11 +14,13 @@ import {
     StyledContainer,
     StyledButton
 } from './ScoreWindow.styled';
+import { axiosInstance } from 'services/api';
 
 const ScoreWindow = ({ score, questions, closeTheQuiz }: IScoreWindow): JSX.Element => {
     const history = useHistory();
     const correctAnswersArray = useSelector<RootState, string[]>(state => state.quizes.correctAnswersArray);
     const userAnswersArray = useSelector<RootState, string[]>(state => state.quizes.userAnswersArray);
+    const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser);
     const [isListOpen, setIsListOpen] = useState(false);
 
     const handleOnFirstButton = () => closeTheQuiz();
@@ -42,11 +44,18 @@ const ScoreWindow = ({ score, questions, closeTheQuiz }: IScoreWindow): JSX.Elem
         }
     }
 
+    const addScore = (score: string, quizID: string, executor: string) => {
+        axiosInstance.post('/quizes/addScore', { score, quizID, executor})
+    };
+
     const countProgress = (score: string) => {
         const [nominator, denominator] = score.split('/');
         return (+nominator/+denominator)*100;
     };
 
+    useEffect(() => {
+        loggedUser && addScore(score, "dsadsafsfdsfs", loggedUser);
+    }, [score])
   
     return (
         <StyledContainer>
