@@ -1,6 +1,5 @@
 import React from 'react'
 import { IconName } from '@fortawesome/fontawesome-svg-core'
-import { getScore } from 'helpers/getters';
 import { IQuizThumbnail } from './QuizThumbnail.model';
 import {
     StyledImageWrapper,
@@ -9,22 +8,22 @@ import {
     StyledAuthorTag,
     StyledTitle,
     StyledScore,
-    StyledIcon
+    StyledIcon,
+    StyledSpinner
 } from './QuizThumbnail.styled';
 
 
-const QuizThumbnail = ({ parameters, ...props }: IQuizThumbnail) => {
+const QuizThumbnail = ({ score, parameters, ...props }: IQuizThumbnail) => {
     const {
         author,
         title,
         iconName,
-        amountOfQuestions,
         colors: {
             primary,
             secondary
-        },
+        }
     } = parameters;
-
+    
     return (
         <StyledContainer {...props} primarycolor={primary}>
             <StyledImageWrapper secondarycolor={secondary}>
@@ -32,10 +31,14 @@ const QuizThumbnail = ({ parameters, ...props }: IQuizThumbnail) => {
                     icon={iconName as IconName}
                     primarycolor={primary}
                 />
-                <StyledScore
-                    text={getScore(+`${amountOfQuestions}`)}
-                    color={primary}
-                />
+                {score ? (
+                    <StyledScore
+                        text={`${score}`}
+                        color={primary}
+                    />
+                 ) : (
+                    <StyledSpinner />
+                 )}
             </StyledImageWrapper>
             <StyledTextWrapper>
                 <StyledTitle text={title} />

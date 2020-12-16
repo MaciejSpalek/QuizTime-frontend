@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import Paragraph from "Components/atoms/Paragraph";
+import Spinner from 'Components/atoms/Spinner';
 import { AbbreviateText, FlexCenter } from "styles/mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import colors from "styles/colors";
 
 export const StyledContainer = styled.div<{ primarycolor: string }>`
   ${FlexCenter};
@@ -54,4 +56,10 @@ export const StyledAuthorTag = styled(Paragraph)`
   color: white;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
   margin: 0;
+`;
+
+export const StyledSpinner = styled(Spinner)`
+  width: 30px;
+  height: 30px;
+  color: ${colors.White};
 `;

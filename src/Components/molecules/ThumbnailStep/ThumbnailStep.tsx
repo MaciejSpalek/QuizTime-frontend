@@ -62,6 +62,7 @@ const ThumbnailStep = ({
           colors: formColors,
           amountOfQuestions: 5
         }}
+        score={`1/5`}
       />
       <FormField>
         <Label

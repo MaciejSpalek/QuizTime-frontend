@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { axiosInstance } from 'services/api';
 import PageTemplate from 'templates/PageTemplate';
 import { RouteComponentProps } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setToastParameters } from 'redux/Actions/toastActions';
 import ErrorPage from 'Containers/ErrorPage';
 import { IQuizTemplate } from 'Interfaces/quizInterfaces';
@@ -16,8 +16,10 @@ import { Formik } from 'formik';
 import { IValues, TQuizPage } from './QuizPage.model';
 import ScoreWindow from 'Components/molecules/ScoreWindow';
 import { setCorrectAnswersArray, setUserAnswersArray } from 'redux/Actions/quizActions';
+import { RootState } from 'redux/store';
 
 const QuizPage = ({ match }: TQuizPage): JSX.Element => {
+    const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser);
     const [quiz, setQuiz] = useState<IQuizTemplate | null>(null);
     const [isFetch, setIsFetch] = useState(false);
     const [isTheQuizOpen, setIsTheQuizOpen] = useState(false);
@@ -34,6 +36,8 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
         setScore('');
         setStep(1);
     } ;
+
+    const addScore = (score: string, quizID: string, executor: string) => axiosInstance.post('/quizes/addScore', { score, quizID, executor })
 
     const fetchQuiz = async (id: string, author: string) => {
         await axiosInstance.get('/quizes/singleQuiz', {
@@ -70,11 +74,13 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
         setSubmitting(true)
         const didSelectAllQuestions = () => data.answers.filter(el => el).length >= amountOfQuestions;
         if (didSelectAllQuestions()) {
+            const tempScore = getScore(data, amountOfQuestions);
             dispatch(setToastParameters(true, 'Successfuly done!'));
             resetForm();
             setIsTheQuizSolved(true);
             setIsTheQuizOpen(false);
-            setScore(getScore(data, amountOfQuestions))
+            setScore(tempScore)
+            loggedUser && addScore(tempScore, getId(), loggedUser);
         } else {
             dispatch(setToastParameters(true, `Answer all questions...`, 'exclamation-circle'));
             setTimeout(() => {
@@ -148,6 +154,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                                 score={score} 
                                 questions={quiz.questions} 
                                 closeTheQuiz={resetQuiz}
+                                quizID={getId()}
                             /> :
                             <StartStep
                                 onClick={() => setIsTheQuizOpen(true)}

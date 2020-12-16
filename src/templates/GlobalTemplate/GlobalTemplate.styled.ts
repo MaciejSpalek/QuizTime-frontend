@@ -8,4 +8,5 @@ export const StyledContainer = styled.div`
   height: 100vh;
   margin: 0 auto;
   overflow: hidden;
+  /* #101117 */
 `;
