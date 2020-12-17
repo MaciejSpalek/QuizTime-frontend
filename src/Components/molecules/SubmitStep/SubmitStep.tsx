@@ -41,13 +41,14 @@ const SubmitStep = ({ errors, touched, values, isSubmitting }: ISubmitStep): JSX
                                 index={index+1}
                                 key={id}
                                 id={id}
-                            />)
-                        }
+                            />)}
                     </StyledList>
                     <Button text="Create quiz" type="submit" isDisabled={isDisabled()} /> 
                 </StyledWrapper> : 
                 <Placeholder>
-                    <StyledPlaceholderText> No questions </StyledPlaceholderText>
+                    <StyledPlaceholderText> 
+                        No questions 
+                    </StyledPlaceholderText>
                 </Placeholder>
             }
 

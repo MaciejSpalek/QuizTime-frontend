@@ -7,11 +7,13 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import { IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { axiosInstance } from 'services/api';
+import Placeholder from 'templates/PlaceholderTemplate';
+import { StyledPlaceholderText } from '../SubmitStep/SubmitStep.styled';
 
 const QuizzesList = ({ quizzes }: IQuizzesList) => {
     const history = useHistory();
     const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser);
-    const [scores, setScores] = useState<any>([])
+    const [scores, setScores] = useState<string[]>([])
 
     const handleOnClick = (id: string, author: string) => history.push(`${author}/${id}`);
 
@@ -26,8 +28,8 @@ const QuizzesList = ({ quizzes }: IQuizzesList) => {
             fetchUserScores(loggedUser).then(res => {
                 const scoresArray: IScore[] = res.data;
                 const mappedQuizzes = quizzes.map(({ _id, amountOfQuestions }) => {
-                    const foundScore = scoresArray.find(({ quizID, executor }) => quizID === _id && executor === loggedUser );
-                    if(foundScore) {
+                    const foundScore = scoresArray.find(({ quizID, executor }) => quizID === _id && executor === loggedUser);
+                    if (foundScore) {
                         return foundScore.score;
                     } else {
                         return `?/${amountOfQuestions}`
@@ -39,22 +41,29 @@ const QuizzesList = ({ quizzes }: IQuizzesList) => {
             setScores(quizzes.map(({ amountOfQuestions }) => `?/${amountOfQuestions}`));
         }
     };
-    
+
     useEffect(() => {
         quizzes && manageScores(quizzes);
     }, [quizzes, loggedUser]);
-    
+
     return (
         <StyledContainer>
-            <StyledList>
-                {quizzes.map((data, index) =>
-                    <StyledListItem
-                        key={data._id}
-                        id={data._id}
-                        onClick={() => handleOnClick(`${data._id}`, `${data.author}`)}>
-                        <QuizThumbnail score={scores[index]} parameters={data} />
-                    </StyledListItem>)}
-            </StyledList>
+            {quizzes.length ?
+                <StyledList>
+                    {quizzes.map((data, index) =>
+                        <StyledListItem
+                            key={data._id}
+                            id={data._id}
+                            onClick={() => handleOnClick(`${data._id}`, `${data.author}`)}>
+                            <QuizThumbnail score={scores[index]} parameters={data} />
+                        </StyledListItem>)}
+                </StyledList> :
+                <Placeholder>
+                    <StyledPlaceholderText> 
+                        No quizzes 
+                    </StyledPlaceholderText>
+                </Placeholder>
+            }
         </StyledContainer>
     );
 };
