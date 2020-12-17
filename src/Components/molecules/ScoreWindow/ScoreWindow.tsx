@@ -15,7 +15,7 @@ import {
     StyledButton
 } from './ScoreWindow.styled';
 
-const ScoreWindow = ({ quizID, score, questions, closeTheQuiz }: IScoreWindow): JSX.Element => {
+const ScoreWindow = ({ score, questions, closeTheQuiz }: IScoreWindow): JSX.Element => {
     const history = useHistory();
     const correctAnswersArray = useSelector<RootState, string[]>(state => state.quizes.correctAnswersArray);
     const userAnswersArray = useSelector<RootState, string[]>(state => state.quizes.userAnswersArray);

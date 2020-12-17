@@ -9,4 +9,6 @@ export const StyledNavbar = styled.nav`
   justify-content: space-between;
   height: 60px;
   padding: 10px;
+  background-color: ${colors.Gray100};
+  border-bottom: 2px solid ${colors.Gray80}
 `;

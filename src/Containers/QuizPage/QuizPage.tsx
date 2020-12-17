@@ -80,7 +80,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
             setIsTheQuizSolved(true);
             setIsTheQuizOpen(false);
             setScore(tempScore)
-            loggedUser && addScore(tempScore, getId(), loggedUser);
+            loggedUser && addScore(tempScore, getId(), loggedUser).then(res => console.log("onSubmit: ", res));
         } else {
             dispatch(setToastParameters(true, `Answer all questions...`, 'exclamation-circle'));
             setTimeout(() => {
@@ -154,7 +154,6 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                                 score={score} 
                                 questions={quiz.questions} 
                                 closeTheQuiz={resetQuiz}
-                                quizID={getId()}
                             /> :
                             <StartStep
                                 onClick={() => setIsTheQuizOpen(true)}

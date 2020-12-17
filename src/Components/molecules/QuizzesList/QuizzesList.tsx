@@ -27,7 +27,6 @@ const QuizzesList = ({ quizzes }: IQuizzesList) => {
                 const scoresArray: IScore[] = res.data;
                 const mappedQuizzes = quizzes.map(({ _id, amountOfQuestions }) => {
                     const foundScore = scoresArray.find(({ quizID, executor }) => quizID === _id && executor === loggedUser );
-                    // console.log(foundScore)
                     if(foundScore) {
                         return foundScore.score;
                     } else {
@@ -39,16 +38,11 @@ const QuizzesList = ({ quizzes }: IQuizzesList) => {
         } else {
             setScores(quizzes.map(({ amountOfQuestions }) => `?/${amountOfQuestions}`));
         }
-    }
+    };
     
     useEffect(() => {
         quizzes && manageScores(quizzes);
     }, [quizzes, loggedUser]);
-
-    useEffect(() => {
-        // console.log(scores)
-    }, [scores]);
-
     
     return (
         <StyledContainer>
