@@ -5,6 +5,7 @@ import { IProgressBar } from './CircularProgressBar.model';
 const CircularProgressBar = ({
     size,
     score,
+    color,
     progress,
     strokeWidth
 }: IProgressBar) => {
@@ -32,6 +33,7 @@ const CircularProgressBar = ({
                 width={size}  
                 height={size}>
                 <StyledCircle
+                    color={color}
                     className="svg-circle-bg"
                     cx={center}
                     cy={center}
@@ -39,6 +41,7 @@ const CircularProgressBar = ({
                     strokeWidth={strokeWidth}
                 />
                 <StyledCircle
+                    color={color}
                     className="svg-circle"
                     ref={circleRef}
                     cx={center}
@@ -51,7 +54,7 @@ const CircularProgressBar = ({
             </StyledSVG>
             <StyledWrapper >
                 <StyledText> SCORE </StyledText>
-                <StyledScore> {score} </StyledScore>
+                <StyledScore color={color}> {score} </StyledScore>
             </StyledWrapper>
         </StyledContainer>
     );

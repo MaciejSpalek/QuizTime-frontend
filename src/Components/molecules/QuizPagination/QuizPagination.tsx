@@ -10,14 +10,15 @@ import { IPagination } from './QuizPagination.model'
 
 
 const QuizPagination = ({
-    counter,
     steps,
+    color,
+    counter,
     handleLeftButton,
     handleRightButton,
     ...props
 }: IPagination) => {
     const handleCounter = () => `${counter}/${steps}`;
-    const testFunc = (position: string) => {
+    const getArrowPosition = (position: string) => {
         if (position === 'left' && counter === 1) {
             return false;
         } else if (position === 'right' && counter === steps) {
@@ -25,24 +26,26 @@ const QuizPagination = ({
         } else {
             return true
         }
-    }
+    };
 
     return (
         <StyledPagination id="pagination" {...props}>
-            { testFunc('left') ?
+            { getArrowPosition('left') ?
                 <StyledIconButton
+                    color={color}
                     type='button'
                     icon={'angle-left'}
                     handleOnClick={handleLeftButton}
                 /> : <StyledEmptySquare />
             }
-            <StyledCenterSquare>
+            <StyledCenterSquare color={color}>
                 <StyledCounter>
                     {handleCounter()}
                 </StyledCounter>
             </StyledCenterSquare>
-            { testFunc('right') ?
+            { getArrowPosition('right') ?
                 <StyledIconButton
+                    color={color}
                     type='button'
                     icon={'angle-right'}
                     handleOnClick={handleRightButton}
@@ -50,7 +53,7 @@ const QuizPagination = ({
             }
         </StyledPagination>
     );
-}
+};
 
 export default QuizPagination;
 

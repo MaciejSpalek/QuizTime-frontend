@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import colors from 'styles/colors';
 import CircularProgressBar from 'Components/molecules/CircularProgressBar';
+import _colors from 'styles/colors';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { RootState } from 'redux/store';
 import { routes } from 'routes';
 import { IScoreWindow } from './ScoreWindow.model';
-
 import {
     StyledQuestionListItem,
     StyledQuestionList,
@@ -15,7 +14,7 @@ import {
     StyledButton
 } from './ScoreWindow.styled';
 
-const ScoreWindow = ({ score, questions, closeTheQuiz }: IScoreWindow): JSX.Element => {
+const ScoreWindow = ({ score, questions, closeTheQuiz, colors }: IScoreWindow): JSX.Element => {
     const history = useHistory();
     const correctAnswersArray = useSelector<RootState, string[]>(state => state.quizes.correctAnswersArray);
     const userAnswersArray = useSelector<RootState, string[]>(state => state.quizes.userAnswersArray);
@@ -28,13 +27,13 @@ const ScoreWindow = ({ score, questions, closeTheQuiz }: IScoreWindow): JSX.Elem
     const getColorsArray = (index: number) => {
         const options = ['A', 'B', 'C', 'D'];
         if (correctAnswersArray[index] === userAnswersArray[index]) {
-            return options.map(option => option === correctAnswersArray[index] ? colors.BasicGreen : null);
+            return options.map(option => option === correctAnswersArray[index] ? _colors.BasicGreen : null);
         } else {
             return options.map(option => {
                 if (option === correctAnswersArray[index]) {
-                    return colors.BasicGreen;
+                    return _colors.BasicGreen;
                 } else if (option === userAnswersArray[index]) {
-                    return colors.Red;
+                    return _colors.Red;
                 } else {
                     return null;
                 }
@@ -55,10 +54,11 @@ const ScoreWindow = ({ score, questions, closeTheQuiz }: IScoreWindow): JSX.Elem
                 strokeWidth={10}
                 score={score}
                 size={300}
+                color={colors.primary}
             />
-            <StyledButton handleOnClick={handleOnFirstButton} text='Try again' />
-            <StyledButton handleOnClick={handleOnSecondButton} text='Back' />
-            <StyledButton handleOnClick={handleOnThridButton} text={isListOpen ? 'Hide answers' : 'Show answers'} />
+            <StyledButton color={colors.primary} handleOnClick={handleOnFirstButton} text='Try again' />
+            <StyledButton color={colors.primary} handleOnClick={handleOnSecondButton} text='Back' />
+            <StyledButton color={colors.primary} handleOnClick={handleOnThridButton} text={isListOpen ? 'Hide answers' : 'Show answers'} />
             {isListOpen && <StyledQuestionList>
                 {questions?.map(({ _id, content, answers }, index) =>
                     <StyledQuestionListItem key={_id}>
@@ -68,6 +68,7 @@ const ScoreWindow = ({ score, questions, closeTheQuiz }: IScoreWindow): JSX.Elem
                             answers={answers}
                             readonly={true}
                             index={index}
+                            colors={colors}
                         />
                     </StyledQuestionListItem>)}
             </StyledQuestionList>}

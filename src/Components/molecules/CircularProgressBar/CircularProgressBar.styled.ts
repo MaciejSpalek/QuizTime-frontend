@@ -11,11 +11,11 @@ export const StyledContainer = styled.div`
 
 export const StyledSVG = styled.svg``;
 
-export const StyledCircle = styled.circle`
+export const StyledCircle = styled.circle<{color: string}>`
   :first-of-type {
     stroke-width: 10;
     stroke-linecap: round;
-    stroke: ${colors.BasicGreen};
+    stroke: ${({ color }) => color ? color : colors.BasicGreen};
     fill: none;
     transform: rotate(270deg);
     transform-origin: center;
@@ -42,7 +42,7 @@ export const StyledText = styled.p`
   color: ${colors.Gray20};
 `;
 
-export const StyledScore = styled.span`
+export const StyledScore = styled.span<{color: string}>`
   font-size: 64px;
-  color: ${colors.BasicGreen};
+  color: ${({ color }) => color ? color : colors.BasicGreen};
 `;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import QuizThumbnail from '../QuizThumbnail';
+import Placeholder from 'templates/PlaceholderTemplate';
 import { StyledList, StyledListItem, StyledContainer } from './QuizzesList.styled';
 import { IQuizzesList, IScore } from './QuizzesList.model';
 import { useHistory } from 'react-router-dom';
@@ -7,7 +8,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import { IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { axiosInstance } from 'services/api';
-import Placeholder from 'templates/PlaceholderTemplate';
 import { StyledPlaceholderText } from '../SubmitStep/SubmitStep.styled';
 
 const QuizzesList = ({ quizzes }: IQuizzesList) => {

@@ -15,8 +15,9 @@ export const StyledContainer = styled(PageTemplate)`
     overflow: auto;
 `;
 
-export const StyledButton = styled(Button)`
+export const StyledButton = styled(Button)<{color: string}>`
   width: 200px;
+  background-color: ${({ color }) => color ? color: colors.BasicGreen};
 `;
 
 export const StyledHeading = styled(Paragraph)`
@@ -26,7 +27,7 @@ export const StyledHeading = styled(Paragraph)`
   margin-bottom: 50px;
 `;
 
-export const StyledIcon = styled(FontAwesomeIcon)`
-  color: ${colors.BasicGreen};
+export const StyledIcon = styled(FontAwesomeIcon)<{color: string}>`
+  color: ${({ color }) => color ? color: colors.BasicGreen};
   font-size: 130px;
 `;

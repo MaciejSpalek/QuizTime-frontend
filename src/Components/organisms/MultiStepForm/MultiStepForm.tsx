@@ -3,11 +3,12 @@ import { IMultiStepForm } from './MultiStepForm.model';
 import { StyledContainer, StyledForm, StyledPagination } from './MultiStepForm.styled';
 
 const MultiStepform = ({ 
-    children, 
+    color,
     counter, 
+    onSubmit,
+    children, 
     handleLeftButton, 
     handleRightButton, 
-    onSubmit,
     ...props 
 }: IMultiStepForm): JSX.Element => {
     const steps = children.length;
@@ -19,6 +20,7 @@ const MultiStepform = ({
                 {getCurrentChild()}
             </StyledForm>
             <StyledPagination 
+                color={color}
                 steps={steps} 
                 counter={counter}
                 handleLeftButton={handleLeftButton}

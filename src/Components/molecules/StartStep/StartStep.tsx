@@ -1,39 +1,67 @@
-import Button from 'Components/atoms/Button';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { IStartStep } from './StartStep.model';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
+import { useHistory } from 'react-router-dom';
 import {
     StyledIcon,
     StyledPageTemplate,
     StyledWrapper,
-    StyledText,
-    StyledButton
+    StyledCounter,
+    StyledTitle,
+    StyledButton,
+    StyledAuthor,
+    StyledIconWrapper
 } from './StartStep.styled';
-import { useHistory } from 'react-router-dom';
-import CircularProgressBar from 'Components/molecules/CircularProgressBar';
 
 
-const StartStep = ({ onClick, icon, colors, title }: IStartStep): JSX.Element => {
+const StartStep = ({
+    onClick,
+    icon,
+    colors,
+    title,
+    author
+}: IStartStep): JSX.Element => {
     const { primary, secondary } = colors;
     const history = useHistory();
-    const handleOnClick = () => history.push('/')
+    const moreQuizzes = () => history.push(`/${author}`);
+    const backToHome = () => history.push('/');
+    const getAuthor = (author: string) => `by ${author}`;
 
     return (
         <StyledPageTemplate>
-            <StyledWrapper secondary={secondary}>
-                <StyledIcon primary={primary} icon={icon as IconName} />
-                <StyledText secondary={primary}>{ title }</StyledText>
+            <StyledWrapper primary={primary}>
+                <StyledIconWrapper secondary={secondary}>
+                    <StyledIcon primary={primary} icon={icon as IconName} />
+                </StyledIconWrapper>
+                <StyledIconWrapper secondary={secondary}>
+                    <StyledIcon primary={primary} icon={'user'} />
+                    <StyledCounter> {4} </StyledCounter>
+                </StyledIconWrapper>
             </StyledWrapper>
-            <StyledButton
-                type='button'
-                text='Start quiz'
-                handleOnClick={onClick}
-            />
-            <StyledButton
-                type='button'
-                text='Go back'
-                handleOnClick={handleOnClick}
-            />
+            <StyledWrapper primary={primary}>
+                <StyledTitle secondary={primary}>{title}</StyledTitle>
+                <StyledAuthor text={getAuthor(author)} />
+            </StyledWrapper>
+            <StyledWrapper primary={primary}>
+                <StyledButton
+                    type='button'
+                    text='Start quiz'
+                    handleOnClick={onClick}
+                    primary={primary}
+                />
+                <StyledButton
+                    type='button'
+                    text='More quizzes'
+                    handleOnClick={moreQuizzes}
+                    primary={primary}
+                />
+                <StyledButton
+                    type='button'
+                    text='Back'
+                    handleOnClick={backToHome}
+                    primary={primary}
+                />
+            </StyledWrapper>
         </StyledPageTemplate>
     );
 };

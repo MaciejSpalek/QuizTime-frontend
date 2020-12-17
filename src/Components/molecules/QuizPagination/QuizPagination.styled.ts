@@ -8,36 +8,36 @@ export const StyledPagination = styled.div`
     justify-content: center;
     height: 60px;
     background-color: ${colors.Gray100};
-`
+`;
 
-export const StyledCenterSquare = styled.div`
+export const StyledCenterSquare = styled.div<{color: string | undefined}>`
     ${FlexCenter};
     width: 90px;
     height: 45px;
-    background-color: ${colors.BasicGreen};
+    background-color: ${({ color }) => color ? color : colors.BasicGreen};
     border-radius: 5px;
     margin: 0 10px;
-`
+`;
 
 export const StyledCounter = styled.span`
     color: white;
     font-size: 24px;
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
     font-weight: bold;
-`
+`;
 
 export const StyledEmptySquare = styled.div`
     min-height: 45px;
     width: 45px;
-`
+`;
 
-export const StyledIconButton = styled(IconButton)`
+export const StyledIconButton = styled(IconButton)<{color: string | undefined}>`
     background-color: transparent;
     min-height: 45px;
     width: 45px;
     svg {
-        color: ${colors.BasicGreen};
+        color: ${({ color }) => color ? color : colors.BasicGreen};
         font-size: 40px;
     }
-`
+`;
 

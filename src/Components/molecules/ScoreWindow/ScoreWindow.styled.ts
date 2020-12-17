@@ -55,8 +55,9 @@ export const StyledQuestionListItem = styled.li`
 `;
 
 
-export const StyledButton = styled(Button)`
+export const StyledButton = styled(Button)<{color: string}>`
     width: 300px;
+    background-color: ${({ color }) => color ? color : colors.BasicGreen};
 `;
 
 export const StyledQuestionStep = styled(QuestionStep)`

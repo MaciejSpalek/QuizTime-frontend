@@ -5,7 +5,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setToastParameters } from 'redux/Actions/toastActions';
 import ErrorPage from 'Containers/ErrorPage';
-import { IQuizTemplate } from 'Interfaces/quizInterfaces';
+import { IFormColor, IQuizTemplate } from 'Interfaces/quizInterfaces';
 import PreloaderScreen from 'Components/molecules/PreloaderScreen';
 import { StyledMultiStepForm } from './QuizPage.styled';
 import StartStep from 'Components/molecules/StartStep';
@@ -95,9 +95,10 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
         handleChange: (e: ChangeEvent<HTMLElement>) => void,
         handleBlur: (e: ChangeEvent<HTMLElement>) => void,
         isSubmitting: boolean,
-        values: IValues
+        values: IValues,
+        colors: IFormColor
     ) => {
-        const lastStep = <LastStep isSubmitting={isSubmitting} />
+        const lastStep = <LastStep isSubmitting={isSubmitting} colors={colors} />
         const newArray = quiz?.questions?.map(({ _id, answers, content }, index) =>
             <QuestionStep
                 handleChange={handleChange}
@@ -106,6 +107,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                 content={content}
                 readonly={false}
                 values={values}
+                colors={colors}
                 index={index}
                 key={_id}
             />
@@ -141,17 +143,19 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                                 values
                             }) => (
                                     <StyledMultiStepForm
-                                        children={getFormChildren(handleChange, handleBlur, isSubmitting, values)}
+                                        children={getFormChildren(handleChange, handleBlur, isSubmitting, values, quiz.colors)}
                                         handleRightButton={() => setStep(prev => prev + 1)}
                                         handleLeftButton={() => setStep(prev => prev - 1)}
                                         onSubmit={handleSubmit}
                                         counter={step}
+                                        color={quiz.colors.primary}
                                     />
                                 )}
                         </Formik> :
                         (isTheQuizSolved ?
                             <ScoreWindow 
                                 score={score} 
+                                colors={quiz.colors}
                                 questions={quiz.questions} 
                                 closeTheQuiz={resetQuiz}
                             /> :
@@ -160,6 +164,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                                 colors={quiz.colors}
                                 icon={quiz.iconName}
                                 title={quiz.title}
+                                author={quiz.author}
                             />) :
                     <ErrorPage /> :
                 <PreloaderScreen />}
