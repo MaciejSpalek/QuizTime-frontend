@@ -19,4 +19,5 @@ export const StyledReadingGlass = styled(ReadingGlass)`
     width: 25px;
     height: 25px;
     margin-left: 10px;
+    fill: ${colors.BasicGreen};
 `;

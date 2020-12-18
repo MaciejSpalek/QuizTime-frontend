@@ -22,7 +22,7 @@ export const StyledCenterSquare = styled.div<{color: string | undefined}>`
 export const StyledCounter = styled.span`
     color: white;
     font-size: 24px;
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, .5);
     font-weight: bold;
 `;
 
