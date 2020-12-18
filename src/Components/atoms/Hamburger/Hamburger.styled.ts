@@ -13,6 +13,9 @@ export const StyledButton = styled.button`
     display: inline-block;
     background-color: transparent;
     border-radius: 50%;
+    @media only screen and (min-width: 800px) {
+        display: none;
+    }
 `;
 
 export const StyledOuterBox = styled.span`

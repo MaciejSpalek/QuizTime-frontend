@@ -8,7 +8,7 @@ export const StyledNavbar = styled.nav`
   ${FlexCenter};
   justify-content: space-between;
   height: 60px;
-  padding: 10px;
+  padding: 5px 10px;
   background-color: ${colors.Gray100};
-  border-bottom: 2px solid ${colors.Gray80}
+  border-bottom: 2px solid ${colors.Gray80};
 `;
