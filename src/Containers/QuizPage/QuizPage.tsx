@@ -35,9 +35,10 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
         setIsTheQuizSolved(false);
         setScore('');
         setStep(1);
-    } ;
+    };
 
-    const addScore = (score: string, quizID: string, executor: string) => axiosInstance.post('/quizes/addScore', { score, quizID, executor })
+    const addScore = async (score: string, quizID: string, executor: string) => await axiosInstance.post('/quizes/addScore', { score, quizID, executor })
+    const updateCounter = async (id: string) => await axiosInstance.put('/quizes/updateCounter', { id })
 
     const fetchQuiz = async (id: string, author: string) => {
         await axiosInstance.get('/quizes/singleQuiz', {
@@ -55,12 +56,12 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     };
 
     const getScore = (data: IValues, amountOfQuestions: number) => {
-        const correctAnswersArray: any = quiz?.questions?.map(question => question.answers.find(answer => answer.isCorrect )).map(answer => answer?.option);
+        const correctAnswersArray: any = quiz?.questions?.map(question => question.answers.find(answer => answer.isCorrect)).map(answer => answer?.option);
         const userAnswersArray = data.answers;
         const amountOfCorrectAnswers = userAnswersArray.filter((answer, index) => correctAnswersArray && answer === correctAnswersArray[index]).length;
         dispatch(setCorrectAnswersArray(correctAnswersArray));
         dispatch(setUserAnswersArray(userAnswersArray));
-        
+
         return `${amountOfCorrectAnswers}/${amountOfQuestions}`;
     };
 
@@ -79,8 +80,9 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
             resetForm();
             setIsTheQuizSolved(true);
             setIsTheQuizOpen(false);
-            setScore(tempScore)
-            loggedUser && addScore(tempScore, getId(), loggedUser).then(res => console.log("onSubmit: ", res));
+            setScore(tempScore);
+            updateCounter(getId());
+            loggedUser && addScore(tempScore, getId(), loggedUser);
         } else {
             dispatch(setToastParameters(true, `Answer all questions...`, 'exclamation-circle'));
             setTimeout(() => {
@@ -89,7 +91,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
         }
     };
 
-   
+
 
     const getFormChildren = (
         handleChange: (e: ChangeEvent<HTMLElement>) => void,
@@ -142,21 +144,21 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                                 handleBlur,
                                 values
                             }) => (
-                                    <StyledMultiStepForm
-                                        children={getFormChildren(handleChange, handleBlur, isSubmitting, values, quiz.colors)}
-                                        handleRightButton={() => setStep(prev => prev + 1)}
-                                        handleLeftButton={() => setStep(prev => prev - 1)}
-                                        onSubmit={handleSubmit}
-                                        counter={step}
-                                        color={quiz.colors.primary}
-                                    />
-                                )}
+                                <StyledMultiStepForm
+                                    children={getFormChildren(handleChange, handleBlur, isSubmitting, values, quiz.colors)}
+                                    handleRightButton={() => setStep(prev => prev + 1)}
+                                    handleLeftButton={() => setStep(prev => prev - 1)}
+                                    onSubmit={handleSubmit}
+                                    counter={step}
+                                    color={quiz.colors.primary}
+                                />
+                            )}
                         </Formik> :
                         (isTheQuizSolved ?
-                            <ScoreWindow 
-                                score={score} 
+                            <ScoreWindow
+                                score={score}
                                 colors={quiz.colors}
-                                questions={quiz.questions} 
+                                questions={quiz.questions}
                                 closeTheQuiz={resetQuiz}
                             /> :
                             <StartStep
@@ -165,6 +167,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                                 icon={quiz.iconName}
                                 title={quiz.title}
                                 author={quiz.author}
+                                counter={quiz.counter}
                             />) :
                     <ErrorPage /> :
                 <PreloaderScreen />}

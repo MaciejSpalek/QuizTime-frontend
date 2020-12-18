@@ -6,4 +6,5 @@ export interface IStartStep {
     author: string;
     title: string;
     icon: string;
+    counter: number | undefined;
 };

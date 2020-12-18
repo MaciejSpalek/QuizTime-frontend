@@ -4,6 +4,7 @@ export interface IQuizTemplate {
   author: string;
   iconName: string;
   colors: IFormColor;
+  counter?: number;
   amountOfQuestions?: number;
   questions?: IQuestion[];
 };

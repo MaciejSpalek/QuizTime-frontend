@@ -19,7 +19,8 @@ const StartStep = ({
     icon,
     colors,
     title,
-    author
+    author,
+    counter
 }: IStartStep): JSX.Element => {
     const { primary, secondary } = colors;
     const history = useHistory();
@@ -35,7 +36,7 @@ const StartStep = ({
                 </StyledIconWrapper>
                 <StyledIconWrapper secondary={secondary}>
                     <StyledIcon primary={primary} icon={'user'} />
-                    <StyledCounter> {4} </StyledCounter>
+                    <StyledCounter> {counter} </StyledCounter>
                 </StyledIconWrapper>
             </StyledWrapper>
             <StyledWrapper primary={primary}>
