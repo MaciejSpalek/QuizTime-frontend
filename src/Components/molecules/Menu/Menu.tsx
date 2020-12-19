@@ -6,6 +6,7 @@ import { logout } from 'Auth/requests';
 import { setHamburgerStatus } from 'redux/Actions/statusesActions';
 import { useOutsideClick } from 'hooks';
 import { resetParameters } from 'helpers/reduxHandlers';
+import { useWindowSize } from 'hooks';
 import {
     StyledList,
     StyledIcon,
@@ -14,7 +15,6 @@ import {
     StyledBackground,
     StyledContainer
 } from './Menu.styled';
-import { useWindowSize } from 'hooks';
 
 
 const Menu = () => {
@@ -39,6 +39,7 @@ const Menu = () => {
             <StyledList ref={menuRef}>
                 <StyledItem>
                     <StyledNavLink
+                        
                         to={routes.home}
                         type='NavLink'
                         text='Home'

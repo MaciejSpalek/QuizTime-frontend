@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import QuizThumbnail from '../QuizThumbnail';
 import Placeholder from 'templates/PlaceholderTemplate';
 import { StyledList, StyledListItem, StyledContainer } from './QuizzesList.styled';
@@ -23,7 +23,7 @@ const QuizzesList = ({ quizzes }: IQuizzesList) => {
         });
     };
 
-    const manageScores = (quizzes: IQuizTemplate[]) => {
+    const manageScores = useCallback((quizzes: IQuizTemplate[]) => {
         if (loggedUser) {
             fetchUserScores(loggedUser).then(res => {
                 const scoresArray: IScore[] = res.data;
@@ -40,11 +40,11 @@ const QuizzesList = ({ quizzes }: IQuizzesList) => {
         } else {
             setScores(quizzes.map(({ amountOfQuestions }) => `?/${amountOfQuestions}`));
         }
-    };
+    }, [loggedUser]);
 
     useEffect(() => {
         quizzes && manageScores(quizzes);
-    }, [quizzes, loggedUser]);
+    }, [quizzes, loggedUser, manageScores]);
 
     return (
         <StyledContainer>

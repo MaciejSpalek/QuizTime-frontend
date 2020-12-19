@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import Hamburger from 'Components/atoms/Hamburger/Hamburger';
 import Logo from 'Components/atoms/Logo';
 import Menu from 'Components/molecules/Menu/Menu';
@@ -13,18 +13,17 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const width = useWindowSize();
 
-    const handleHamburgerStatus = () => {
-
+    const handleHamburgerStatus = useCallback(() => {
         if (width >= 800) {
             dispatch(setHamburgerStatus(true));
         } else {
             dispatch(setHamburgerStatus(false));
         }
-    };
+    }, [width, dispatch]);
 
     useEffect(() => {
         handleHamburgerStatus();
-    }, [width]);
+    }, [width, handleHamburgerStatus]);
 
     return (
         <StyledNavbar>

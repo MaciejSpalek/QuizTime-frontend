@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const useWindowSize = () => {
-  const getSize = () => window.innerWidth;
+  const getSize = useCallback(() => window.innerWidth, [])
   const [windowSize, setWindowSize] = useState<Number>(getSize);
 
   useEffect(() => {

@@ -1,22 +1,21 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import { axiosInstance } from 'services/api';
-import PageTemplate from 'templates/PageTemplate';
-import { RouteComponentProps } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { setToastParameters } from 'redux/Actions/toastActions';
-import ErrorPage from 'Containers/ErrorPage';
-import { IFormColor, IQuizTemplate } from 'Interfaces/quizInterfaces';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import PreloaderScreen from 'Components/molecules/PreloaderScreen';
-import { StyledMultiStepForm } from './QuizPage.styled';
+import QuestionStep from 'Components/molecules/QuestionStep';
+import ScoreWindow from 'Components/molecules/ScoreWindow';
 import StartStep from 'Components/molecules/StartStep';
 import LastStep from 'Components/molecules/LastStep';
-import QuestionStep from 'Components/molecules/QuestionStep';
-import { quizPageValidation } from './validation';
-import { Formik } from 'formik';
-import { IValues, TQuizPage } from './QuizPage.model';
-import ScoreWindow from 'Components/molecules/ScoreWindow';
+import PageTemplate from 'templates/PageTemplate';
+import ErrorPage from 'Containers/ErrorPage';
 import { setCorrectAnswersArray, setUserAnswersArray } from 'redux/Actions/quizActions';
+import { IFormColor, IQuizTemplate } from 'Interfaces/quizInterfaces';
+import { setToastParameters } from 'redux/Actions/toastActions';
+import { StyledMultiStepForm } from './QuizPage.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { IValues, TQuizPage } from './QuizPage.model';
+import { quizPageValidation } from './validation';
+import { axiosInstance } from 'services/api';
 import { RootState } from 'redux/store';
+import { Formik } from 'formik';
 
 const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser);
@@ -28,8 +27,8 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const [score, setScore] = useState('');
     const dispatch = useDispatch();
 
-    const getId = () => match.params.id;
-    const getName = () => match.params.username;
+    const getId = useCallback(() => match.params.id, [match.params.id]);
+    const getName = useCallback(() => match.params.username, [match.params.username]);
 
     const resetQuiz = () => {
         setIsTheQuizSolved(false);
@@ -40,7 +39,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const addScore = async (score: string, quizID: string, executor: string) => await axiosInstance.post('/quizes/addScore', { score, quizID, executor })
     const updateCounter = async (id: string) => await axiosInstance.put('/quizes/updateCounter', { id })
 
-    const fetchQuiz = async (id: string, author: string) => {
+    const fetchQuiz = useCallback(async (id: string, author: string) => {
         await axiosInstance.get('/quizes/singleQuiz', {
             params: { id, author }
         }).then(res => {
@@ -53,7 +52,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
             dispatch(setToastParameters(true, errorMessage, 'exclamation-circle'));
             setIsFetch(true);
         })
-    };
+    }, [dispatch]);
 
     const getScore = (data: IValues, amountOfQuestions: number) => {
         const correctAnswersArray: any = quiz?.questions?.map(question => question.answers.find(answer => answer.isCorrect)).map(answer => answer?.option);
@@ -123,7 +122,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
 
     useEffect(() => {
         fetchQuiz(getId(), getName());
-    }, []);
+    }, [fetchQuiz, getId, getName]);
 
     return (
         <PageTemplate>
