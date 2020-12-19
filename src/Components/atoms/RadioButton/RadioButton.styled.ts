@@ -19,6 +19,7 @@ export const StyledWrapper = styled.div`
             border: 2px solid ${colors.BasicGreen};
             transform: translate(0, -50%);
             transition: .3s ease-in-out;
+            background-color: ${colors.White};
         }
         ::after {
             content: "";

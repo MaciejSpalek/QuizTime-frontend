@@ -2,7 +2,7 @@ import ModalWindow from 'Components/molecules/ModalWindow';
 import { IFormQuestion } from 'Interfaces/quizInterfaces';
 import React, { useState, MouseEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFormQuestions } from 'redux/Actions/quizActions';
+import { setFormQuestions, setFormQuestionsCounter } from 'redux/Actions/quizActions';
 import { RootState } from 'redux/store';
 import { IQuestionBox } from './QuestionBox.model';
 import {
@@ -34,9 +34,7 @@ const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Elemen
         setIsModalActive(false);
     };
 
-    const handleCancel = () => {
-        setIsModalActive(false);
-    };
+    const handleCancel = () => setIsModalActive(false);
 
     return (
         <StyledQuestion>

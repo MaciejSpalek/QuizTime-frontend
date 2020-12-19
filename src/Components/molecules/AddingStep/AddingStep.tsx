@@ -1,15 +1,20 @@
 import React, { MouseEvent, useCallback, useEffect, useState } from 'react';
+import FormField from 'templates/FormFieldTemplate/FormFieldTemplate';
+import ErrorMessage from 'Components/atoms/ErrorMessage';
 import Input from 'Components/atoms/Input/Input';
 import Label from 'Components/atoms/Label';
 import InputField from './InputField';
-import { StyledButton, StyledContainer } from './AddingStep.styled';
 import { IPanel } from './AddingStep.model';
-import FormField from 'templates/FormFieldTemplate/FormFieldTemplate';
-import ErrorMessage from 'Components/atoms/ErrorMessage';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import { setFormQuestions, setFormQuestionsCounter } from 'redux/Actions/quizActions';
 import { IFormQuestion } from 'Interfaces/quizInterfaces';
+import { 
+    StyledContainer, 
+    StyledListItem, 
+    StyledButton, 
+    StyledList
+} from './AddingStep.styled';
 
 const AddingStep = ({
     handleChange,
@@ -73,7 +78,7 @@ const AddingStep = ({
         <StyledContainer>
             <FormField>
                 <Label
-                    text="Question"
+                    text={`Question ${formQuestions.length+1}`}
                     forText="question"
                 />
                 <Input
@@ -94,19 +99,21 @@ const AddingStep = ({
                     />
                 ) : null}
             </FormField>
-            {answers.map(({ option, content }, index) =>
-                <InputField
-                    handleChange={handleChange}
-                    handleBlur={handleBlur}
-                    letter={option}
-                    content={content}
-                    key={option}
-                    index={index}
-                    radioValue={radioValue}
-                    touched={touched.answers ? touched.answers[index] : null}
-                    error={errors.answers ? errors.answers[index] : null}
-                />
-            )}
+            <StyledList>
+                {answers.map(({ option, content }, index) =>
+                <StyledListItem key={option}>
+                    <InputField
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        letter={option}
+                        content={content}
+                        index={index}
+                        radioValue={radioValue}
+                        touched={touched.answers ? touched.answers[index] : null}
+                        error={errors.answers ? errors.answers[index] : null}
+                    />
+                </StyledListItem>)}
+            </StyledList>
             <StyledButton
                 text="Add question"
                 type='button'

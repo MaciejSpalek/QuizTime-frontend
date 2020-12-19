@@ -1,19 +1,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { StyledContainter, StyledQuizThumbnail } from './ThumbnailStep.styled';
-import { OptionType } from '../SelectInput/SelectInput.model';
-import { IconName } from '@fortawesome/fontawesome-svg-core';
-import { IFormColor } from 'Interfaces/quizInterfaces';
-import { useDispatch, useSelector } from 'react-redux';
-import { setFormColor, setFormIconName } from 'redux/Actions/quizActions';
-import { RootState } from 'redux/store';
-import { IThumbnailStep } from './ThumbnailStep.model';
+import FormField from 'templates/FormFieldTemplate/FormFieldTemplate';
+import ErrorMessage from 'Components/atoms/ErrorMessage';
+import Input from 'Components/atoms/Input/Input';
+import CategorySelect from '../SelectInput';
 import Label from 'Components/atoms/Label';
 import ColorSelect from '../SelectInput';
-import Input from 'Components/atoms/Input/Input';
-import FormField from 'templates/FormFieldTemplate/FormFieldTemplate';
-import CategorySelect from '../SelectInput';
-import ErrorMessage from 'Components/atoms/ErrorMessage';
+import { StyledContainter, StyledQuizThumbnail } from './ThumbnailStep.styled';
+import { setFormColor, setFormIconName } from 'redux/Actions/quizActions';
+import { OptionType } from '../SelectInput/SelectInput.model';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { QuizIcons, QuizThemes } from 'helpers/constants';
+import { IFormColor } from 'Interfaces/quizInterfaces';
+import { useDispatch, useSelector } from 'react-redux';
+import { IThumbnailStep } from './ThumbnailStep.model';
+import { RootState } from 'redux/store';
 
 const ThumbnailStep = ({
   values,
@@ -73,7 +73,6 @@ const ThumbnailStep = ({
           id="title"
           type="text"
           name="title"
-          maxLength={20}
           ariaInvalid={true}
           ariaDescribedBy="title_error"
           value={values.title}

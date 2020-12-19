@@ -4,7 +4,7 @@ export const profilePageValidation = (formCouter: number) => yup.object({
     title: yup.string()
       .required('Required')
       .min(2, 'min 2 characters')
-      .max(15, 'max 15 characters'),
+      .max(30, 'max 30 characters'),
   
     question: formCouter === 2 ?
       yup.string()
