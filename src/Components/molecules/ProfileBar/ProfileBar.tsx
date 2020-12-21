@@ -25,7 +25,7 @@ const ProfileBar = ({
             <StyledUserTag> {username} </StyledUserTag>
             {isLoggedUserRoute() &&
                 <Button
-                    text={addQuizButtonStatus ? 'QuizBoard' : 'Add quiz'}
+                    text={addQuizButtonStatus ? 'Back' : 'Add quiz'}
                     handleOnClick={handleButton}
                 />}
         </StyledContainer>

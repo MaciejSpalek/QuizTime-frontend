@@ -26,7 +26,7 @@ const Auth = () => {
     useEffect(()=> {
         setInterval(()=> {
             setAuthentication();
-        }, 1000)
+        }, 1000);
     });
 
     return (<></>);

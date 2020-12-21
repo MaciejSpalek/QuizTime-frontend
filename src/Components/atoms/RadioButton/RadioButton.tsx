@@ -12,8 +12,8 @@ const RadioButton = ({
     name, 
     label, 
     value, 
-    checked, 
     onBlur, 
+    checked, 
     onChange,
     ...props 
 }: IRadioButton): JSX.Element=> {
@@ -28,7 +28,7 @@ const RadioButton = ({
                 onBlur={onBlur} 
                 onChange={onChange} 
                 checked={checked}
-                />
+            />
             <Label text={label} forText={id}/>
         </StyledWrapper>
     )

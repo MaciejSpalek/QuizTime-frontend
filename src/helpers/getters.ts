@@ -1,3 +1,2 @@
-export const getScore = (amountOfQuestions: number) => {
-    return `0/${amountOfQuestions}`;
-}
+export const getScore = (amountOfQuestions: number) => `0/${amountOfQuestions}`;
+  

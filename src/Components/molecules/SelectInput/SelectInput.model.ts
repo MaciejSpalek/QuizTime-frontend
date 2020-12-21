@@ -5,7 +5,7 @@ export interface ISingleOption {
   title: string;
   value?: IFormColor;
   icon?: string | string[];
-}
+};
 
 export interface ISelectInput {
   handleOnClick: (selection: ISingleOption) => void;
@@ -14,9 +14,9 @@ export interface ISelectInput {
   selectedIconName?: string;
   selectedColor?: IFormColor;
   type: string;
-}
+};
 
 export enum OptionType {
   COLOR = "COLOR",
   ICON = "ICON"
-}
+};

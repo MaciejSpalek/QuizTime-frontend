@@ -1,6 +1,7 @@
 import ModalWindow from 'Components/molecules/ModalWindow';
+import { useOutsideClick } from 'hooks';
 import { IFormQuestion } from 'Interfaces/quizInterfaces';
-import React, { useState, MouseEvent } from 'react';
+import React, { useState, MouseEvent, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFormQuestions } from 'redux/Actions/quizActions';
 import { RootState } from 'redux/store';
@@ -8,7 +9,7 @@ import { IQuestionBox } from './QuestionBox.model';
 import {
     StyledIconButton,
     StyledParagraph,
-    StyledQuestion,
+    StyledContainer,
     StyledListItem,
     StyledWrapper,
     StyledHeading,
@@ -18,10 +19,15 @@ import {
 } from './QuestionBox.styled';
 
 const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Element => {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     const [isModalActive, setIsModalActive] = useState(false);
     const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
     const dispatch = useDispatch();
+    const boxRef = useRef(null);
+    
+    useOutsideClick(boxRef, () => {
+        setIsOpen(false);
+    });
 
     const handleArrowButton = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -34,12 +40,10 @@ const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Elemen
         setIsModalActive(false);
     };
 
-    const handleCancel = () => {
-        setIsModalActive(false);
-    };
+    const handleCancel = () => setIsModalActive(false);
 
     return (
-        <StyledQuestion>
+        <StyledContainer ref={boxRef}>
             <StyledTopBar>
                 <StyledNumber> {`${index}.`} </StyledNumber>
                 <StyledWrapper>
@@ -71,11 +75,11 @@ const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Elemen
                 </StyledList> : null}
                 <ModalWindow
                     isActive={isModalActive}
-                    description='Wanna remove question?'
+                    description='Wanna remove the question?'
                     handleConfirm={handleConfirm}
                     handleCancel={handleCancel}
                 />
-        </StyledQuestion>
+        </StyledContainer>
     )
 };
 
