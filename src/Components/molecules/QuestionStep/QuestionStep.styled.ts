@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import colors from "styles/colors";
-import { AbbreviateText, FlexCenter, FlexColumn } from "styles/mixins";
+import colors from "styles/Colors";
+import { AbbreviateText, FlexCenter, FlexColumn } from "styles/Mixins";
 
 export const StyledContainer = styled.div`
   ${FlexColumn};

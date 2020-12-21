@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexColumn } from 'styles/mixins';
+import { FlexColumn } from 'styles/Mixins';
 
 export const StyledWrapper = styled.div`
     ${FlexColumn};

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import colors from 'styles/colors';
-import { FlexColumn } from 'styles/mixins';
+import colors from 'styles/Colors';
+import { FlexColumn } from 'styles/Mixins';
 
 export const StyledFormField = styled.div`
   ${FlexColumn};
