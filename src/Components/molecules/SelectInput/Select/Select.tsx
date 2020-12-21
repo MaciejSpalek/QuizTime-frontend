@@ -41,10 +41,6 @@ const Select = ({
     handleOnClick(selectedOption);
   }, [selectedOption, handleOnClick]);
 
-  useEffect(() => {
-    console.log(isOpen, type)
-  }, [isOpen, type]);
-
   return (
     <StyledWrapper {...props} ref={selectRef}>
       <StyledTopWrapper onClick={() => setIsOpen(!isOpen)}>

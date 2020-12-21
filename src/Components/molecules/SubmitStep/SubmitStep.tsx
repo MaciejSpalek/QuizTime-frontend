@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import Button from 'Components/atoms/Button';
 import Placeholder from 'templates/PlaceholderTemplate';
+import Button from 'Components/atoms/Button';
 import QuestionBox from './QuestionBox';
-import { RootState } from 'redux/store';
 import { IFormQuestion } from 'Interfaces/quizInterfaces';
-import { useSelector } from 'react-redux';
 import { ISubmitStep } from './SubmitStep.model';
+import { useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
 import { 
     StyledSubmitStep, 
     StyledPlaceholderText, 
     StyledHeading, 
-    StyledWrapper, 
+    StyledMainWrapper,
+    StyledTopWrapper, 
     StyledList 
 } from './SubmitStep.styled';
 
@@ -31,8 +32,11 @@ const SubmitStep = ({ errors, touched, values, isSubmitting }: ISubmitStep): JSX
     return (
         <StyledSubmitStep>
             {questions.length ? 
-                <StyledWrapper>
-                    <StyledHeading> Your questions </StyledHeading>
+                <StyledMainWrapper>
+                    <StyledTopWrapper>
+                        <StyledHeading> Questions ({questions.length}) </StyledHeading>
+                        <Button text="Create" type="submit" isDisabled={isDisabled()} /> 
+                    </StyledTopWrapper>
                     <StyledList> 
                         {questions.map(({ content, answers, id }, index) =>
                         <li key={id}>
@@ -44,8 +48,7 @@ const SubmitStep = ({ errors, touched, values, isSubmitting }: ISubmitStep): JSX
                             />
                         </li>)}
                     </StyledList>
-                    <Button text="Create quiz" type="submit" isDisabled={isDisabled()} /> 
-                </StyledWrapper> : 
+                </StyledMainWrapper> : 
                 <Placeholder>
                     <StyledPlaceholderText> 
                         No questions 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Paragraph from "Components/atoms/Paragraph/Paragraph";
-import { FlexCenter } from "styles/mixins";
+import { AbbreviateText, FlexCenter } from "styles/mixins";
 import IconButton from "Components/atoms/IconButton";
 import colors from "styles/colors";
 
@@ -8,9 +8,11 @@ export const StyledContainer= styled.div`
   border-radius: 5px;
   margin-bottom: 20px;
   border: 2px solid ${colors.Gray80};
+  background-color: ${colors.White};
 `;
 
 export const StyledHeading = styled.h3`
+  ${AbbreviateText};
   color: ${colors.Gray40};
   font-size: 16px;
   font-weight: bold;
@@ -38,6 +40,7 @@ export const StyledListItem = styled.li<{ isCorrect: boolean }>`
 `;
 
 export const StyledParagraph = styled(Paragraph)<{ isCorrect: boolean }>`
+  ${AbbreviateText};
   font-size: 16px;
   text-align: left;
   color: ${({ isCorrect }) =>

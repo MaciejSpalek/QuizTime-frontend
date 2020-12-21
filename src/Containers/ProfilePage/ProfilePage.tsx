@@ -15,16 +15,13 @@ import { setAddQuizButtonStatus } from 'redux/Actions/statusesActions';
 import { answers, IErrors, IFormikValues } from './ProfilePage.model';
 import { setToastParameters } from 'redux/Actions/toastActions';
 import { Formik, FormikErrors, FormikValues } from 'formik';
-import { setFormCounter } from 'redux/Actions/quizActions';
 import { resetParameters } from 'helpers/reduxHandlers';
 import { useDispatch, useSelector } from 'react-redux';
+import { RouteComponentProps } from 'react-router-dom';
 import { profilePageValidation } from './validation';
 import { axiosInstance } from 'services/api';
 import { RootState } from 'redux/store';
 import { useWindowSize } from 'hooks';
-import Placeholder from 'templates/PlaceholderTemplate';
-import { StyledPlaceholderText } from 'Components/molecules/SubmitStep/SubmitStep.styled';
-import { RouteComponentProps } from 'react-router-dom';
 
 type Match = { username: string }
 
@@ -40,6 +37,7 @@ const ProfilePage = ({ match }: RouteComponentProps<Match>) => {
   const [isFetched, setIsFetched] = useState(false);
   const [username, setUsername] = useState(null);
   const [quizzes, setQuizzes] = useState([]);
+  const [step, setStep] = useState(1);
   const dispatch = useDispatch();
   const width = useWindowSize();
 
@@ -60,7 +58,6 @@ const ProfilePage = ({ match }: RouteComponentProps<Match>) => {
       }
     };
   };
-
 
   const manageUser = useCallback(async () => {
     const route = match.params.username;
@@ -104,6 +101,7 @@ const ProfilePage = ({ match }: RouteComponentProps<Match>) => {
           values={values}
           errors={errors}
           touched={touched}
+          key="ThumbnailStep"
         />,
         <AddingStep
           handleBlur={handleBlur}
@@ -112,23 +110,26 @@ const ProfilePage = ({ match }: RouteComponentProps<Match>) => {
           values={values}
           errors={errors}
           touched={touched}
+          key="AddingStep"
         />,
         <SubmitStep
           values={values}
           errors={errors}
           touched={touched}
           isSubmitting={isSubmitting}
+          key="SubmitStep"
         />
       ]
     } else {
       return [
-        <StyledStepWrapper>
+        <StyledStepWrapper key="StyledStepWrapper">
           <ThumbnailStep
             handleBlur={handleBlur}
             handleChange={handleChange}
             values={values}
             errors={errors}
             touched={touched}
+
           />
           <AddingStep
             handleBlur={handleBlur}
@@ -137,6 +138,7 @@ const ProfilePage = ({ match }: RouteComponentProps<Match>) => {
             values={values}
             errors={errors}
             touched={touched}
+
           />
         </StyledStepWrapper>,
         <SubmitStep
@@ -144,11 +146,34 @@ const ProfilePage = ({ match }: RouteComponentProps<Match>) => {
           errors={errors}
           touched={touched}
           isSubmitting={isSubmitting}
+          key="SubmitStep"
         />
       ]
     }
   };
 
+  const onSubmit = (
+    data: IFormikValues,
+    setSubmitting: (value: boolean) => void,
+    resetForm: () => void
+  ) => {
+    addQuiz(getData(data.title)).then(res => {
+      setSubmitting(true);
+      if (res.data.message) {
+        dispatch(setToastParameters(true, 'Add at least 5 questions...', 'exclamation-circle'))
+        setTimeout(() => {
+          setSubmitting(false);
+        }, 3000);
+      } else {
+        dispatch(setToastParameters(true, 'Successfully added!'))
+        setTimeout(() => {
+          resetForm();
+          setSubmitting(false);
+          resetParameters(dispatch);
+        }, 500);
+      }
+    })
+  };
 
   const handleConfirm = () => {
     dispatch(setAddQuizButtonStatus(!addQuizButtonStatus));
@@ -165,6 +190,12 @@ const ProfilePage = ({ match }: RouteComponentProps<Match>) => {
   useEffect(() => {
     fetchUserQuizzes();
   }, [addQuizButtonStatus, fetchUserQuizzes]);
+
+  const clampStep = useCallback(() => (step === 3 && width >= 850) && setStep(2), [step, width]);
+    
+  useEffect(() => {
+    clampStep();
+  }, [step, width, clampStep]);
 
   return (
     <PageTemplate>
@@ -188,23 +219,7 @@ const ProfilePage = ({ match }: RouteComponentProps<Match>) => {
                 }}
                 validationSchema={profilePageValidation(formPageCounter, width)}
                 onSubmit={(data, { setSubmitting, resetForm }) => {
-                  addQuiz(getData(data.title)).then(res => {
-                    setSubmitting(true);
-                    console.log(res)
-                    if (res.data.message) {
-                      dispatch(setToastParameters(true, 'Add at least 5 questions...', 'exclamation-circle'))
-                      setTimeout(() => {
-                        setSubmitting(false);
-                      }, 3000);
-                    } else {
-                      dispatch(setToastParameters(true, 'Successfully added!'))
-                      setTimeout(() => {
-                        resetForm();
-                        setSubmitting(false);
-                        resetParameters(dispatch);
-                      }, 500);
-                    }
-                  })
+                  onSubmit(data, setSubmitting, resetForm);
                 }}>
                 {({
                   handleChange,
@@ -217,10 +232,10 @@ const ProfilePage = ({ match }: RouteComponentProps<Match>) => {
                   errors
                 }) => (
                   <MultiStepForm
+                    handleRightButton={() => setStep(prev => prev + 1)}
+                    handleLeftButton={() => setStep(prev => prev - 1)}
                     onSubmit={handleSubmit}
-                    handleLeftButton={() => dispatch(setFormCounter(formPageCounter - 1))}
-                    handleRightButton={() => dispatch(setFormCounter(formPageCounter + 1))}
-                    counter={formPageCounter}>
+                    counter={step}>
                     {getChildren(handleChange, handleBlur, resetForm, isSubmitting, values, errors, touched)}
                   </MultiStepForm>
                 )}

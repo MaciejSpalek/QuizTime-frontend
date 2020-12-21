@@ -1,7 +1,7 @@
 import RadioButton from "Components/atoms/RadioButton";
 import styled from "styled-components";
 import colors from "styles/colors";
-import { FlexCenter } from "styles/mixins";
+import { AbbreviateText, FlexCenter } from "styles/mixins";
 
 export const StyledAnswer = styled.div<{ isSelect: boolean, outlineColor: string | null }>`
   position: relative;
@@ -30,6 +30,7 @@ export const StyledLegend = styled.span<{ isSelect: boolean, outlineColor: strin
 `;
 
 export const StyledContent = styled.span`
+  ${AbbreviateText};
   color: ${colors.Gray20};
   font-weight: normal;
   font-size: 16px;

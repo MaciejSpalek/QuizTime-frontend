@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import colors from "styles/colors";
-import { FlexCenter, FlexColumn } from "styles/mixins";
+import { AbbreviateText, FlexCenter, FlexColumn } from "styles/mixins";
 
 export const StyledContainer = styled.div`
   ${FlexColumn};
@@ -20,12 +20,12 @@ export const StyledQuestionWrapper = styled.div`
   ${FlexCenter};
   justify-content: flex-start;
   width: 100%;
-  min-height: 100px;
+  min-height: 150px;
   border: 2px solid ${colors.Gray60};
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   margin-bottom: 10px;
-  padding: 0 18px;
+  padding: 10px 18px;
 `;
 
 export const StyledLegend = styled.span`
@@ -40,6 +40,7 @@ export const StyledLegend = styled.span`
 `;
 
 export const StyledContent = styled.span`
+  ${AbbreviateText};
   color: ${colors.Gray20};
   font-size: 16px;
 `;
@@ -55,9 +56,8 @@ export const StyledAnswersList = styled.ul`
   list-style: none;
 `;
 
-export const StyledListItem = styled.li<{readonly: boolean}>`
+export const StyledListItem = styled.li<{ readonly: boolean }>`
   width: 100%;
-  height: 65px;  
-  cursor: ${({ readonly }) => !readonly && 'pointer'};
-
+  height: 65px;
+  cursor: ${({ readonly }) => !readonly && "pointer"};
 `;

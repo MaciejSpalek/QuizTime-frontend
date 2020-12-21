@@ -1,17 +1,23 @@
 import styled from "styled-components";
 import colors from "styles/colors";
-import { FlexColumn } from "styles/mixins";
+import { FlexColumn, FlexCenter } from "styles/mixins";
 
 export const StyledSubmitStep = styled.div`
   ${FlexColumn};
   width: 100%;
   height: 100%;
   background-color: ${colors.Gray100};
-  overflow-y: scroll;
+  overflow: auto;
 `;
 
-export const StyledWrapper = styled.div`
+export const StyledMainWrapper = styled.div`
   ${FlexColumn};
+`;
+
+export const StyledTopWrapper = styled.div`
+  ${FlexCenter};
+  justify-content: space-between;
+  margin-bottom: 30px;
 `;
 
 export const StyledList = styled.ul`
@@ -27,7 +33,6 @@ export const StyledHeading = styled.h2`
   color: ${colors.Gray20};
   font-size: 22px;
   font-weight: bold;
-  margin-bottom: 30px;
 `;
 
 export const StyledPlaceholderText = styled.span`

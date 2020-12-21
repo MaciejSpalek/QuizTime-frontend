@@ -1,14 +1,13 @@
 import React, { MouseEvent, useCallback, useEffect, useState } from 'react';
-import FormField from 'templates/FormFieldTemplate/FormFieldTemplate';
 import ErrorMessage from 'Components/atoms/ErrorMessage';
 import Input from 'Components/atoms/Input/Input';
 import Label from 'Components/atoms/Label';
 import InputField from './InputField';
-import { IPanel } from './AddingStep.model';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'redux/store';
 import { setFormQuestions, setFormQuestionsCounter } from 'redux/Actions/quizActions';
 import { IFormQuestion } from 'Interfaces/quizInterfaces';
+import { useDispatch, useSelector } from 'react-redux';
+import { IPanel } from './AddingStep.model';
+import { RootState } from 'redux/store';
 import {
     StyledContainer,
     StyledFormField,

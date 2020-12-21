@@ -3,7 +3,7 @@ import { useOutsideClick } from 'hooks';
 import { IFormQuestion } from 'Interfaces/quizInterfaces';
 import React, { useState, MouseEvent, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFormQuestions, setFormQuestionsCounter } from 'redux/Actions/quizActions';
+import { setFormQuestions } from 'redux/Actions/quizActions';
 import { RootState } from 'redux/store';
 import { IQuestionBox } from './QuestionBox.model';
 import {
@@ -24,6 +24,7 @@ const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Elemen
     const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
     const dispatch = useDispatch();
     const boxRef = useRef(null);
+    
     useOutsideClick(boxRef, () => {
         setIsOpen(false);
     });
@@ -74,7 +75,7 @@ const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Elemen
                 </StyledList> : null}
                 <ModalWindow
                     isActive={isModalActive}
-                    description='Wanna remove question?'
+                    description='Wanna remove the question?'
                     handleConfirm={handleConfirm}
                     handleCancel={handleCancel}
                 />
