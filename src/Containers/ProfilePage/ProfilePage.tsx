@@ -22,10 +22,13 @@ import { profilePageValidation } from './validation';
 import { axiosInstance } from 'services/api';
 import { RootState } from 'redux/store';
 import { useWindowSize } from 'hooks';
+import Placeholder from 'templates/PlaceholderTemplate';
+import { StyledPlaceholderText } from 'Components/molecules/SubmitStep/SubmitStep.styled';
+import { RouteComponentProps } from 'react-router-dom';
 
-type Props = { match: any }
+type Match = { username: string }
 
-const ProfilePage = ({ match }: Props) => {
+const ProfilePage = ({ match }: RouteComponentProps<Match>) => {
   const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
   const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
   const formPageCounter = useSelector<RootState, number>(state => state.quizes.formCounter);
@@ -34,11 +37,11 @@ const ProfilePage = ({ match }: Props) => {
   const formIconName = useSelector<RootState>(state => state.quizes.formIconName);
   const [isModalActive, setIsModalActive] = useState(false);
   const [doesUserExist, setDoesUserExist] = useState(false);
-  const [requestStatus, setRequestStatus] = useState(false);
+  const [isFetched, setIsFetched] = useState(false);
   const [username, setUsername] = useState(null);
   const [quizzes, setQuizzes] = useState([]);
   const dispatch = useDispatch();
-  const width = useWindowSize()
+  const width = useWindowSize();
 
   const addQuiz = (data: IQuizTemplate) => axiosInstance.post('/quizes/addQuiz', data);
   const isLoggedUserRoute = () => loggedUser === match.params.username;
@@ -53,7 +56,7 @@ const ProfilePage = ({ match }: Props) => {
       questions: formQuestions,
       colors: {
         primary: formColors.primary,
-        secondary: formColors.secondary,
+        secondary: formColors.secondary
       }
     };
   };
@@ -66,11 +69,13 @@ const ProfilePage = ({ match }: Props) => {
     }).then(({ data }) => {
       if (data) {
         setDoesUserExist(true);
-        setRequestStatus(true);
         setUsername(data.name);
+        setTimeout(() => {
+          setIsFetched(true);
+        }, 500);
       } else {
         setDoesUserExist(false);
-        setRequestStatus(true);
+        setIsFetched(true);
       }
     })
   }, [match.params.username]);
@@ -89,17 +94,42 @@ const ProfilePage = ({ match }: Props) => {
     isSubmitting: boolean,
     values: IFormikValues,
     errors: FormikErrors<IErrors>,
-    touched: FormikValues,
+    touched: FormikValues
   ) => {
     if (width <= 850) {
       return [
+        <ThumbnailStep
+          handleBlur={handleBlur}
+          handleChange={handleChange}
+          values={values}
+          errors={errors}
+          touched={touched}
+        />,
+        <AddingStep
+          handleBlur={handleBlur}
+          handleChange={handleChange}
+          resetForm={resetForm}
+          values={values}
+          errors={errors}
+          touched={touched}
+        />,
+        <SubmitStep
+          values={values}
+          errors={errors}
+          touched={touched}
+          isSubmitting={isSubmitting}
+        />
+      ]
+    } else {
+      return [
+        <StyledStepWrapper>
           <ThumbnailStep
             handleBlur={handleBlur}
             handleChange={handleChange}
             values={values}
             errors={errors}
             touched={touched}
-          />,
+          />
           <AddingStep
             handleBlur={handleBlur}
             handleChange={handleChange}
@@ -107,44 +137,17 @@ const ProfilePage = ({ match }: Props) => {
             values={values}
             errors={errors}
             touched={touched}
-          />,
-          <SubmitStep
-            values={values}
-            errors={errors}
-            touched={touched}
-            isSubmitting={isSubmitting}
           />
+        </StyledStepWrapper>,
+        <SubmitStep
+          values={values}
+          errors={errors}
+          touched={touched}
+          isSubmitting={isSubmitting}
+        />
       ]
-    } else {
-      return [
-          <StyledStepWrapper>
-            <ThumbnailStep
-              handleBlur={handleBlur}
-              handleChange={handleChange}
-              values={values}
-              errors={errors}
-              touched={touched}
-            />
-            <AddingStep
-              handleBlur={handleBlur}
-              handleChange={handleChange}
-              resetForm={resetForm}
-              values={values}
-              errors={errors}
-              touched={touched}
-            />
-          </StyledStepWrapper>,
-          <SubmitStep
-            values={values}
-            errors={errors}
-            touched={touched}
-            isSubmitting={isSubmitting}
-          />
-        ]
-      
     }
-
-  }
+  };
 
 
   const handleConfirm = () => {
@@ -163,10 +166,9 @@ const ProfilePage = ({ match }: Props) => {
     fetchUserQuizzes();
   }, [addQuizButtonStatus, fetchUserQuizzes]);
 
-
   return (
     <PageTemplate>
-      {requestStatus ?
+      {isFetched ?
         doesUserExist ?
           <StyledWrapper>
             <ProfileBar
