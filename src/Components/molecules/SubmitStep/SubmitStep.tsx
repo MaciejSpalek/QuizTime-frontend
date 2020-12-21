@@ -35,13 +35,14 @@ const SubmitStep = ({ errors, touched, values, isSubmitting }: ISubmitStep): JSX
                     <StyledHeading> Your questions </StyledHeading>
                     <StyledList> 
                         {questions.map(({ content, answers, id }, index) =>
+                        <li key={id}>
                             <QuestionBox
                                 question={content}
                                 answers={answers}
                                 index={index+1}
-                                key={id}
                                 id={id}
-                            />)}
+                            />
+                        </li>)}
                     </StyledList>
                     <Button text="Create quiz" type="submit" isDisabled={isDisabled()} /> 
                 </StyledWrapper> : 

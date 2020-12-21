@@ -4,8 +4,7 @@ import { FlexCenter } from "styles/mixins";
 import IconButton from "Components/atoms/IconButton";
 import colors from "styles/colors";
 
-export const StyledQuestion = styled.li`
-  list-style: none;
+export const StyledContainer= styled.div`
   border-radius: 5px;
   margin-bottom: 20px;
   border: 2px solid ${colors.Gray80};
@@ -13,7 +12,6 @@ export const StyledQuestion = styled.li`
 
 export const StyledHeading = styled.h3`
   color: ${colors.Gray40};
-  border-bottom: 1px solid ${colors.Gray80};
   font-size: 16px;
   font-weight: bold;
   padding: 20px 10px;
@@ -25,6 +23,7 @@ export const StyledList = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(4, 1fr);
+  list-style: none;
 `;
 
 export const StyledListItem = styled.li<{ isCorrect: boolean }>`

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Button from "Components/atoms/Button";
 import colors from "styles/colors";
-import { FlexColumn } from "styles/mixins";
+import { FlexColumn, FlexCenter } from "styles/mixins";
+import FormFieldTemplate from "templates/FormFieldTemplate";
 
 export const StyledContainer = styled.div`
   ${FlexColumn};
@@ -11,28 +12,30 @@ export const StyledContainer = styled.div`
 `;
 
 export const StyledWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(5, 1fr);
-  width: 100%;
-  background-color: ${colors.Gray100};
+  ${FlexCenter};
+  justify-content: space-between;
+  flex-direction: row;
+  margin-bottom: 10px;
 `;
 
 export const StyledList = styled.ul`
-  display: grid;
+  display: grid; 
+  height: auto;
   list-style: none;
-  grid-gap: 5px 10px;
-  @media only screen and (min-width: 800px) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-  }
+  grid-gap: 5px;
 `;
 
-export const StyledListItem = styled.li`
-  
-`;
+export const StyledListItem = styled.li``;
 
 export const StyledButton = styled(Button)`
-  width: 100%;
-  align-self: center;
+    ${FlexCenter};
+    width: auto;
+    padding: 0 20px;
+    margin: 0;
+    margin-left: 10px;
 `;
+
+export const StyledFormField = styled(FormFieldTemplate)`
+    margin: 0;
+`;
+

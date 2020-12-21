@@ -1,12 +1,14 @@
 import * as yup from 'yup';
 
-export const profilePageValidation = (formCouter: number) => yup.object({
+const isRequired = (formCounter: number, width: number) => (formCounter === 2 && width <= 850) || (formCounter === 1 && width >= 850); 
+
+export const profilePageValidation = (formCounter: number, width: number) => yup.object({
     title: yup.string()
       .required('Required')
       .min(2, 'min 2 characters')
       .max(30, 'max 30 characters'),
   
-    question: formCouter === 2 ?
+    question: isRequired(formCounter, width) ?
       yup.string()
         .required('Required')
         .min(5, 'min 5 characters')
@@ -17,7 +19,7 @@ export const profilePageValidation = (formCouter: number) => yup.object({
   
     answers: yup.array().of(
       yup.object().shape({
-        content: formCouter === 2 ?
+        content: isRequired(formCounter, width) ?
           yup.string()
             .required('Required')
             .min(1, 'Minimum 1 character')

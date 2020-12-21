@@ -17,7 +17,8 @@ export const StyledImageWrapper = styled.picture<{ secondarycolor: string }>`
   ${FlexCenter};
   flex-direction: column;
   flex: 1;
-  height: 140px;
+  height: 100%;
+  min-height: 140px;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   background-color: ${({ secondarycolor }) => secondarycolor};

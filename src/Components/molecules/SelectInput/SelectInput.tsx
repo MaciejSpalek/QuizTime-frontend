@@ -2,7 +2,15 @@ import React from 'react';
 import Select from './Select';
 import { ISelectInput } from './SelectInput.model';
 
-const SelectInput = ({ options, handleOnClick, selectCaption, selectedColor, selectedIconName, type }: ISelectInput): JSX.Element => {
+const SelectInput = ({ 
+  options, 
+  handleOnClick, 
+  selectCaption, 
+  selectedColor, 
+  selectedIconName, 
+  type,
+  ...props
+}: ISelectInput): JSX.Element => {
   return ( 
     <Select 
       handleOnClick={handleOnClick} 
@@ -11,6 +19,7 @@ const SelectInput = ({ options, handleOnClick, selectCaption, selectedColor, sel
       selectedIconName={selectedIconName} 
       selectedColor={selectedColor}
       type={type} 
+      {...props}
     />
   )
 };

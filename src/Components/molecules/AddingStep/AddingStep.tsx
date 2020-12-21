@@ -9,10 +9,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import { setFormQuestions, setFormQuestionsCounter } from 'redux/Actions/quizActions';
 import { IFormQuestion } from 'Interfaces/quizInterfaces';
-import { 
-    StyledContainer, 
-    StyledListItem, 
-    StyledButton, 
+import {
+    StyledContainer,
+    StyledFormField,
+    StyledListItem,
+    StyledWrapper,
+    StyledButton,
     StyledList
 } from './AddingStep.styled';
 
@@ -25,7 +27,7 @@ const AddingStep = ({
     errors
 }: IPanel): JSX.Element => {
     const { question, answers, radioValue } = values;
-    const [ isFirstRender, setIsFirstRender ] = useState(true);
+    const [isFirstRender, setIsFirstRender] = useState(true);
     const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
     const formQuestionsCounter = useSelector<RootState, number>(state => state.quizes.formQuestionsCounter);
     const dispatch = useDispatch();
@@ -64,7 +66,7 @@ const AddingStep = ({
     const addQuestion = (e: MouseEvent<HTMLElement>) => {
         e.preventDefault();
         dispatch(setFormQuestions([...formQuestions, getCurrentQuestion()]));
-        dispatch(setFormQuestionsCounter(formQuestionsCounter+1))
+        dispatch(setFormQuestionsCounter(formQuestionsCounter + 1))
         manageResetForm();
         setIsFirstRender(true);
     };
@@ -76,50 +78,52 @@ const AddingStep = ({
 
     return (
         <StyledContainer>
-            <FormField>
+            <StyledFormField>
                 <Label
-                    text={`Question ${formQuestions.length+1}`}
+                    text={`Question ${formQuestions.length + 1}`}
                     forText="question"
                 />
-                <Input
-                    type="text"
-                    id="question"
-                    name="question"
-                    isRequired={true}
-                    ariaInvalid={true}
-                    ariaDescribedBy="question_error"
-                    value={question}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                />
-                {errors.question && touched.question ? (
+                <StyledWrapper>
+                    <Input
+                        type="text"
+                        id="question"
+                        name="question"
+                        isRequired={true}
+                        ariaInvalid={true}
+                        ariaDescribedBy="question_error"
+                        value={question}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                    <StyledButton
+                        text="Add"
+                        type='button'
+                        handleOnClick={addQuestion}
+                        isDisabled={isDisabled()}
+                    />
+                </StyledWrapper>
+                {(errors.question && touched.question) &&
                     <ErrorMessage
                         id="question_error"
                         text={errors.question}
-                    />
-                ) : null}
-            </FormField>
+                    />}
+            </StyledFormField>
+
             <StyledList>
                 {answers.map(({ option, content }, index) =>
-                <StyledListItem key={option}>
-                    <InputField
-                        handleChange={handleChange}
-                        handleBlur={handleBlur}
-                        letter={option}
-                        content={content}
-                        index={index}
-                        radioValue={radioValue}
-                        touched={touched.answers ? touched.answers[index] : null}
-                        error={errors.answers ? errors.answers[index] : null}
-                    />
-                </StyledListItem>)}
+                    <StyledListItem key={option}>
+                        <InputField
+                            handleChange={handleChange}
+                            handleBlur={handleBlur}
+                            letter={option}
+                            content={content}
+                            index={index}
+                            radioValue={radioValue}
+                            touched={touched.answers ? touched.answers[index] : null}
+                            error={errors.answers ? errors.answers[index] : null}
+                        />
+                    </StyledListItem>)}
             </StyledList>
-            <StyledButton
-                text="Add question"
-                type='button'
-                handleOnClick={addQuestion}
-                isDisabled={isDisabled()}
-            />
         </StyledContainer>
     )
 }

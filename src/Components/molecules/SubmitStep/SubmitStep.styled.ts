@@ -16,7 +16,11 @@ export const StyledWrapper = styled.div`
 
 export const StyledList = styled.ul`
   display: grid;
-  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  list-style: none;
+  @media screen and (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 export const StyledHeading = styled.h2`

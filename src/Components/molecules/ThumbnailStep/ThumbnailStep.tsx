@@ -1,11 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import FormField from 'templates/FormFieldTemplate/FormFieldTemplate';
 import ErrorMessage from 'Components/atoms/ErrorMessage';
 import Input from 'Components/atoms/Input/Input';
-import CategorySelect from '../SelectInput';
 import Label from 'Components/atoms/Label';
-import ColorSelect from '../SelectInput';
-import { StyledContainter, StyledQuizThumbnail } from './ThumbnailStep.styled';
 import { setFormColor, setFormIconName } from 'redux/Actions/quizActions';
 import { OptionType } from '../SelectInput/SelectInput.model';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
@@ -14,6 +10,15 @@ import { IFormColor } from 'Interfaces/quizInterfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { IThumbnailStep } from './ThumbnailStep.model';
 import { RootState } from 'redux/store';
+import {
+  StyledContainter,
+  StyledQuizThumbnail,
+  StyledInputWrapper,
+  StyledCategorySelect,
+  StyledColorSelect,
+  StyledFormField
+} from './ThumbnailStep.styled';
+
 
 const ThumbnailStep = ({
   values,
@@ -64,39 +69,40 @@ const ThumbnailStep = ({
         }}
         score={`1/5`}
       />
-      <FormField>
-        <Label
-          text="Title"
-          forText="title"
+      <StyledInputWrapper>
+        <StyledFormField>
+          <Label
+            text="Title"
+            forText="title"
+          />
+          <Input
+            id="title"
+            type="text"
+            name="title"
+            ariaInvalid={true}
+            ariaDescribedBy="title_error"
+            value={values.title}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          {(errors.title && touched.title) &&
+            <ErrorMessage id="title_error" text={errors.title} />}
+        </StyledFormField>
+        <StyledColorSelect
+          type={OptionType.COLOR}
+          options={QuizThemes}
+          selectCaption="Select theme"
+          handleOnClick={callback => handleColor(callback.value, OptionType.COLOR)}
+          selectedColor={formColors}
         />
-        <Input
-          id="title"
-          type="text"
-          name="title"
-          ariaInvalid={true}
-          ariaDescribedBy="title_error"
-          value={values.title}
-          onChange={handleChange}
-          onBlur={handleBlur}
+        <StyledCategorySelect
+          type={OptionType.ICON}
+          options={QuizIcons}
+          selectCaption="Select category"
+          selectedIconName={`${formIconName}`}
+          handleOnClick={callback => handleIconName(callback.icon as IconName, OptionType.ICON)}
         />
-        {errors.title && touched.title ? (
-          <ErrorMessage id="title_error" text={errors.title} />
-        ) : null}
-      </FormField>
-      <ColorSelect
-        type={OptionType.COLOR}
-        options={QuizThemes}
-        selectCaption="Select theme"
-        handleOnClick={callback => handleColor(callback.value, OptionType.COLOR)}
-        selectedColor={formColors}
-      />
-      <CategorySelect
-        type={OptionType.ICON}
-        options={QuizIcons}
-        selectCaption="Select category"
-        selectedIconName={`${formIconName}`}
-        handleOnClick={callback => handleIconName(callback.icon as IconName, OptionType.ICON)}
-      />
+      </StyledInputWrapper>
     </StyledContainter>
   )
 }

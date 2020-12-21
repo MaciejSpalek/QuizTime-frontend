@@ -23,7 +23,7 @@ const QuizThumbnail = ({ score, parameters, ...props }: IQuizThumbnail) => {
             secondary
         }
     } = parameters;
-    
+
     return (
         <StyledContainer {...props} primarycolor={primary}>
             <StyledImageWrapper secondarycolor={secondary}>
@@ -31,14 +31,10 @@ const QuizThumbnail = ({ score, parameters, ...props }: IQuizThumbnail) => {
                     icon={iconName as IconName}
                     primarycolor={primary}
                 />
-                {score ? (
-                    <StyledScore
-                        text={`${score}`}
-                        color={primary}
-                    />
-                 ) : (
+                {score ?
+                    <StyledScore text={`${score}`} color={primary} /> :
                     <StyledSpinner />
-                 )}
+                }
             </StyledImageWrapper>
             <StyledTextWrapper>
                 <StyledTitle text={title} />

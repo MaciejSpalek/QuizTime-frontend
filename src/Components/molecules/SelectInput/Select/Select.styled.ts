@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import colors from 'styles/colors';
+import { FlexCenter, FlexColumn } from 'styles/mixins';
 
 export const StyledWrapper = styled.div`
   border-radius: 4px;
   width: 100%;
-  height: auto;
+  height: fit-content;
   border: 2px solid ${colors.Gray80};
-  margin: 10px 0;
+  background-color: ${colors.White};
 `;
 
 export const StyledSelectCaption = styled.span`
@@ -15,23 +16,20 @@ export const StyledSelectCaption = styled.span`
 `;
 
 export const StyledTopWrapper = styled.div`
-  display: flex;
+  ${FlexCenter}; 
   justify-content: space-between;
-  align-items: center;
   height: 45px;
   background-color: ${colors.White};
   padding: 0 10px;
   cursor: pointer;
 `;
 
-export const StyledSelect = styled.ul`
-  display: flex;
-  flex-direction: column;
+export const StyledSelect = styled.ul<{isOpen: boolean}>`
+  ${FlexColumn}; 
   align-items: flex-start;
   background-color: ${colors.White};
-  width: 100%;
-  max-height: 250px;
+  height: 180px;
   padding: 0 10px;
   list-style: none;
-  overflow-y: auto;
+  overflow: auto;
 `;
