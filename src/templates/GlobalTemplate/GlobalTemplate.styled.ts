@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexColumn } from 'styles/mixins';
+import { FlexColumn } from 'styles/Mixins';
 
 export const StyledContainer = styled.div`
   ${FlexColumn};
@@ -8,5 +8,4 @@ export const StyledContainer = styled.div`
   height: 100vh;
   margin: 0 auto;
   overflow: hidden;
-  /* #101117 */
 `;

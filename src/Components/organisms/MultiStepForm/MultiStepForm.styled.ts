@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import FormTemplate from 'templates/FormTemplate/FormTemplate';
 import QuizPagination from 'Components/molecules/QuizPagination';
-import colors from 'styles/colors';
-import { FlexColumn } from 'styles/mixins';
+import colors from 'styles/Colors';
+import { FlexColumn } from 'styles/Mixins';
 
 export const StyledContainer = styled.div`
     position: relative;

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Paragraph from "Components/atoms/Paragraph/Paragraph";
-import { AbbreviateText, FlexCenter } from "styles/mixins";
+import { AbbreviateText, FlexCenter } from "styles/Mixins";
 import IconButton from "Components/atoms/IconButton";
-import colors from "styles/colors";
+import colors from "styles/Colors";
 
 export const StyledContainer= styled.div`
   border-radius: 5px;

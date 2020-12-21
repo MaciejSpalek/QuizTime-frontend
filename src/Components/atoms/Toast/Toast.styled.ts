@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
-import colors from 'styles/colors';
+import colors from 'styles/Colors';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FlexCenter } from 'styles/mixins';
+import { FlexCenter } from 'styles/Mixins';
 
 
 const animation = keyframes`

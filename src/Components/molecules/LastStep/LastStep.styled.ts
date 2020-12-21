@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import colors from 'styles/colors';
+import colors from 'styles/Colors';
 import PageTemplate from 'templates/PageTemplate';
 import Button from 'Components/atoms/Button';
 import Paragraph from 'Components/atoms/Paragraph';
-import { FlexColumn } from 'styles/mixins';
+import { FlexColumn } from 'styles/Mixins';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import colors from 'styles/colors';
-import { FlexCenter, FlexColumn } from 'styles/mixins';
+import colors from 'styles/Colors';
+import { FlexCenter, FlexColumn } from 'styles/Mixins';
 
 export const StyledWrapper = styled.div`
   border-radius: 4px;
