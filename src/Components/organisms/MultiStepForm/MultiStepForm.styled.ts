@@ -10,14 +10,13 @@ export const StyledContainer = styled.div`
     justify-content: space-between;
     width: 100%;
     height: calc(100vh - 2 * 60px);
-    height: 100%;
     background-color: ${colors.White};
 `;
 
 
 export const StyledForm = styled(FormTemplate)`
-    ${FlexColumn};
     position: absolute;
+    ${FlexColumn};
     top: 0;
     left: 0;
     height: calc(100vh - 3 * 60px);
@@ -25,5 +24,5 @@ export const StyledForm = styled(FormTemplate)`
 
 export const StyledPagination = styled(QuizPagination)`
     position: absolute;
-    top: calc(100vh - 3 * 60px);
+    bottom: 0;
 `;

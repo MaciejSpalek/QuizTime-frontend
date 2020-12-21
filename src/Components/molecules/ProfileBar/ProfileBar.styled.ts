@@ -6,9 +6,9 @@ export const StyledContainer = styled.div`
     ${FlexCenter};
     justify-content: space-between;
     width: 100%;
-    border-bottom: 2px solid ${colors.Gray80};
     padding: 10px;
     height: 60px;
+    background-color: ${colors.Gray80};
 `;
 
 export const StyledUserTag = styled.span`

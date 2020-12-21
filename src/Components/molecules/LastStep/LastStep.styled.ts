@@ -1,0 +1,33 @@
+import styled from 'styled-components';
+import colors from 'styles/colors';
+import PageTemplate from 'templates/PageTemplate';
+import Button from 'Components/atoms/Button';
+import Paragraph from 'Components/atoms/Paragraph';
+import { FlexColumn } from 'styles/mixins';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
+export const StyledContainer = styled(PageTemplate)`
+    ${FlexColumn};
+    justify-content: center;
+    height: 100%;
+    background-color: ${colors.Gray100};
+    overflow: auto;
+`;
+
+export const StyledButton = styled(Button)<{color: string}>`
+  width: 200px;
+  background-color: ${({ color }) => color ? color: colors.BasicGreen};
+`;
+
+export const StyledHeading = styled(Paragraph)`
+  font-size: 24px;
+  width: 250px;
+  color: ${colors.Gray20};
+  margin-bottom: 50px;
+`;
+
+export const StyledIcon = styled(FontAwesomeIcon)<{color: string}>`
+  color: ${({ color }) => color ? color: colors.BasicGreen};
+  font-size: 130px;
+`;

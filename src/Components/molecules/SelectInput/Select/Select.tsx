@@ -20,15 +20,16 @@ const Select = ({
   selectCaption,
   type,
   selectedColor,
-  selectedIconName
+  selectedIconName,
+  ...props
 }: ISelect): JSX.Element => {
   const selectRef = useRef<HTMLDivElement>(null);
   const [selectedOption, setSelectedOption] = useState<ISingleOption>({ id: "", title: "" });
-  const [isSelectOpened, setIsSelectOpened] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [currentOptionId, setCurrentOptionId] = useState<string>("");
 
   useOutsideClick(selectRef, () => {
-    setIsSelectOpened(false);
+    setIsOpen(false);
   })
 
   const updateSelectedOption = (option: ISingleOption): void => {
@@ -41,14 +42,18 @@ const Select = ({
   }, [selectedOption, handleOnClick]);
 
   return (
-    <StyledWrapper ref={selectRef}>
-      <StyledTopWrapper onClick={() => setIsSelectOpened(!isSelectOpened)}>
+    <StyledWrapper {...props} ref={selectRef}>
+      <StyledTopWrapper onClick={() => setIsOpen(!isOpen)}>
         <StyledSelectCaption id="selectCaption">
           {selectCaption}
         </StyledSelectCaption>
       </StyledTopWrapper>
-      {isSelectOpened && (
-        <StyledSelect aria-multiselectable="false" aria-labelledby="selectCaption" role="listbox">
+      {isOpen && (
+        <StyledSelect
+          aria-labelledby="selectCaption"
+          aria-multiselectable="false"
+          isOpen={isOpen}
+          role="listbox">
           {options.map((option) => (
             <Option
               key={option.id}

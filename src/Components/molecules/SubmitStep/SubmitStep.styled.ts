@@ -1,29 +1,38 @@
 import styled from "styled-components";
 import colors from "styles/colors";
-import { FlexColumn } from "styles/mixins";
+import { FlexColumn, FlexCenter } from "styles/mixins";
 
 export const StyledSubmitStep = styled.div`
   ${FlexColumn};
   width: 100%;
   height: 100%;
-  background-color: ${colors.White};
-  overflow-y: scroll;
+  background-color: ${colors.Gray100};
+  overflow: auto;
 `;
 
-export const StyledWrapper = styled.div`
+export const StyledMainWrapper = styled.div`
   ${FlexColumn};
+`;
+
+export const StyledTopWrapper = styled.div`
+  ${FlexCenter};
+  justify-content: space-between;
+  margin-bottom: 30px;
 `;
 
 export const StyledList = styled.ul`
   display: grid;
-  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  list-style: none;
+  @media screen and (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 export const StyledHeading = styled.h2`
   color: ${colors.Gray20};
   font-size: 22px;
   font-weight: bold;
-  margin-bottom: 30px;
 `;
 
 export const StyledPlaceholderText = styled.span`

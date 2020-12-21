@@ -9,7 +9,7 @@ const SearchPanel = ()=> {
             <Label forText="search-input" />
             <Input 
                 id="search-input"
-                type="search"
+                type="text"
                 placeholder="search quiz"
                 ariaLabel="quiz finder"
             />

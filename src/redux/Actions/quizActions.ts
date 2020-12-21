@@ -1,6 +1,20 @@
 import { QuizTypes } from "../Types/quizTypes";
 import { IFormColor, IFormQuestion } from "Interfaces/quizInterfaces";
 
+export const setCorrectAnswersArray = (array: string[]) => (dispatch: any) => {
+  dispatch({
+    type: QuizTypes.SET_CORRECT_ANSWERS_ARRAY,
+    payload: array,
+  });
+};
+
+export const setUserAnswersArray = (array: string[]) => (dispatch: any) => {
+  dispatch({
+    type: QuizTypes.SET_USER_ANSWERS_ARRAY,
+    payload: array,
+  });
+};
+
 export const setFormQuestions = (array: IFormQuestion[]) => (dispatch: any) => {
   dispatch({
     type: QuizTypes.SET_FORM_QUESTIONS,
@@ -8,31 +22,31 @@ export const setFormQuestions = (array: IFormQuestion[]) => (dispatch: any) => {
   });
 };
 
-export const setFormCounter = (value: number) => (dispatch: any) => {
+export const setFormCounter = (counter: number) => (dispatch: any) => {
   dispatch({
     type: QuizTypes.SET_FORM_COUNTER,
-    payload: value,
+    payload: counter,
   });
 };
 
-export const setFormColor = (value: IFormColor) => (dispatch: any) => {
+export const setFormColor = (color: IFormColor) => (dispatch: any) => {
   dispatch({
     type: QuizTypes.SET_FORM_COLOR,
-    payload: value,
+    payload: color,
   });
 };
 
-export const setFormIconName = (value: string) => (dispatch: any) => {
+export const setFormIconName = (iconName: string) => (dispatch: any) => {
   dispatch({
     type: QuizTypes.SET_FORM_ICON_NAME,
-    payload: value,
+    payload: iconName,
   });
 };
 
 
-export const setFormQuestionsCounter = (value: number) => (dispatch: any) => {
+export const setFormQuestionsCounter = (counter: number) => (dispatch: any) => {
   dispatch({
     type: QuizTypes.SET_FORM_QUESTIONS_COUNTER,
-    payload: value,
+    payload: counter,
   });
 };

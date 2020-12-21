@@ -11,8 +11,8 @@ type DataType = {
 
 type AuthType = 'login' | 'register';
 
-export const authRequest = async (option: AuthType, data: DataType, dispatch: any) => {
-    await axiosInstance.post(`/auth/${option}`, data)
+export const authRequest =  (option: AuthType, data: DataType, dispatch: any) => {
+    axiosInstance.post(`/auth/${option}`, data)
         .then((res) => {
             const { name, token, tokenLifeTime } = res.data;
             const expireTokenDate: Date =  getExpireDate(tokenLifeTime);
@@ -31,7 +31,7 @@ export const authRequest = async (option: AuthType, data: DataType, dispatch: an
         });
 };
 
-export const logout = (dispatch?: any): void => {
+export const logout = (dispatch: any): void => {
     deleteCookie('token');
     deleteCookie('name');
     dispatch(resetLoggedUser());

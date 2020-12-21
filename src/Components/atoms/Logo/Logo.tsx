@@ -1,11 +1,14 @@
 import React from 'react';
-import { StyledLogo } from './Logo.styled';
+import { StyledLogo, StyledText, StyledWrapper } from './Logo.styled';
 
 const Logo = ()=> {
     return (
-        <StyledLogo>
-            Quizzy
-        </StyledLogo>
+        <StyledWrapper>
+            <StyledLogo />
+            <StyledText>
+                QuizTime
+            </StyledText>
+        </StyledWrapper>
     );
 };
 

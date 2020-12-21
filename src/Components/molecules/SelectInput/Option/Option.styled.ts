@@ -41,7 +41,7 @@ export const StyledCheckedSquareIcon = styled(FontAwesomeIcon)`
 `;
 
 export const StyledPaletteIcon = styled(FontAwesomeIcon)<{value: string}>`
-  font-size: 30px;
+  font-size: 38px;
   margin-right: 10px;
   color: ${({value}) => value};
 `;

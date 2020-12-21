@@ -1,7 +1,8 @@
 export interface IMultiStepForm {
-    children: React.ReactNode[];
+    children: React.ReactChild[];
     counter: number;
+    color?: string | undefined;
     handleRightButton: () => void;
     handleLeftButton: () => void;
     onSubmit: () => void;
-}
+};

@@ -4,8 +4,9 @@ export interface IQuizTemplate {
   author: string;
   iconName: string;
   colors: IFormColor;
+  counter?: number;
   amountOfQuestions?: number;
-  questions?: IFormQuestion[];
+  questions?: IQuestion[];
 };
 
 export interface IFormColor {
@@ -15,6 +16,12 @@ export interface IFormColor {
 
 export interface IFormQuestion {
   id: number;
+  content: string;
+  answers: IFormAnswer[];
+};
+
+export interface IQuestion {
+  _id?: string;
   content: string;
   answers: IFormAnswer[];
 };
