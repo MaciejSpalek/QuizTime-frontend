@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import Paragraph from "Components/atoms/Paragraph";
 import Spinner from 'Components/atoms/Spinner';
-import { AbbreviateText, FlexCenter } from "styles/mixins";
+import { AbbreviateText, FlexCenter } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import colors from "styles/colors";
+import colors from "styles/Colors";
 
 export const StyledContainer = styled.div<{ primarycolor: string }>`
   ${FlexCenter};

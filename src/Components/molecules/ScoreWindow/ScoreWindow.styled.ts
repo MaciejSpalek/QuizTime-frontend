@@ -1,9 +1,9 @@
 import styled, { keyframes } from 'styled-components';
-import colors from 'styles/colors';
+import colors from 'styles/Colors';
 import PageTemplate from 'templates/PageTemplate';
 import Button from 'Components/atoms/Button';
 import QuestionStep from '../QuestionStep';
-import { FlexCenter, FlexColumn } from 'styles/mixins';
+import { FlexCenter, FlexColumn } from 'styles/Mixins';
 
 const anim = keyframes`
   0% {

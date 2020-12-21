@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { FlexCenter } from 'styles/mixins';
+import { FlexCenter } from 'styles/Mixins';
 import IconButton from 'Components/atoms/IconButton';
-import colors from 'styles/colors';
+import colors from 'styles/Colors';
 
 export const StyledPagination = styled.div`
     ${FlexCenter};

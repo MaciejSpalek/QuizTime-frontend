@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import colors from "styles/colors";
+import colors from "styles/Colors";
 import QuizThumbnail from "../QuizThumbnail";
 import CategorySelect from "../SelectInput";
 import ColorSelect from "../SelectInput";
-import { FlexColumn } from "styles/mixins";
+import { FlexColumn } from "styles/Mixins";
 import FormFieldTemplate from "templates/FormFieldTemplate";
 
 export const StyledContainter = styled.div`

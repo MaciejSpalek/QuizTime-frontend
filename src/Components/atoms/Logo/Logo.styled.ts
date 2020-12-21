@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import colors from "styles/colors";
-import { FlexCenter } from "styles/mixins";
+import colors from "styles/Colors";
+import { FlexCenter } from "styles/Mixins";
 import { Puzzles } from "assets";
 
 export const StyledWrapper = styled.h1`
