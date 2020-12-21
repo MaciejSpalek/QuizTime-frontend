@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CircularProgressBar from 'Components/molecules/CircularProgressBar';
-import _colors from 'styles/Colors';
+import _colors from 'styles/colors';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { RootState } from 'redux/store';

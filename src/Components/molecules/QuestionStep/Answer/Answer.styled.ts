@@ -1,6 +1,6 @@
 import RadioButton from "Components/atoms/RadioButton";
 import styled from "styled-components";
-import colors from "styles/Colors";
+import colors from "styles/colors";
 import { AbbreviateText, FlexCenter } from "styles/Mixins";
 
 export const StyledAnswer = styled.div<{ isSelect: boolean, outlineColor: string | null }>`

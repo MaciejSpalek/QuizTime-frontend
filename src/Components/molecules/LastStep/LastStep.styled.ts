@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import colors from 'styles/Colors';
+import colors from 'styles/colors';
 import PageTemplate from 'templates/PageTemplate';
 import Button from 'Components/atoms/Button';
 import Paragraph from 'Components/atoms/Paragraph';

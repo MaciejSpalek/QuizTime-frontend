@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import colors from 'styles/Colors';
+import colors from 'styles/colors';
 import Button from 'Components/atoms/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FlexCenter } from 'styles/Mixins';

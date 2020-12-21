@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Button from "Components/atoms/Button";
-import colors from "styles/Colors";
+import colors from "styles/colors";
 import { FlexColumn, FlexCenter } from "styles/Mixins";
 import FormFieldTemplate from "templates/FormFieldTemplate";
 

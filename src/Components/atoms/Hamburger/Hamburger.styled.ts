@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import colors from 'styles/Colors';
+import colors from 'styles/colors';
 
 export const HamburgerLine = css`
     width: 100%;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import colors from 'styles/Colors';
+import colors from 'styles/colors';
 import {Spinner as Loader} from 'react-bootstrap';
 
 export const StyledLoader = styled(Loader)`

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import colors from "styles/Colors";
+import colors from "styles/colors";
 import { FlexColumn, FlexCenter } from "styles/Mixins";
 
 export const StyledSubmitStep = styled.div`
