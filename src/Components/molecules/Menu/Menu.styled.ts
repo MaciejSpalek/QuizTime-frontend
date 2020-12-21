@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import NavLink from "Components/atoms/Link/index";
-import colors from "styles/Colors";
+import colors from "styles/colors";
 import { FlexColumn } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

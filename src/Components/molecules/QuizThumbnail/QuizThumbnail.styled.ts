@@ -3,7 +3,7 @@ import Paragraph from "Components/atoms/Paragraph";
 import Spinner from 'Components/atoms/Spinner';
 import { AbbreviateText, FlexCenter } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import colors from "styles/Colors";
+import colors from "styles/colors";
 
 export const StyledContainer = styled.div<{ primarycolor: string }>`
   ${FlexCenter};

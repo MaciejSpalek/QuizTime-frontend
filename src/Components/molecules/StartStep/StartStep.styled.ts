@@ -3,7 +3,7 @@ import PageTemplate from "templates/PageTemplate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AbbreviateText, FlexCenter } from "styles/Mixins";
 import Button from "Components/atoms/Button";
-import colors from "styles/Colors";
+import colors from "styles/colors";
 import Paragraph from "Components/atoms/Paragraph";
 
 export const StyledIconWrapper = styled.div<{ secondary: string }>`

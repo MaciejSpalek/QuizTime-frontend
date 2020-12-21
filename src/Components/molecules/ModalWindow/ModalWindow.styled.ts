@@ -3,7 +3,7 @@ import { FlexCenter, FlexColumn } from 'styles/Mixins';
 import Button from 'Components/atoms/Button';
 import Paragraph from 'Components/atoms/Paragraph';
 import IconButton from 'Components/atoms/IconButton';
-import colors from 'styles/Colors';
+import colors from 'styles/colors';
 
 const fadeInAnimation = keyframes`
     from {
