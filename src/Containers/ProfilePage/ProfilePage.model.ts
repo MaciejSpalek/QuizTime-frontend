@@ -1,3 +1,5 @@
+export type MatchParameters = { username: string };
+
 export interface Answer {
   option: string,
   content: string | number
