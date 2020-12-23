@@ -7,25 +7,39 @@ import PreloaderScreen from 'Components/molecules/PreloaderScreen';
 
 const HomePage = () => {
   const [quizzes, setQuizes] = useState([]);
-  const [isFetch, setIsFetch] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [quizzesFetchStatus, setQuizzesFetch] = useState(false);
+  const [usersFetchStatus, setUsersFetch] = useState(false);
 
   const fetchAllQuizzes = async () => {
     await axiosInstance.get("/quizes/allQuizzes")
-      .then(({ data }) => { 
+      .then(({ data }) => {
         setQuizes(data);
-        setIsFetch(true) ;
+        setQuizzesFetch(true);
       })
-    };
+  };
+
+  const fetchUsersNames = async () => {
+    await axiosInstance.get("/user/allNames")
+      .then(({ data }) => {
+        setUsers(data);
+        setUsersFetch(true);
+      })
+  };
 
   useEffect(() => {
     fetchAllQuizzes();
+    fetchUsersNames();
   }, []);
 
   return (
     <PageTemplate>
-      <SearchPanel />
-      {isFetch ?
-        <QuizesList quizzes={quizzes} /> : 
+      <SearchPanel
+        quizzes={quizzes}
+        users={users}
+      />
+      {quizzesFetchStatus && usersFetchStatus ?
+        <QuizesList quizzes={quizzes} /> :
         <PreloaderScreen />}
     </PageTemplate>
   );
