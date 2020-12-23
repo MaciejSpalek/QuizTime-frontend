@@ -23,8 +23,6 @@ import { axiosInstance } from 'services/api';
 import { RootState } from 'redux/store';
 import { useWindowSize } from 'hooks';
 
-
-
 const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
   const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
   const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);

@@ -23,7 +23,7 @@ const HomePage = () => {
 
   return (
     <PageTemplate>
-      <SearchPanel />
+      <SearchPanel quizzes={quizzes} />
       {isFetch ?
         <QuizesList quizzes={quizzes} /> : 
         <PreloaderScreen />}
