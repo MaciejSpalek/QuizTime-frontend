@@ -12,7 +12,7 @@ import ErrorPage from 'Containers/ErrorPage';
 import { IFormColor, IFormQuestion, IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { StyledWrapper, StyledStepWrapper } from './ProfilePage.styled';
 import { setAddQuizButtonStatus } from 'redux/Actions/statusesActions';
-import { answers, IErrors, IFormikValues } from './ProfilePage.model';
+import { answers, IErrors, IFormikValues, MatchParameters } from './ProfilePage.model';
 import { setToastParameters } from 'redux/Actions/toastActions';
 import { Formik, FormikErrors, FormikValues } from 'formik';
 import { resetParameters } from 'helpers/reduxHandlers';
@@ -23,12 +23,9 @@ import { axiosInstance } from 'services/api';
 import { RootState } from 'redux/store';
 import { useWindowSize } from 'hooks';
 
-type Match = { username: string }
-
-const ProfilePage = ({ match }: RouteComponentProps<Match>) => {
+const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
   const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
   const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
-  const formPageCounter = useSelector<RootState, number>(state => state.quizes.formCounter);
   const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser);
   const formColors = useSelector<RootState, IFormColor>(state => state.quizes.formColor);
   const formIconName = useSelector<RootState>(state => state.quizes.formIconName);
@@ -217,7 +214,7 @@ const ProfilePage = ({ match }: RouteComponentProps<Match>) => {
                   radioValue: 'A',
                   answers
                 }}
-                validationSchema={profilePageValidation(formPageCounter, width)}
+                validationSchema={profilePageValidation(step, width)}
                 onSubmit={(data, { setSubmitting, resetForm }) => {
                   onSubmit(data, setSubmitting, resetForm);
                 }}>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import colors from 'styles/Colors';
-import { FlexCenter } from 'styles/Mixins';
-import { ReadingGlass } from 'assets';
+import { FlexCenter, FlexColumn } from 'styles/Mixins';
+
 
 export const StyledContainer = styled.div`
     position: absolute;
@@ -15,9 +15,10 @@ export const StyledContainer = styled.div`
     padding: 10px;
 `;
 
-export const StyledReadingGlass = styled(ReadingGlass)`
-    width: 25px;
-    height: 25px;
-    margin-left: 10px;
-    fill: ${colors.BasicGreen};
+export const StyledInputWrapper = styled.div`
+    position: relative;
+    ${FlexColumn};
+    width: 100%;
+    background-color: ${colors.White};
+    border-radius: 5px;
 `;
