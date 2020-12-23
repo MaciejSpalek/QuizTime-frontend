@@ -9,8 +9,6 @@ import {
     StyledIconWrapper
 } from './QuizItem.styled';
 
-
-
 const QuizItem = ({ 
     id, 
     icon, 
@@ -20,8 +18,8 @@ const QuizItem = ({
     ...props 
 }: IQuizItem) => {
     const history = useHistory();
-    const handleOnClick = () => history.push(`${author}/${id}` );
     const { primary, secondary } = colors;
+    const handleOnClick = () => history.push(`${author}/${id}`);
 
     return (
         <StyledContainer onClick={handleOnClick} {...props}>

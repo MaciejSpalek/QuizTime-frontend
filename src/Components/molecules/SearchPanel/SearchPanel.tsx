@@ -21,8 +21,22 @@ const getQuizzes = (quizzes: IQuizTemplate[]) => {
 
 const SearchPanel = ({ quizzes }: ISearchPanel) => {
     const [isSelect, select] = useState(true);
-    const [inputValue, setInputValue] = useState('');
+    const [mutableArray, setMutableArray] = useState<any[]>([]);
 
+
+    const isInputTextMatch = (inputText: string, value: string) => {
+        const regex = new RegExp(`^${inputText}`, 'i');
+        return regex.test(value);
+    };
+
+    const filterItems = (array: IQuizTemplate[], e: React.ChangeEvent<HTMLInputElement>) => {
+        const inputValue = e.target.value;
+        const filteredArray = array.filter((item) => isInputTextMatch(inputValue, item.title));
+        inputValue ? 
+            setMutableArray(filteredArray):
+            setMutableArray([])
+    };
+ 
     return (
         <StyledContainer>
             <Label forText='search-input' />
@@ -32,9 +46,9 @@ const SearchPanel = ({ quizzes }: ISearchPanel) => {
                     type='text'
                     placeholder={isSelect ? 'Search quiz' : 'Search user'}
                     ariaLabel='quiz finder'
-                    onChange={(e) => setInputValue(e.target.value)}
+                    onChange={(e) => filterItems(isSelect ? quizzes : quizzes, e)}
                 />
-                {inputValue && <SearchList children={getQuizzes(quizzes)} />}
+                {!!mutableArray.length && <SearchList children={getQuizzes(mutableArray)} />}
             </StyledInputWrapper>
             <RadioBar
                 isSelect={isSelect}
