@@ -4,13 +4,14 @@ import { StyledInput } from './Input.styled';
 
 const Input = ({ 
   id, 
+  _ref,
   name, 
-  maxLength,
   type, 
   value,
   onBlur,
   onChange, 
   ariaLabel,
+  maxLength,
   isRequired,
   placeholder,
   ariaInvalid,
@@ -20,6 +21,7 @@ const Input = ({
 }: IInput) => (
     <StyledInput
       id={id}
+      ref={_ref}
       name={name}
       type={type}
       value={value}

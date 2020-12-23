@@ -1,3 +1,3 @@
 export interface ISearchList {
-  children: React.ReactNode[];
-}
+  children: React.ReactNode[] | React.ReactChild;
+};

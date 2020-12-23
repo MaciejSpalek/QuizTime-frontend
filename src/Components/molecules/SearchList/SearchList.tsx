@@ -1,12 +1,12 @@
 import React, { Children } from 'react';
 import { ISearchList } from './SearchList.model';
-import { StyledList } from './SearchList.styled';
+import { StyledList, StyledListItem } from './SearchList.styled';
 
 const SearchList = ({ children, ...props }: ISearchList) => {
     return (
         <StyledList {...props}>
             {Children.map(children, Child => (
-               <li> { Child } </li>
+               <StyledListItem> { Child } </StyledListItem>
             ))}
         </StyledList>
     );

@@ -1,22 +1,23 @@
 import styled from 'styled-components';
 import colors from 'styles/Colors';
-import { FlexColumn } from 'styles/Mixins';
 
 export const StyledList = styled.ul`
     position: absolute;
-    top: 100%;
-    ${FlexColumn};
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    top: calc(100% + 5px);
+    display: grid;
     max-height: 200px;
+    width: 100%;
     background-color: ${colors.White};
-    padding: 5px 10px;
-    list-style: none;
+    margin: 0;
     z-index: 999;
+    list-style: none;
     overflow: auto;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    
+    border-radius: 5px;
+    box-shadow: 0 0 5px .1px ${colors.TransparentBlack};
+`;
 
+export const StyledListItem = styled.li`
+    width: 100%;
+    background-color: ${colors.White};
+    padding: 5px;
 `;
