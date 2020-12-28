@@ -1,14 +1,22 @@
 import React, { Children } from 'react';
 import { ISearchList } from './SearchList.model';
-import { StyledList, StyledListItem } from './SearchList.styled';
+import { 
+    StyledList, 
+    StyledListItem, 
+    StyledGradient, 
+    StyledContainer 
+} from './SearchList.styled';
 
 const SearchList = ({ children, ...props }: ISearchList) => {
     return (
-        <StyledList {...props}>
-            {Children.map(children, Child => (
-               <StyledListItem> { Child } </StyledListItem>
-            ))}
-        </StyledList>
+        <StyledContainer>
+            <StyledList  {...props}>
+                {Children.map(children, Child => (
+                <StyledListItem> { Child } </StyledListItem>
+                ))}
+            </StyledList>
+           <StyledGradient />
+        </StyledContainer>
     );
 };
 

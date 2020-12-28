@@ -1,4 +1,4 @@
-import React from "react";
+import React, { RefObject } from "react";
 import QuizItem from "Components/molecules/SearchPanel/QuizItem";
 import UserItem from "Components/molecules/SearchPanel/UserItem";
 import { IQuizTemplate } from "Interfaces/quizInterfaces";
@@ -20,4 +20,11 @@ export const getUsers = (users: IUsers[]) => {
     return users.map(user => (
         <UserItem name={user.name} />
     ));
+};
+
+
+export const getElementWidth = (ref: RefObject<HTMLElement>) => {
+    if(null !== ref.current) {
+        return ref.current.clientWidth;
+    }
 };

@@ -3,6 +3,7 @@ const colors = {
   White: "#ffffff",
   Black: "#000000",
   TransparentBlack: "#000000d0",
+  TransparentWhite: "rgba(255, 255, 255, 0.50)",
 
   BasicGreen: "#00D952",
   DarkGreen: "#008332",

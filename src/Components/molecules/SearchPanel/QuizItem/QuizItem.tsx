@@ -9,24 +9,26 @@ import {
     StyledIconWrapper
 } from './QuizItem.styled';
 
-const QuizItem = ({ 
-    id, 
-    icon, 
-    text, 
+const QuizItem = ({
+    id,
+    icon,
+    text,
     colors,
-    author, 
-    ...props 
+    author,
+    ...props
 }: IQuizItem) => {
     const history = useHistory();
     const { primary, secondary } = colors;
     const handleOnClick = () => history.push(`${author}/${id}`);
-
+  
     return (
         <StyledContainer onClick={handleOnClick} {...props}>
             <StyledIconWrapper color={secondary}>
                 <StyledIcon color={primary} icon={icon as IconName} />
             </StyledIconWrapper>
-            <StyledTitle> { text } </StyledTitle>
+            <StyledTitle> 
+              { text }
+            </StyledTitle>
         </StyledContainer>
     );
 };
