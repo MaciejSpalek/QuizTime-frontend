@@ -2,8 +2,9 @@ import styled from "styled-components";
 import colors from "styles/Colors";
 import { FlexCenter } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
-export const StyledContainer = styled.div`
+export const StyledLink = styled(Link)`
   ${FlexCenter};
   justify-content: flex-start;
   background-color: ${colors.White};

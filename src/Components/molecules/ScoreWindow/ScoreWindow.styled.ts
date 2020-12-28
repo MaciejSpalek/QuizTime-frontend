@@ -3,7 +3,7 @@ import colors from 'styles/Colors';
 import PageTemplate from 'templates/PageTemplate';
 import Button from 'Components/atoms/Button';
 import QuestionStep from '../QuestionStep';
-import { FlexCenter, FlexColumn } from 'styles/Mixins';
+import { FlexCenter, FlexColumn, scrollBar } from 'styles/Mixins';
 
 const anim = keyframes`
   0% {
@@ -20,6 +20,7 @@ const anim = keyframes`
 export const StyledContainer = styled(PageTemplate)`
     overflow: auto;
     padding: 20px 10px;
+    ${scrollBar};
 `;
 
 export const StyledTopWrapper = styled.div`
@@ -48,10 +49,6 @@ export const StyledQuestionList = styled.ul`
     justify-content: flex-start;
     list-style: none;
     margin-top: 20px;
-`;
-
-export const StyledQuestionListItem = styled.li`
-
 `;
 
 

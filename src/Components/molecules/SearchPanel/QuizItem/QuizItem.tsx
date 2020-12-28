@@ -1,9 +1,8 @@
 import React from 'react';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { IQuizItem } from './QuizItem.model';
-import { useHistory } from 'react-router-dom';
 import {
-    StyledContainer,
+    StyledLink,
     StyledIcon,
     StyledTitle,
     StyledIconWrapper
@@ -17,19 +16,16 @@ const QuizItem = ({
     author,
     ...props
 }: IQuizItem) => {
-    const history = useHistory();
     const { primary, secondary } = colors;
-    const handleOnClick = () => history.push(`${author}/${id}`);
-  
     return (
-        <StyledContainer onClick={handleOnClick} {...props}>
+        <StyledLink to={`${author}/${id}`} {...props}>
             <StyledIconWrapper color={secondary}>
                 <StyledIcon color={primary} icon={icon as IconName} />
             </StyledIconWrapper>
             <StyledTitle> 
               { text }
             </StyledTitle>
-        </StyledContainer>
+        </StyledLink>
     );
 };
 

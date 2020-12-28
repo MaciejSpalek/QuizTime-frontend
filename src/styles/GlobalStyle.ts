@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { scrollBar } from './Mixins';
 
 const GlobalStyle = createGlobalStyle`
   *, 
@@ -22,6 +23,10 @@ const GlobalStyle = createGlobalStyle`
     font-size: 62.5%; 
   }
   
+  ul {
+    ${scrollBar};
+  }
+
   body {
     width:100%;
     height:100vh;

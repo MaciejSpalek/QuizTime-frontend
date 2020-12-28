@@ -7,7 +7,6 @@ import { RootState } from 'redux/store';
 import { routes } from 'routes';
 import { IScoreWindow } from './ScoreWindow.model';
 import {
-    StyledQuestionListItem,
     StyledQuestionList,
     StyledQuestionStep,
     StyledContainer,
@@ -61,7 +60,7 @@ const ScoreWindow = ({ score, questions, closeTheQuiz, colors }: IScoreWindow): 
             <StyledButton color={colors.primary} handleOnClick={handleOnThridButton} text={isListOpen ? 'Hide answers' : 'Show answers'} />
             {isListOpen && <StyledQuestionList>
                 {questions?.map(({ _id, content, answers }, index) =>
-                    <StyledQuestionListItem key={_id}>
+                    <li key={_id}>
                         <StyledQuestionStep
                             array={getColorsArray(index)}
                             content={content}
@@ -70,7 +69,7 @@ const ScoreWindow = ({ score, questions, closeTheQuiz, colors }: IScoreWindow): 
                             index={index}
                             colors={colors}
                         />
-                    </StyledQuestionListItem>)}
+                    </li>)}
             </StyledQuestionList>}
         </StyledContainer>
     );

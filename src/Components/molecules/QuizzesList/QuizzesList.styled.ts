@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import colors from "styles/Colors";
+import { scrollBar } from "styles/Mixins";
 
 export const StyledContainer = styled.div`
   position: absolute;
@@ -19,7 +20,11 @@ export const StyledList = styled.ul`
   background-color: ${colors.Gray100};
   list-style: none;
   overflow: auto;
-  
+  padding-right: 2.5px;
+  @media (min-width: 900px) {
+    padding-right: 10px;
+
+    }
   @media (min-width: 600px) {
     grid-template-columns: 1fr 1fr;
   }
