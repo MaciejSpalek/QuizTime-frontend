@@ -120,7 +120,6 @@ const AuthPage = ({ history }: RouteComponentProps) => {
                             <StyledLink
                                 text={isLoginRoute() ? "Create an acconut" : "Do you have an account ?"}
                                 to={isLoginRoute() ? routes.register : routes.login}
-                                type="Link"
                             />
                         </StyledAuthForm>
                     )}

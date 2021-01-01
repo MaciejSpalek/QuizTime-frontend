@@ -15,6 +15,8 @@ import {
     StyledBackground,
     StyledContainer
 } from './Menu.styled';
+import { StyledLink } from 'Components/atoms/Link/Link.styled';
+import Paragraph from 'Components/atoms/Paragraph';
 
 
 const Menu = () => {
@@ -26,7 +28,7 @@ const Menu = () => {
     const width = useWindowSize();
 
     useOutsideClick(menuRef, () => {
-        width <= 800 && dispatch(setHamburgerStatus(false));    
+        width <= 800 && dispatch(setHamburgerStatus(false));
     });
 
     const handleOnClick = () => {
@@ -39,9 +41,8 @@ const Menu = () => {
             <StyledList ref={menuRef}>
                 <StyledItem>
                     <StyledNavLink
-                        
                         to={routes.home}
-                        type='NavLink'
+                        isNavLink={true}
                         text='Home'
                         children={<StyledIcon icon='home' />}
                         onClick={handleOnClick}
@@ -51,7 +52,7 @@ const Menu = () => {
                     <StyledItem>
                         <StyledNavLink
                             to={routes.login}
-                            type='NavLink'
+                            isNavLink={true}
                             text='Sign in'
                             children={<StyledIcon icon='sign-in-alt' />}
                             onClick={handleOnClick}
@@ -61,7 +62,7 @@ const Menu = () => {
                     <StyledItem>
                         <StyledNavLink
                             to={`/${user}`}
-                            type='NavLink'
+                            isNavLink={true}
                             text='Profile'
                             children={<StyledIcon icon='user' />}
                             onClick={handleOnClick}
@@ -69,16 +70,16 @@ const Menu = () => {
                     </StyledItem>}
                 {isAuthenticated &&
                     <StyledItem>
-                        <StyledNavLink
+                        <StyledLink
                             to={routes.home}
-                            type='NavLink'
-                            text='Logout'
-                            children={<StyledIcon icon='sign-out-alt' />}
                             onClick={() => {
                                 handleOnClick();
                                 logout(dispatch);
                             }}
-                        />
+                        >
+                            <StyledIcon icon='sign-out-alt' />
+                            <span> Log out </span>
+                        </StyledLink>
                     </StyledItem>}
             </StyledList>
             <StyledBackground />

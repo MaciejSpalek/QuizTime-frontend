@@ -6,13 +6,13 @@ import { IFormQuestion } from 'Interfaces/quizInterfaces';
 import { ISubmitStep } from './SubmitStep.model';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
-import { 
-    StyledSubmitStep, 
-    StyledPlaceholderText, 
-    StyledHeading, 
+import {
+    StyledSubmitStep,
+    StyledPlaceholderText,
+    StyledHeading,
     StyledMainWrapper,
-    StyledTopWrapper, 
-    StyledList 
+    StyledTopWrapper,
+    StyledList
 } from './SubmitStep.styled';
 
 const SubmitStep = ({ errors, touched, values, isSubmitting }: ISubmitStep): JSX.Element => {
@@ -20,38 +20,38 @@ const SubmitStep = ({ errors, touched, values, isSubmitting }: ISubmitStep): JSX
     const [isFirstRender, setIsFirstRender] = useState(true);
 
     const isDisabled = () => {
-        if(isFirstRender) return true;
+        if (isFirstRender) return true;
         return !!(errors.title && touched) || isSubmitting;
     };
 
     useEffect(() => {
-       values.title && setIsFirstRender(false);
+        values.title && setIsFirstRender(false);
     }, [values.title]);
 
 
     return (
         <StyledSubmitStep>
-            {questions.length ? 
+            {questions.length ?
                 <StyledMainWrapper>
                     <StyledTopWrapper>
                         <StyledHeading> Questions ({questions.length}) </StyledHeading>
-                        <Button text="Create" type="submit" isDisabled={isDisabled()} /> 
+                        <Button text="Create" type="submit" isDisabled={isDisabled()} />
                     </StyledTopWrapper>
-                    <StyledList> 
+                    <StyledList>
                         {questions.map(({ content, answers, id }, index) =>
-                        <li key={id}>
-                            <QuestionBox
-                                question={content}
-                                answers={answers}
-                                index={index+1}
-                                id={id}
-                            />
-                        </li>)}
+                            <li key={id}>
+                                <QuestionBox
+                                    question={content}
+                                    answers={answers}
+                                    index={index + 1}
+                                    id={id}
+                                />
+                            </li>)}
                     </StyledList>
-                </StyledMainWrapper> : 
+                </StyledMainWrapper> :
                 <Placeholder>
-                    <StyledPlaceholderText> 
-                        No questions 
+                    <StyledPlaceholderText>
+                        No questions
                     </StyledPlaceholderText>
                 </Placeholder>
             }
