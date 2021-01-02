@@ -11,7 +11,6 @@ import { RootState } from 'redux/store';
 import {
     StyledContainer,
     StyledFormField,
-    StyledListItem,
     StyledWrapper,
     StyledButton,
     StyledList
@@ -110,7 +109,7 @@ const AddingStep = ({
 
             <StyledList>
                 {answers.map(({ option, content }, index) =>
-                    <StyledListItem key={option}>
+                    <li key={option}>
                         <InputField
                             handleChange={handleChange}
                             handleBlur={handleBlur}
@@ -121,7 +120,7 @@ const AddingStep = ({
                             touched={touched.answers ? touched.answers[index] : null}
                             error={errors.answers ? errors.answers[index] : null}
                         />
-                    </StyledListItem>)}
+                    </li>)}
             </StyledList>
         </StyledContainer>
     )

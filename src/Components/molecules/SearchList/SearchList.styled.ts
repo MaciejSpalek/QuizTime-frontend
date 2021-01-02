@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import colors from "styles/Colors";
+import { scrollBar } from "styles/Mixins";
 
 
 export const StyledContainer = styled.div`
@@ -23,6 +24,7 @@ export const StyledList = styled.ul`
   border-radius: 5px;
   overflow-y: auto;
   overflow-x: hidden;
+  ${scrollBar};
 `;
 
 export const StyledListItem = styled.li`
@@ -44,4 +46,8 @@ export const StyledGradient = styled.span`
     ${colors.White},
     ${colors.White}
   );
+
+  @media (min-width: 900px) {
+    display: none;
+  }
 `;

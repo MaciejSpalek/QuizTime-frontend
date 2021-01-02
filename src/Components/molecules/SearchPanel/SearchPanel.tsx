@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Input from 'Components/atoms/Input';
 import Label from 'Components/atoms/Label';
 import SearchList from '../SearchList';
@@ -7,13 +7,12 @@ import { StyledContainer, StyledInputWrapper } from './SearchPanel.styled';
 import { clearInput, isInputTextMatch } from 'helpers/inputs';
 import { ISearchPanel, IUsers } from './SearchPanel.model';
 import { IQuizTemplate } from 'Interfaces/quizInterfaces';
-import { getElementWidth, getQuizzes, getUsers } from 'helpers/getters';
-import { useEventListener, useOutsideClick } from 'hooks';
+import { getQuizzes, getUsers } from 'helpers/getters';
+import { useOutsideClick } from 'hooks';
 
 const SearchPanel = ({ quizzes, users }: ISearchPanel) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [isSelect, select] = useState(true);
-    const [inputWidth, setInputWith] = useState(0);
     const [mutableUsers, setMutableUsers] = useState<IUsers[]>([]);
     const [mutableQuizzes, setMutableQuizzes] = useState<IQuizTemplate[]>([]);
 
@@ -24,19 +23,13 @@ const SearchPanel = ({ quizzes, users }: ISearchPanel) => {
     };
 
     useOutsideClick(inputRef, () => {
-        resetParameters()
-    })
-
-    useEventListener('resize', () => {
-        setInputWith(+`${getElementWidth(inputRef)}`);
-    })
+        resetParameters();
+    });
 
     const handleOnToggle = () => {
         select(prev => !prev);
         resetParameters();
     };
-
-    
 
     const filterQuizzes = (quizzes: IQuizTemplate[], e: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = e.target.value;

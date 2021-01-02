@@ -19,23 +19,20 @@ export const StyledWrapper = styled.div`
 `;
 
 export const StyledList = styled.ul`
-  display: grid; 
+  display: grid;
   height: auto;
   list-style: none;
   grid-gap: 5px;
 `;
 
-export const StyledListItem = styled.li``;
-
 export const StyledButton = styled(Button)`
-    ${FlexCenter};
-    width: auto;
-    padding: 0 20px;
-    margin: 0;
-    margin-left: 10px;
+  ${FlexCenter};
+  width: auto;
+  padding: 0 20px;
+  margin: 0;
+  margin-left: 10px;
 `;
 
 export const StyledFormField = styled(FormFieldTemplate)`
-    margin: 0;
+  margin: 0;
 `;
-
