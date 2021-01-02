@@ -1,4 +1,4 @@
-export interface IRadioBox {
+export interface IToggleButton {
     onClick: () => void;
     isSelect: boolean;
 }

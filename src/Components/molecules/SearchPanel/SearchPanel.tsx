@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
+import ToggleButton from '../../atoms/ToggleButton';
 import Input from 'Components/atoms/Input';
 import Label from 'Components/atoms/Label';
 import SearchList from '../SearchList';
-import RadioBar from '../RadioBar';
 import { StyledContainer, StyledInputWrapper } from './SearchPanel.styled';
 import { clearInput, isInputTextMatch } from 'helpers/inputs';
 import { ISearchPanel, IUsers } from './SearchPanel.model';
@@ -61,7 +61,7 @@ const SearchPanel = ({ quizzes, users }: ISearchPanel) => {
                 {!!mutableUsers.length && <SearchList children={getUsers(mutableUsers)} />}
                 {!!mutableQuizzes.length && <SearchList children={getQuizzes(mutableQuizzes)} />}
             </StyledInputWrapper>
-            <RadioBar
+            <ToggleButton
                 isSelect={isSelect}
                 onClick={handleOnToggle}
             />

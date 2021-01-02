@@ -3,7 +3,7 @@ import colors from 'styles/Colors';
 import { FlexCenter } from 'styles/Mixins';
 import { QuizIcon, UsersIcon } from 'assets';
 
-export const StyledContainer = styled.div`
+export const StyledContainer = styled.button`
     ${FlexCenter};
     justify-content: space-between;
     height: 45px;

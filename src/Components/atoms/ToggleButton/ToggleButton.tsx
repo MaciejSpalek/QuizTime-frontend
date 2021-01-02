@@ -1,15 +1,15 @@
-import { IFormColor } from 'Interfaces/quizInterfaces';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import colors from 'styles/Colors';
+import { IFormColor } from 'Interfaces/quizInterfaces';
+import { IToggleButton } from './ToggleButton.model';
 import {
     StyledContainer,
     StyledQuizIcon,
     StyledUsersIcon,
     StyledIconWrapper
-} from './RadioBar.styled'
-import { IRadioBox } from './RadioBox.model';
+} from './ToggleButton.styled'
 
-const RadioBar = ({ isSelect, onClick, ...props }: IRadioBox): JSX.Element => {
+const RadioBar = ({ isSelect, onClick, ...props }: IToggleButton): JSX.Element => {
     const getColors = (isSelect: boolean): IFormColor => {
         if(isSelect) {
             return {

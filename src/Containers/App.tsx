@@ -18,8 +18,8 @@ const App = () => {
         <MainTemplate>
           <Switch>
             <Route exact path={routes.home} component={Home} />
-            <Route exact path={routes.login} component={AuthPage} />
             <Route exact path={routes.register} component={AuthPage} />
+            <Route exact path={routes.login} component={AuthPage} />
             <Route exact path={routes.profile} component={ProfilePage} />
             <Route exact path={routes.quiz} component={QuizPage} />
             <Route component={ErrorPage} />

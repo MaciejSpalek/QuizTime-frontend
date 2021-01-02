@@ -16,7 +16,6 @@ import {
     StyledContainer
 } from './Menu.styled';
 import { StyledLink } from 'Components/atoms/Link/Link.styled';
-import Paragraph from 'Components/atoms/Paragraph';
 
 
 const Menu = () => {
@@ -41,31 +40,31 @@ const Menu = () => {
             <StyledList ref={menuRef}>
                 <StyledItem>
                     <StyledNavLink
+                        text='Home'
                         to={routes.home}
                         isNavLink={true}
-                        text='Home'
-                        children={<StyledIcon icon='home' />}
                         onClick={handleOnClick}
+                        children={<StyledIcon icon='home' />}
                     />
                 </StyledItem>
                 {!isAuthenticated &&
                     <StyledItem>
                         <StyledNavLink
-                            to={routes.login}
+                            text='Log in'
                             isNavLink={true}
-                            text='Sign in'
-                            children={<StyledIcon icon='sign-in-alt' />}
+                            to={routes.login}
                             onClick={handleOnClick}
+                            children={<StyledIcon icon='sign-in-alt' />}
                         />
                     </StyledItem>}
                 {isAuthenticated &&
                     <StyledItem>
                         <StyledNavLink
+                            text={`${user}`}
                             to={`/${user}`}
                             isNavLink={true}
-                            text='Profile'
-                            children={<StyledIcon icon='user' />}
                             onClick={handleOnClick}
+                            children={<StyledIcon icon='user' />}
                         />
                     </StyledItem>}
                 {isAuthenticated &&
@@ -75,8 +74,7 @@ const Menu = () => {
                             onClick={() => {
                                 handleOnClick();
                                 logout(dispatch);
-                            }}
-                        >
+                            }}>
                             <StyledIcon icon='sign-out-alt' />
                             <span> Log out </span>
                         </StyledLink>
