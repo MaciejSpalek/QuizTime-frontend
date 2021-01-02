@@ -1,9 +1,9 @@
+import colors from "styles/Colors";
 import styled from "styled-components";
-import Paragraph from "Components/atoms/Paragraph";
 import Spinner from 'Components/atoms/Spinner';
+import Paragraph from "Components/atoms/Paragraph";
 import { AbbreviateText, FlexCenter } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import colors from "styles/Colors";
 
 export const StyledContainer = styled.div<{ primarycolor: string }>`
   ${FlexCenter};
@@ -11,6 +11,11 @@ export const StyledContainer = styled.div<{ primarycolor: string }>`
   position: relative;
   background-color: ${({ primarycolor }) => primarycolor};
   border-radius: 4px;
+  transition: .2s ease-in-out;
+  :hover {
+    box-shadow: 3px 3px 10px 0.1px ${colors.TransparentBlack};
+    transform: scale(1.01)
+  }
 `;
 
 export const StyledImageWrapper = styled.picture<{ secondarycolor: string }>`

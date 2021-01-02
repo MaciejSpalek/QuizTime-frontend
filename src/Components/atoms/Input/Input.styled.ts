@@ -9,4 +9,7 @@ export const StyledInput = styled.input`
   background-color: ${colors.White};
   border: 2px solid ${colors.Gray80};
   border-radius: 5px;
+  :focus {
+    outline-style: auto;
+  }
 `;

@@ -14,9 +14,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   button {
-    border:none;
-    background:none;
-    cursor: pointer;
+    border: none;
+    background: none;
+    cursor: pointer;  
   }  
 
   html {
@@ -40,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    text-decoration:none;
+    text-decoration: none;
   }
 `;
 

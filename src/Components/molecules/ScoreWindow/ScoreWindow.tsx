@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import CircularProgressBar from 'Components/molecules/CircularProgressBar';
 import _colors from 'styles/Colors';
+import CircularProgressBar from 'Components/molecules/CircularProgressBar';
+import { routes } from 'routes';
+import { RootState } from 'redux/store';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { RootState } from 'redux/store';
-import { routes } from 'routes';
 import { IScoreWindow } from './ScoreWindow.model';
 import {
     StyledQuestionList,
@@ -21,7 +21,7 @@ const ScoreWindow = ({ score, questions, closeTheQuiz, colors }: IScoreWindow): 
 
     const handleOnFirstButton = () => closeTheQuiz();
     const handleOnSecondButton = () => history.push(routes.home);
-    const handleOnThridButton = () => setIsListOpen(prev => !prev)
+    const handleOnThridButton = () => setIsListOpen(prev => !prev);
 
     const getColorsArray = (index: number) => {
         const options = ['A', 'B', 'C', 'D'];

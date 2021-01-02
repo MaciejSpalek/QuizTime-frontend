@@ -7,7 +7,7 @@ import {
     StyledQuizIcon,
     StyledUsersIcon,
     StyledIconWrapper
-} from './ToggleButton.styled'
+} from './ToggleButton.styled';
 
 const RadioBar = ({ isSelect, onClick, ...props }: IToggleButton): JSX.Element => {
     const getColors = (isSelect: boolean): IFormColor => {

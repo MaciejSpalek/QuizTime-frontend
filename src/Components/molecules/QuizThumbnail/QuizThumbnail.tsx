@@ -6,10 +6,10 @@ import {
     StyledTextWrapper,
     StyledContainer,
     StyledAuthorTag,
+    StyledSpinner,
     StyledTitle,
     StyledScore,
-    StyledIcon,
-    StyledSpinner
+    StyledIcon
 } from './QuizThumbnail.styled';
 
 
@@ -18,10 +18,7 @@ const QuizThumbnail = ({ score, parameters, ...props }: IQuizThumbnail) => {
         author,
         title,
         iconName,
-        colors: {
-            primary,
-            secondary
-        }
+        colors: { primary, secondary }
     } = parameters;
 
     return (
@@ -32,7 +29,10 @@ const QuizThumbnail = ({ score, parameters, ...props }: IQuizThumbnail) => {
                     primarycolor={primary}
                 />
                 {score ?
-                    <StyledScore text={`${score}`} color={primary} /> :
+                    <StyledScore 
+                        text={`${score}`} 
+                        color={primary} 
+                    /> :
                     <StyledSpinner />
                 }
             </StyledImageWrapper>
