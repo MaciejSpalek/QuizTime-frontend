@@ -19,5 +19,9 @@ export const StyledButton = styled.button.attrs(props => ({
     padding: 0 5px;
     margin: 5px 0;
     cursor: pointer;
+    transition: .3s ease-in-out;
+    :hover {
+        transform: scale(1.025);
+    };
 `;
 

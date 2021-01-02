@@ -55,7 +55,11 @@ const QuizzesList = ({ quizzes }: IQuizzesList) => {
                             key={data._id}
                             id={data._id}
                             onClick={() => handleOnClick(`${data._id}`, `${data.author}`)}>
-                            <QuizThumbnail score={scores[index]} parameters={data} />
+                            <QuizThumbnail 
+                                score={scores[index]} 
+                                parameters={data} 
+                                isHover={true}
+                            />
                         </StyledListItem>)}
                 </StyledList> :
                 <Placeholder>

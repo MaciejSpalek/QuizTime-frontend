@@ -68,6 +68,7 @@ const ThumbnailStep = ({
           amountOfQuestions: 5
         }}
         score={`1/5`}
+        isHover={false}
       />
       <StyledInputWrapper>
         <StyledFormField>

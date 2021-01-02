@@ -13,7 +13,7 @@ import {
 } from './QuizThumbnail.styled';
 
 
-const QuizThumbnail = ({ score, parameters, ...props }: IQuizThumbnail) => {
+const QuizThumbnail = ({ isHover, score, parameters, ...props }: IQuizThumbnail) => {
     const {
         author,
         title,
@@ -22,7 +22,7 @@ const QuizThumbnail = ({ score, parameters, ...props }: IQuizThumbnail) => {
     } = parameters;
 
     return (
-        <StyledContainer {...props} primarycolor={primary}>
+        <StyledContainer {...props} primarycolor={primary} isHover={!!isHover}>
             <StyledImageWrapper secondarycolor={secondary}>
                 <StyledIcon
                     icon={iconName as IconName}

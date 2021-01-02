@@ -8,7 +8,8 @@ export const StyledContainer = styled.div`
   ${FlexColumn};
   height: 100%;
   background-color: ${colors.Gray100};
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 export const StyledWrapper = styled.div`

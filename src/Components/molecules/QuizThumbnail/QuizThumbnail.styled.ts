@@ -5,7 +5,7 @@ import Paragraph from "Components/atoms/Paragraph";
 import { AbbreviateText, FlexCenter } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const StyledContainer = styled.div<{ primarycolor: string }>`
+export const StyledContainer = styled.div<{ primarycolor: string, isHover: boolean | undefined }>`
   ${FlexCenter};
   min-width: 200px;
   position: relative;
@@ -13,8 +13,7 @@ export const StyledContainer = styled.div<{ primarycolor: string }>`
   border-radius: 4px;
   transition: .2s ease-in-out;
   :hover {
-    box-shadow: 3px 3px 10px 0.1px ${colors.TransparentBlack};
-    transform: scale(1.01)
+    box-shadow: ${({ isHover }) => isHover ? `3px 3px 10px 0.1px ${colors.TransparentBlack}` : 'none'}; 
   }
 `;
 
