@@ -149,7 +149,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                                     handleLeftButton={() => setStep(prev => prev - 1)}
                                     onSubmit={handleSubmit}
                                     counter={step}
-                                    color={quiz.colors.primary}
+                                    color={quiz.colors.secondary}
                                 />
                             )}
                         </Formik> :

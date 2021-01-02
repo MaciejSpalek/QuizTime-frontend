@@ -1,8 +1,8 @@
-import styled, { keyframes } from 'styled-components';
 import colors from 'styles/Colors';
-import PageTemplate from 'templates/PageTemplate';
-import Button from 'Components/atoms/Button';
 import QuestionStep from '../QuestionStep';
+import Button from 'Components/atoms/Button';
+import PageTemplate from 'templates/PageTemplate';
+import styled, { keyframes } from 'styled-components';
 import { FlexCenter, FlexColumn, scrollBar } from 'styles/Mixins';
 
 const anim = keyframes`
@@ -51,10 +51,10 @@ export const StyledQuestionList = styled.ul`
     margin-top: 20px;
 `;
 
-
-export const StyledButton = styled(Button)<{color: string}>`
+export const StyledButton = styled(Button)<{primary: string, secondary: string}>`
     width: 300px;
-    background-color: ${({ color }) => color ? color : colors.BasicGreen};
+    color: ${({ primary }) => primary};
+    background-color: ${({ secondary }) => secondary};
 `;
 
 export const StyledQuestionStep = styled(QuestionStep)`

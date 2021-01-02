@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import PageTemplate from "templates/PageTemplate";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { AbbreviateText, FlexCenter } from "styles/Mixins";
-import Button from "Components/atoms/Button";
 import colors from "styles/Colors";
+import styled from "styled-components";
+import Button from "Components/atoms/Button";
+import PageTemplate from "templates/PageTemplate";
 import Paragraph from "Components/atoms/Paragraph";
+import { AbbreviateText, FlexCenter } from "styles/Mixins";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const StyledIconWrapper = styled.div<{ secondary: string }>`
   ${FlexCenter};
@@ -71,7 +71,8 @@ export const StyledAuthor = styled(Paragraph)`
   color: ${colors.Gray20};
 `;
 
-export const StyledButton = styled(Button)<{primary: string}>`
+export const StyledButton = styled(Button)<{primary: string, secondary: string}>`
   width: 100%;
-  background-color: ${({primary}) => primary};
+  color: ${({ primary }) => primary};
+  background-color: ${({ secondary }) => secondary};
 `;

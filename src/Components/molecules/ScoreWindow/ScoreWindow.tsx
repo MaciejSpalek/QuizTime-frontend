@@ -14,10 +14,11 @@ import {
 } from './ScoreWindow.styled';
 
 const ScoreWindow = ({ score, questions, closeTheQuiz, colors }: IScoreWindow): JSX.Element => {
-    const history = useHistory();
     const correctAnswersArray = useSelector<RootState, string[]>(state => state.quizes.correctAnswersArray);
     const userAnswersArray = useSelector<RootState, string[]>(state => state.quizes.userAnswersArray);
     const [isListOpen, setIsListOpen] = useState(false);
+    const { primary, secondary } = colors;
+    const history = useHistory();
 
     const handleOnFirstButton = () => closeTheQuiz();
     const handleOnSecondButton = () => history.push(routes.home);
@@ -53,11 +54,11 @@ const ScoreWindow = ({ score, questions, closeTheQuiz, colors }: IScoreWindow): 
                 strokeWidth={10}
                 score={score}
                 size={300}
-                color={colors.primary}
+                color={secondary}
             />
-            <StyledButton color={colors.primary} handleOnClick={handleOnFirstButton} text='Try again' />
-            <StyledButton color={colors.primary} handleOnClick={handleOnSecondButton} text='Back' />
-            <StyledButton color={colors.primary} handleOnClick={handleOnThridButton} text={isListOpen ? 'Hide answers' : 'Show answers'} />
+            <StyledButton primary={primary} secondary={secondary} handleOnClick={handleOnFirstButton} text='Try again' />
+            <StyledButton primary={primary} secondary={secondary} handleOnClick={handleOnSecondButton} text='Back' />
+            <StyledButton primary={primary} secondary={secondary} handleOnClick={handleOnThridButton} text={isListOpen ? 'Hide answers' : 'Show answers'} />
             {isListOpen && <StyledQuestionList>
                 {questions?.map(({ _id, content, answers }, index) =>
                     <li key={_id}>

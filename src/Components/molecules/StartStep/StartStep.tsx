@@ -40,7 +40,7 @@ const StartStep = ({
                 </StyledIconWrapper>
             </StyledWrapper>
             <StyledWrapper primary={primary}>
-                <StyledTitle secondary={primary}>{title}</StyledTitle>
+                <StyledTitle secondary={secondary}>{title}</StyledTitle>
                 <StyledAuthor text={getAuthor(author)} />
             </StyledWrapper>
             <StyledWrapper primary={primary}>
@@ -48,18 +48,21 @@ const StartStep = ({
                     type='button'
                     text='Start quiz'
                     handleOnClick={onClick}
+                    secondary={secondary}
                     primary={primary}
                 />
                 <StyledButton
                     type='button'
                     text='More quizzes'
                     handleOnClick={moreQuizzes}
+                    secondary={secondary}
                     primary={primary}
                 />
                 <StyledButton
                     type='button'
                     text='Back'
                     handleOnClick={backToHome}
+                    secondary={secondary}
                     primary={primary}
                 />
             </StyledWrapper>

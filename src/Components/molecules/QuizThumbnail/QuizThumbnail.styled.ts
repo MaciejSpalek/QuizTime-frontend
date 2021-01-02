@@ -1,9 +1,17 @@
 import colors from "styles/Colors";
-import styled from "styled-components";
 import Spinner from 'Components/atoms/Spinner';
 import Paragraph from "Components/atoms/Paragraph";
+import styled, { keyframes } from "styled-components";
 import { AbbreviateText, FlexCenter } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const increaseScale = keyframes` 
+  from {
+    transform: scale(0);
+  } to {
+    transform: scale(1);
+  }
+`;
 
 export const StyledContainer = styled.div<{ primarycolor: string, isHover: boolean | undefined }>`
   ${FlexCenter};
@@ -12,6 +20,7 @@ export const StyledContainer = styled.div<{ primarycolor: string, isHover: boole
   background-color: ${({ primarycolor }) => primarycolor};
   border-radius: 4px;
   transition: .2s ease-in-out;
+  animation: ${({ isHover }) => isHover ? increaseScale : ''} .3s ease-in-out;
   :hover {
     box-shadow: ${({ isHover }) => isHover ? `3px 3px 10px 0.1px ${colors.TransparentBlack}` : 'none'}; 
   }
@@ -26,6 +35,7 @@ export const StyledImageWrapper = styled.picture<{ secondarycolor: string }>`
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   background-color: ${({ secondarycolor }) => secondarycolor};
+  transition: .2s ease-in-out;
 `;
 
 export const StyledTextWrapper = styled.div`

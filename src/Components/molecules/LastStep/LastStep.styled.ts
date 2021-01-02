@@ -15,9 +15,11 @@ export const StyledContainer = styled(PageTemplate)`
     overflow: auto;
 `;
 
-export const StyledButton = styled(Button)<{color: string}>`
+export const StyledButton = styled(Button)<{primary: string, secondary: string}>`
   width: 200px;
-  background-color: ${({ color }) => color ? color: colors.BasicGreen};
+  color: ${({ primary }) => primary};
+  background-color: ${({ secondary }) => secondary};
+
 `;
 
 export const StyledHeading = styled(Paragraph)`
@@ -28,6 +30,6 @@ export const StyledHeading = styled(Paragraph)`
 `;
 
 export const StyledIcon = styled(FontAwesomeIcon)<{color: string}>`
-  color: ${({ color }) => color ? color: colors.BasicGreen};
+  color: ${({ color }) => color};
   font-size: 130px;
 `;

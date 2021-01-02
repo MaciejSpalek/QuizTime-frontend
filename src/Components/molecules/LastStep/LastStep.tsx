@@ -8,15 +8,16 @@ import {
 } from './LastStep.styled';
 
 const LastStep = ({ isSubmitting, colors }: ILastStep) => {
-    const { primary } = colors;
+    const { primary, secondary } = colors;
     return (
         <StyledContainer>
-            <StyledIcon icon={['far', 'list-alt']} color={primary}/>
+            <StyledIcon icon={['far', 'list-alt']} color={secondary}/>
             <StyledHeading 
                 text="Answer all questions to complete the quiz"
             />
             <StyledButton
-                color={primary}
+                primary={primary}
+                secondary={secondary}
                 type='submit'
                 text='Check answers'
                 isDisabled={isSubmitting}
