@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import colors from './Colors';
 import { scrollBar } from './Mixins';
 
 const GlobalStyle = createGlobalStyle`
@@ -17,8 +18,12 @@ const GlobalStyle = createGlobalStyle`
     border: none;
     background: none;
     cursor: pointer;  
+    outline-color: ${colors.Gray40}; 
   }  
 
+  input {
+    outline-color: ${colors.Gray40}; 
+  }
   html {
     font-size: 62.5%; 
   }

@@ -1,5 +1,9 @@
-import { setFormCounter, setFormQuestions, setFormQuestionsCounter } from "redux/Actions/quizActions";
 import { setAddQuizButtonStatus } from "redux/Actions/statusesActions";
+import { 
+  setFormCounter, 
+  setFormQuestions, 
+  setFormQuestionsCounter 
+} from "redux/Actions/quizActions";
 
 
 export const resetParameters = (dispatch: any) => {

@@ -14,11 +14,9 @@ export const StyledButton = styled.button.attrs(props => ({
     color: ${({isDisabled}) => isDisabled ? colors.Gray60 : colors.White};
     text-shadow: 1px 1px 0px rgba(0, 0, 0, .5);
     border-radius: 5px;
-    border: none;
     overflow: hidden;
     padding: 0 5px;
-    margin: 5px 0;
-    cursor: pointer;
+    margin: 5px 0;                  
     transition: .3s ease-in-out;
     :hover {
         transform: scale(1.025);
