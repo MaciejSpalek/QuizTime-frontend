@@ -1,3 +1,4 @@
+import { strict } from "assert";
 import * as yup from "yup";
 
 export const authPageValidation = yup.object({

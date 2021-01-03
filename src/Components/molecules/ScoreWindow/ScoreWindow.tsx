@@ -43,10 +43,9 @@ const ScoreWindow = ({ score, questions, closeTheQuiz, colors }: IScoreWindow): 
 
     const countProgress = (score: string) => {
         const [nominator, denominator] = score.split('/');
-        return (+nominator/+denominator)*100;
+        return (+nominator / +denominator) * 100;
     };
 
-  
     return (
         <StyledContainer>
             <CircularProgressBar
@@ -56,9 +55,24 @@ const ScoreWindow = ({ score, questions, closeTheQuiz, colors }: IScoreWindow): 
                 size={300}
                 color={secondary}
             />
-            <StyledButton primary={primary} secondary={secondary} handleOnClick={handleOnFirstButton} text='Try again' />
-            <StyledButton primary={primary} secondary={secondary} handleOnClick={handleOnSecondButton} text='Back' />
-            <StyledButton primary={primary} secondary={secondary} handleOnClick={handleOnThridButton} text={isListOpen ? 'Hide answers' : 'Show answers'} />
+            <StyledButton
+                primary={primary}
+                secondary={secondary}
+                handleOnClick={handleOnFirstButton}
+                text='Try again'
+            />
+            <StyledButton
+                primary={primary}
+                secondary={secondary}
+                handleOnClick={handleOnSecondButton}
+                text='Back'
+            />
+            <StyledButton
+                primary={primary}
+                secondary={secondary}
+                handleOnClick={handleOnThridButton}
+                text={isListOpen ? 'Hide answers' : 'Show answers'}
+            />
             {isListOpen && <StyledQuestionList>
                 {questions?.map(({ _id, content, answers }, index) =>
                     <li key={_id}>
