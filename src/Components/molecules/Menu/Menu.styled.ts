@@ -50,7 +50,7 @@ export const StyledIcon = styled(FontAwesomeIcon)`
   margin-right: 10px;
   color: ${colors.BasicGreen};
   @media only screen and (min-width: 800px) {
-    font-size:28px;
+    font-size: 28px;
   }
 `;
 
@@ -66,6 +66,9 @@ export const StyledItem = styled.li`
 export const StyledNavLink = styled(NavLink)`
   color: ${colors.Gray20};
   font-weight: bold;
-  @media only screen and (min-width: 800px) {
-  }
+`;
+
+export const StyledSpan = styled.span`
+  color: ${colors.Gray20};
+  font-weight: bold;
 `;

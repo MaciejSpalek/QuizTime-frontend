@@ -11,6 +11,7 @@ import { setRequestStatus } from 'redux/Actions/sessionActions';
 import { RouteComponentProps } from 'react-router-dom';
 import { StyledButton, StyledLink, StyledContainer, StyledAuthForm, StyledLabel } from './AuthPage.styled';
 import { authPageValidation } from './validation';
+import { capitalizeFirstLetter } from 'helpers/string';
 
 
 const AuthPage = ({ history }: RouteComponentProps) => {
@@ -28,11 +29,14 @@ const AuthPage = ({ history }: RouteComponentProps) => {
         handleOnFunction: (e: ChangeEvent<HTMLInputElement>) => void,
         setFieldValue: (field: string, value: any) => void,
         e: ChangeEvent<HTMLInputElement>,
+        isCaptalized: boolean = false
     ) => {
         dispatch(setRequestStatus(true));
         setIsFirstRender(false);
         handleOnFunction(e);
-        setFieldValue(e.target.name, e.target.value.trim())
+        isCaptalized ?
+            setFieldValue(e.target.name, capitalizeFirstLetter(e.target.value.trim())) :
+            setFieldValue(e.target.name, e.target.value.trim())
     };
 
 
@@ -95,8 +99,8 @@ const AuthPage = ({ history }: RouteComponentProps) => {
                                 value={values.name}
                                 ariaInvalid={true}
                                 ariaDescribedBy="err_1"
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => inputFunctionsHandler(handleChange, setFieldValue, e)}
-                                onBlur={(e: ChangeEvent<HTMLInputElement>) => inputFunctionsHandler(handleBlur, setFieldValue, e)}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => inputFunctionsHandler(handleChange, setFieldValue, e, true)}
+                                onBlur={(e: ChangeEvent<HTMLInputElement>) => inputFunctionsHandler(handleBlur, setFieldValue, e, true)}
                                 isRequired={true}
                             />
                             {errors.name && touched.name ?

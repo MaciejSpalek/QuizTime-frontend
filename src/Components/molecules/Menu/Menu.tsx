@@ -1,21 +1,22 @@
 import React, { useRef } from 'react';
-import { routes } from 'routes/index';
+import { setHamburgerStatus } from 'redux/Actions/statusesActions';
+import { StyledLink } from 'Components/atoms/Link/Link.styled';
+import { resetParameters } from 'helpers/reduxHandlers';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'redux/store';
-import { logout } from 'Auth/requests';
-import { setHamburgerStatus } from 'redux/Actions/statusesActions';
 import { useOutsideClick } from 'hooks';
-import { resetParameters } from 'helpers/reduxHandlers';
+import { logout } from 'Auth/requests';
+import { routes } from 'routes/index';
 import { useWindowSize } from 'hooks';
 import {
+    StyledBackground,
+    StyledContainer,
+    StyledNavLink,
     StyledList,
     StyledIcon,
     StyledItem,
-    StyledNavLink,
-    StyledBackground,
-    StyledContainer
+    StyledSpan
 } from './Menu.styled';
-import { StyledLink } from 'Components/atoms/Link/Link.styled';
 
 
 const Menu = () => {
@@ -57,7 +58,7 @@ const Menu = () => {
                             children={<StyledIcon icon='sign-in-alt' />}
                         />
                     </StyledItem>}
-                {isAuthenticated &&
+                {(isAuthenticated && user) &&
                     <StyledItem>
                         <StyledNavLink
                             text={`${user}`}
@@ -76,7 +77,7 @@ const Menu = () => {
                                 logout(dispatch);
                             }}>
                             <StyledIcon icon='sign-out-alt' />
-                            <span> Log out </span>
+                            <StyledSpan> Log out </StyledSpan>
                         </StyledLink>
                     </StyledItem>}
             </StyledList>
