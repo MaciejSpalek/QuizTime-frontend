@@ -12,7 +12,7 @@ const Hamburger = ()=> {
     return (
         <StyledButton aria-expanded="false" onClick={toggle}>
             <StyledOuterBox>
-                <StyledInnerBox></StyledInnerBox>
+                <StyledInnerBox isActive={hamburgerStatus}/>
             </StyledOuterBox>
         </StyledButton>
     );
