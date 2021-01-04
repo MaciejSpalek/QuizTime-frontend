@@ -1,8 +1,10 @@
 import { QuizTypes } from "../Types/quizTypes";
+import { QuizThemes } from 'helpers/constants';
 import {
   IFormColor,
   IFormQuestion
 } from "Interfaces/quizInterfaces";
+
 
 type QuizState = {
   formQuestions: IFormQuestion[];
@@ -14,6 +16,7 @@ type QuizState = {
   userAnswersArray: string[];
 };
 
+const { value } = QuizThemes[0];
 const initialState: QuizState = {
   correctAnswersArray: [],
   userAnswersArray: [],
@@ -21,10 +24,7 @@ const initialState: QuizState = {
   formQuestionsCounter: 0,
   formCounter: 1,
   formIconName: "male",
-  formColor: {
-    primary: "#00D952",
-    secondary: "#00a03d",
-  }
+  formColor: value
 };
 
 export const quizReducer = (state = initialState, action: any): QuizState => {

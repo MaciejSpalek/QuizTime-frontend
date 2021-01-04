@@ -22,7 +22,10 @@ const GlobalStyle = createGlobalStyle`
   }  
 
   input {
-    outline-color: ${colors.Gray40}; 
+    :focus {
+      outline-style: auto;
+      outline-color: ${colors.Gray40}; 
+    }
   }
   html {
     font-size: 62.5%; 
