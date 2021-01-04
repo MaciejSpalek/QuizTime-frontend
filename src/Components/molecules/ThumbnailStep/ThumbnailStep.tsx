@@ -18,6 +18,7 @@ import {
   StyledColorSelect,
   StyledFormField
 } from './ThumbnailStep.styled';
+import { capitalizeFirstLetter } from 'helpers/string';
 
 
 const ThumbnailStep = ({
@@ -82,7 +83,7 @@ const ThumbnailStep = ({
             name="title"
             ariaInvalid={true}
             ariaDescribedBy="title_error"
-            value={values.title}
+            value={capitalizeFirstLetter(values.title)}
             onChange={handleChange}
             onBlur={handleBlur}
           />

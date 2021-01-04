@@ -15,6 +15,7 @@ import {
     StyledButton,
     StyledList
 } from './AddingStep.styled';
+import { capitalizeFirstLetter } from 'helpers/string';
 
 const AddingStep = ({
     handleChange,
@@ -89,7 +90,7 @@ const AddingStep = ({
                         isRequired={true}
                         ariaInvalid={true}
                         ariaDescribedBy="question_error"
-                        value={question}
+                        value={capitalizeFirstLetter(question)}
                         onChange={handleChange}
                         onBlur={handleBlur}
                     />
