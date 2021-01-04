@@ -14,8 +14,8 @@ import {
 } from './ScoreWindow.styled';
 
 const ScoreWindow = ({ score, questions, closeTheQuiz }: IScoreWindow): JSX.Element => {
-    const correctAnswersArray = useSelector<RootState, string[]>(state => state.quizes.correctAnswersArray);
-    const userAnswersArray = useSelector<RootState, string[]>(state => state.quizes.userAnswersArray);
+    const correctAnswersArray = useSelector<RootState, string[]>(state => state.quizzes.correctAnswersArray);
+    const userAnswersArray = useSelector<RootState, string[]>(state => state.quizzes.userAnswersArray);
     const [isListOpen, setIsListOpen] = useState(false);
     const history = useHistory();
 

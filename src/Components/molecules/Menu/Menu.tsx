@@ -58,7 +58,7 @@ const Menu = () => {
                             children={<StyledIcon icon='sign-in-alt' />}
                         />
                     </StyledItem>}
-                {(isAuthenticated && user) &&
+                {isAuthenticated &&
                     <StyledItem>
                         <StyledNavLink
                             text={`${user}`}

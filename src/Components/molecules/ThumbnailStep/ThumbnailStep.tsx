@@ -29,8 +29,8 @@ const ThumbnailStep = ({
 }: IThumbnailStep): JSX.Element => {
   const [title, setTitle] = useState('Example title');
   const dispatch = useDispatch();
-  const formColors = useSelector<RootState, IFormColor>(state => state.quizes.formColor);
-  const formIconName = useSelector<RootState>(state => state.quizes.formIconName);
+  const formColors = useSelector<RootState, IFormColor>(state => state.quizzes.formColor);
+  const formIconName = useSelector<RootState>(state => state.quizzes.formIconName);
   const author = useSelector<RootState>(state => state.user.loggedUser);
 
 

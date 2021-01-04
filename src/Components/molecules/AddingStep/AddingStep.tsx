@@ -26,8 +26,8 @@ const AddingStep = ({
 }: IPanel): JSX.Element => {
     const { question, answers, radioValue } = values;
     const [isFirstRender, setIsFirstRender] = useState(true);
-    const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
-    const formQuestionsCounter = useSelector<RootState, number>(state => state.quizes.formQuestionsCounter);
+    const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizzes.formQuestions);
+    const formQuestionsCounter = useSelector<RootState, number>(state => state.quizzes.formQuestionsCounter);
     const dispatch = useDispatch();
 
     const isDisabled = useCallback(() => {

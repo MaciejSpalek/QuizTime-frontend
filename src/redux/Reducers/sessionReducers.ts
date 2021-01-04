@@ -3,15 +3,13 @@ import { SessionTypes } from '../Types/sessionTypes';
 type SessionState = {
     isAuthenticated: boolean;
     requestStatus: boolean;
-    errorMessage: string;
     tokenLifeTime: number | null;
 };
 
 const initialState: SessionState = {
     isAuthenticated: false,
     requestStatus: true,
-    tokenLifeTime: null,
-    errorMessage: "",
+    tokenLifeTime: null
   };
 
 export const sessionReducer = (state = initialState, action: any): SessionState => {
@@ -20,13 +18,6 @@ export const sessionReducer = (state = initialState, action: any): SessionState 
           return {
             ...state,
             isAuthenticated: action.payload
-          }
-        }
-
-        case SessionTypes.SET_ERROR_MESSAGE: {
-          return {
-            ...state,
-            errorMessage: action.payload,
           }
         }
 

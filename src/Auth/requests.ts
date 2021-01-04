@@ -1,6 +1,6 @@
 import { setToastParameters } from 'redux/Actions/toastActions';
 import { getExpireDate, setCookie, deleteCookie } from 'helpers/cookies';
-import { setRequestMessage, setRequestStatus } from 'redux/Actions/sessionActions';
+import { setRequestStatus } from 'redux/Actions/sessionActions';
 import { setLoggedUser, resetLoggedUser } from 'redux/Actions/userActions';
 import { axiosInstance } from 'services/api';
 
@@ -19,7 +19,6 @@ export const authRequest =  (option: AuthType, data: DataType, dispatch: any) =>
             setCookie('token', token, expireTokenDate);
             setCookie('name', name, expireTokenDate);
             dispatch(setLoggedUser(name));
-            dispatch(setRequestMessage(""));
             dispatch(setRequestStatus(true));
             option === 'login' ?
                 dispatch(setToastParameters(true, 'Successfully logged in')) :

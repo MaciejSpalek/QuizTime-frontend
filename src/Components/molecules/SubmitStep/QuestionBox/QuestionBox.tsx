@@ -21,7 +21,7 @@ import {
 const QuestionBox = ({ question, answers, index, id }: IQuestionBox): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
     const [isModalActive, setIsModalActive] = useState(false);
-    const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
+    const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizzes.formQuestions);
     const dispatch = useDispatch();
     const boxRef = useRef(null);
     

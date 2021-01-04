@@ -16,7 +16,7 @@ import {
 } from './SubmitStep.styled';
 
 const SubmitStep = ({ errors, touched, values, isSubmitting }: ISubmitStep): JSX.Element => {
-    const questions = useSelector<RootState, IFormQuestion[]>(state => state.quizes.formQuestions);
+    const questions = useSelector<RootState, IFormQuestion[]>(state => state.quizzes.formQuestions);
     const [isFirstRender, setIsFirstRender] = useState(true);
 
     const isDisabled = () => {

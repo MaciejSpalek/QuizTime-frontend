@@ -7,7 +7,7 @@ import LastStep from 'Components/molecules/LastStep';
 import PageTemplate from 'templates/PageTemplate';
 import ErrorPage from 'Containers/ErrorPage';
 import { setCorrectAnswersArray, setUserAnswersArray } from 'redux/Actions/quizActions';
-import { IFormColor, IQuizTemplate } from 'Interfaces/quizInterfaces';
+import { IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { setToastParameters } from 'redux/Actions/toastActions';
 import { StyledMultiStepForm } from './QuizPage.styled';
 import { useDispatch, useSelector } from 'react-redux';
