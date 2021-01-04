@@ -97,9 +97,8 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
         handleBlur: (e: ChangeEvent<HTMLElement>) => void,
         isSubmitting: boolean,
         values: IValues,
-        colors: IFormColor
     ) => {
-        const lastStep = <LastStep isSubmitting={isSubmitting} colors={colors} />
+        const lastStep = <LastStep isSubmitting={isSubmitting} />
         const newArray = quiz?.questions?.map(({ _id, answers, content }, index) =>
             <QuestionStep
                 handleChange={handleChange}
@@ -108,7 +107,6 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                 content={content}
                 readonly={false}
                 values={values}
-                colors={colors}
                 index={index}
                 key={_id}
             />
@@ -144,19 +142,17 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                                 values
                             }) => (
                                 <StyledMultiStepForm
-                                    children={getFormChildren(handleChange, handleBlur, isSubmitting, values, quiz.colors)}
+                                    children={getFormChildren(handleChange, handleBlur, isSubmitting, values)}
                                     handleRightButton={() => setStep(prev => prev + 1)}
                                     handleLeftButton={() => setStep(prev => prev - 1)}
                                     onSubmit={handleSubmit}
                                     counter={step}
-                                    color={quiz.colors.secondary}
                                 />
                             )}
                         </Formik> :
                         (isTheQuizSolved ?
                             <ScoreWindow
                                 score={score}
-                                colors={quiz.colors}
                                 questions={quiz.questions}
                                 closeTheQuiz={resetQuiz}
                             /> :

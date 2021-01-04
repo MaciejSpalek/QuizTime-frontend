@@ -17,12 +17,10 @@ import {
 const StartStep = ({
     onClick,
     icon,
-    colors,
     title,
     author,
     counter
 }: IStartStep): JSX.Element => {
-    const { primary, secondary } = colors;
     const history = useHistory();
     const moreQuizzes = () => history.push(`/${author}`);
     const backToHome = () => history.push('/');
@@ -30,40 +28,34 @@ const StartStep = ({
 
     return (
         <StyledPageTemplate>
-            <StyledWrapper primary={primary}>
-                <StyledIconWrapper secondary={secondary}>
-                    <StyledIcon primary={primary} icon={icon as IconName} />
+            <StyledWrapper >
+                <StyledIconWrapper >
+                    <StyledIcon icon={icon as IconName} />
                 </StyledIconWrapper>
-                <StyledIconWrapper secondary={secondary}>
-                    <StyledIcon primary={primary} icon={'user'} />
+                <StyledIconWrapper >
+                    <StyledIcon icon={'user'} />
                     <StyledCounter> {counter} </StyledCounter>
                 </StyledIconWrapper>
             </StyledWrapper>
-            <StyledWrapper primary={primary}>
-                <StyledTitle secondary={secondary}>{title}</StyledTitle>
+            <StyledWrapper >
+                <StyledTitle >{title}</StyledTitle>
                 <StyledAuthor text={getAuthor(author)} />
             </StyledWrapper>
-            <StyledWrapper primary={primary}>
+            <StyledWrapper>
                 <StyledButton
                     type='button'
                     text='Start quiz'
                     handleOnClick={onClick}
-                    secondary={secondary}
-                    primary={primary}
                 />
                 <StyledButton
                     type='button'
                     text='More quizzes'
                     handleOnClick={moreQuizzes}
-                    secondary={secondary}
-                    primary={primary}
                 />
                 <StyledButton
                     type='button'
                     text='Back'
                     handleOnClick={backToHome}
-                    secondary={secondary}
-                    primary={primary}
                 />
             </StyledWrapper>
         </StyledPageTemplate>

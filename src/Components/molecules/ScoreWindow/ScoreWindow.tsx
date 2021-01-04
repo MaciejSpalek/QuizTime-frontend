@@ -13,11 +13,10 @@ import {
     StyledButton
 } from './ScoreWindow.styled';
 
-const ScoreWindow = ({ score, questions, closeTheQuiz, colors }: IScoreWindow): JSX.Element => {
+const ScoreWindow = ({ score, questions, closeTheQuiz }: IScoreWindow): JSX.Element => {
     const correctAnswersArray = useSelector<RootState, string[]>(state => state.quizes.correctAnswersArray);
     const userAnswersArray = useSelector<RootState, string[]>(state => state.quizes.userAnswersArray);
     const [isListOpen, setIsListOpen] = useState(false);
-    const { primary, secondary } = colors;
     const history = useHistory();
 
     const handleOnFirstButton = () => closeTheQuiz();
@@ -53,23 +52,16 @@ const ScoreWindow = ({ score, questions, closeTheQuiz, colors }: IScoreWindow): 
                 strokeWidth={10}
                 score={score}
                 size={300}
-                color={secondary}
             />
             <StyledButton
-                primary={primary}
-                secondary={secondary}
                 handleOnClick={handleOnFirstButton}
                 text='Try again'
             />
             <StyledButton
-                primary={primary}
-                secondary={secondary}
                 handleOnClick={handleOnSecondButton}
                 text='Back'
             />
             <StyledButton
-                primary={primary}
-                secondary={secondary}
                 handleOnClick={handleOnThridButton}
                 text={isListOpen ? 'Hide answers' : 'Show answers'}
             />
@@ -82,7 +74,6 @@ const ScoreWindow = ({ score, questions, closeTheQuiz, colors }: IScoreWindow): 
                             answers={answers}
                             readonly={true}
                             index={index}
-                            colors={colors}
                         />
                     </li>)}
             </StyledQuestionList>}

@@ -51,10 +51,8 @@ export const StyledQuestionList = styled.ul`
     margin-top: 20px;
 `;
 
-export const StyledButton = styled(Button)<{primary: string, secondary: string}>`
+export const StyledButton = styled(Button)`
     width: 300px;
-    color: ${({ primary }) => primary};
-    background-color: ${({ secondary }) => secondary};
 `;
 
 export const StyledQuestionStep = styled(QuestionStep)`

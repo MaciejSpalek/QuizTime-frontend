@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { FlexCenter } from 'styles/Mixins';
 import IconButton from 'Components/atoms/IconButton';
+import { FlexCenter } from 'styles/Mixins';
+import styled from 'styled-components';
 import colors from 'styles/Colors';
 
 export const StyledPagination = styled.div`
@@ -10,11 +10,11 @@ export const StyledPagination = styled.div`
     background-color: ${colors.Gray100};
 `;
 
-export const StyledCenterSquare = styled.div<{color: string | undefined}>`
+export const StyledCenterSquare = styled.div`
     ${FlexCenter};
     width: 90px;
     height: 45px;
-    background-color: ${({ color }) => color ? color : colors.BasicGreen};
+    background-color: ${colors.BasicGreen};
     border-radius: 5px;
     margin: 0 10px;
 `;
@@ -31,13 +31,12 @@ export const StyledEmptySquare = styled.div`
     width: 45px;
 `;
 
-export const StyledIconButton = styled(IconButton)<{color: string | undefined}>`
+export const StyledIconButton = styled(IconButton)`
     background-color: transparent;
     min-height: 45px;
     width: 45px;
     svg {
-        color: ${({ color }) => color ? color : colors.BasicGreen};
+        color: ${colors.BasicGreen};
         font-size: 40px;
     }
 `;
-

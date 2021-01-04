@@ -47,7 +47,7 @@ const ModalWindow = ({
                 </StyledWrapper>
             </StyledWindow>
         </StyledContainer>
-    )
-}
+    );
+};
 
 export default ModalWindow;

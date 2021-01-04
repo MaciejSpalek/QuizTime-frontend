@@ -5,7 +5,6 @@ export interface IQuestionStep {
     index: number;
     content: string;
     readonly: boolean;
-    colors: IFormColor;
     answers: IFormAnswer [];
     array?: (string | null)[]; 
     values?: {answers: string[]};
