@@ -3,10 +3,10 @@ import colors from 'styles/Colors';
 import { FlexCenter } from 'styles/Mixins';
 
 export const StyledContainer = styled.div`
-  position: relative;
   ${FlexCenter};
   flex-direction: column;
   justify-content: flex-start;
+  position: relative;
   height: calc(100vh - 60px);
-  background-color: ${colors.Gray100}
+  background-color: ${colors.Gray120};
 `;

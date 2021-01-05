@@ -13,8 +13,8 @@ import {
 const ModalWindow = ({ 
     isActive,
     description,
+    handleCancel,
     handleConfirm,
-    handleCancel
 } :IModalWindow) => {
     const windowRef = useRef(null);
     useOutsideClick(windowRef, () => isActive && handleCancel());

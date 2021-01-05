@@ -6,5 +6,5 @@ export const StyledContainer = styled.div`
   ${FlexCenter};
   flex-direction: column;
   height: 100%;
-  background-color: ${colors.Gray100};
+  background-color: ${colors.Gray120};
 `;

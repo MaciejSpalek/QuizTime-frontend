@@ -11,7 +11,7 @@ export const StyledContainer = styled.div`
     width: 100%;
     height: 60px;
     justify-content: space-between;
-    background-color: ${colors.Gray100};
+    background-color: ${colors.Gray120};
     padding: 10px;
 `;
 

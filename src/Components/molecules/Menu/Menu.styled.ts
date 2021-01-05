@@ -25,7 +25,6 @@ export const StyledBackground = styled.div`
   background-color: ${colors.TransparentBlack};
   min-height: 100vh;
   width: 100%;
-  z-index: 999;
   @media only screen and (min-width: 800px) {
     display: none;
   }
@@ -39,7 +38,7 @@ export const StyledList = styled.ul`
   margin: 0;
   @media only screen and (min-width: 800px) {
     flex-direction: row;
-    background-color: ${colors.Gray100};
+    background-color: ${colors.White};
     padding: 0;
     height: 100%;
   }

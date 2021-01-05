@@ -3,12 +3,19 @@ import colors from "styles/Colors";
 import { FlexCenter } from "styles/Mixins";
 
 export const StyledNavbar = styled.nav`
-  position: absolute;
+  ${FlexCenter};
+  position: relative;
   top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: ${colors.White};
+  border-bottom: 2px solid ${colors.Gray80};
+`;
+
+export const StyledWrapper = styled.div`
   ${FlexCenter};
   justify-content: space-between;
-  height: 60px;
+  max-width: 900px;
+  height: 100%;
   padding: 5px 10px;
-  background-color: ${colors.Gray100};
-  border-bottom: 2px solid ${colors.Gray80};
 `;

@@ -20,11 +20,8 @@ export const FlexCenter = css`
   width: 100%;
 `;
 
-export const FirstLinkStyle = css`
-  background-color: ${({ theme }) => theme.colors.grayscale[2]};
-  padding: 10px;
-  margin: 10px 0;
-  font-weight: bold;
+export const BoxShadow = css`
+  box-shadow: 0px 0px 3px .01px ${colors.Gray20};
 `;
 
 export const AbbreviateText = css`

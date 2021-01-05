@@ -22,7 +22,7 @@ export const StyledContainer = styled.div<{ primarycolor: string, isHover: boole
   transition: .2s ease-in-out;
   animation: ${({ isHover }) => isHover ? increaseScale : ''} .3s ease-in-out;
   :hover {
-    box-shadow: ${({ isHover }) => isHover ? `3px 3px 10px 0.1px ${colors.TransparentBlack}` : 'none'}; 
+    box-shadow: ${({ isHover }) => isHover ? `3px 3px 5px 0.1px ${colors.Gray20}` : 'none'}; 
   }
 `;
 

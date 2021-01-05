@@ -12,7 +12,8 @@ const colors = {
   Gray40: "#9096A3",
   Gray60: "#B7BDC8",
   Gray80: "#dfdfdf",
-  Gray100: "#F5F5F5"
+  Gray100: "#F0F0F0",
+  Gray120: "#fafafa"
 };
 
 export default colors;

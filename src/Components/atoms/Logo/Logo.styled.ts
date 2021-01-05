@@ -3,14 +3,16 @@ import colors from "styles/Colors";
 import { FlexCenter } from "styles/Mixins";
 import { Puzzles } from "assets";
 
-export const StyledWrapper = styled.h1`
+export const StyledWrapper = styled.div`
   ${FlexCenter}
   width: auto;
+  height: auto;
+  cursor: pointer;
 `;
 
 export const StyledLogo = styled(Puzzles)`
   fill: ${colors.BasicGreen};
-  width: 48px;
+  width: 40px;
   margin: 5px 5px 0 0;
 `;
 
