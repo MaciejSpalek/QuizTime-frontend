@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import QuizThumbnail from '../QuizThumbnail';
 import Placeholder from 'templates/PlaceholderTemplate';
 import { StyledList, StyledListItem, StyledContainer } from './QuizzesList.styled';
@@ -9,9 +9,11 @@ import { RootState } from 'redux/store';
 import { IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { axiosInstance } from 'services/api';
 import { StyledPlaceholderText } from '../SubmitStep/SubmitStep.styled';
+import { doesScrollExist } from 'helpers/getters';
 
 const QuizzesList = ({ quizzes }: IQuizzesList) => {
     const history = useHistory();
+    const listRef = useRef<HTMLUListElement>(null); 
     const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser);
     const [scores, setScores] = useState<string[]>([])
 
@@ -46,10 +48,12 @@ const QuizzesList = ({ quizzes }: IQuizzesList) => {
         quizzes && manageScores(quizzes);
     }, [quizzes, loggedUser, manageScores]);
 
+  
+
     return (
         <StyledContainer>
             {quizzes.length ?
-                <StyledList>
+                <StyledList ref={listRef} isScroll={doesScrollExist(listRef)}>
                     {quizzes.map((data, index) =>
                         <StyledListItem
                             key={data._id}

@@ -7,5 +7,5 @@ export const StyledFormField = styled.div`
   align-items: flex-start;
   width: 100%;
   margin: 10px 0;
-  background-color: ${colors.Gray100};
+  background-color: ${colors.Gray120};
 `;

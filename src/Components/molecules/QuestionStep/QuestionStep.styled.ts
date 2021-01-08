@@ -8,7 +8,7 @@ export const StyledContainer = styled.div`
   height: calc(100vh - 2 * 60px);
   padding-top: 20px;
   overflow: auto;
-  background-color: ${colors.Gray100};
+  background-color: ${colors.Gray120};
   padding: 20px 10px;
   @media (min-width: 1024px) {
     justify-content: center;
@@ -35,7 +35,7 @@ export const StyledLegend = styled.span`
   font-size: 20px;
   font-weight: bold;
   color: ${colors.Gray20};
-  background-color: ${colors.Gray100};
+  background-color: ${colors.Gray120};
   padding: 0 10px;
 `;
 

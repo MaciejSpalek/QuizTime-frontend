@@ -1,24 +1,24 @@
-import styled from 'styled-components';
-import FormField from 'templates/FormFieldTemplate/FormFieldTemplate';
-import ErrorMessage from 'Components/atoms/ErrorMessage';
-import { FlexColumn, FlexCenter } from 'styles/Mixins';
-
-
+import styled from "styled-components";
+import FormField from "templates/FormFieldTemplate/FormFieldTemplate";
+import ErrorMessage from "Components/atoms/ErrorMessage";
+import colors from "styles/Colors";
+import { FlexColumn, FlexCenter } from "styles/Mixins";
 
 export const StyledInputField = styled(FormField)`
-    ${FlexCenter};
-    flex-direction: row;
-    margin: 5px 0;
-    label {
-        margin-right: 5px;
-    }
+  ${FlexCenter};
+  flex-direction: row;
+  margin: 5px 0;
+  background-color: ${colors.Gray120};
+  label {
+    margin-right: 5px;
+  }
 `;
 
 export const StyledWrapper = styled.div`
-    ${FlexColumn};
-    flex-direction: column;
+  ${FlexColumn};
+  flex-direction: column;
 `;
 
 export const StyledErrorMessage = styled(ErrorMessage)`
-    margin-left: 60px;
+  margin-left: 60px;
 `;

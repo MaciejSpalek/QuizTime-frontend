@@ -3,14 +3,15 @@ import { IStartStep } from './StartStep.model';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { useHistory } from 'react-router-dom';
 import {
-    StyledIcon,
     StyledPageTemplate,
-    StyledWrapper,
+    StyledIconWrapper,
     StyledCounter,
-    StyledTitle,
+    StyledWrapper,
     StyledButton,
     StyledAuthor,
-    StyledIconWrapper
+    StyledTitle,
+    StyledPhoto,
+    StyledIcon
 } from './StartStep.styled';
 
 
@@ -58,6 +59,7 @@ const StartStep = ({
                     handleOnClick={backToHome}
                 />
             </StyledWrapper>
+            <StyledPhoto />
         </StyledPageTemplate>
     );
 };

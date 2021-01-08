@@ -3,7 +3,7 @@ import styled from "styled-components";
 import colors from "styles/Colors";
 import { AbbreviateText, FlexCenter } from "styles/Mixins";
 
-export const StyledAnswer = styled.div<{ isSelect: boolean, outlineColor: string | null }>`
+export const StyledAnswer = styled.div<{ isSelect: boolean, outlineColor: string | null, readonly: boolean }>`
   position: relative;
   ${FlexCenter};
   justify-content: flex-start;
@@ -14,9 +14,12 @@ export const StyledAnswer = styled.div<{ isSelect: boolean, outlineColor: string
   border: ${({ isSelect }) => isSelect ? '3px' : '2px'} solid ${({ isSelect }) => isSelect ? colors.BasicGreen : colors.Gray60};
   border: ${({ outlineColor }) => outlineColor && `3px solid ${outlineColor}`};
   cursor: inherit;
+  :hover {
+    border:  ${({ readonly }) => !readonly && `3px solid ${colors.BasicGreen}`};
+  }
 `;
 
-export const StyledLegend = styled.span<{ isSelect: boolean, outlineColor: string | null }>`
+export const StyledLegend = styled.span<{ isSelect: boolean, outlineColor: string | null, readonly: boolean }>`
   position: absolute;
   top: -12px;
   left: 10px;
@@ -24,7 +27,7 @@ export const StyledLegend = styled.span<{ isSelect: boolean, outlineColor: strin
   font-weight: bold;
   color: ${({ isSelect }) => (isSelect ? colors.BasicGreen : colors.Gray20)};
   color: ${({ outlineColor }) => outlineColor};
-  background-color: ${colors.Gray100};
+  background-color: ${colors.Gray120};
   padding: 0 10px;
   pointer-events: none;
 `;

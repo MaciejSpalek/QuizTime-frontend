@@ -7,7 +7,7 @@ import FormFieldTemplate from "templates/FormFieldTemplate";
 export const StyledContainer = styled.div`
   ${FlexColumn};
   height: 100%;
-  background-color: ${colors.Gray100};
+  background-color: ${colors.Gray120};
   overflow-y: auto;
   overflow-x: hidden;
 `;
@@ -36,4 +36,5 @@ export const StyledButton = styled(Button)`
 
 export const StyledFormField = styled(FormFieldTemplate)`
   margin: 0;
+  background-color: ${colors.Gray120};
 `;

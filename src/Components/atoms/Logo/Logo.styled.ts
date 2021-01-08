@@ -6,13 +6,14 @@ import { Puzzles } from "assets";
 export const StyledWrapper = styled.div`
   ${FlexCenter}
   width: auto;
-  height: auto;
+  /* height: auto; */
   cursor: pointer;
 `;
 
 export const StyledLogo = styled(Puzzles)`
   fill: ${colors.BasicGreen};
   width: 40px;
+  height: 40px;
   margin: 5px 5px 0 0;
 `;
 

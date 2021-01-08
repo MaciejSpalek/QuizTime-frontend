@@ -9,7 +9,8 @@ export const StyledContainer = styled.div`
     height: 60px;
     width: 100%;
     padding: 10px;
-    background-color: ${colors.Gray80};
+    background-color: ${colors.Gray120};
+    border-bottom: 2px solid ${colors.Gray100};
 `;
 
 export const StyledWrapper = styled.div`

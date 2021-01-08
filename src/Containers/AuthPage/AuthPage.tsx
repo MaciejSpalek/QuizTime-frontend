@@ -9,7 +9,7 @@ import { Formik } from "formik";
 import { authRequest } from 'Auth/requests';
 import { setRequestStatus } from 'redux/Actions/sessionActions';
 import { RouteComponentProps } from 'react-router-dom';
-import { StyledButton, StyledLink, StyledContainer, StyledAuthForm, StyledLabel } from './AuthPage.styled';
+import { StyledButton, StyledLink, StyledContainer, StyledAuthForm, StyledLabel, StyledPhoto } from './AuthPage.styled';
 import { authPageValidation } from './validation';
 import { capitalizeFirstLetter } from 'helpers/string';
 
@@ -137,6 +137,7 @@ const AuthPage = ({ history }: RouteComponentProps) => {
                     </StyledAuthForm>
                 )}
             </Formik>
+            <StyledPhoto />
         </StyledContainer>
     );
 };

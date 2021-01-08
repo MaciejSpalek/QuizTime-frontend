@@ -11,7 +11,7 @@ export const StyledContainer = styled(PageTemplate)`
     ${FlexColumn};
     justify-content: center;
     height: 100%;
-    background-color: ${colors.Gray100};
+    background-color: ${colors.Gray120};
     overflow: auto;
 `;
 

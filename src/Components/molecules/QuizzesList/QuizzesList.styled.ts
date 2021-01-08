@@ -10,7 +10,7 @@ export const StyledContainer = styled.div`
   background-color: ${colors.Gray120};
 `;
 
-export const StyledList = styled.ul`
+export const StyledList = styled.ul<{isScroll: boolean | undefined}>`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
@@ -19,8 +19,10 @@ export const StyledList = styled.ul`
   max-height: 100%;
   list-style: none;
   overflow: auto;
-  padding-right: 2.5px;
-  @media (min-width: 900px) { padding-right: 10px };
+  padding-right: ${({ isScroll }) => isScroll ? '2.5px': '0px'};
+  @media (min-width: 900px) { 
+    padding-right: ${({ isScroll }) => isScroll ? '10px': '0px'}; 
+  };
   @media (min-width: 600px) { grid-template-columns: 1fr 1fr };
 `;
 

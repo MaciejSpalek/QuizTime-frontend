@@ -7,6 +7,7 @@ export const StyledWrapper = styled.div`
   width: auto;
   height: auto;
   margin-left: 20px;
+
   label {
     position: relative;
     cursor: pointer;

@@ -236,7 +236,15 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
                     handleLeftButton={() => setStep(prev => prev - 1)}
                     onSubmit={handleSubmit}
                     counter={step}>
-                    {getChildren(handleChange, handleBlur, resetForm, isSubmitting, values, errors, touched)}
+                    {getChildren(
+                      handleChange, 
+                      handleBlur, 
+                      resetForm, 
+                      isSubmitting,
+                      values, 
+                      errors, 
+                      touched
+                    )}
                   </MultiStepForm>
                 )}
               </Formik>}

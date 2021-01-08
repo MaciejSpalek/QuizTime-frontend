@@ -22,9 +22,10 @@ const Answer = ({
 }: IFormAnswer & IAnswer): JSX.Element => {
     const isSelect = () => values?.answers[questionIndex] === option;
     return (
-        <StyledAnswer 
-            isSelect={isSelect()} 
-            outlineColor={`${outlineColor}`} 
+        <StyledAnswer
+            isSelect={isSelect()}
+            outlineColor={`${outlineColor}`}
+            readonly={readonly}
             {...props}>
             {!readonly &&
                 <StyledRadioButton
@@ -36,8 +37,9 @@ const Answer = ({
                     value={option}
                     label=""
                 />}
-            <StyledLegend 
-                isSelect={isSelect()} 
+            <StyledLegend
+                readonly={readonly}
+                isSelect={isSelect()}
                 outlineColor={`${outlineColor}`}>
                 {`${option}.`}
             </StyledLegend>
