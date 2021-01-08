@@ -1,26 +1,10 @@
 import colors from "styles/Colors";
 import Spinner from 'Components/atoms/Spinner';
 import Paragraph from "Components/atoms/Paragraph";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { AbbreviateText, FlexCenter } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-const increaseScale = keyframes` 
-  from {
-    transform: scale(0);
-  } to {
-    transform: scale(1);
-  }
-`;
-
-const increaseOpacity = keyframes` 
-  from {
-    opacity: 0;
-  } to {
-    opacity: 1;
-  }
-`;
-
+import { increaseOpacity, increaseScale } from "styles/Animations";
 
 export const StyledContainer = styled.div<{ primarycolor: string, isHover: boolean | undefined }>`
   ${FlexCenter};
