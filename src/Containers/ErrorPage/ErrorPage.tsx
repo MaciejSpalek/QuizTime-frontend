@@ -1,10 +1,10 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { 
+    StyledErrorPhoto,
     StyledContainer, 
-    StyledText, 
-    StyledIcon, 
-    StyledButton
+    StyledButton,
+    StyledText
 } from './ErrorPage.styled';
 
 const ErrorPage = () => {
@@ -13,9 +13,9 @@ const ErrorPage = () => {
     
     return (
         <StyledContainer>
-            <StyledIcon icon='frown-open' />
-            <StyledText> Error 404 </StyledText>
-            <StyledButton text="Back" handleOnClick={handleOnClick}/>
+            <StyledErrorPhoto />
+            <StyledText> Page not found </StyledText>
+            <StyledButton text="Retry" handleOnClick={handleOnClick}/>
         </StyledContainer>
     );
 };

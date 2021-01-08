@@ -13,6 +13,15 @@ const increaseScale = keyframes`
   }
 `;
 
+const increaseOpacity = keyframes` 
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
+`;
+
+
 export const StyledContainer = styled.div<{ primarycolor: string, isHover: boolean | undefined }>`
   ${FlexCenter};
   min-width: 200px;
@@ -21,9 +30,6 @@ export const StyledContainer = styled.div<{ primarycolor: string, isHover: boole
   border-radius: 4px;
   transition: .2s ease-in-out;
   animation: ${({ isHover }) => isHover ? increaseScale : ''} .3s ease-in-out;
-  :hover {
-    box-shadow: ${({ isHover }) => isHover ? `3px 3px 5px 0.1px ${colors.Gray20}` : 'none'}; 
-  }
 `;
 
 export const StyledImageWrapper = styled.picture<{ secondarycolor: string }>`
@@ -49,6 +55,18 @@ export const StyledTitle = styled(Paragraph)`
   ${AbbreviateText};
   color: white;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+`;
+
+export const StyledHoverWrapper = styled.div<{isHover: boolean}>`
+  ${FlexCenter};
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: ${colors.TransparentBlack};
+  border-radius: 4px;
+  transition: 1s ease-in-out;
+  display: ${({ isHover }) => !isHover && 'none'};
+  animation: ${increaseOpacity} .5s ease-in-out;
 `;
 
 export const StyledScore = styled(Paragraph)<{ color: string }>`
@@ -78,3 +96,4 @@ export const StyledSpinner = styled(Spinner)`
   height: 30px;
   color: ${colors.White};
 `;
+

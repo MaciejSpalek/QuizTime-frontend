@@ -19,11 +19,11 @@ export const StyledList = styled.ul<{isScroll: boolean | undefined}>`
   max-height: 100%;
   list-style: none;
   overflow: auto;
-  padding-right: ${({ isScroll }) => isScroll ? '2.5px': '0px'};
-  @media (min-width: 900px) { 
-    padding-right: ${({ isScroll }) => isScroll ? '10px': '0px'}; 
-  };
+  padding-right: ${({ isScroll }) => isScroll ? '2.5px': '0'};
   @media (min-width: 600px) { grid-template-columns: 1fr 1fr };
+  @media (min-width: 900px) { 
+    padding-right: ${({ isScroll }) => isScroll ? '10px': '0'}; 
+  };
 `;
 
 export const StyledListItem = styled.li`

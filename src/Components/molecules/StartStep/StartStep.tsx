@@ -1,7 +1,8 @@
 import React from 'react';
-import { IStartStep } from './StartStep.model';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
+import { IStartStep } from './StartStep.model';
 import { useHistory } from 'react-router-dom';
+import { routes } from 'routes';
 import {
     StyledPageTemplate,
     StyledIconWrapper,
@@ -24,7 +25,7 @@ const StartStep = ({
 }: IStartStep): JSX.Element => {
     const history = useHistory();
     const moreQuizzes = () => history.push(`/${author}`);
-    const backToHome = () => history.push('/');
+    const backToHome = () => history.push(routes.home);
     const getAuthor = (author: string) => `by ${author}`;
 
     return (
