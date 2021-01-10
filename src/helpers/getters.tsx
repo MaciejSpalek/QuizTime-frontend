@@ -32,6 +32,7 @@ export const getElementWidth = (ref: RefObject<HTMLElement>) => {
 
 export const doesScrollExist = (ref: RefObject<HTMLElement>): boolean | undefined => {
     if(null != ref.current) {
-        return ref.current?.scrollHeight > ref.current?.clientHeight;
+        return ref.current.scrollHeight > ref.current.clientHeight;
     }
 };
+

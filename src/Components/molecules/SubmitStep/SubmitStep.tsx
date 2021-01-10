@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Placeholder from 'templates/PlaceholderTemplate';
 import Button from 'Components/atoms/Button';
 import QuestionBox from './QuestionBox';
 import { IFormQuestion } from 'Interfaces/quizInterfaces';
@@ -7,11 +6,13 @@ import { ISubmitStep } from './SubmitStep.model';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import {
-    StyledSubmitStep,
-    StyledPlaceholderText,
-    StyledHeading,
     StyledMainWrapper,
+    StyledPlaceholder,
     StyledTopWrapper,
+    StyledSubmitStep,
+    StyledHeading,
+    StyledPhoto,
+    StyledText,
     StyledList
 } from './SubmitStep.styled';
 
@@ -27,7 +28,7 @@ const SubmitStep = ({ errors, touched, values, isSubmitting }: ISubmitStep): JSX
     useEffect(() => {
         values.title && setIsFirstRender(false);
     }, [values.title]);
-
+    
 
     return (
         <StyledSubmitStep>
@@ -38,7 +39,7 @@ const SubmitStep = ({ errors, touched, values, isSubmitting }: ISubmitStep): JSX
                         <Button text="Create" type="submit" isDisabled={isDisabled()} />
                     </StyledTopWrapper>
                     <StyledList>
-                        {questions.map(({ content, answers, id }, index) =>
+                        {questions.map(({content, answers, id}, index) =>
                             <li key={id}>
                                 <QuestionBox
                                     question={content}
@@ -49,13 +50,10 @@ const SubmitStep = ({ errors, touched, values, isSubmitting }: ISubmitStep): JSX
                             </li>)}
                     </StyledList>
                 </StyledMainWrapper> :
-                <Placeholder>
-                    <StyledPlaceholderText>
-                        No questions
-                    </StyledPlaceholderText>
-                </Placeholder>
-            }
-
+                <StyledPlaceholder>
+                    <StyledPhoto />
+                    <StyledText> No questions </StyledText>
+                </StyledPlaceholder>}
         </StyledSubmitStep>
     );
 };

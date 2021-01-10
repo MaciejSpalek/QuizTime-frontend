@@ -1,17 +1,24 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
+import ErrorMessage from 'Components/atoms/ErrorMessage';
 import FormField from 'templates/FormFieldTemplate';
 import Input from 'Components/atoms/Input/Input';
-import ErrorMessage from 'Components/atoms/ErrorMessage';
-import { routes } from 'routes/index';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'redux/store';
-import { Formik } from "formik";
-import { authRequest } from 'Auth/requests';
 import { setRequestStatus } from 'redux/Actions/sessionActions';
+import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
-import { StyledButton, StyledLink, StyledContainer, StyledAuthForm, StyledLabel, StyledPhoto } from './AuthPage.styled';
-import { authPageValidation } from './validation';
 import { capitalizeFirstLetter } from 'helpers/string';
+import { authPageValidation } from './validation';
+import { authRequest } from 'Auth/requests';
+import { RootState } from 'redux/store';
+import { routes } from 'routes/index';
+import { Formik } from "formik";
+import { 
+    StyledButton, 
+    StyledLink, 
+    StyledContainer, 
+    StyledAuthForm, 
+    StyledLabel, 
+    StyledPhoto 
+} from './AuthPage.styled';
 
 
 const AuthPage = ({ history }: RouteComponentProps) => {

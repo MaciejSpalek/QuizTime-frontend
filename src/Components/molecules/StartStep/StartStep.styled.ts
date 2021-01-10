@@ -5,7 +5,7 @@ import PageTemplate from "templates/PageTemplate";
 import Paragraph from "Components/atoms/Paragraph";
 import { AbbreviateText, BoxShadow, FlexCenter } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Hero } from "assets";
+import { TestIcon } from "assets";
 
 export const StyledPageTemplate = styled(PageTemplate)`
   position: relative;
@@ -29,6 +29,7 @@ export const StyledWrapper = styled.div`
   :nth-of-type(2) {
     flex: 6;
     justify-content: center;
+    flex-direction: row;
   }
   :nth-of-type(3) {
     flex: 1;
@@ -63,21 +64,6 @@ export const StyledCounter = styled.span`
   margin-left: 5px;
 `;
 
-export const StyledTitle = styled.span`
-  ${AbbreviateText};
-  font-size: 48px;
-  font-weight: bold;
-  text-align: center;
-  color: ${colors.BasicGreen};
-  z-index: 2;
-`;
-
-export const StyledAuthor = styled(Paragraph)`
-  font-size: 18px;
-  color: ${colors.Gray20};
-  z-index: 2;
-`;
-
 export const StyledButton = styled(Button)`
   width: 100%;
   z-index: 2;
@@ -87,13 +73,50 @@ export const StyledButton = styled(Button)`
   }
 `;
 
-export const StyledPhoto = styled(Hero)`
-  /* @media (min-width: 900px) { */
+export const StyledPhoto = styled(TestIcon)`
+  display: none;
+  @media (min-width: 600px) {
     display: unset;
-    position: absolute;
-    bottom: 0%;
-    transform:  rotateY(180deg);
-    left: -50px;
-    width: 350px;
-  /* } */
+    min-width: 300px;
+    min-height: 300px;
+  }
+  @media (min-width: 900px) {
+    display: unset;
+    min-width: 400px;
+    min-height: 400px;
+  }
+`;
+
+export const StyledTextWrapper = styled.div`
+  ${FlexCenter};
+  max-width: 300px;
+  flex-direction: column;
+  @media (min-width: 600px) {
+    align-items: flex-start;
+  }
+`;
+
+export const StyledTitle = styled.span`
+  ${AbbreviateText};
+  font-size: 36px;
+  font-weight: bold;
+  color: ${colors.BasicGreen};
+  text-align: center;
+  z-index: 2;
+  @media (min-width: 600px) {
+    text-align: left;
+  }
+  @media (min-width: 900px) {
+    font-size: 42px;
+    text-align: left;
+  }
+`;
+
+export const StyledAuthor = styled(Paragraph)`
+  font-size: 18px;
+  color: ${colors.Gray20};
+  z-index: 2;
+  @media (min-width: 600px) {
+    font-size: 28px;
+  }
 `;

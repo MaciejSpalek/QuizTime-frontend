@@ -4,3 +4,5 @@ export { ReactComponent as Puzzles } from './Puzzles.svg';
 export { ReactComponent as AuthPhoto } from './AuthPhoto.svg';
 export { ReactComponent as Hero } from './Hero.svg';
 export { ReactComponent as ErrorPhoto } from './ErrorPhoto.svg';
+export { ReactComponent as TestIcon } from './Test-icon.svg';
+export { ReactComponent as NoQuestionsIcon } from './No-Questions-icon.svg';

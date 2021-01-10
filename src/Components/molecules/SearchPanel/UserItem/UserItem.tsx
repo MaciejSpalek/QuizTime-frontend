@@ -3,7 +3,7 @@ import { IUserItem } from './UserItem.model';
 import {
     StyledLink,
     StyledIcon,
-    StyledName,
+    StyledText,
     StyledIconWrapper
 } from './UserItem.styled';
 
@@ -13,7 +13,7 @@ const UserItem = ({ name, ...props }: IUserItem) => {
             <StyledIconWrapper>
                 <StyledIcon icon={'user-alt'} />
             </StyledIconWrapper>
-            <StyledName> {name} </StyledName>
+            <StyledText> {name} </StyledText>
         </StyledLink>
     );
 };

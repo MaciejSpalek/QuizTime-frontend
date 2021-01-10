@@ -1,15 +1,15 @@
-import React, { RefObject, useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import QuizThumbnail from '../QuizThumbnail';
 import Placeholder from 'templates/PlaceholderTemplate';
 import { StyledList, StyledListItem, StyledContainer } from './QuizzesList.styled';
+import { StyledText } from '../SubmitStep/SubmitStep.styled';
 import { IQuizzesList, IScore } from './QuizzesList.model';
+import { IQuizTemplate } from 'Interfaces/quizInterfaces';
+import { doesScrollExist } from 'helpers/getters';
 import { useHistory } from 'react-router-dom';
+import { axiosInstance } from 'services/api';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
-import { IQuizTemplate } from 'Interfaces/quizInterfaces';
-import { axiosInstance } from 'services/api';
-import { StyledPlaceholderText } from '../SubmitStep/SubmitStep.styled';
-import { doesScrollExist } from 'helpers/getters';
 
 const QuizzesList = ({ quizzes }: IQuizzesList) => {
     const history = useHistory();
@@ -67,11 +67,8 @@ const QuizzesList = ({ quizzes }: IQuizzesList) => {
                         </StyledListItem>)}
                 </StyledList> :
                 <Placeholder>
-                    <StyledPlaceholderText> 
-                        No quizzes 
-                    </StyledPlaceholderText>
-                </Placeholder>
-            }
+                    <StyledText> No quizzes </StyledText>
+                </Placeholder>}
         </StyledContainer>
     );
 };

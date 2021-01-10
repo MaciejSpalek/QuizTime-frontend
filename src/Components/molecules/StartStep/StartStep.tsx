@@ -6,6 +6,7 @@ import { routes } from 'routes';
 import {
     StyledPageTemplate,
     StyledIconWrapper,
+    StyledTextWrapper,
     StyledCounter,
     StyledWrapper,
     StyledButton,
@@ -30,28 +31,34 @@ const StartStep = ({
 
     return (
         <StyledPageTemplate>
-            <StyledWrapper >
+
+            <StyledWrapper>
                 <StyledIconWrapper >
                     <StyledIcon icon={icon as IconName} />
                 </StyledIconWrapper>
                 <StyledIconWrapper >
                     <StyledIcon icon={'user'} />
-                    <StyledCounter> {counter} </StyledCounter>
+                    <StyledCounter> { counter } </StyledCounter>
                 </StyledIconWrapper>
             </StyledWrapper>
-            <StyledWrapper >
-                <StyledTitle >{title}</StyledTitle>
-                <StyledAuthor text={getAuthor(author)} />
+
+            <StyledWrapper>
+                <StyledPhoto />
+                <StyledTextWrapper>
+                    <StyledTitle> { title } </StyledTitle>
+                    <StyledAuthor text={getAuthor(author)} />
+                </StyledTextWrapper>
             </StyledWrapper>
+
             <StyledWrapper>
                 <StyledButton
                     type='button'
-                    text='Start quiz'
+                    text='Start'
                     handleOnClick={onClick}
                 />
                 <StyledButton
                     type='button'
-                    text='More quizzes'
+                    text='More'
                     handleOnClick={moreQuizzes}
                 />
                 <StyledButton
@@ -60,7 +67,7 @@ const StartStep = ({
                     handleOnClick={backToHome}
                 />
             </StyledWrapper>
-            <StyledPhoto />
+
         </StyledPageTemplate>
     );
 };

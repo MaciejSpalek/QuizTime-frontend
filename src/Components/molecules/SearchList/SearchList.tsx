@@ -1,10 +1,10 @@
 import React, { Children } from 'react';
 import { ISearchList } from './SearchList.model';
 import {
-    StyledList,
+    StyledContainer,
     StyledListItem,
     StyledGradient,
-    StyledContainer
+    StyledList
 } from './SearchList.styled';
 
 const SearchList = ({ children, ...props }: ISearchList) => {

@@ -2,6 +2,7 @@ const colors = {
   Red: "#dc3545",
   White: "#ffffff",
   Black: "#000000",
+  Black20: "rgba(0, 0, 0, 0.5)",
   TransparentBlack: "#000000d0",
   TransparentWhite: "rgba(255, 255, 255, 0.50)",
 

@@ -33,6 +33,7 @@ const GlobalStyle = createGlobalStyle`
   
   ul {
     ${scrollBar};
+    list-style: none; 
   }
 
   body {

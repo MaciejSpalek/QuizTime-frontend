@@ -46,7 +46,7 @@ export const StyledHoverWrapper = styled.div<{isHover: boolean}>`
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color: ${colors.TransparentBlack};
+  background-color: ${colors.Black20};
   border-radius: 4px;
   transition: 1s ease-in-out;
   display: ${({ isHover }) => !isHover && 'none'};

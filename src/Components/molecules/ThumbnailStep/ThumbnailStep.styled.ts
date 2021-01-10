@@ -41,14 +41,14 @@ export const StyledFormField = styled(FormFieldTemplate)`
 
 export const StyledCategorySelect = styled(CategorySelect)`
   @media screen and (min-width: 600px) {
-  margin: 0;
+    margin: 0;
     grid-area: categorySelect;
   }
 `;
 
 export const StyledColorSelect = styled(ColorSelect)`
   @media screen and (min-width: 600px) {
-  margin: 0;
+    margin: 0;
     grid-area: colorSelect;
   }
 `;

@@ -30,7 +30,6 @@ export const StyledList = styled.ul`
 export const StyledListItem = styled.li`
   width: 100%;
   background-color: ${colors.White};
-  padding: 5px;
 `;
 
 export const StyledGradient = styled.span`

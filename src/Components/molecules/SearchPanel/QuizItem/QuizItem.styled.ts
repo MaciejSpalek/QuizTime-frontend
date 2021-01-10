@@ -8,9 +8,17 @@ export const StyledLink = styled(Link)`
   ${FlexCenter};
   justify-content: flex-start;
   background-color: ${colors.White};
+  padding: 5px;
+  transition: 0.3s ease-in-out;
+  :link {
+    text-decoration: none;
+  }
+  :hover {
+    background-color: ${colors.Gray100};
+  }
 `;
 
-export const StyledIconWrapper = styled.div<{color: string}>`
+export const StyledIconWrapper = styled.div<{ color: string }>`
   ${FlexCenter};
   background-color: ${({ color }) => color};
   width: 35px;
@@ -19,7 +27,7 @@ export const StyledIconWrapper = styled.div<{color: string}>`
   margin-right: 5px;
 `;
 
-export const StyledIcon = styled(FontAwesomeIcon)<{color: string}>`
+export const StyledIcon = styled(FontAwesomeIcon)<{ color: string }>`
   font-size: 24px;
   color: ${({ color }) => color};
 `;

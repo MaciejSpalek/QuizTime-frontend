@@ -8,6 +8,14 @@ export const StyledLink = styled(Link)`
   ${FlexCenter};
   justify-content: flex-start;
   background-color: ${colors.White};
+  padding: 5px;
+  transition: 0.3s ease-in-out;
+  :link {
+    text-decoration: none;
+  }
+  :hover {
+    background-color: ${colors.Gray100};
+  }
 `;
 
 export const StyledIconWrapper = styled.div`
@@ -24,7 +32,7 @@ export const StyledIcon = styled(FontAwesomeIcon)`
   color: ${colors.Gray20};
 `;
 
-export const StyledName = styled.span`
+export const StyledText = styled.span`
   font-size: 20px;
   color: ${colors.Gray20};
 `;

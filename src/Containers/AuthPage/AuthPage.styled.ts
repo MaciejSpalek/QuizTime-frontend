@@ -38,8 +38,11 @@ export const StyledPhoto = styled(AuthPhoto)`
   display: none;
   @media (min-width: 900px) {
     display: unset;
+    width: 525px;
+    height: 525px;
     position: absolute;
-    right: 0;
-    width: 650px;
+    left: -150px;
+    bottom: 0;
+    transform: rotate(10deg);
   }
 `;
