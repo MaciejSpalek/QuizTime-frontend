@@ -4,22 +4,30 @@ import Link from "Components/atoms/Link/index";
 import PageTemplate from "templates/PageTemplate/PageTemplate";
 import AuthForm from "templates/FormTemplate";
 import Label from "Components/atoms/Label/index";
-import { BoxShadow, FlexCenter } from "styles/Mixins";
+import { BoxShadow, FlexCenter, scrollBar } from "styles/Mixins";
 import { AuthPhoto } from "assets";
 
 export const StyledContainer = styled(PageTemplate)`
-  position: relative;
   ${FlexCenter};
-  width: 100%;
-  overflow: hidden;
+  ${scrollBar};
+  justify-content: flex-start;
+  position: relative;
+  overflow: auto;
+  padding: 50px 0;
+  @media (min-height: 600px) {
+    justify-content: center;
+  }
 `;
 
 export const StyledAuthForm = styled(AuthForm)`
-  max-width: 300px;
+  ${BoxShadow};
+  display: flex;
+  width: 280px;
   height: auto;
   border-radius: 5px;
-  ${BoxShadow};
-  z-index: 2;
+  @media (min-width: 600px) {
+    width: 340px;
+  }
 `;
 
 export const StyledButton = styled(Button)`
@@ -36,13 +44,13 @@ export const StyledLabel = styled(Label)`
 
 export const StyledPhoto = styled(AuthPhoto)`
   display: none;
-  @media (min-width: 900px) {
+  @media (min-width: 850px) and (min-height: 600px) {
     display: unset;
-    width: 525px;
-    height: 525px;
     position: absolute;
-    left: -150px;
-    bottom: 0;
-    transform: rotate(10deg);
+    width: 425px;
+    height: 425px;
+    left: -100px;
+    top: 48%;
+    transform: translate(0, -50%) ;
   }
 `;

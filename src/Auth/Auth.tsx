@@ -9,22 +9,17 @@ const Auth = () => {
     const setAuthentication = useCallback(() => {
         const token = showCookie('token');
         const name = showCookie('name');
-
-        if(token) {
-            dispatch(authenticate(true));
-            dispatch(setLoggedUser(name));
-        } else {
-            dispatch(authenticate(false));
-            dispatch(resetLoggedUser());
-        }
+        dispatch(authenticate(!!token));
+        token ? dispatch(setLoggedUser(name)) :
+                dispatch(resetLoggedUser())
     }, [dispatch]);
-    
-    useEffect(()=> {
+
+    useEffect(() => {
         setAuthentication();
     }, [setAuthentication]);
 
-    useEffect(()=> {
-        setInterval(()=> {
+    useEffect(() => {
+        setInterval(() => {
             setAuthentication();
         }, 1000);
     });

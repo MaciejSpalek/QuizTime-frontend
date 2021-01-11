@@ -4,9 +4,10 @@ import { setRequestStatus } from 'redux/Actions/sessionActions';
 import { setLoggedUser, resetLoggedUser } from 'redux/Actions/userActions';
 import { axiosInstance } from 'services/api';
 
-type DataType = {
+interface DataType {
     name: string;
     password: string;
+    email?: string
 };
 
 type AuthType = 'login' | 'register';
