@@ -8,16 +8,17 @@ import { RouteComponentProps } from 'react-router-dom';
 import { capitalizeFirstLetter } from 'helpers/string';
 import { authPageValidation } from './validation';
 import { authRequest } from 'Auth/requests';
+import { IData } from './AuthPage.model';
 import { RootState } from 'redux/store';
 import { routes } from 'routes/index';
 import { Formik } from "formik";
-import { 
-    StyledButton, 
-    StyledLink, 
-    StyledContainer, 
-    StyledAuthForm, 
-    StyledLabel, 
-    StyledPhoto 
+import {
+    StyledContainer,
+    StyledAuthForm,
+    StyledButton,
+    StyledLabel,
+    StyledPhoto,
+    StyledLink
 } from './AuthPage.styled';
 
 
@@ -26,11 +27,12 @@ const AuthPage = ({ history }: RouteComponentProps) => {
     const [isFirstRender, setIsFirstRender] = useState(true);
     const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
     const user = useSelector<RootState, string | null>(state => state.user.loggedUser);
-    
+
     const isLoginRoute = () => history.location.pathname === routes.login;
     const isDisabledButton = (errors: any, touched: any, isSubmitting: boolean) => {
         if (isFirstRender) return true;
-        return (!!(errors.name || errors.password || errors.email) && touched) || isSubmitting;
+        if (isLoginRoute()) return (!!(errors.name || errors.password) && touched) || isSubmitting;
+        else return (!!(errors.name || errors.password || errors.email) && touched) || isSubmitting;
     };
 
     const inputFunctionsHandler = (
@@ -47,6 +49,23 @@ const AuthPage = ({ history }: RouteComponentProps) => {
             setFieldValue(e.target.name, e.target.value.trim())
     };
 
+    const onSubmit = (
+        data: IData,
+        setSubmitting: (value: boolean) => void,
+        resetForm: () => void
+    ) => {
+        const { name, password } = data;
+        isLoginRoute() ?
+            authRequest('login', { name, password }, dispatch) :
+            authRequest('register', data, dispatch);
+        setSubmitting(true);
+        setTimeout(() => {
+            resetForm();
+            setSubmitting(false);
+            setIsFirstRender(true);
+        }, 3000)
+    }
+
     useEffect(() => {
         let timeout: number;
         if (isAuthenticated) {
@@ -56,29 +75,17 @@ const AuthPage = ({ history }: RouteComponentProps) => {
         }
 
         return () => clearTimeout(timeout);
-        
+
     }, [isAuthenticated, history, user]);
 
     return (
         <StyledContainer>
             <Formik
-                validationSchema={authPageValidation}
+                validationSchema={authPageValidation(isLoginRoute())}
+                initialValues={{ name: "", email: "", password: "" }}
                 validateOnChange={true}
-                initialValues={{
-                    name: "",
-                    email: "",
-                    password: ""
-                }}
                 onSubmit={(data, { setSubmitting, resetForm }) => {
-                    isLoginRoute() ?
-                    authRequest('login', data, dispatch) :
-                        authRequest('register', data, dispatch);
-                    setSubmitting(true);
-                    setTimeout(() => {
-                        resetForm();
-                        setSubmitting(false);
-                        setIsFirstRender(true);
-                    }, 3000)
+                    onSubmit(data, setSubmitting, resetForm);
                 }}>
                 {({
                     setFieldValue,

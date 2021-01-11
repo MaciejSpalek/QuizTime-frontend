@@ -7,7 +7,6 @@ import { axiosInstance } from 'services/api';
 interface DataType {
     name: string;
     password: string;
-    email?: string
 };
 
 type AuthType = 'login' | 'register';
