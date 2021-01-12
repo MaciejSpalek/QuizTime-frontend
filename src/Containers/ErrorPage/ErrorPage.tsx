@@ -1,21 +1,19 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { 
+import {
     StyledErrorPhoto,
-    StyledContainer, 
+    StyledContainer,
     StyledButton,
-    StyledText
 } from './ErrorPage.styled';
 
 const ErrorPage = () => {
     const history = useHistory();
     const handleOnClick = () => history.push('/');
-    
+
     return (
         <StyledContainer>
             <StyledErrorPhoto />
-            <StyledText> Page not found </StyledText>
-            <StyledButton text="Retry" handleOnClick={handleOnClick}/>
+            <StyledButton text="Home" handleOnClick={handleOnClick} />
         </StyledContainer>
     );
 };

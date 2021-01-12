@@ -27,10 +27,10 @@ export const StyledTopWrapper = styled.div`
 `;
 
 export const StyledList = styled.ul`
+  ${scrollBar};
   display: grid;
   grid-gap: 10px;
   height: calc(100vh - 4*65px);
-  ${scrollBar};
   overflow-x: hidden;
   overflow-y: scroll;
   padding-right: 10px;
