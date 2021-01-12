@@ -25,7 +25,6 @@ export const StyledImageWrapper = styled.picture<{ secondarycolor: string }>`
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   background-color: ${({ secondarycolor }) => secondarycolor};
-  transition: .2s ease-in-out;
 `;
 
 export const StyledTextWrapper = styled.div`
@@ -52,7 +51,7 @@ export const StyledHoverWrapper = styled.div<{isHover: boolean}>`
   display: ${({ isHover }) => !isHover && 'none'};
   animation: ${increaseOpacity} .5s ease-in-out;
 `;
-
+// ${({ isHover }) => isHover ? increaseScale : ''}
 export const StyledScore = styled(Paragraph)<{ color: string }>`
   color: white;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import NavLink from "Components/atoms/Link/index";
+import NavLink from "Components/atoms/Link";
 import colors from "styles/Colors";
-import { FlexColumn } from "styles/Mixins";
+import { FlexCenter, FlexColumn } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const StyledContainer = styled.div`
@@ -44,27 +44,62 @@ export const StyledList = styled.ul`
   }
 `;
 
+export const StyledItem = styled.li`
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  :before {
+    content: "";
+    position: absolute;
+    top: 90%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: ${colors.BasicGreen};
+    transform: translateX(-100%);
+    transition: 0.2s ease-in;
+    z-index: 1;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  @media (min-width: 800px) {
+    width: auto;
+    padding: 0;
+    margin: 0 5px;
+    :hover::before {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  }
+`;
+
 export const StyledIcon = styled(FontAwesomeIcon)`
   font-size: 40px;
-  margin-right: 10px;
   color: ${colors.BasicGreen};
   @media only screen and (min-width: 800px) {
     font-size: 28px;
   }
 `;
 
-export const StyledItem = styled.li`
-  width: 100%;
+export const StyledIconWrapper = styled.div`
+  ${FlexCenter};
+  width: 50px;
+  margin-right: 5px;
   @media only screen and (min-width: 800px) {
-    width: auto;
-    padding: 0;
-    margin: 0 5px;
+    width: 38px;
   }
 `;
 
 export const StyledNavLink = styled(NavLink)`
   color: ${colors.Gray20};
   font-weight: bold;
+  :link,
+  :hover {
+    text-decoration: none;
+    color: ${colors.Gray20};
+  }
+  /* padding: 0 5px; */
 `;
 
 export const StyledSpan = styled.span`

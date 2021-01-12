@@ -31,7 +31,8 @@ export const StyledAuthForm = styled(AuthForm)`
 `;
 
 export const StyledButton = styled(Button)`
-  width: 100%;
+    width: 100%;
+    max-width: 340px;
 `;
 
 export const StyledLink = styled(Link)`

@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { setHamburgerStatus } from 'redux/Actions/statusesActions';
-import { StyledLink } from 'Components/atoms/Link/Link.styled';
 import { resetParameters } from 'helpers/reduxHandlers';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'redux/store';
@@ -9,6 +8,7 @@ import { logout } from 'Auth/requests';
 import { routes } from 'routes/index';
 import { useWindowSize } from 'hooks';
 import {
+    StyledIconWrapper,
     StyledBackground,
     StyledContainer,
     StyledNavLink,
@@ -44,9 +44,11 @@ const Menu = () => {
                         text='Home'
                         to={routes.home}
                         isNavLink={true}
-                        onClick={handleOnClick}
-                        children={<StyledIcon icon='home' />}
-                    />
+                        onClick={handleOnClick}>
+                        <StyledIconWrapper>
+                            <StyledIcon icon='home' />
+                        </StyledIconWrapper>
+                    </StyledNavLink>
                 </StyledItem>
                 {!isAuthenticated &&
                     <StyledItem>
@@ -54,9 +56,11 @@ const Menu = () => {
                             text='Log in'
                             isNavLink={true}
                             to={routes.login}
-                            onClick={handleOnClick}
-                            children={<StyledIcon icon='sign-in-alt' />}
-                        />
+                            onClick={handleOnClick}>
+                            <StyledIconWrapper>
+                                <StyledIcon icon='sign-in-alt' />
+                            </StyledIconWrapper>
+                        </StyledNavLink>
                     </StyledItem>}
                 {isAuthenticated &&
                     <StyledItem>
@@ -64,21 +68,25 @@ const Menu = () => {
                             text={`${user}`}
                             to={`/${user}`}
                             isNavLink={true}
-                            onClick={handleOnClick}
-                            children={<StyledIcon icon='user' />}
-                        />
+                            onClick={handleOnClick}>
+                            <StyledIconWrapper>
+                                <StyledIcon icon='user' />
+                            </StyledIconWrapper>
+                        </StyledNavLink>
                     </StyledItem>}
                 {isAuthenticated &&
                     <StyledItem>
-                        <StyledLink
+                        <StyledNavLink
                             to={routes.home}
                             onClick={() => {
                                 handleOnClick();
                                 logout(dispatch);
                             }}>
-                            <StyledIcon icon='sign-out-alt' />
+                            <StyledIconWrapper>
+                                <StyledIcon icon='sign-out-alt' />
+                            </StyledIconWrapper>
                             <StyledSpan> Log out </StyledSpan>
-                        </StyledLink>
+                        </StyledNavLink>
                     </StyledItem>}
             </StyledList>
             <StyledBackground />
