@@ -24,8 +24,6 @@ import { axiosInstance } from 'services/api';
 import { RootState } from 'redux/store';
 import { useWindowSize } from 'hooks';
 
-
-
 const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
   const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
   const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizzes.formQuestions);
@@ -84,6 +82,7 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
     }).then(({ data }) => { setQuizzes(data) });
   }, [match.params.username, setQuizzes]);
 
+  
   const getChildren = (
     handleChange: (e: ChangeEvent) => void,
     handleBlur: (e: ChangeEvent) => void,
@@ -208,7 +207,7 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
               openModal={() => setIsModalActive(true)}
             />
             {!addQuizButtonStatus ?
-              <QuizList quizzes={quizzes} /> :
+              <QuizList quizzes={quizzes} matchUsername={match.params.username} /> :
               <Formik
                 validateOnChange={true}
                 initialValues={{

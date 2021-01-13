@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { routes } from 'routes';
 import {
     StyledErrorPhoto,
     StyledContainer,
@@ -8,7 +9,7 @@ import {
 
 const ErrorPage = () => {
     const history = useHistory();
-    const handleOnClick = () => history.push('/');
+    const handleOnClick = () => history.push(routes.home);
 
     return (
         <StyledContainer>

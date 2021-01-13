@@ -1,6 +1,6 @@
 import { RouteComponentProps } from "react-router-dom";
 
-type Match = {
+export type Match = {
     id: string;
     username: string;
 };

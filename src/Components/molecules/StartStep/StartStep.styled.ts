@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from "Components/atoms/Button";
 import PageTemplate from "templates/PageTemplate";
 import Paragraph from "Components/atoms/Paragraph";
-import { AbbreviateText, BoxShadow, FlexCenter } from "styles/Mixins";
+import { AbbreviateText, FlexCenter } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { TestIcon } from "assets";
 
@@ -22,9 +22,8 @@ export const StyledWrapper = styled.div`
   :first-of-type {
     justify-content: space-between;
     flex-direction: row;
-    background-color: ${colors.Gray80};
     flex-basis: 60px;
-    ${BoxShadow};
+    border-bottom: 2px solid ${colors.Gray100};
   }
   :nth-of-type(2) {
     flex: 6;
@@ -42,7 +41,7 @@ export const StyledWrapper = styled.div`
 
 export const StyledIconWrapper = styled.div`
   ${FlexCenter};
-  background-color: ${colors.Gray20};
+  background-color: ${colors.BasicGreen};
   width: 50px;
   height: 50px;
   border-radius: 5px;
@@ -52,9 +51,18 @@ export const StyledIconWrapper = styled.div`
   }
 `;
 
+export const StyledTextWrapper = styled.div`
+  ${FlexCenter};
+  max-width: 300px;
+  flex-direction: column;
+  @media (min-width: 600px) {
+    align-items: flex-start;
+  }
+`;
+
 export const StyledIcon = styled(FontAwesomeIcon)`
   font-size: 28px;
-  color: ${colors.Gray80};
+  color: ${colors.DarkGreen};
 `;
 
 export const StyledCounter = styled.span`
@@ -87,24 +95,30 @@ export const StyledPhoto = styled(TestIcon)`
   }
 `;
 
-export const StyledTextWrapper = styled.div`
-  ${FlexCenter};
-  max-width: 300px;
-  flex-direction: column;
-  @media (min-width: 600px) {
-    align-items: flex-start;
-  }
-`;
-
 export const StyledTitle = styled.span`
+  position: relative;
   ${AbbreviateText};
   font-size: 36px;
   font-weight: bold;
   color: ${colors.BasicGreen};
   text-align: center;
   z-index: 2;
+
   @media (min-width: 600px) {
     text-align: left;
+    :before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      left: 0;
+      bottom: 0;
+      background: linear-gradient(
+        to right,
+        ${colors.Gray40},
+        ${colors.Gray120}
+      );
+    }
   }
   @media (min-width: 900px) {
     font-size: 42px;
@@ -117,6 +131,6 @@ export const StyledAuthor = styled(Paragraph)`
   color: ${colors.Gray20};
   z-index: 2;
   @media (min-width: 600px) {
-    font-size: 28px;
+    font-size: 24px;
   }
 `;

@@ -1,5 +1,9 @@
+import { NoQuizzesIcon } from "assets";
+import Button from "Components/atoms/Button";
 import styled from "styled-components";
 import colors from "styles/Colors";
+import { scrollBar } from "styles/Mixins";
+import PlaceholderTemplate from "templates/PlaceholderTemplate";
 
 export const StyledContainer = styled.div`
   position: absolute;
@@ -10,7 +14,23 @@ export const StyledContainer = styled.div`
   background-color: ${colors.Gray120};
 `;
 
-export const StyledList = styled.ul<{isScroll: boolean | undefined}>`
+export const StyledPlaceholder = styled(PlaceholderTemplate)`
+  justify-content: flex-start;
+  overflow-x: hidden;
+  overflow-y: auto;
+  ${scrollBar};
+ 
+  @media (max-width: 900px) and (min-height: 500px) {
+    justify-content: center;
+  }
+
+  @media (min-width: 900px) and (min-height: 650px) {
+    justify-content: center;
+  }
+`;
+
+
+export const StyledList = styled.ul<{ isScroll: boolean | undefined }>`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
@@ -19,15 +39,34 @@ export const StyledList = styled.ul<{isScroll: boolean | undefined}>`
   max-height: 100%;
   list-style: none;
   overflow: auto;
-  padding-right: ${({ isScroll }) => isScroll ? '2.5px': '0'};
-  @media (min-width: 600px) { grid-template-columns: 1fr 1fr };
-  @media (min-width: 900px) { 
-    padding-right: ${({ isScroll }) => isScroll ? '10px': '0'}; 
-  };
+  padding-right: ${({ isScroll }) => (isScroll ? "2.5px" : "0")};
+  @media (min-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 900px) {
+    padding-right: ${({ isScroll }) => (isScroll ? "10px" : "0")};
+  } ;
 `;
 
 export const StyledListItem = styled.li`
   width: 100%;
   max-height: 140px;
   cursor: pointer;
+`;
+
+export const StyledPhoto = styled(NoQuizzesIcon)`
+  width: 300px;
+  height: 300px;
+  min-width: 300px;
+  min-height: 300px;
+  @media (min-width: 900px) {
+    width: 450px;
+    height: 450px;
+    min-width: 450px;
+    min-height: 450px;
+  }
+`;
+
+export const StyledButton = styled(Button)`
+  margin-top: 20px;
 `;

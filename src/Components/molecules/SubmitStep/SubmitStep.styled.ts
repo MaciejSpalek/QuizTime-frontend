@@ -67,6 +67,7 @@ export const StyledText = styled.span`
   font-size: 30px;
 `;
 
+
 export const StyledPhoto = styled(NoQuestionsIcon)`
   width: 300px;
   height: 300px;

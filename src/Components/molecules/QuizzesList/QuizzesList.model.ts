@@ -1,7 +1,9 @@
+import { TQuizPage } from "Containers/QuizPage/QuizPage.model";
 import { IQuizTemplate } from "Interfaces/quizInterfaces";
 
 export interface IQuizzesList {
     quizzes: IQuizTemplate[];
+    matchUsername?: string;
 };
 
 export interface IScore {
