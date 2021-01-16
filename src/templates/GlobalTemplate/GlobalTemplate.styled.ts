@@ -5,7 +5,6 @@ import { FlexColumn } from 'styles/Mixins';
 export const StyledContainer = styled.div`
   ${FlexColumn};
   position: relative;
-  height: 100vh;
+  height: 100%;
   background-color: ${colors.Gray100};
-  overflow: hidden;
 `;

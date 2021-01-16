@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import PreloaderScreen from 'Components/molecules/PreloaderScreen';
+import MultiStepForm from 'Components/organisms/MultiStepForm';
 import QuestionStep from 'Components/molecules/QuestionStep';
 import ScoreWindow from 'Components/molecules/ScoreWindow';
 import StartStep from 'Components/molecules/StartStep';
@@ -7,9 +8,8 @@ import LastStep from 'Components/molecules/LastStep';
 import PageTemplate from 'templates/PageTemplate';
 import ErrorPage from 'Containers/ErrorPage';
 import { setCorrectAnswersArray, setUserAnswersArray } from 'redux/Actions/quizActions';
-import { IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { setToastParameters } from 'redux/Actions/toastActions';
-import { StyledMultiStepForm } from './QuizPage.styled';
+import { IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { IValues, TQuizPage } from './QuizPage.model';
 import { quizPageValidation } from './validation';
@@ -141,7 +141,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                                 handleBlur,
                                 values
                             }) => (
-                                <StyledMultiStepForm
+                                <MultiStepForm
                                     children={getFormChildren(handleChange, handleBlur, isSubmitting, values)}
                                     handleRightButton={() => setStep(prev => prev + 1)}
                                     handleLeftButton={() => setStep(prev => prev - 1)}

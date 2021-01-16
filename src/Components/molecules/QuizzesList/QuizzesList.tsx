@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState, MouseEvent } from 'react';
 import QuizThumbnail from '../QuizThumbnail';
-import { setAddQuizButtonStatus } from 'redux/Actions/statusesActions';
+import { setAddQuizButtonStatus, setScrollStatus } from 'redux/Actions/statusesActions';
 import { StyledText } from '../SubmitStep/SubmitStep.styled';
 import { IQuizzesList, IScore } from './QuizzesList.model';
 import { IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { useDispatch, useSelector } from 'react-redux';
-import { doesScrollExist } from 'helpers/getters';
+import { doesScrollExist, isScrollAtTheBottom } from 'helpers/getters';
 import { useHistory } from 'react-router-dom';
 import { axiosInstance } from 'services/api';
 import { RootState } from 'redux/store';
@@ -17,13 +17,16 @@ import {
     StyledPhoto,
     StyledList
 } from './QuizzesList.styled';
+import { useEventListener } from 'hooks';
 
 const QuizzesList = ({ quizzes, matchUsername }: IQuizzesList) => {
+    const listRef = useRef<HTMLUListElement>(null);
     const history = useHistory();
     const dispatch = useDispatch();
-    const listRef = useRef<HTMLUListElement>(null);
-    const [scores, setScores] = useState<string[]>([])
+
+    const isScrolled = useSelector<RootState, boolean | undefined>(state => state.statuses.isScrolled);
     const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser);
+    const [scores, setScores] = useState<string[]>([])
 
     const handleOnClick = (id: string, author: string) => history.push(`${author}/${id}`);
     const handleButton = () => dispatch(setAddQuizButtonStatus(true));
@@ -58,6 +61,7 @@ const QuizzesList = ({ quizzes, matchUsername }: IQuizzesList) => {
         quizzes && manageScores(quizzes);
     }, [quizzes, loggedUser, manageScores]);
 
+ 
     const getText = () => {
         if (isUserRoute()) {
             return "Add your first quiz!"
@@ -66,12 +70,12 @@ const QuizzesList = ({ quizzes, matchUsername }: IQuizzesList) => {
         }
     };
 
-
     return (
         <StyledContainer>
-            
             {quizzes.length ?
-                <StyledList ref={listRef} isScroll={doesScrollExist(listRef)}>
+                <StyledList
+                    isScroll={doesScrollExist(listRef)}
+                    ref={listRef}>
                     {quizzes.map((data, index) =>
                         <StyledListItem
                             key={data._id}

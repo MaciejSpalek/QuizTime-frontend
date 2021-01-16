@@ -1,6 +1,8 @@
+import QuizPagination from 'Components/molecules/QuizPagination';
 import React from 'react';
+import FormTemplate from 'templates/FormTemplate';
 import { IMultiStepForm } from './MultiStepForm.model';
-import { StyledContainer, StyledForm, StyledPagination } from './MultiStepForm.styled';
+import { StyledContainer } from './MultiStepForm.styled';
 
 const MultiStepform = ({ 
     counter, 
@@ -15,10 +17,10 @@ const MultiStepform = ({
 
     return (
         <StyledContainer {...props}>
-            <StyledForm onSubmit={onSubmit}>
+            <FormTemplate onSubmit={onSubmit}>
                 {getCurrentChild()}
-            </StyledForm>
-            <StyledPagination 
+            </FormTemplate>
+            <QuizPagination 
                 steps={steps} 
                 counter={counter}
                 handleLeftButton={handleLeftButton}
@@ -26,6 +28,6 @@ const MultiStepform = ({
             />
         </StyledContainer>
     )
-}
+};
 
-export default MultiStepform
+export default MultiStepform;

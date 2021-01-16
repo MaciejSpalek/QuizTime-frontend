@@ -4,9 +4,6 @@ import { FlexCenter, FlexColumn } from 'styles/Mixins';
 
 
 export const StyledContainer = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
     ${FlexCenter};
     width: 100%;
     height: 60px;

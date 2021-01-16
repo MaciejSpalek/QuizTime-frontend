@@ -12,8 +12,9 @@ export const StyledContainer = styled(PageTemplate)`
   ${scrollBar};
   justify-content: flex-start;
   position: relative;
-  overflow: auto;
+  overflow: hidden;
   padding: 50px 0;
+  
   @media (min-height: 600px) {
     justify-content: center;
   }

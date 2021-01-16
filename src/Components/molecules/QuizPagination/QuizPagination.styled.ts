@@ -6,7 +6,7 @@ import colors from "styles/Colors";
 export const StyledPagination = styled.div`
   ${FlexCenter};
   justify-content: center;
-  height: 60px;
+  min-height: 60px;
   background-color: ${colors.Gray120};
 `;
 

@@ -23,6 +23,7 @@ import { profilePageValidation } from './validation';
 import { axiosInstance } from 'services/api';
 import { RootState } from 'redux/store';
 import { useWindowSize } from 'hooks';
+import { showCookie } from 'helpers/cookies';
 
 const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
   const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
@@ -36,10 +37,14 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
   const [username, setUsername] = useState(null);
   const [quizzes, setQuizzes] = useState([]);
   const [step, setStep] = useState(1);
+  const [token] = useState(showCookie('token'));
   const dispatch = useDispatch();
   const width = useWindowSize();
 
-  const addQuiz = (data: IQuizTemplate) => axiosInstance.post('/quizes/addQuiz', data);
+
+  const addQuiz = (data: IQuizTemplate) => axiosInstance.post('/quizes/addQuiz', data, {
+    headers: { 'auth-token': token }
+  });
   const isLoggedUserRoute = () => loggedUser === match.params.username;
   const handleCancel = () => setIsModalActive(false);
 

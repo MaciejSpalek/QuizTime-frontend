@@ -24,15 +24,21 @@ export const getUsers = (users: IUsers[]) => {
 
 
 export const getElementWidth = (ref: RefObject<HTMLElement>) => {
-    if(null !== ref.current) {
+    if (null !== ref.current) {
         return ref.current.clientWidth;
     }
 };
 
 
 export const doesScrollExist = (ref: RefObject<HTMLElement>): boolean | undefined => {
-    if(null != ref.current) {
+    if (null != ref.current) {
         return ref.current.scrollHeight > ref.current.clientHeight;
     }
 };
 
+export const isScrollAtTheBottom = (element: RefObject<HTMLElement>): boolean | undefined => {
+    if (null !== element.current) {
+        return element.current.scrollHeight - element.current.scrollTop <
+            element.current.clientHeight + 10
+    }
+};

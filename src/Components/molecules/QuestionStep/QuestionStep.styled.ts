@@ -5,7 +5,6 @@ import { AbbreviateText, FlexCenter, FlexColumn } from "styles/Mixins";
 export const StyledContainer = styled.div`
   ${FlexColumn};
   justify-content: flex-start;
-  height: calc(100vh - 2 * 60px);
   padding-top: 20px;
   overflow: auto;
   background-color: ${colors.Gray120};

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import PreloaderScreen from 'Components/molecules/PreloaderScreen';
 import PageTemplate from 'templates/PageTemplate/PageTemplate';
 import SearchPanel from 'Components/molecules/SearchPanel';
 import QuizesList from 'Components/molecules/QuizzesList';
 import { axiosInstance } from 'services/api';
-import PreloaderScreen from 'Components/molecules/PreloaderScreen';
 
 const HomePage = () => {
   const [quizzes, setQuizes] = useState([]);

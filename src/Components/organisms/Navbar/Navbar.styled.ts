@@ -4,14 +4,10 @@ import { BoxShadow, FlexCenter } from "styles/Mixins";
 
 export const StyledNavbar = styled.nav`
   ${FlexCenter};
-  position: relative;
-  top: 0;
-  width: 100%;
+  ${BoxShadow};
   height: 60px;
   background-color: ${colors.White};
-  /* border-bottom: 2px solid ${colors.Gray80}; */
   z-index: 2;
-  ${BoxShadow};
 `;
 
 export const StyledWrapper = styled.div`

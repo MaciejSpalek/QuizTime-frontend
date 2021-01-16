@@ -10,7 +10,6 @@ import {
 
 export const StyledSubmitStep = styled.div`
   ${FlexColumn};
-  width: 100%;
   height: 100%;
   background-color: ${colors.Gray120};
 `;
@@ -27,13 +26,8 @@ export const StyledTopWrapper = styled.div`
 `;
 
 export const StyledList = styled.ul`
-  ${scrollBar};
   display: grid;
   grid-gap: 10px;
-  height: calc(100vh - 4*65px);
-  overflow-x: hidden;
-  overflow-y: scroll;
-  padding-right: 10px;
 
   @media screen and (min-width: 600px) {
     grid-template-columns: repeat(2, 1fr);
@@ -49,8 +43,6 @@ export const StyledHeading = styled.h2`
 
 export const StyledPlaceholder = styled(Placeholder)`
   justify-content: flex-start;
-  overflow: auto;
-  ${scrollBar};
  
   @media (max-width: 900px) and (min-height: 560px) {
     justify-content: center;

@@ -15,3 +15,11 @@ export const setAddQuizButtonStatus = (state: boolean) => (dispatch: any) => {
   })
 };
 
+
+export const setScrollStatus = (state: boolean | undefined) => (dispatch: any) => {
+  dispatch({
+    type: StatusesTypes.QUIZ_SCROLL_STATUS,
+    payload: state
+  })
+};
+
