@@ -24,6 +24,7 @@ export const StyledImageWrapper = styled.picture<{ secondarycolor: string }>`
   min-height: 140px;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
+  transition: .5s ease-in;
   background-color: ${({ secondarycolor }) => secondarycolor};
 `;
 
@@ -32,6 +33,7 @@ export const StyledTextWrapper = styled.div`
   flex: 2;
   flex-direction: column;
   padding: 10px;
+  transition: .5s ease-in;
 `;
 
 export const StyledTitle = styled(Paragraph)`
@@ -51,7 +53,6 @@ export const StyledHoverWrapper = styled.div<{isHover: boolean}>`
   display: ${({ isHover }) => !isHover && 'none'};
   animation: ${increaseOpacity} .5s ease-in-out;
 `;
-// ${({ isHover }) => isHover ? increaseScale : ''}
 export const StyledScore = styled(Paragraph)<{ color: string }>`
   color: white;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);

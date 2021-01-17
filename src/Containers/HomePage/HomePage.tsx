@@ -3,6 +3,7 @@ import PreloaderScreen from 'Components/molecules/PreloaderScreen';
 import PageTemplate from 'templates/PageTemplate/PageTemplate';
 import SearchPanel from 'Components/molecules/SearchPanel';
 import QuizesList from 'Components/molecules/QuizzesList';
+import Header from 'Components/molecules/Header';
 import { axiosInstance } from 'services/api';
 
 const HomePage = () => {
@@ -38,6 +39,7 @@ const HomePage = () => {
         quizzes={quizzes}
         users={users}
       />
+      <Header />
       {quizzesFetchStatus && usersFetchStatus ?
         <QuizesList quizzes={quizzes} /> :
         <PreloaderScreen />}

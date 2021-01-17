@@ -74,7 +74,6 @@ export const StyledCounter = styled.span`
 
 export const StyledButton = styled(Button)`
   width: 100%;
-  z-index: 2;
   @media (min-width: 600px) {
     width: 180px;
     margin: 5px;
@@ -102,7 +101,6 @@ export const StyledTitle = styled.span`
   font-weight: bold;
   color: ${colors.BasicGreen};
   text-align: center;
-  z-index: 2;
 
   @media (min-width: 600px) {
     text-align: left;
@@ -129,7 +127,6 @@ export const StyledTitle = styled.span`
 export const StyledAuthor = styled(Paragraph)`
   font-size: 18px;
   color: ${colors.Gray20};
-  z-index: 2;
   @media (min-width: 600px) {
     font-size: 24px;
   }

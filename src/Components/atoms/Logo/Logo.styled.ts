@@ -2,12 +2,15 @@ import styled from "styled-components";
 import colors from "styles/Colors";
 import { FlexCenter } from "styles/Mixins";
 import { Puzzles } from "assets";
+import Link from "../Link";
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled(Link)`
   ${FlexCenter}
   width: auto;
-  /* height: auto; */
   cursor: pointer;
+  :link {
+    text-decoration: none;
+  }
 `;
 
 export const StyledLogo = styled(Puzzles)`

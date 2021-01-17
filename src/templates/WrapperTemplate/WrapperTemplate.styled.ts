@@ -11,5 +11,6 @@ export const StyledContainer = styled.div`
   top: 60px;
   height: calc(100vh - 60px);
   background-color: ${colors.Gray100};
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 `;

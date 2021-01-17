@@ -12,8 +12,8 @@ export const StyledContainer = styled.div`
   top: 60px;
   transform: translate(-50%, 0);
   max-width: 900px;
-  z-index: 999;
-  @media only screen and (min-width: 800px) {
+  z-index: 9999999;
+  @media (min-width: 800px) {
     position: unset;
     width: auto;
     height: 100%;
@@ -36,7 +36,7 @@ export const StyledList = styled.ul`
   padding: 10px;
   list-style: none;
   margin: 0;
-  @media only screen and (min-width: 800px) {
+  @media (min-width: 800px) {
     flex-direction: row;
     background-color: ${colors.White};
     padding: 0;

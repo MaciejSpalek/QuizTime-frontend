@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import colors from 'styles/Colors';
-import { BoxShadow } from 'styles/Mixins';
 
 export const StyledButton = styled.button.attrs(props => ({
     isDisabled: props.disabled
@@ -19,9 +18,7 @@ export const StyledButton = styled.button.attrs(props => ({
     padding: 0 5px;
     margin: 5px 0;                  
     transition: .3s ease-in-out;
-    ${BoxShadow};
     :hover {
         transform: scale(1.025);
     };
 `;
-
