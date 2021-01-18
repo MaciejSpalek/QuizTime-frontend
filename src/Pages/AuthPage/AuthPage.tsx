@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { capitalizeFirstLetter } from 'helpers/string';
 import { authPageValidation } from './validation';
-import { authRequest } from 'Auth/requests';
+import { authRequest } from 'services/auth';
 import { IData } from './AuthPage.model';
 import { RootState } from 'redux/store';
 import { routes } from 'routes/index';
@@ -26,7 +26,7 @@ const AuthPage = ({ history }: RouteComponentProps) => {
     const dispatch = useDispatch();
     const [isFirstRender, setIsFirstRender] = useState(true);
     const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
-    const user = useSelector<RootState, string | null>(state => state.user.loggedUser);
+    const user = useSelector<RootState, string | null>(state => state.session.loggedUser);
 
     const isLoginRoute = () => history.location.pathname === routes.login;
     const isDisabledButton = (errors: any, touched: any, isSubmitting: boolean) => {

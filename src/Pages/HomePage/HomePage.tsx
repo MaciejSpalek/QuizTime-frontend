@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { fetchAllQuizzes, fetchUsersNames } from 'services/requests';
 import PreloaderScreen from 'Components/molecules/PreloaderScreen';
 import PageTemplate from 'templates/PageTemplate/PageTemplate';
 import SearchPanel from 'Components/molecules/SearchPanel';
 import QuizesList from 'Components/molecules/QuizzesList';
 import Header from 'Components/molecules/Header';
-import { axiosInstance } from 'services/api';
 
 const HomePage = () => {
   const [quizzes, setQuizes] = useState([]);
@@ -12,16 +12,16 @@ const HomePage = () => {
   const [quizzesFetchStatus, setQuizzesFetch] = useState(false);
   const [usersFetchStatus, setUsersFetch] = useState(false);
 
-  const fetchAllQuizzes = async () => {
-    await axiosInstance.get("/quizes/allQuizzes")
+  const setQuizzes = async () => {
+    fetchAllQuizzes()
       .then(({ data }) => {
         setQuizes(data);
         setQuizzesFetch(true);
       })
   };
 
-  const fetchUsersNames = async () => {
-    await axiosInstance.get("/user/allNames")
+  const setUsersNames = async () => {
+    fetchUsersNames()
       .then(({ data }) => {
         setUsers(data);
         setUsersFetch(true);
@@ -29,8 +29,8 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    fetchAllQuizzes();
-    fetchUsersNames();
+    setQuizzes();
+    setUsersNames();
   }, []);
 
   return (

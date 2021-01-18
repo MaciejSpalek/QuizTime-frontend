@@ -14,3 +14,16 @@ export const setRequestStatus = (state: boolean) => (dispatch: any) => {
   })
 };
 
+export const setLoggedUser = (name: string) => (dispatch: any) => {
+  dispatch({
+    type: SessionTypes.SET_LOGGED_USER,
+    payload: name
+  })
+};
+
+export const resetLoggedUser = () => (dispatch: any) => {
+  dispatch({
+    type: SessionTypes.RESET_LOGGED_USER,
+    payload: null
+  })
+};

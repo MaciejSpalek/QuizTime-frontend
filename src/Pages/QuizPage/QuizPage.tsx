@@ -1,12 +1,11 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import PreloaderScreen from 'Components/molecules/PreloaderScreen';
-import QuestionStep from 'Components/molecules/QuestionStep';
 import ScoreWindow from 'Components/molecules/ScoreWindow';
-import StartStep from 'Components/molecules/StartStep';
-import LastStep from 'Components/molecules/LastStep';
 import PageTemplate from 'templates/PageTemplate';
-import ErrorPage from 'Containers/ErrorPage';
+import ErrorPage from 'Pages/ErrorPage';
+
 import { setCorrectAnswersArray, setUserAnswersArray } from 'redux/Actions/quizActions';
+import { StartStep, QuestionStep, LastStep } from 'Components/organisms/QuizSteps'
 import { setToastParameters } from 'redux/Actions/toastActions';
 import { IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { StyledMultiStepForm } from './QuizPage.styled';
@@ -16,9 +15,10 @@ import { quizPageValidation } from './validation';
 import { axiosInstance } from 'services/api';
 import { RootState } from 'redux/store';
 import { Formik } from 'formik';
+import { addScore, fetchSingleQuiz, updateQuizCounter } from 'services/requests';
 
 const QuizPage = ({ match }: TQuizPage): JSX.Element => {
-    const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser);
+    const loggedUser = useSelector<RootState, string | null>(state => state.session.loggedUser);
     const [quiz, setQuiz] = useState<IQuizTemplate | null>(null);
     const [isFetch, setIsFetch] = useState(false);
     const [isTheQuizOpen, setIsTheQuizOpen] = useState(false);
@@ -36,13 +36,10 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
         setStep(1);
     };
 
-    const addScore = async (score: string, quizID: string, executor: string) => await axiosInstance.post('/quizes/addScore', { score, quizID, executor })
-    const updateCounter = async (id: string) => await axiosInstance.put('/quizes/updateCounter', { id })
 
-    const fetchQuiz = useCallback(async (id: string, author: string) => {
-        await axiosInstance.get('/quizes/singleQuiz', {
-            params: { id, author }
-        }).then(res => {
+
+    const manageQuiz = useCallback(async (id: string, author: string) => {
+        fetchSingleQuiz(id, author).then(res => {
             setIsFetch(true);
             res.data.message ?
                 dispatch(setToastParameters(true, res.data.message, 'exclamation-circle')) :
@@ -80,7 +77,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
             setIsTheQuizSolved(true);
             setIsTheQuizOpen(false);
             setScore(tempScore);
-            updateCounter(getId());
+            updateQuizCounter(getId());
             loggedUser && addScore(tempScore, getId(), loggedUser);
         } else {
             dispatch(setToastParameters(true, `Answer all questions...`, 'exclamation-circle'));
@@ -119,8 +116,8 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     };
 
     useEffect(() => {
-        fetchQuiz(getId(), getName());
-    }, [fetchQuiz, getId, getName]);
+        manageQuiz(getId(), getName());
+    }, [manageQuiz, getId, getName]);
 
     return (
         <PageTemplate>

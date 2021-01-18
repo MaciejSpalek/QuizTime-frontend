@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import colors from "styles/Colors";
-import QuizThumbnail from "../QuizThumbnail";
-import CategorySelect from "../SelectInput";
-import ColorSelect from "../SelectInput";
+import QuizThumbnail from "../../../molecules/QuizThumbnail";
+import CategorySelect from "../../../molecules/SelectInput";
+import ColorSelect from "../../../molecules/SelectInput";
 import { FlexColumn } from "styles/Mixins";
 import FormFieldTemplate from "templates/FormFieldTemplate";
 

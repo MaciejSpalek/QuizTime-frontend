@@ -1,30 +1,27 @@
 import { QuizTypes } from "../Types/quizTypes";
 import { QuizThemes } from 'helpers/constants';
-import {
-  IFormColor,
-  IFormQuestion
-} from "Interfaces/quizInterfaces";
+import { IFormColor, IFormQuestion } from "Interfaces/quizInterfaces";
 
 
 type QuizState = {
   formQuestions: IFormQuestion[];
-  formColor: IFormColor;
-  formCounter: number;
-  formIconName: string;
   formQuestionsCounter: number;
-  correctAnswersArray: any;
   userAnswersArray: string[];
+  correctAnswersArray: any;
+  formColor: IFormColor;
+  formIconName: string;
+  formCounter: number;
 };
 
 const { value } = QuizThemes[0];
 const initialState: QuizState = {
+  formQuestionsCounter: 0,
   correctAnswersArray: [],
   userAnswersArray: [],
-  formQuestions: [],
-  formQuestionsCounter: 0,
-  formCounter: 1,
   formIconName: "male",
-  formColor: value
+  formQuestions: [],
+  formColor: value,
+  formCounter: 1
 };
 
 export const quizReducer = (state = initialState, action: any): QuizState => {
@@ -75,6 +72,7 @@ export const quizReducer = (state = initialState, action: any): QuizState => {
         formQuestionsCounter: action.payload,
       };
     }
+
     default: {
       return state;
     }

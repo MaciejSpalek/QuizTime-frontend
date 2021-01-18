@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState, MouseEvent } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import QuizThumbnail from '../QuizThumbnail';
-import { setAddQuizButtonStatus, setScrollStatus } from 'redux/Actions/statusesActions';
-import { StyledText } from '../SubmitStep/SubmitStep.styled';
+import { setAddQuizButtonStatus } from 'redux/Actions/statusesActions';
+import { StyledText } from 'Components/organisms/PanelSteps/SubmitStep/SubmitStep.styled';
 import { IQuizzesList, IScore } from './QuizzesList.model';
 import { IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { useDispatch, useSelector } from 'react-redux';
-import { doesScrollExist, isScrollAtTheBottom } from 'helpers/getters';
+import { doesScrollExist } from 'helpers/getters';
 import { useHistory } from 'react-router-dom';
 import { axiosInstance } from 'services/api';
 import { RootState } from 'redux/store';
@@ -17,26 +17,21 @@ import {
     StyledPhoto,
     StyledList
 } from './QuizzesList.styled';
-import { useEventListener } from 'hooks';
+import { fetchUserScores } from 'services/requests';
 
 const QuizzesList = ({ quizzes, matchUsername }: IQuizzesList) => {
     const listRef = useRef<HTMLUListElement>(null);
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const isScrolled = useSelector<RootState, boolean | undefined>(state => state.statuses.isScrolled);
-    const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser);
+    const loggedUser = useSelector<RootState, string | null>(state => state.session.loggedUser);
     const [scores, setScores] = useState<string[]>([])
 
     const handleOnClick = (id: string, author: string) => history.push(`${author}/${id}`);
     const handleButton = () => dispatch(setAddQuizButtonStatus(true));
     const isUserRoute = () => matchUsername === loggedUser;
 
-    const fetchUserScores = (executor: string) => {
-        return axiosInstance.get('quizes/userScores', {
-            params: { executor }
-        });
-    };
+ 
 
     const manageScores = useCallback((quizzes: IQuizTemplate[]) => {
         if (loggedUser) {

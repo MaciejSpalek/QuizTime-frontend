@@ -4,7 +4,7 @@ import { resetParameters } from 'helpers/reduxHandlers';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'redux/store';
 import { useOutsideClick } from 'hooks';
-import { logout } from 'Auth/requests';
+import { logout } from 'services/auth';
 import { routes } from 'routes/index';
 import { useWindowSize } from 'hooks';
 import {
@@ -22,7 +22,7 @@ import {
 const Menu = () => {
     const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
     const hamburgerStatus = useSelector<RootState, boolean>(state => state.statuses.hamburgerStatus);
-    const user = useSelector<RootState, string | null>(state => state.user.loggedUser);
+    const user = useSelector<RootState, string | null>(state => state.session.loggedUser);
     const menuRef = useRef<HTMLUListElement>(null);
     const dispatch = useDispatch();
     const width = useWindowSize();

@@ -1,4 +1,4 @@
-import { IErrors, IFormikValues } from "Containers/ProfilePage/ProfilePage.model";
+import { IErrors, IFormikValues } from "Pages/ProfilePage/ProfilePage.model";
 import { FormikErrors, FormikValues } from "formik";
 
 export interface ISubmitStep {

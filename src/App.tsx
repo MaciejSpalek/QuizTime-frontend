@@ -1,14 +1,14 @@
 import React from 'react';
 import GlobalTemplate from './templates/GlobalTemplate/GlobalTemplate';
 import MainTemplate from './templates/MainTemplate/MainTemplate';
-import ProfilePage from './Containers/ProfilePage/ProfilePage';
+import ProfilePage from './Pages/ProfilePage/ProfilePage';
 import Navbar from './Components/organisms/Navbar/Navbar';
 import WrapperTemplate from 'templates/WrapperTemplate';
-import AuthPage from './Containers/AuthPage/AuthPage';
-import Home from './Containers/HomePage/HomePage';
+import AuthPage from './Pages/AuthPage/AuthPage';
+import Home from './Pages/HomePage/HomePage';
 import Footer from 'Components/molecules/Footer';
-import ErrorPage from './Containers/ErrorPage';
-import QuizPage from './Containers/QuizPage';
+import ErrorPage from './Pages/ErrorPage';
+import QuizPage from './Pages/QuizPage';
 import { routes } from './routes/index';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 

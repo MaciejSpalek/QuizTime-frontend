@@ -31,7 +31,6 @@ export const StyledWrapper = styled.div`
     flex-direction: row;
   }
   :nth-of-type(3) {
-    flex: 1;
     @media (min-width: 600px) {
       flex-direction: row;
       justify-content: center;

@@ -1,21 +1,10 @@
 import colors from 'styles/Colors';
-import QuestionStep from '../QuestionStep';
+import { QuestionStep } from 'Components/organisms/QuizSteps';
 import Button from 'Components/atoms/Button';
 import PageTemplate from 'templates/PageTemplate';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { FlexCenter, FlexColumn, scrollBar } from 'styles/Mixins';
-
-const anim = keyframes`
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.4);
-  }
-  100% {
-    transform: scale(1);
-  }
-`;
+import { twinkleScale } from 'styles/Animations';
 
 export const StyledContainer = styled(PageTemplate)`
     overflow: auto;
@@ -41,7 +30,7 @@ export const StyledText = styled.p`
 export const StyledScore = styled.span`
     font-size: 48px;
     color: ${colors.BasicGreen};
-    animation: ${anim} .5s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+    animation: ${twinkleScale} .5s cubic-bezier(0.165, 0.84, 0.44, 1) both;
 `;
 
 export const StyledQuestionList = styled.ul`

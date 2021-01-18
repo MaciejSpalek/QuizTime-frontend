@@ -4,13 +4,11 @@ import QuizList from 'Components/molecules/QuizzesList/QuizzesList';
 import PreloaderScreen from 'Components/molecules/PreloaderScreen';
 import PageTemplate from 'templates/PageTemplate/PageTemplate';
 import MultiStepForm from 'Components/organisms/MultiStepForm';
-import ThumbnailStep from 'Components/molecules/ThumbnailStep';
 import ModalWindow from 'Components/molecules/ModalWindow';
-import AddingStep from 'Components/molecules/AddingStep';
-import SubmitStep from 'Components/molecules/SubmitStep';
-import ErrorPage from 'Containers/ErrorPage';
+import ErrorPage from 'Pages/ErrorPage';
 
 import { answers, IErrors, IFormikValues, MatchParameters } from './ProfilePage.model';
+import { AddingStep, ThumbnailStep, SubmitStep} from 'Components/organisms/PanelSteps';
 import { IFormColor, IFormQuestion, IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { StyledWrapper, StyledStepWrapper } from './ProfilePage.styled';
 import { setAddQuizButtonStatus } from 'redux/Actions/statusesActions';
@@ -21,30 +19,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { profilePageValidation } from './validation';
 import { axiosInstance } from 'services/api';
+import { showCookie } from 'helpers/cookies';
+import { addQuiz, fetchSingleUser, fetchUserQuizzes } from 'services/requests';
 import { RootState } from 'redux/store';
 import { useWindowSize } from 'hooks';
-import { showCookie } from 'helpers/cookies';
 
 const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
   const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
   const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizzes.formQuestions);
-  const loggedUser = useSelector<RootState, string | null>(state => state.user.loggedUser);
+  const loggedUser = useSelector<RootState, string | null>(state => state.session.loggedUser);
   const formColors = useSelector<RootState, IFormColor>(state => state.quizzes.formColor);
   const formIconName = useSelector<RootState>(state => state.quizzes.formIconName);
   const [isModalActive, setIsModalActive] = useState(false);
   const [doesUserExist, setDoesUserExist] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
   const [username, setUsername] = useState(null);
+  const [token] = useState(showCookie('token'));
   const [quizzes, setQuizzes] = useState([]);
   const [step, setStep] = useState(1);
-  const [token] = useState(showCookie('token'));
   const dispatch = useDispatch();
   const width = useWindowSize();
 
 
-  const addQuiz = (data: IQuizTemplate) => axiosInstance.post('/quizes/addQuiz', data, {
-    headers: { 'auth-token': token }
-  });
+  
   const isLoggedUserRoute = () => loggedUser === match.params.username;
   const handleCancel = () => setIsModalActive(false);
 
@@ -64,9 +61,7 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
 
   const manageUser = useCallback(async () => {
     const route = match.params.username;
-    await axiosInstance.get('/user/singleUser', {
-      params: { 'name': route }
-    }).then(({ data }) => {
+    fetchSingleUser(route).then(({ data }) => {
       if (data) {
         setDoesUserExist(true);
         setUsername(data.name);
@@ -80,11 +75,9 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
     })
   }, [match.params.username]);
 
-  const fetchUserQuizzes = useCallback(async () => {
+  const setUserQuizzes = useCallback(async () => {
     const route = match.params.username;
-    await axiosInstance.get('/quizes/userQuizzes', {
-      params: { 'author': route }
-    }).then(({ data }) => { setQuizzes(data) });
+    fetchUserQuizzes(route).then(({ data }) => { setQuizzes(data) });
   }, [match.params.username, setQuizzes]);
 
   
@@ -161,7 +154,7 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
     setSubmitting: (value: boolean) => void,
     resetForm: () => void
   ) => {
-    addQuiz(getData(data.title)).then(res => {
+    addQuiz(getData(data.title), token).then(res => {
       setSubmitting(true);
       if (res.data.message) {
         dispatch(setToastParameters(true, 'Add at least 5 questions...', 'exclamation-circle'))
@@ -187,12 +180,12 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
 
   useEffect(() => {
     dispatch(setAddQuizButtonStatus(false));
-    fetchUserQuizzes();
+    setUserQuizzes();
     manageUser();
   }, [loggedUser, dispatch, manageUser, fetchUserQuizzes]);
 
   useEffect(() => {
-    fetchUserQuizzes();
+    setUserQuizzes();
   }, [addQuizButtonStatus, fetchUserQuizzes]);
 
   const clampStep = useCallback(() => (step === 3 && width >= 850) && setStep(2), [step, width]);

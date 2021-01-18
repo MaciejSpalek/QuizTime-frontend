@@ -1,4 +1,4 @@
-import { TQuizPage } from "Containers/QuizPage/QuizPage.model";
+import { TQuizPage } from "Pages/QuizPage/QuizPage.model";
 import { IQuizTemplate } from "Interfaces/quizInterfaces";
 
 export interface IQuizzesList {

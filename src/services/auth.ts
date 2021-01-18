@@ -1,7 +1,7 @@
 import { setToastParameters } from 'redux/Actions/toastActions';
 import { getExpireDate, setCookie, deleteCookie } from 'helpers/cookies';
 import { setRequestStatus } from 'redux/Actions/sessionActions';
-import { setLoggedUser, resetLoggedUser } from 'redux/Actions/userActions';
+import { setLoggedUser, resetLoggedUser } from 'redux/Actions/sessionActions';
 import { axiosInstance } from 'services/api';
 
 interface DataType {

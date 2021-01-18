@@ -4,8 +4,7 @@ import colors from "styles/Colors";
 import { NoQuestionsIcon } from "assets";
 import { 
   FlexColumn, 
-  FlexCenter, 
-  scrollBar 
+  FlexCenter
 } from "styles/Mixins";
 
 export const StyledSubmitStep = styled.div`

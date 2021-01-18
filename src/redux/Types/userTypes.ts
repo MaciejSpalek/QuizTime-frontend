@@ -1,4 +1,0 @@
-export enum UserTypes {
-    SET_LOGGED_USER = 'SET_LOGGED_USER',
-    RESET_LOGGED_USER = 'RESET_LOGGED_USER'
-}
