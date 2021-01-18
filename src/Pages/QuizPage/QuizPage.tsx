@@ -140,10 +140,10 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                             }) => (
                                 <StyledMultiStepForm
                                     children={getFormChildren(handleChange, handleBlur, isSubmitting, values)}
-                                    handleRightButton={() => setStep(prev => prev + 1)}
-                                    handleLeftButton={() => setStep(prev => prev - 1)}
+                                    // handleRightButton={() => setStep(prev => prev + 1)}
+                                    // handleLeftButton={() => setStep(prev => prev - 1)}
                                     onSubmit={handleSubmit}
-                                    counter={step}
+                                    // counter={step}
                                 />
                             )}
                         </Formik> :

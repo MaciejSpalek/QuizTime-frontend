@@ -8,7 +8,7 @@ import ModalWindow from 'Components/molecules/ModalWindow';
 import ErrorPage from 'Pages/ErrorPage';
 
 import { answers, IErrors, IFormikValues, MatchParameters } from './ProfilePage.model';
-import { AddingStep, ThumbnailStep, SubmitStep} from 'Components/organisms/PanelSteps';
+import { AddingStep, ThumbnailStep, SubmitStep } from 'Components/organisms/PanelSteps';
 import { IFormColor, IFormQuestion, IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { StyledWrapper, StyledStepWrapper } from './ProfilePage.styled';
 import { setAddQuizButtonStatus } from 'redux/Actions/statusesActions';
@@ -41,7 +41,7 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
   const width = useWindowSize();
 
 
-  
+
   const isLoggedUserRoute = () => loggedUser === match.params.username;
   const handleCancel = () => setIsModalActive(false);
 
@@ -80,7 +80,7 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
     fetchUserQuizzes(route).then(({ data }) => { setQuizzes(data) });
   }, [match.params.username, setQuizzes]);
 
-  
+
   const getChildren = (
     handleChange: (e: ChangeEvent) => void,
     handleBlur: (e: ChangeEvent) => void,
@@ -189,7 +189,7 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
   }, [addQuizButtonStatus, fetchUserQuizzes]);
 
   const clampStep = useCallback(() => (step === 3 && width >= 850) && setStep(2), [step, width]);
-    
+
   useEffect(() => {
     clampStep();
   }, [step, width, clampStep]);
@@ -229,17 +229,14 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
                   errors
                 }) => (
                   <MultiStepForm
-                    handleRightButton={() => setStep(prev => prev + 1)}
-                    handleLeftButton={() => setStep(prev => prev - 1)}
-                    onSubmit={handleSubmit}
-                    counter={step}>
+                    onSubmit={handleSubmit}>
                     {getChildren(
-                      handleChange, 
-                      handleBlur, 
-                      resetForm, 
+                      handleChange,
+                      handleBlur,
+                      resetForm,
                       isSubmitting,
-                      values, 
-                      errors, 
+                      values,
+                      errors,
                       touched
                     )}
                   </MultiStepForm>
