@@ -1,31 +1,29 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import ProfileBar from 'Components/molecules/ProfileBar/ProfileBar';
 import QuizList from 'Components/molecules/QuizzesList/QuizzesList';
-import PreloaderScreen from 'Components/molecules/PreloaderScreen';
 import PageTemplate from 'templates/PageTemplate/PageTemplate';
 import MultiStepForm from 'Components/organisms/MultiStepForm';
 import ModalWindow from 'Components/molecules/ModalWindow';
 import ErrorPage from 'Pages/ErrorPage';
 
-import { answers, IErrors, IFormikValues, MatchParameters } from './ProfilePage.model';
+import { StyledWrapper, StyledStepWrapper,StyledPreloaderScreen } from './ProfilePage.styled';
 import { AddingStep, ThumbnailStep, SubmitStep } from 'Components/organisms/PanelSteps';
+import { answers, IErrors, IFormikValues, MatchParameters } from './ProfilePage.model';
 import { IFormColor, IFormQuestion, IQuizTemplate } from 'Interfaces/quizInterfaces';
-import { StyledWrapper, StyledStepWrapper } from './ProfilePage.styled';
-import { setAddQuizButtonStatus } from 'redux/Actions/statusesActions';
+import { addQuiz, fetchSingleUser, fetchUserQuizzes } from 'services/requests';
+import { setAddQuizButtonStatus } from 'redux/Actions/statusActions';
 import { setToastParameters } from 'redux/Actions/toastActions';
 import { Formik, FormikErrors, FormikValues } from 'formik';
 import { resetParameters } from 'helpers/reduxHandlers';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { profilePageValidation } from './validation';
-import { axiosInstance } from 'services/api';
 import { showCookie } from 'helpers/cookies';
-import { addQuiz, fetchSingleUser, fetchUserQuizzes } from 'services/requests';
 import { RootState } from 'redux/store';
 import { useWindowSize } from 'hooks';
 
 const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
-  const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
+  const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.status.addQuizButtonStatus);
   const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizzes.formQuestions);
   const loggedUser = useSelector<RootState, string | null>(state => state.session.loggedUser);
   const formColors = useSelector<RootState, IFormColor>(state => state.quizzes.formColor);
@@ -182,11 +180,11 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
     dispatch(setAddQuizButtonStatus(false));
     setUserQuizzes();
     manageUser();
-  }, [loggedUser, dispatch, manageUser, fetchUserQuizzes]);
+  }, [loggedUser, dispatch, manageUser, setUserQuizzes]);
 
   useEffect(() => {
     setUserQuizzes();
-  }, [addQuizButtonStatus, fetchUserQuizzes]);
+  }, [addQuizButtonStatus, setUserQuizzes]);
 
   const clampStep = useCallback(() => (step === 3 && width >= 850) && setStep(2), [step, width]);
 
@@ -244,7 +242,7 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
               </Formik>}
           </StyledWrapper> :
           <ErrorPage /> :
-        <PreloaderScreen />
+        <StyledPreloaderScreen />
       }
       <ModalWindow
         description='Wanna exit?'

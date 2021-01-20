@@ -1,6 +1,6 @@
 import axios from 'axios'
-export const CORS_URL = 'https://cors-anywhere.herokuapp.com'
-export const API_URL = 'http://localhost:8080/api'
+export const LOCAL_URL = 'http://localhost:8080/api';
+export const PRODUCTION_URL = 'https://quiztime-backend.herouapp.com/api';
 export const axiosInstance = axios.create({
-    baseURL: `${API_URL}`
+    baseURL: `${PRODUCTION_URL}`
 })

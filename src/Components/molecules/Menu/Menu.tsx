@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { setHamburgerStatus } from 'redux/Actions/statusesActions';
+import { setHamburgerStatus } from 'redux/Actions/statusActions';
 import { resetParameters } from 'helpers/reduxHandlers';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'redux/store';
@@ -21,7 +21,7 @@ import {
 
 const Menu = () => {
     const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
-    const hamburgerStatus = useSelector<RootState, boolean>(state => state.statuses.hamburgerStatus);
+    const hamburgerStatus = useSelector<RootState, boolean>(state => state.status.hamburgerStatus);
     const user = useSelector<RootState, string | null>(state => state.session.loggedUser);
     const menuRef = useRef<HTMLUListElement>(null);
     const dispatch = useDispatch();

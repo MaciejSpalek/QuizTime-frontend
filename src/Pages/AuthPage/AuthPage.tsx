@@ -21,11 +21,11 @@ import {
     StyledLink
 } from './AuthPage.styled';
 
-
 const AuthPage = ({ history }: RouteComponentProps) => {
     const dispatch = useDispatch();
     const [isFirstRender, setIsFirstRender] = useState(true);
     const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
+    const serverStatus = useSelector<RootState>(state => state.status.isTheServerConnected);
     const user = useSelector<RootState, string | null>(state => state.session.loggedUser);
 
     const isLoginRoute = () => history.location.pathname === routes.login;
@@ -155,11 +155,16 @@ const AuthPage = ({ history }: RouteComponentProps) => {
                             {errors.password && touched.password ?
                                 <ErrorMessage id="err_3" text={errors.password} /> : null}
                         </FormField>
+                        {serverStatus ? <StyledButton
+                            type="submit"
+                            isDisabled={isDisabledButton(errors, touched, isSubmitting)}>
+                            {isLoginRoute() ? "Log in" : "Register"}
+                        </StyledButton> :
                         <StyledButton
                             type="submit"
-                            text={isLoginRoute() ? "Log in" : "Register"}
                             isDisabled={isDisabledButton(errors, touched, isSubmitting)}
-                        />
+                            isSpinner
+                        />}
                         <StyledLink
                             text={isLoginRoute() ? "Create an acconut" : "Do you have an account ?"}
                             to={isLoginRoute() ? routes.register : routes.login}

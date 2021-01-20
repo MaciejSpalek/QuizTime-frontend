@@ -14,7 +14,9 @@ const ErrorPage = () => {
     return (
         <StyledContainer>
             <StyledErrorPhoto />
-            <StyledButton text="Home" handleOnClick={handleOnClick} />
+            <StyledButton handleOnClick={handleOnClick}>
+                Home
+            </StyledButton>
         </StyledContainer>
     );
 };

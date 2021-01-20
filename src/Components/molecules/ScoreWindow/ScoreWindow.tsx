@@ -53,18 +53,15 @@ const ScoreWindow = ({ score, questions, closeTheQuiz }: IScoreWindow): JSX.Elem
                 score={score}
                 size={300}
             />
-            <StyledButton
-                handleOnClick={handleOnFirstButton}
-                text='Try again'
-            />
-            <StyledButton
-                handleOnClick={handleOnSecondButton}
-                text='Back'
-            />
-            <StyledButton
-                handleOnClick={handleOnThridButton}
-                text={isListOpen ? 'Hide answers' : 'Show answers'}
-            />
+            <StyledButton handleOnClick={handleOnFirstButton}>
+                Try again
+            </StyledButton>
+            <StyledButton handleOnClick={handleOnSecondButton}>
+                Back
+            </StyledButton>
+            <StyledButton handleOnClick={handleOnThridButton}>
+                {isListOpen ? 'Hide answers' : 'Show answers'}
+            </StyledButton>
             {isListOpen && <StyledQuestionList>
                 {questions?.map(({ _id, content, answers }, index) =>
                     <li key={_id}>

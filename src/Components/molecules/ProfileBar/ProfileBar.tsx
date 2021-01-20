@@ -3,7 +3,7 @@ import Button from 'Components/atoms/Button/Button';
 import { RootState } from 'redux/store';
 import { IProfileBar } from './ProfileBar.model';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAddQuizButtonStatus } from 'redux/Actions/statusesActions';
+import { setAddQuizButtonStatus } from 'redux/Actions/statusActions';
 import {
     StyledContainer,
     StyledUserTag,
@@ -15,7 +15,7 @@ const ProfileBar = ({
     openModal
 }: IProfileBar) => {
     const dispatch = useDispatch()
-    const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
+    const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.status.addQuizButtonStatus);
 
     const handleButton = () => {
         addQuizButtonStatus ?
@@ -27,10 +27,9 @@ const ProfileBar = ({
         <StyledContainer>
             <StyledUserTag> {username} </StyledUserTag>
             {isLoggedUserRoute() &&
-                <Button
-                    text={addQuizButtonStatus ? 'Back' : 'New quiz'}
-                    handleOnClick={handleButton}
-                />}
+                <Button handleOnClick={handleButton} >
+                    {addQuizButtonStatus ? 'Back' : 'New quiz'}
+                </Button>}
         </StyledContainer>
     );
 };

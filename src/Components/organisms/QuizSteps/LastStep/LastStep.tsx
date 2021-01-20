@@ -16,9 +16,10 @@ const LastStep = ({ isSubmitting }: ILastStep) => {
             />
             <StyledButton
                 type='submit'
-                text='Check answers'
                 isDisabled={isSubmitting}
-            />
+            >
+                Check answers
+            </StyledButton>
         </StyledContainer>
     );
 };

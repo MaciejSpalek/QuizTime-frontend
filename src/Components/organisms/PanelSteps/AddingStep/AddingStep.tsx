@@ -95,11 +95,12 @@ const AddingStep = ({
                         onBlur={handleBlur}
                     />
                     <StyledButton
-                        text="Add"
                         type='button'
                         handleOnClick={addQuestion}
                         isDisabled={isDisabled()}
-                    />
+                    >
+                        Add
+                    </StyledButton>
                 </StyledWrapper>
                 {(errors.question && touched.question) &&
                     <ErrorMessage

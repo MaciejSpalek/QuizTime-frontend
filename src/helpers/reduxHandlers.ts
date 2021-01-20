@@ -1,4 +1,4 @@
-import { setAddQuizButtonStatus } from "redux/Actions/statusesActions";
+import { setAddQuizButtonStatus } from "redux/Actions/statusActions";
 import { 
   setFormCounter, 
   setFormQuestions, 

@@ -36,7 +36,9 @@ const SubmitStep = ({ errors, touched, values, isSubmitting }: ISubmitStep): JSX
                 <StyledMainWrapper>
                     <StyledTopWrapper>
                         <StyledHeading> Questions ({questions.length}) </StyledHeading>
-                        <Button text="Create" type="submit" isDisabled={isDisabled()} />
+                        <Button type="submit" isDisabled={isDisabled()}>
+                            Create
+                        </Button>
                     </StyledTopWrapper>
                     <StyledList>
                         {questions.map(({content, answers, id}, index) =>

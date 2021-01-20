@@ -38,34 +38,28 @@ const StartStep = ({
                 </StyledIconWrapper>
                 <StyledIconWrapper >
                     <StyledIcon icon={'user'} />
-                    <StyledCounter> { counter } </StyledCounter>
+                    <StyledCounter> {counter} </StyledCounter>
                 </StyledIconWrapper>
             </StyledWrapper>
 
             <StyledWrapper>
                 <StyledPhoto />
                 <StyledTextWrapper>
-                    <StyledTitle> { title } </StyledTitle>
+                    <StyledTitle> {title} </StyledTitle>
                     <StyledAuthor text={getAuthor(author)} />
                 </StyledTextWrapper>
             </StyledWrapper>
 
             <StyledWrapper>
-                <StyledButton
-                    type='button'
-                    text='Start'
-                    handleOnClick={onClick}
-                />
-                <StyledButton
-                    type='button'
-                    text='More'
-                    handleOnClick={moreQuizzes}
-                />
-                <StyledButton
-                    type='button'
-                    text='Back'
-                    handleOnClick={backToHome}
-                />
+                <StyledButton type='button' handleOnClick={onClick}>
+                    Start
+                </StyledButton>
+                <StyledButton type='button' handleOnClick={moreQuizzes}>
+                    More
+                </StyledButton>
+                <StyledButton type='button' handleOnClick={backToHome}>
+                    Back
+                </StyledButton>
             </StyledWrapper>
 
         </StyledPageTemplate>

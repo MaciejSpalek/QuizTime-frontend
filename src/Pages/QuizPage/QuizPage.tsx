@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import PreloaderScreen from 'Components/molecules/PreloaderScreen';
 import ScoreWindow from 'Components/molecules/ScoreWindow';
 import PageTemplate from 'templates/PageTemplate';
 import ErrorPage from 'Pages/ErrorPage';
@@ -12,10 +11,10 @@ import { StyledMultiStepForm } from './QuizPage.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { IValues, TQuizPage } from './QuizPage.model';
 import { quizPageValidation } from './validation';
-import { axiosInstance } from 'services/api';
 import { RootState } from 'redux/store';
 import { Formik } from 'formik';
 import { addScore, fetchSingleQuiz, updateQuizCounter } from 'services/requests';
+import { StyledPreloaderScreen } from 'Pages/ProfilePage/ProfilePage.styled';
 
 const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const loggedUser = useSelector<RootState, string | null>(state => state.session.loggedUser);
@@ -23,7 +22,6 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const [isFetch, setIsFetch] = useState(false);
     const [isTheQuizOpen, setIsTheQuizOpen] = useState(false);
     const [isTheQuizSolved, setIsTheQuizSolved] = useState(false);
-    const [step, setStep] = useState(1);
     const [score, setScore] = useState('');
     const dispatch = useDispatch();
 
@@ -33,7 +31,6 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const resetQuiz = () => {
         setIsTheQuizSolved(false);
         setScore('');
-        setStep(1);
     };
 
 
@@ -140,10 +137,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                             }) => (
                                 <StyledMultiStepForm
                                     children={getFormChildren(handleChange, handleBlur, isSubmitting, values)}
-                                    // handleRightButton={() => setStep(prev => prev + 1)}
-                                    // handleLeftButton={() => setStep(prev => prev - 1)}
                                     onSubmit={handleSubmit}
-                                    // counter={step}
                                 />
                             )}
                         </Formik> :
@@ -162,7 +156,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
                                 counter={quiz.counter}
                             />) :
                     <ErrorPage /> :
-                <PreloaderScreen />}
+                <StyledPreloaderScreen />}
         </PageTemplate >
     );
 };

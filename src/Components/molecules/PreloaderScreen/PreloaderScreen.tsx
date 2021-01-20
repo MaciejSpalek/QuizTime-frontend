@@ -2,9 +2,9 @@ import React from 'react'
 import Spinner from 'Components/atoms/Spinner';
 import Placeholder from 'templates/PlaceholderTemplate'; 
 
-const PreloaderScreen = () => {
+const PreloaderScreen = ({ ...props }) => {
   return (
-    <Placeholder>
+    <Placeholder {...props}>
         <Spinner />
     </Placeholder>
   );

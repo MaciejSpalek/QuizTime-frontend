@@ -1,13 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import QuizThumbnail from '../QuizThumbnail';
-import { setAddQuizButtonStatus } from 'redux/Actions/statusesActions';
+import { setAddQuizButtonStatus } from 'redux/Actions/statusActions';
 import { StyledText } from 'Components/organisms/PanelSteps/SubmitStep/SubmitStep.styled';
 import { IQuizzesList, IScore } from './QuizzesList.model';
 import { IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { useDispatch, useSelector } from 'react-redux';
-import { doesScrollExist } from 'helpers/getters';
 import { useHistory } from 'react-router-dom';
-import { axiosInstance } from 'services/api';
 import { RootState } from 'redux/store';
 import {
     StyledPlaceholder,
@@ -69,7 +67,6 @@ const QuizzesList = ({ quizzes, matchUsername }: IQuizzesList) => {
         <StyledContainer>
             {quizzes.length ?
                 <StyledList
-                    isScroll={doesScrollExist(listRef)}
                     ref={listRef}>
                     {quizzes.map((data, index) =>
                         <StyledListItem
@@ -86,10 +83,10 @@ const QuizzesList = ({ quizzes, matchUsername }: IQuizzesList) => {
                 <StyledPlaceholder>
                     <StyledPhoto></StyledPhoto>
                     <StyledText> {getText()} </StyledText>
-                    {isUserRoute() && <StyledButton
-                        text='Just click!'
-                        handleOnClick={handleButton}
-                    />}
+                    {isUserRoute() && 
+                    <StyledButton handleOnClick={handleButton}>
+                        Just click!
+                    </StyledButton>}
                 </StyledPlaceholder>}
         </StyledContainer>
     );

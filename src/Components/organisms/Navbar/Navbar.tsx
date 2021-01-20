@@ -2,14 +2,14 @@ import React, { useCallback, useEffect } from 'react';
 import Hamburger from 'Components/atoms/Hamburger/Hamburger';
 import Menu from 'Components/molecules/Menu/Menu';
 import Logo from 'Components/atoms/Logo';
-import { setHamburgerStatus } from 'redux/Actions/statusesActions';
+import { setHamburgerStatus } from 'redux/Actions/statusActions';
 import { StyledNavbar, StyledWrapper } from './Navbar.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
 import { useWindowSize } from 'hooks';
 
 const Navbar = () => {
-    const hamburgerStatus = useSelector<RootState, boolean>(state => state.statuses.hamburgerStatus);
+    const hamburgerStatus = useSelector<RootState, boolean>(state => state.status.hamburgerStatus);
     const dispatch = useDispatch();
     const width = useWindowSize();
 

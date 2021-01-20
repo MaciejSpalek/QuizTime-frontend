@@ -3,6 +3,7 @@ import { showCookie } from 'helpers/cookies'
 import { authenticate } from 'redux/Actions/sessionActions'
 import { useDispatch } from 'react-redux'
 import { resetLoggedUser, setLoggedUser } from 'redux/Actions/sessionActions'
+import { manageServerStatus } from 'services/auth'
 
 const Auth = () => {
     const dispatch = useDispatch()
@@ -18,6 +19,10 @@ const Auth = () => {
     useEffect(() => {
         setAuthentication();
     }, [setAuthentication]);
+
+    useEffect(() => {
+        manageServerStatus(dispatch);
+    }, [dispatch]);
 
     useEffect(() => {
         setInterval(() => {
