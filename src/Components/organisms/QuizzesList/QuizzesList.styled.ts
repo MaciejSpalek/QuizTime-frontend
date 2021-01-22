@@ -2,11 +2,13 @@ import { NoQuizzesIcon } from "assets";
 import Button from "Components/atoms/Button";
 import styled from "styled-components";
 import colors from "styles/Colors";
-import { scrollBar } from "styles/Mixins";
+import { FlexCenter, scrollBar } from "styles/Mixins";
 import PlaceholderTemplate from "templates/PlaceholderTemplate";
 
 export const StyledContainer = styled.div`
-  width: 100%;
+  ${FlexCenter};
+  flex-direction: column;
+  justify-content: flex-start;
   min-height: calc(100vh - 2*60px);
   padding: 10px;
   background-color: ${colors.Gray120};
@@ -36,6 +38,7 @@ export const StyledList = styled.ul`
   width: 100%;
   height: 100%;
   list-style: none;
+  margin: 0;
 
   @media (min-width: 600px) {
     grid-template-columns: 1fr 1fr;
@@ -63,4 +66,22 @@ export const StyledPhoto = styled(NoQuizzesIcon)`
 
 export const StyledButton = styled(Button)`
   margin-top: 20px;
+`;
+
+export const StyledHeading = styled.h2`
+  align-self: flex-start;
+  font-size: 20px;
+  font-weight: bold;
+  color: ${colors.Gray20};
+  margin-bottom: 10px;
+  @media (min-width: 600px) {
+    font-size: 24px;
+  }
+  @media (min-width: 900px) {
+    font-size: 28px;
+  }
+`;
+
+export const StyledStrong = styled.strong`
+  color: ${colors.BasicGreen};
 `;

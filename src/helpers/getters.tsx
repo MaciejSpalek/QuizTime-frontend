@@ -1,8 +1,8 @@
 import React, { RefObject } from "react";
-import QuizItem from "Components/molecules/SearchPanel/QuizItem";
-import UserItem from "Components/molecules/SearchPanel/UserItem";
+import QuizItem from "Components/organisms/SearchPanel/QuizItem";
+import UserItem from "Components/organisms/SearchPanel/UserItem";
 import { IQuizTemplate } from "Interfaces/quizInterfaces";
-import { IUsers } from "Components/molecules/SearchPanel/SearchPanel.model";
+import { IUsers } from "Components/organisms/SearchPanel/SearchPanel.model";
 
 export const getQuizzes = (quizzes: IQuizTemplate[]) => {
     return quizzes.map(({ _id, iconName, title, author, colors }) => (
@@ -28,10 +28,3 @@ export const getElementWidth = (ref: RefObject<HTMLElement>) => {
         return ref.current.clientWidth;
     }
 };
-
-
-// export const doesScrollExist = (ref: RefObject<HTMLElement>): boolean | undefined => {
-//     if (null != ref.current) {
-//         return ref.current.scrollHeight > ref.current.clientHeight;
-//     }
-// };

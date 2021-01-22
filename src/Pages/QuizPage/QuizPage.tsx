@@ -15,6 +15,7 @@ import { RootState } from 'redux/store';
 import { Formik } from 'formik';
 import { addScore, fetchSingleQuiz, updateQuizCounter } from 'services/requests';
 import { StyledPreloaderScreen } from 'Pages/ProfilePage/ProfilePage.styled';
+import { showCookie } from 'helpers/cookies';
 
 const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const loggedUser = useSelector<RootState, string | null>(state => state.session.loggedUser);
@@ -23,6 +24,8 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const [isTheQuizOpen, setIsTheQuizOpen] = useState(false);
     const [isTheQuizSolved, setIsTheQuizSolved] = useState(false);
     const [score, setScore] = useState('');
+    const [token] = useState(showCookie('token'));
+
     const dispatch = useDispatch();
 
     const getId = useCallback(() => match.params.id, [match.params.id]);
@@ -75,7 +78,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
             setIsTheQuizOpen(false);
             setScore(tempScore);
             updateQuizCounter(getId());
-            loggedUser && addScore(tempScore, getId(), loggedUser);
+            loggedUser && addScore(tempScore, getId(), loggedUser, token);
         } else {
             dispatch(setToastParameters(true, `Answer all questions...`, 'exclamation-circle'));
             setTimeout(() => {
