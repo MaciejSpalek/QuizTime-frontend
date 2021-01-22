@@ -12,7 +12,7 @@ const Header = () => {
         <StyledHeader>
             <StyledWrapper>
                 <StyledHeading> QuizTime </StyledHeading>
-                <StyledParagraph text="Check our quizzes!" />
+                <StyledParagraph text="Let's check our quizzes!" />
             </StyledWrapper>
             <StyledHeaderIcon />
         </StyledHeader>

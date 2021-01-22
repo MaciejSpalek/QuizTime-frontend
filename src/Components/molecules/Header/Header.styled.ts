@@ -30,7 +30,7 @@ export const StyledHeading = styled.h1`
     content: "";
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: 105%;
     height: 1px;
     background-color: ${colors.Gray60};
   }

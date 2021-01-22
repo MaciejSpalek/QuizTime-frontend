@@ -1,6 +1,6 @@
 import axios from 'axios'
-export const LOCAL_URL = 'http://localhost:8080/api';
-export const PRODUCTION_URL = 'https://quiztime-backend.herouapp.com/api';
+const API_URL = process.env.REACT_APP_API_URL;
+
 export const axiosInstance = axios.create({
-    baseURL: `${PRODUCTION_URL}`
+    baseURL: `${API_URL}`
 })

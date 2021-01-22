@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { fetchAllQuizzes, fetchUsersNames } from 'services/requests';
 import PreloaderScreen from 'Components/molecules/PreloaderScreen';
 import PageTemplate from 'templates/PageTemplate/PageTemplate';
-import SearchPanel from 'Components/molecules/SearchPanel';
-import QuizesList from 'Components/molecules/QuizzesList';
+import SearchPanel from 'Components/organisms/SearchPanel';
+import QuizesList from 'Components/organisms/QuizzesList';
 import Header from 'Components/molecules/Header';
 
 const HomePage = () => {

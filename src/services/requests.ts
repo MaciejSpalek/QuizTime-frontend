@@ -20,11 +20,17 @@ export const addQuiz = async (data: IQuizTemplate, token: string) =>
 export const addScore = async (
   score: string,
   quizID: string,
-  executor: string
-) => await axiosInstance.post("/quiz/addScore", { score, quizID, executor });
+  executor: string,
+  token: string
+) => await axiosInstance.post("/quiz/addScore", { score, quizID, executor }, {
+  headers: { "auth-token": token },
+});
 
 export const updateQuizCounter = async (id: string) =>
   await axiosInstance.put("/quiz/updateCounter", { id });
+
+
+
 
 // User
 
@@ -38,10 +44,11 @@ export const fetchUsersNames = async () => {
   return await axiosInstance.get("/user/allNames");
 };
 
-export const fetchUserScores = (executor: string) => {
+export const fetchUserScores = (executor: string, token: string) => {
   return axiosInstance.get("/user/allScores", {
     params: { executor },
-  });
+    headers:  { "auth-token": token }
+  }) 
 };
 
 export const fetchUserQuizzes = async (route: string) => {
