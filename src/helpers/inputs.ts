@@ -10,3 +10,4 @@ export const clearInput = (ref: RefObject<HTMLInputElement>) => {
         ref.current.value = ''
     }
 };
+

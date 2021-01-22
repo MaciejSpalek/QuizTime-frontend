@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
+import { setToastParameters } from 'redux/Actions/toastActions';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'redux/store';
 import {
   StyledToast,
   StyledText,
   StyledIcon
 } from './Toast.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'redux/store';
-import { IconName } from '@fortawesome/fontawesome-svg-core';
-import { setToastParameters } from 'redux/Actions/toastActions';
 
 const Toast = ({ ...props }): JSX.Element => {
   const isActive = useSelector<RootState>(state => state.toast.isActive);

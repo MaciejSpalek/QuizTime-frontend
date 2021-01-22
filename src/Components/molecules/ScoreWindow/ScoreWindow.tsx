@@ -1,28 +1,27 @@
 import React, { useState } from 'react';
-import CircularProgressBar from 'Components/molecules/CircularProgressBar';
 import _colors from 'styles/Colors';
+import CircularProgressBar from 'Components/molecules/CircularProgressBar';
+import { routes } from 'routes';
+import { RootState } from 'redux/store';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { RootState } from 'redux/store';
-import { routes } from 'routes';
 import { IScoreWindow } from './ScoreWindow.model';
 import {
-    StyledQuestionListItem,
     StyledQuestionList,
     StyledQuestionStep,
     StyledContainer,
     StyledButton
 } from './ScoreWindow.styled';
 
-const ScoreWindow = ({ score, questions, closeTheQuiz, colors }: IScoreWindow): JSX.Element => {
-    const history = useHistory();
-    const correctAnswersArray = useSelector<RootState, string[]>(state => state.quizes.correctAnswersArray);
-    const userAnswersArray = useSelector<RootState, string[]>(state => state.quizes.userAnswersArray);
+const ScoreWindow = ({ score, questions, closeTheQuiz }: IScoreWindow): JSX.Element => {
+    const correctAnswersArray = useSelector<RootState, string[]>(state => state.quizzes.correctAnswersArray);
+    const userAnswersArray = useSelector<RootState, string[]>(state => state.quizzes.userAnswersArray);
     const [isListOpen, setIsListOpen] = useState(false);
+    const history = useHistory();
 
     const handleOnFirstButton = () => closeTheQuiz();
     const handleOnSecondButton = () => history.push(routes.home);
-    const handleOnThridButton = () => setIsListOpen(prev => !prev)
+    const handleOnThridButton = () => setIsListOpen(prev => !prev);
 
     const getColorsArray = (index: number) => {
         const options = ['A', 'B', 'C', 'D'];
@@ -43,10 +42,9 @@ const ScoreWindow = ({ score, questions, closeTheQuiz, colors }: IScoreWindow): 
 
     const countProgress = (score: string) => {
         const [nominator, denominator] = score.split('/');
-        return (+nominator/+denominator)*100;
+        return (+nominator / +denominator) * 100;
     };
 
-  
     return (
         <StyledContainer>
             <CircularProgressBar
@@ -54,23 +52,27 @@ const ScoreWindow = ({ score, questions, closeTheQuiz, colors }: IScoreWindow): 
                 strokeWidth={10}
                 score={score}
                 size={300}
-                color={colors.primary}
             />
-            <StyledButton color={colors.primary} handleOnClick={handleOnFirstButton} text='Try again' />
-            <StyledButton color={colors.primary} handleOnClick={handleOnSecondButton} text='Back' />
-            <StyledButton color={colors.primary} handleOnClick={handleOnThridButton} text={isListOpen ? 'Hide answers' : 'Show answers'} />
+            <StyledButton handleOnClick={handleOnFirstButton}>
+                Try again
+            </StyledButton>
+            <StyledButton handleOnClick={handleOnSecondButton}>
+                Back
+            </StyledButton>
+            <StyledButton handleOnClick={handleOnThridButton}>
+                {isListOpen ? 'Hide answers' : 'Show answers'}
+            </StyledButton>
             {isListOpen && <StyledQuestionList>
                 {questions?.map(({ _id, content, answers }, index) =>
-                    <StyledQuestionListItem key={_id}>
+                    <li key={_id}>
                         <StyledQuestionStep
                             array={getColorsArray(index)}
                             content={content}
                             answers={answers}
                             readonly={true}
                             index={index}
-                            colors={colors}
                         />
-                    </StyledQuestionListItem>)}
+                    </li>)}
             </StyledQuestionList>}
         </StyledContainer>
     );

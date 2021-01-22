@@ -1,24 +1,41 @@
 import React from 'react';
-import { StyledButton } from './Button.styled';
+import { StyledButton, StyledWrapper, StyledSpinner } from './Button.styled';
 import { IButton } from './Button.model'
 
-const Button = ({ 
-    text, 
-    handleOnClick, 
-    type, 
-    isDisabled, 
+const Button = ({
+    type,
+    children,
+    isDisabled,
+    isSpinner,
+    handleOnClick,
     ...props
 }: IButton) => {
 
+    if (isSpinner) {
+        return (
+            <StyledButton
+                onClick={handleOnClick}
+                type={type}
+                disabled={true}
+                {...props}>
+                <StyledWrapper>
+                    <StyledSpinner />
+                    Connecting
+                </StyledWrapper>
+            </StyledButton>
+        )
+    }
+
     return (
-        <StyledButton 
-            onClick={handleOnClick} 
+        <StyledButton
+            onClick={handleOnClick}
             type={type}
             disabled={isDisabled}
             {...props}>
-            {text}
+            <span> {children} </span>
         </StyledButton>
     );
-}
-export default Button
+};
+
+export default Button;
 

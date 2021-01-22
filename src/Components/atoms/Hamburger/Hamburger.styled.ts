@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import colors from 'styles/Colors';
+import { FlexCenter } from 'styles/Mixins';
 
 export const HamburgerLine = css`
     width: 100%;
@@ -9,10 +10,11 @@ export const HamburgerLine = css`
 `;
 
 export const StyledButton = styled.button`
+    ${FlexCenter};
     cursor: pointer;
-    display: inline-block;
-    background-color: transparent;
-    border-radius: 50%;
+    width: auto;
+    height: 38px;
+    :focus { outline-color: ${colors.Gray40} }
     @media only screen and (min-width: 800px) {
         display: none;
     }
@@ -25,24 +27,27 @@ export const StyledOuterBox = styled.span`
     height: 24px;
 `;
 
-export const StyledInnerBox = styled.span`
+export const StyledInnerBox = styled.span<{ isActive: boolean }>`
     ${HamburgerLine};
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    transition: background-color .1s .2s ease-in-out;
+    transition: background-color .2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    background-color: ${({ isActive }) => isActive && 'transparent'}; 
 
     &::before, &::after {
         ${HamburgerLine};
         content: '';
         left: 0;
-        transition: transform .2s .2s ease-in-out;
+        transition: transform .2s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
     &::before {
-        top: -12px;
+        top: -10px;
+        transform: ${({ isActive }) => isActive && `translateY(10px) rotate(45deg)`}; 
     } 
     
     &::after {
-        top: 12px;
+        top: 10px;
+        transform: ${({ isActive }) => isActive && `translateY(-10px) rotate(-45deg)`}; 
     }
 `;

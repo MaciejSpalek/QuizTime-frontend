@@ -3,8 +3,8 @@ export const showCookie = (name: string): any => {
         const cookies = document.cookie.split(/; */);
 
         for (let i=0; i<cookies.length; i++) {
-            const cookieName = cookies[i].split("=")[0];
-            const cookieVal = cookies[i].split("=")[1];
+            const [cookieName, cookieVal] = cookies[i].split("=")
+
             if (cookieName === decodeURIComponent(name)) {
                 return decodeURIComponent(cookieVal);
             }
@@ -14,27 +14,15 @@ export const showCookie = (name: string): any => {
 
 export const setCookie = (name: string, val: string, date?: Date, path?: string, domain?: string, secure?: string): void => {
     if (navigator.cookieEnabled) { 
-        
         const cookieName = encodeURIComponent(name);
         const cookieVal = encodeURIComponent(val);
         let cookieText = cookieName + "=" + cookieVal;
 
-        if (typeof date !== "undefined") {
-            cookieText += "; expires=" + date.toUTCString();
-        }
-
-        if (path) {
-            cookieText += "; path=" + path;
-        }
-
-        if (domain) {
-            cookieText += "; domain=" + domain;
-        }
-
-        if (secure) {
-            cookieText += "; secure";
-        }
-
+        date && (cookieText += "; expires=" + date.toUTCString());
+        path && (cookieText += "; path=" + path);
+        domain && (cookieText += "; domain=" + domain);
+        secure && (cookieText += "; secure");
+        
         document.cookie = cookieText;
     }
 }

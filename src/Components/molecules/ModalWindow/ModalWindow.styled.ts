@@ -17,18 +17,18 @@ export const StyledContainer = styled.div`
     ${FlexCenter};
     position: fixed;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
     width: 100vw;
     height: 100vh;
     background-color: ${colors.TransparentBlack};
     animation: ${fadeInAnimation} .3s ease-in both;
-    z-index: 99999999;
+    z-index: 99999;
 `;
 
 
 export const StyledWindow = styled.div`
     ${FlexColumn};
-    position: relative; 
     justify-content: space-between;
     height: 220px;
     width: 280px;

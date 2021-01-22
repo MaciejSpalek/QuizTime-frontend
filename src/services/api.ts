@@ -1,6 +1,6 @@
 import axios from 'axios'
-export const CORS_URL = 'https://cors-anywhere.herokuapp.com'
-export const API_URL = 'http://localhost:8080/api'
+const API_URL = process.env.REACT_APP_API_URL;
+
 export const axiosInstance = axios.create({
     baseURL: `${API_URL}`
 })

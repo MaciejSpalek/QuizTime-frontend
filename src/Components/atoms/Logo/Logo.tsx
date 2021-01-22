@@ -1,13 +1,12 @@
 import React from 'react';
+import { routes } from 'routes';
 import { StyledLogo, StyledText, StyledWrapper } from './Logo.styled';
 
-const Logo = ()=> {
+const Logo = () => {
     return (
-        <StyledWrapper>
+        <StyledWrapper to={routes.home}>
             <StyledLogo />
-            <StyledText>
-                QuizTime
-            </StyledText>
+            <StyledText> QuizTime </StyledText>
         </StyledWrapper>
     );
 };
