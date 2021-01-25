@@ -1,8 +1,8 @@
 import colors from 'styles/colors';
-import { QuestionStep } from 'Components/organisms/QuizSteps';
 import Button from 'Components/atoms/Button';
 import PageTemplate from 'templates/PageTemplate';
 import styled from 'styled-components';
+import { QuestionStep } from 'Components/organisms/QuizSteps';
 import { FlexCenter, FlexColumn, scrollBar } from 'styles/Mixins';
 import { twinkleScale } from 'styles/Animations';
 
