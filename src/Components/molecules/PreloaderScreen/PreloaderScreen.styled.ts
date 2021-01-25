@@ -1,7 +1,9 @@
+import PreloaderScreen from 'Components/molecules/PreloaderScreen';
 import styled from 'styled-components';
-import { FlexCenter } from 'styles/Mixins';
+import colors from 'styles/colors';
 
-export const StyledContainer = styled.div`
-    ${FlexCenter};
-    height: 100%;
+export const StyledPreloaderScreen = styled(PreloaderScreen)`
+    height: calc(100vh - 60px); 
+    width: 900px;
+    background-color: ${colors.Gray120};
 `;

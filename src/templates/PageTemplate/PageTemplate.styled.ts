@@ -7,6 +7,6 @@ export const StyledContainer = styled.div`
   ${FlexCenter};
   flex-direction: column;
   justify-content: flex-start;
-  height: calc(100vh - 60px);
-  background-color: ${colors.Gray100}
+  min-height: calc(100vh - 2*60px);
+  background-color: ${colors.Gray120};
 `;

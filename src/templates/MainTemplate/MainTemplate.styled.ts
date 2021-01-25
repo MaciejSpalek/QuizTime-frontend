@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { FlexColumn } from "styles/Mixins";
 
 export const StyledContainer = styled.main`
-  position: absolute;
-  top: 60px;
+  ${FlexColumn};
+  justify-content: flex-start;
   width: 100%;
-  height: calc(100vh - 60px);
+  max-width: 900px;
 `;

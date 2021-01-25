@@ -7,4 +7,5 @@ export const StyledParagraph = styled.p`
   text-align: center;
   font-weight: bold;
   line-height: 1.5;
+  margin: 0;
 `;

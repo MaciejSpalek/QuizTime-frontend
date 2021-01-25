@@ -1,6 +1,7 @@
 export interface IButton {
-    text: string;
     type?: 'button' | 'submit' | 'reset';
     isDisabled?: boolean;
+    isSpinner?: boolean;
+    children?: any;
     handleOnClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }

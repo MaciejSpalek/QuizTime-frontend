@@ -13,8 +13,8 @@ import {
 const ModalWindow = ({ 
     isActive,
     description,
+    handleCancel,
     handleConfirm,
-    handleCancel
 } :IModalWindow) => {
     const windowRef = useRef(null);
     useOutsideClick(windowRef, () => isActive && handleCancel());
@@ -36,18 +36,20 @@ const ModalWindow = ({
                 <StyledWrapper>
                     <StyledButton
                         type='button'
-                        text={ModalConstants.CONFIRM_BUTTON_TEXT}
                         handleOnClick={handleConfirm}
-                    />
+                    >
+                        {ModalConstants.CONFIRM_BUTTON_TEXT}
+                    </StyledButton>
                     <StyledButton
                         type='button'
-                        text={ModalConstants.CANCEL_BUTTON_TEXT}
                         handleOnClick={handleCancel} 
-                    />
+                    >
+                        {ModalConstants.CANCEL_BUTTON_TEXT}
+                    </StyledButton>
                 </StyledWrapper>
             </StyledWindow>
         </StyledContainer>
-    )
-}
+    );
+};
 
 export default ModalWindow;

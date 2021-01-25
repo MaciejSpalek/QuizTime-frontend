@@ -1,18 +1,21 @@
 import React from 'react'
 import Button from 'Components/atoms/Button/Button';
-import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/store';
-import { setAddQuizButtonStatus } from 'redux/Actions/statusesActions';
-import { StyledContainer, StyledUserTag } from './ProfileBar.styled';
 import { IProfileBar } from './ProfileBar.model';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAddQuizButtonStatus } from 'redux/Actions/statusActions';
+import {
+    StyledContainer,
+    StyledUserTag,
+} from './ProfileBar.styled';
 
-const ProfileBar = ({ 
-    username, 
-    isLoggedUserRoute, 
-    openModal 
+const ProfileBar = ({
+    username,
+    isLoggedUserRoute,
+    openModal
 }: IProfileBar) => {
     const dispatch = useDispatch()
-    const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.statuses.addQuizButtonStatus);
+    const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.status.addQuizButtonStatus);
 
     const handleButton = () => {
         addQuizButtonStatus ?
@@ -24,10 +27,9 @@ const ProfileBar = ({
         <StyledContainer>
             <StyledUserTag> {username} </StyledUserTag>
             {isLoggedUserRoute() &&
-                <Button
-                    text={addQuizButtonStatus ? 'Back' : 'Add quiz'}
-                    handleOnClick={handleButton}
-                />}
+                <Button handleOnClick={handleButton} >
+                    {addQuizButtonStatus ? 'Back' : 'New quiz'}
+                </Button>}
         </StyledContainer>
     );
 };

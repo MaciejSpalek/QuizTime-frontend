@@ -1,33 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
+import QuizPagination from 'Components/molecules/QuizPagination';
+import FormTemplate from 'templates/FormTemplate';
+import { StyledContainer } from './MultiStepForm.styled';
 import { IMultiStepForm } from './MultiStepForm.model';
-import { StyledContainer, StyledForm, StyledPagination } from './MultiStepForm.styled';
 
 const MultiStepform = ({ 
-    color,
-    counter, 
     onSubmit,
     children, 
-    handleLeftButton, 
-    handleRightButton, 
     ...props 
 }: IMultiStepForm): JSX.Element => {
-    const steps = children.length;
-    const getCurrentChild = () => children[counter - 1];
-
+    const [step, setStep] = useState(0);
     return (
         <StyledContainer {...props}>
-            <StyledForm onSubmit={onSubmit}>
-                {getCurrentChild()}
-            </StyledForm>
-            <StyledPagination 
-                color={color}
-                steps={steps} 
-                counter={counter}
-                handleLeftButton={handleLeftButton}
-                handleRightButton={handleRightButton}
+            <FormTemplate onSubmit={onSubmit}>
+                {children[step]}
+            </FormTemplate>
+            <QuizPagination 
+                steps={children.length} 
+                counter={step+1}
+                handleLeftButton={() => setStep(prev => prev - 1)}
+                handleRightButton={() => setStep(prev => prev + 1)}
             />
         </StyledContainer>
     )
-}
+};
 
-export default MultiStepform
+export default MultiStepform;

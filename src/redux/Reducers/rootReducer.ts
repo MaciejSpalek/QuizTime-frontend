@@ -1,16 +1,14 @@
 import { combineReducers } from 'redux';
-import { sessionReducer } from './sessionReducers';
-import { userReducer } from './userReducers';
-import { statusesReducer } from './statusesReducers';
+import { sessionReducer } from './sessionReducer';
+import { statusReducer } from './statusReducer';
 import { quizReducer } from './quizReducer';
 import { toastReducer } from './toastReducer';
 
 
 const rootReducer = combineReducers({
+    status: statusReducer,
     session: sessionReducer,
-    user: userReducer,
-    statuses: statusesReducer,
-    quizes: quizReducer,
+    quizzes: quizReducer,
     toast: toastReducer,
 });
 

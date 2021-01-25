@@ -1,14 +1,19 @@
 import styled from "styled-components";
 import colors from "styles/colors";
-import { FlexCenter } from "styles/Mixins";
+import { BoxShadow, FlexCenter } from "styles/Mixins";
 
 export const StyledNavbar = styled.nav`
-  position: absolute;
-  top: 0;
+  ${FlexCenter};
+  ${BoxShadow};
+  height: 60px;
+  background-color: ${colors.White};
+  z-index: 2;
+`;
+
+export const StyledWrapper = styled.div`
   ${FlexCenter};
   justify-content: space-between;
-  height: 60px;
+  max-width: 900px;
+  height: 100%;
   padding: 5px 10px;
-  background-color: ${colors.Gray100};
-  border-bottom: 2px solid ${colors.Gray80};
 `;

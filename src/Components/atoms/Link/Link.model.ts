@@ -1,8 +1,6 @@
-type LinkType = "NavLink" | "Link";
-
 export interface ILink {
   to: string;
-  type: LinkType;
+  isNavLink?: boolean;
   text?: string;
   children?: React.ReactNode;
   onClick?: ()=> void;
