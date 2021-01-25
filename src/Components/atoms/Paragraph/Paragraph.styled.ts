@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import colors from 'styles/colors';
+import colors from 'styles/Colors';
 
 export const StyledParagraph = styled.p`
   font-size: 20px;
@@ -7,4 +7,5 @@ export const StyledParagraph = styled.p`
   text-align: center;
   font-weight: bold;
   line-height: 1.5;
+  margin: 0;
 `;

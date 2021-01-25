@@ -1,12 +1,12 @@
 import React from 'react'
 import Spinner from 'Components/atoms/Spinner';
-import { StyledContainer } from './PreloaderScreen.styled';
+import Placeholder from 'templates/PlaceholderTemplate'; 
 
-const PreloaderScreen = () => {
+const PreloaderScreen = ({ ...props }) => {
   return (
-    <StyledContainer>
+    <Placeholder {...props}>
         <Spinner />
-    </StyledContainer>
+    </Placeholder>
   );
 };
 

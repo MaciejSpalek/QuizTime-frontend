@@ -1,18 +1,18 @@
 import React from 'react';
-import { StyledNavLink,  StyledLink } from './Link.styled';
+import { StyledNavLink,  StyledLink, activeStyle } from './Link.styled';
 import { ILink } from './Link.model';
 
 const Link = ({ 
   to, 
-  type, 
   text, 
   onClick,
   children, 
+  isNavLink, 
   ...props
 }: ILink) => {
-  if (type === 'NavLink') {
+  if (isNavLink) {
     return (
-        <StyledNavLink to={to} onClick={onClick} {...props}>
+        <StyledNavLink exact activeStyle={activeStyle} to={to} onClick={onClick} {...props}>
             {children}
             {text} 
         </StyledNavLink>

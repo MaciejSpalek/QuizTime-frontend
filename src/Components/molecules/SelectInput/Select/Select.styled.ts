@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import colors from 'styles/colors';
-import { FlexCenter, FlexColumn } from 'styles/Mixins';
+import colors from 'styles/Colors';
+import { FlexCenter, FlexColumn, scrollBar } from 'styles/Mixins';
 
 export const StyledWrapper = styled.div`
   border-radius: 4px;
@@ -26,6 +26,7 @@ export const StyledTopWrapper = styled.div`
 
 export const StyledSelect = styled.ul<{isOpen: boolean}>`
   ${FlexColumn}; 
+  ${scrollBar};
   align-items: flex-start;
   background-color: ${colors.White};
   height: 180px;

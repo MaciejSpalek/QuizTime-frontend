@@ -11,7 +11,6 @@ import { IPagination } from './QuizPagination.model'
 
 const QuizPagination = ({
     steps,
-    color,
     counter,
     handleLeftButton,
     handleRightButton,
@@ -32,20 +31,18 @@ const QuizPagination = ({
         <StyledPagination id="pagination" {...props}>
             { getArrowPosition('left') ?
                 <StyledIconButton
-                    color={color}
                     type='button'
                     icon={'angle-left'}
                     handleOnClick={handleLeftButton}
                 /> : <StyledEmptySquare />
             }
-            <StyledCenterSquare color={color}>
+            <StyledCenterSquare>
                 <StyledCounter>
                     {handleCounter()}
                 </StyledCounter>
             </StyledCenterSquare>
             { getArrowPosition('right') ?
                 <StyledIconButton
-                    color={color}
                     type='button'
                     icon={'angle-right'}
                     handleOnClick={handleRightButton}

@@ -1,4 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
+import colors from './Colors';
+import { scrollBar } from './Mixins';
 
 const GlobalStyle = createGlobalStyle`
   *, 
@@ -13,15 +15,30 @@ const GlobalStyle = createGlobalStyle`
   }
 
   button {
-    border:none;
-    background:none;
-    cursor: pointer;
+    border: none;
+    background: none;
+    cursor: pointer;  
+    :focus {
+      outline-style: auto;
+      outline-color: ${colors.Black     }; 
+    }
   }  
 
+  input {
+    :focus {
+      outline-style: auto;
+      outline-color: ${colors.Black}; 
+    }
+  }
   html {
     font-size: 62.5%; 
   }
   
+  ul {
+    ${scrollBar};
+    list-style: none; 
+  }
+
   body {
     width:100%;
     height:100vh;
@@ -35,7 +52,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    text-decoration:none;
+    text-decoration: none;
   }
 `;
 

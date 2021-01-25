@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import colors from 'styles/colors';
+import colors from 'styles/Colors';
 import { FlexColumn } from 'styles/Mixins';
 
 export const StyledFormField = styled.div`
@@ -7,5 +7,5 @@ export const StyledFormField = styled.div`
   align-items: flex-start;
   width: 100%;
   margin: 10px 0;
-  background-color: ${colors.Gray100};
+  background-color: ${colors.Gray120};
 `;

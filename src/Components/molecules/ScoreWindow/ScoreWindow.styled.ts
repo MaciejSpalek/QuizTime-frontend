@@ -1,25 +1,15 @@
-import styled, { keyframes } from 'styled-components';
-import colors from 'styles/colors';
-import PageTemplate from 'templates/PageTemplate';
+import colors from 'styles/Colors';
+import { QuestionStep } from 'Components/organisms/QuizSteps';
 import Button from 'Components/atoms/Button';
-import QuestionStep from '../QuestionStep';
-import { FlexCenter, FlexColumn } from 'styles/Mixins';
-
-const anim = keyframes`
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.4);
-  }
-  100% {
-    transform: scale(1);
-  }
-`;
+import PageTemplate from 'templates/PageTemplate';
+import styled from 'styled-components';
+import { FlexCenter, FlexColumn, scrollBar } from 'styles/Mixins';
+import { twinkleScale } from 'styles/Animations';
 
 export const StyledContainer = styled(PageTemplate)`
     overflow: auto;
     padding: 20px 10px;
+    ${scrollBar};
 `;
 
 export const StyledTopWrapper = styled.div`
@@ -40,7 +30,7 @@ export const StyledText = styled.p`
 export const StyledScore = styled.span`
     font-size: 48px;
     color: ${colors.BasicGreen};
-    animation: ${anim} .5s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+    animation: ${twinkleScale} .5s cubic-bezier(0.165, 0.84, 0.44, 1) both;
 `;
 
 export const StyledQuestionList = styled.ul`
@@ -50,14 +40,8 @@ export const StyledQuestionList = styled.ul`
     margin-top: 20px;
 `;
 
-export const StyledQuestionListItem = styled.li`
-
-`;
-
-
-export const StyledButton = styled(Button)<{color: string}>`
+export const StyledButton = styled(Button)`
     width: 300px;
-    background-color: ${({ color }) => color ? color : colors.BasicGreen};
 `;
 
 export const StyledQuestionStep = styled(QuestionStep)`

@@ -1,16 +1,22 @@
 import styled from "styled-components";
-import colors from "styles/colors";
+import colors from "styles/Colors";
 import { FlexCenter } from "styles/Mixins";
 import { Puzzles } from "assets";
+import Link from "../Link";
 
-export const StyledWrapper = styled.h1`
+export const StyledWrapper = styled(Link)`
   ${FlexCenter}
   width: auto;
+  cursor: pointer;
+  :link {
+    text-decoration: none;
+  }
 `;
 
 export const StyledLogo = styled(Puzzles)`
   fill: ${colors.BasicGreen};
-  width: 48px;
+  width: 40px;
+  height: 40px;
   margin: 5px 5px 0 0;
 `;
 

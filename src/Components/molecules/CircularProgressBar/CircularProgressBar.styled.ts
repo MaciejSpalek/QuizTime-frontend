@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import colors from "styles/colors";
+import colors from "styles/Colors";
 import { FlexCenter } from "styles/Mixins";
 
 export const StyledContainer = styled.div`
@@ -9,13 +9,11 @@ export const StyledContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-export const StyledSVG = styled.svg``;
-
-export const StyledCircle = styled.circle<{color: string}>`
+export const StyledCircle = styled.circle`
   :first-of-type {
     stroke-width: 10;
     stroke-linecap: round;
-    stroke: ${({ color }) => color ? color : colors.BasicGreen};
+    stroke: ${colors.BasicGreen};
     fill: none;
     transform: rotate(270deg);
     transform-origin: center;
@@ -42,7 +40,7 @@ export const StyledText = styled.p`
   color: ${colors.Gray20};
 `;
 
-export const StyledScore = styled.span<{color: string}>`
+export const StyledScore = styled.span`
   font-size: 64px;
-  color: ${({ color }) => color ? color : colors.BasicGreen};
+  color: ${colors.BasicGreen};
 `;
