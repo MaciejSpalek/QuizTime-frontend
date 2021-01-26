@@ -1,44 +1,79 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# QuizTime - register and create your first quiz!
 
-## Available Scripts
+## About application
 
-In the project directory, you can run:
+QuizTime is an application developed in React + TypeScript, used to creating and taking quizzes.
+You can take quiz, but if you want to create your own quiz, it's necessary to register. It's first version of this application and it's still in improvement process.
 
-### `npm start`
+## Screenshots
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![Screenshot](src/assets/ReadmePhoto.png)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+![Screenshot](src/assets/RegistrationPhoto.png)
 
-### `npm test`
+![Screenshot](src/assets/AddingPanelPhoto.png)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+&nbsp;
 
-### `npm run build`
+## FRONTEND
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Tech/framework used
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+| Tech              | Description                                                                 |
+| ----------------- | --------------------------------------------------------------------------- |
+| React             | The library for building user interfaces                                    |
+| TypeScript        | A language for application-scale JavaScript.                                |
+| React hooks       | New addition in React 16.8. allowing to use the state without using classes |
+| React router      | Declarative routing for React                                               |
+| Redux             | The library for state management applications                               |
+| Styled Components | A React package to manage styles in applications                            |
+| Axios             | It's a Javascript library used to make HTTP requests from node.js           |
+| Formik            | Library to build forms without tears                                        |
+| Yup               | Library to validation                                                       |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+&nbsp;
 
-### `npm run eject`
+### Installation app
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+git clone https://github.com/MaciejSpalek/QuizTime-frontend.git
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+npm start
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+&nbsp;
 
-## Learn More
+## BACKEND
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Tech/framework used 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Tech         | Description                                                                                              |
+| - | - |
+| node.js      | A JavaScript runtime built on Chrome's V8 JavaScript engine.                                             |
+| express.js   | Node.js web application framework                                                                        |
+| jsonwebtoken | Library to manage JWT                                                                                    |
+| bcrypt.js    | A library to help hashing passwords.                                                                     |
+| dotenv       | A zero-dependency module, that loads environment variables from a .env                                   |
+| mongoose     | A MongoDB object modeling tool designed to work in an asynchronous environment.                          |
+| cors         | Package for providing a Connect/Express middleware that can be used to enable CORS with various options. |
+| Formik       | Library to build forms without tears                                                                     |
+| Joi          | The most powerful schema description language and data validator for JavaScript.                         |
+
+&nbsp;
+
+### Installation server
+
+```
+git clone https://github.com/MaciejSpalek/QuizTime-backend.git
+
+npm install
+
+nodemon
+```
+
+## Live
+
+https://quizz-time.netlify.app/
+
