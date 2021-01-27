@@ -17,7 +17,6 @@ export const StyledContainer = styled.div`
 export const StyledQuestionWrapper = styled.div`
   position: relative;
   ${FlexCenter};
-  justify-content: flex-start;
   width: 100%;
   min-height: 150px;
   border: 2px solid ${colors.Gray60};

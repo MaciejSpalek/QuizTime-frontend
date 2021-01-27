@@ -58,7 +58,6 @@ npm start
 | dotenv       | A zero-dependency module, that loads environment variables from a .env                                   |
 | mongoose     | A MongoDB object modeling tool designed to work in an asynchronous environment.                          |
 | cors         | Package for providing a Connect/Express middleware that can be used to enable CORS with various options. |
-| Formik       | Library to build forms without tears                                                                     |
 | Joi          | The most powerful schema description language and data validator for JavaScript.                         |
 
 &nbsp;
@@ -73,7 +72,11 @@ npm install
 nodemon
 ```
 
+## Dummy account
+
+* Login: Example
+* Password: example
+
 ## Live
 
-https://quizz-time.netlify.app/
-
+<https://quizz-time.netlify.app/>
