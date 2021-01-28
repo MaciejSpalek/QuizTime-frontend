@@ -8,9 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { TestIcon } from "assets";
 
 export const StyledPageTemplate = styled(PageTemplate)`
-  position: relative;
   justify-content: flex-start;
-  overflow: auto;
+  /* min-height: calc(100vh - 60px); */
 `;
 
 export const StyledWrapper = styled.div`
@@ -83,11 +82,15 @@ export const StyledPhoto = styled(TestIcon)`
   display: none;
   @media (min-width: 600px) {
     display: unset;
+    width: 300px;
+    height: 300px;
     min-width: 300px;
     min-height: 300px;
   }
   @media (min-width: 900px) {
     display: unset;
+    width: 400px;
+    height: 400px;
     min-width: 400px;
     min-height: 400px;
   }

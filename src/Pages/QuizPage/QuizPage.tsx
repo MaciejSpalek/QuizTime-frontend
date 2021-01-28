@@ -27,7 +27,6 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const [token] = useState(showCookie('token'));
 
     const dispatch = useDispatch();
-
     const getId = useCallback(() => match.params.id, [match.params.id]);
     const getName = useCallback(() => match.params.username, [match.params.username]);
 
@@ -35,8 +34,6 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
         setIsTheQuizSolved(false);
         setScore('');
     };
-
-
 
     const manageQuiz = useCallback(async (id: string, author: string) => {
         fetchSingleQuiz(id, author).then(res => {
