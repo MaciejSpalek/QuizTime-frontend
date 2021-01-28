@@ -9,7 +9,6 @@ import { TestIcon } from "assets";
 
 export const StyledPageTemplate = styled(PageTemplate)`
   justify-content: flex-start;
-  /* min-height: calc(100vh - 60px); */
 `;
 
 export const StyledWrapper = styled.div`
