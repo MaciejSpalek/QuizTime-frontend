@@ -30,6 +30,11 @@ const Auth = () => {
         }, 1000);
     });
 
+    useEffect(() => {
+        const cookiesAgreement = localStorage.getItem('cookiesAgreement');
+        !cookiesAgreement && localStorage.setItem('cookiesAgreement', JSON.parse("false"))
+    }, []);
+
     return (<></>);
 }
 

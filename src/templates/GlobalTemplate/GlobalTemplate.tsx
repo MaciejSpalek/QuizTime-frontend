@@ -5,6 +5,7 @@ import GlobalStyle from 'styles/GlobalStyle';
 import Auth from 'includes/Auth';
 import FontAwesomeLibrary from 'includes/FontAwesomeLib';
 import Toast from 'Components/atoms/Toast';
+import CookieBanner from 'Components/molecules/CookieBanner';
 
 const GlobalTemplate = ({ children }: IChildren) => (
   <StyledContainer>
@@ -12,6 +13,7 @@ const GlobalTemplate = ({ children }: IChildren) => (
     <GlobalStyle />
     <Toast />
     <Auth />
+    <CookieBanner />
     {children}
   </StyledContainer>
 );
