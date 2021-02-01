@@ -3,14 +3,12 @@ export enum Constants {
 };
 
 export const QuizThemes = [
-    { id: "1", title: "none", value: { primary: '#80D4CD', secondary: '#2982A2' } },
     { id: "2", title: "none", value: { primary: '#99B3E1', secondary: '#4F62A3' } },
     { id: "3", title: "none", value: { primary: '#A0ADBD', secondary: '#372E46' } },
     { id: "4", title: "none", value: { primary: '#ACA398', secondary: '#443C51' } },
     { id: "5", title: "none", value: { primary: '#c6b497', secondary: '#34626c' } },
     { id: "6", title: "none", value: { primary: '#F7BC14', secondary: '#201F26' } },
     { id: "7", title: "none", value: { primary: '#f05454', secondary: '#30475e' } },
-    { id: "8", title: "none", value: { primary: '#892cdc', secondary: '#52057b' } },
 ];
 
 export const QuizIcons = [
@@ -26,5 +24,4 @@ export const QuizIcons = [
     { id: "10", title: "Math", icon: 'square-root-alt' },
     { id: "11", title: "Automotive", icon: 'car' },
     { id: "12", title: "Medicine", icon: 'heart' },
-
 ];

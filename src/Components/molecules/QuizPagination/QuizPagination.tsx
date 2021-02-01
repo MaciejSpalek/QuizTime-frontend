@@ -16,7 +16,7 @@ const QuizPagination = ({
     handleRightButton,
     ...props
 }: IPagination) => {
-    const handleCounter = () => `${counter}/${steps}`;
+    const getCounter = () => `${counter}/${steps}`;
     const getArrowPosition = (position: string) => {
         if (position === 'left' && counter === 1) {
             return false;
@@ -38,7 +38,7 @@ const QuizPagination = ({
             }
             <StyledCenterSquare>
                 <StyledCounter>
-                    {handleCounter()}
+                    {getCounter()}
                 </StyledCounter>
             </StyledCenterSquare>
             { getArrowPosition('right') ?

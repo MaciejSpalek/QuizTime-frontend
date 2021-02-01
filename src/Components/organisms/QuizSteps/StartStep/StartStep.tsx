@@ -7,6 +7,7 @@ import {
     StyledPageTemplate,
     StyledIconWrapper,
     StyledTextWrapper,
+    StyledViews,
     StyledCounter,
     StyledWrapper,
     StyledButton,
@@ -37,8 +38,12 @@ const StartStep = ({
                     <StyledIcon icon={icon as IconName} />
                 </StyledIconWrapper>
                 <StyledIconWrapper >
-                    <StyledIcon icon={'user'} />
-                    <StyledCounter> {counter} </StyledCounter>
+                    {/* <div> */}
+                        <StyledIcon icon={'eye'} />
+                        <StyledCounter> {counter} </StyledCounter>
+                    {/* </div> */}
+                    {/* <StyledViews text="Views"/> */}
+                    {/* <StyledViews text="Views"/> */}
                 </StyledIconWrapper>
             </StyledWrapper>
             <StyledWrapper>

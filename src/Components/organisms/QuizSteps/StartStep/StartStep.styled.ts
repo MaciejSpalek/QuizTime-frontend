@@ -27,6 +27,7 @@ export const StyledWrapper = styled.div`
     flex: 6;
     justify-content: center;
     flex-direction: row;
+    padding: 30px 0;
   }
   :nth-of-type(3) {
     @media (min-width: 600px) {
@@ -43,6 +44,7 @@ export const StyledIconWrapper = styled.div`
   height: 50px;
   border-radius: 5px;
   padding: 0 5px;
+  
   :nth-of-type(2) {
     width: auto;
   }
@@ -66,7 +68,7 @@ export const StyledCounter = styled.span`
   font-size: 24px;
   font-weight: bold;
   color: ${colors.White};
-  margin-left: 5px;
+  margin-left: 7.5px;
 `;
 
 export const StyledButton = styled(Button)`
@@ -105,19 +107,6 @@ export const StyledTitle = styled.span`
 
   @media (min-width: 600px) {
     text-align: left;
-    :before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      left: 0;
-      bottom: 0;
-      background: linear-gradient(
-        to right,
-        ${colors.Gray40},
-        ${colors.Gray120}
-      );
-    }
   }
   @media (min-width: 900px) {
     font-size: 42px;
@@ -131,4 +120,9 @@ export const StyledAuthor = styled(Paragraph)`
   @media (min-width: 600px) {
     font-size: 24px;
   }
+`;
+
+export const StyledViews = styled(Paragraph)`
+  font-size: 10px;
+  color: ${colors.White};
 `;

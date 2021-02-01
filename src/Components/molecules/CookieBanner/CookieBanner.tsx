@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
     StyledContainer,
     StyledTextWrapper,
@@ -8,14 +8,17 @@ import {
 } from './CookieBanner.styled';
 
 const CookieBanner = () => {
-    const [cookiesAgreement, setCookiesAgreement] = useState<boolean>(!!localStorage.getItem('cookiesAgreement'))
+    const [cookiesAgreement, setCookiesAgreement] = useState<boolean>(localStorage.getItem('cookiesAgreement') === 'true');
     const handleButton = () => {
-        localStorage.setItem('cookiesAgreement', JSON.parse("true"))
-        setCookiesAgreement(true)
-    }
-    
+        localStorage.setItem('cookiesAgreement', JSON.parse("true"));
+        setCookiesAgreement(true);
+    };
 
-    if(cookiesAgreement) return <></>
+    useEffect(() => {
+        !cookiesAgreement && localStorage.setItem('cookiesAgreement', JSON.parse("false"));
+    }, []);
+    
+    if(cookiesAgreement) return <></>;
 
     return (
         <StyledContainer>
