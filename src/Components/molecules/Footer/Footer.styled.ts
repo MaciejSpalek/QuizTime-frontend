@@ -27,6 +27,10 @@ export const StyledIcon = styled(FontAwesomeIcon)`
     font-size: 40px;
     color: ${colors.Gray20};
     margin-left: 5px;
+    transition: .3s ease-in-out;
+    :hover {
+      color: ${colors.Black};
+    }
 `;
 
 export const StyledParagraph = styled(Paragraph)`

@@ -33,7 +33,7 @@ You can take quiz, but if you want to create your own quiz, it's necessary to re
 
 &nbsp;
 
-### Installation app
+### App installation
 
 ```
 git clone https://github.com/MaciejSpalek/QuizTime-frontend.git
@@ -62,7 +62,7 @@ npm start
 
 &nbsp;
 
-### Installation server
+### Server installation 
 
 ```
 git clone https://github.com/MaciejSpalek/QuizTime-backend.git

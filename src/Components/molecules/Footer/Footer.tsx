@@ -14,7 +14,7 @@ const Footer = () => {
                 <StyledParagraph text='&copy; 2021 - Maciej Spałek' />
             </StyledWrapper>
             <StyledWrapper>
-                <StyledAnchor href="https://github.com/MaciejSpalek/QuizPlatform" >
+                <StyledAnchor href="https://github.com/MaciejSpalek/QuizTime-frontend" >
                     <StyledIcon icon={['fab', 'github-square']}/>
                 </StyledAnchor>
             </StyledWrapper>

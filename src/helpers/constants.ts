@@ -7,7 +7,6 @@ export const QuizThemes = [
     { id: "3", title: "none", value: { primary: '#A0ADBD', secondary: '#372E46' } },
     { id: "4", title: "none", value: { primary: '#ACA398', secondary: '#443C51' } },
     { id: "5", title: "none", value: { primary: '#c6b497', secondary: '#34626c' } },
-    { id: "6", title: "none", value: { primary: '#F7BC14', secondary: '#201F26' } },
     { id: "7", title: "none", value: { primary: '#f05454', secondary: '#30475e' } },
 ];
 

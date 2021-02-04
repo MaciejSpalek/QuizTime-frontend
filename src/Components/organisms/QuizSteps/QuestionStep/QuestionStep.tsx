@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Answer from './Answer';
 import { IQuestionStep } from './QuestionStep.model';
 import {
@@ -21,6 +21,7 @@ const QuestionStep = ({
     handleChange,
     ...props 
 }: IQuestionStep): JSX.Element => {
+
     return (
         <StyledContainer {...props}>
             <StyledQuestionWrapper>

@@ -38,12 +38,8 @@ const StartStep = ({
                     <StyledIcon icon={icon as IconName} />
                 </StyledIconWrapper>
                 <StyledIconWrapper >
-                    {/* <div> */}
-                        <StyledIcon icon={'eye'} />
-                        <StyledCounter> {counter} </StyledCounter>
-                    {/* </div> */}
-                    {/* <StyledViews text="Views"/> */}
-                    {/* <StyledViews text="Views"/> */}
+                    <StyledIcon icon={'eye'} />
+                    <StyledCounter> {counter} </StyledCounter>
                 </StyledIconWrapper>
             </StyledWrapper>
             <StyledWrapper>

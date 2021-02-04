@@ -5,17 +5,17 @@ import ErrorPage from 'Pages/ErrorPage';
 
 import { setCorrectAnswersArray, setUserAnswersArray } from 'redux/Actions/quizActions';
 import { StartStep, QuestionStep, LastStep } from 'Components/organisms/QuizSteps'
+import { addScore, fetchSingleQuiz, updateQuizCounter } from 'services/requests';
+import { StyledPreloaderScreen } from 'Pages/ProfilePage/ProfilePage.styled';
 import { setToastParameters } from 'redux/Actions/toastActions';
 import { IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { StyledMultiStepForm } from './QuizPage.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { IValues, TQuizPage } from './QuizPage.model';
 import { quizPageValidation } from './validation';
+import { showCookie } from 'helpers/cookies';
 import { RootState } from 'redux/store';
 import { Formik } from 'formik';
-import { addScore, fetchSingleQuiz, updateQuizCounter } from 'services/requests';
-import { StyledPreloaderScreen } from 'Pages/ProfilePage/ProfilePage.styled';
-import { showCookie } from 'helpers/cookies';
 
 const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const loggedUser = useSelector<RootState, string | null>(state => state.session.loggedUser);
@@ -83,8 +83,6 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
             }, 3000);
         }
     };
-
-
 
     const getFormChildren = (
         handleChange: (e: ChangeEvent<HTMLElement>) => void,

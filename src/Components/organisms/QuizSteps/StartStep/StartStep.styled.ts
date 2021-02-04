@@ -6,6 +6,7 @@ import Paragraph from "Components/atoms/Paragraph";
 import { AbbreviateText, FlexCenter } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { TestIcon } from "assets";
+import { twinkleScale } from "styles/Animations";
 
 export const StyledPageTemplate = styled(PageTemplate)`
   justify-content: flex-start;
@@ -69,6 +70,7 @@ export const StyledCounter = styled.span`
   font-weight: bold;
   color: ${colors.White};
   margin-left: 7.5px;
+  animation: ${twinkleScale} .5s ease-in;
 `;
 
 export const StyledButton = styled(Button)`

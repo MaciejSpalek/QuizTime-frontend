@@ -20,8 +20,7 @@ export const StyledQuestionWrapper = styled.div`
   width: 100%;
   min-height: 150px;
   border: 2px solid ${colors.Gray60};
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-radius: 5px;
   margin-bottom: 10px;
   padding: 10px 18px;
 `;
