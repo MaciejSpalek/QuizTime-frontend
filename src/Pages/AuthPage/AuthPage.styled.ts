@@ -14,7 +14,7 @@ export const StyledContainer = styled(PageTemplate)`
   position: relative;
   overflow: hidden;
   padding: 50px 0;
-  
+
   @media (min-height: 600px) {
     justify-content: center;
   }
@@ -23,17 +23,17 @@ export const StyledContainer = styled(PageTemplate)`
 export const StyledAuthForm = styled(AuthForm)`
   ${BoxShadow};
   display: flex;
-  width: 280px;
   height: auto;
   border-radius: 5px;
-  @media (min-width: 600px) {
-    width: 340px;
+  width: 340px;
+
+  @media (max-width: 420px) {
+    width: calc(100% - 20px);
   }
 `;
 
 export const StyledButton = styled(Button)`
-    width: 100%;
-    max-width: 340px;
+  min-width: 100%;
 `;
 
 export const StyledLink = styled(Link)`
@@ -53,6 +53,6 @@ export const StyledPhoto = styled(AuthPhoto)`
     height: 425px;
     left: -100px;
     top: 48%;
-    transform: translate(0, -50%) ;
+    transform: translate(0, -50%);
   }
 `;

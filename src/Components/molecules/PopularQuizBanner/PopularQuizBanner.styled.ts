@@ -17,14 +17,13 @@ export const StyledTopWrapper = styled.div`
   ${FlexCenter};
   justify-content: space-between;
   padding: 10px;
-  border-bottom: 2px solid ${colors.Gray80};
 `;
 
 export const StyledBottomWrapper = styled.div`
   ${FlexCenter};
   padding: 10px;
   @media (min-width: 600px) {
-    height: 300px;
+    height: 240px;
     align-items: center;
   }
 `;

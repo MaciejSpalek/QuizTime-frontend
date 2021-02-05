@@ -35,4 +35,5 @@ export const StyledIcon = styled(FontAwesomeIcon)<{ color: string }>`
 export const StyledTitle = styled.span`
   font-size: 20px;
   color: ${colors.Gray20};
+  white-space: nowrap;
 `;
