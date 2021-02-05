@@ -22,7 +22,8 @@ const StartStep = ({
     icon,
     title,
     author,
-    counter
+    counter,
+    ...props
 }: IStartStep): JSX.Element => {
     const history = useHistory();
     const moreQuizzes = () => history.push(`/${author}`);
@@ -30,18 +31,16 @@ const StartStep = ({
     const getAuthor = (author: string) => `by ${author}`;
 
     return (
-        <StyledPageTemplate>
-
+        <StyledPageTemplate {...props}>
             <StyledWrapper>
                 <StyledIconWrapper >
                     <StyledIcon icon={icon as IconName} />
                 </StyledIconWrapper>
                 <StyledIconWrapper >
-                    <StyledIcon icon={'user'} />
+                    <StyledIcon icon={'eye'} />
                     <StyledCounter> {counter} </StyledCounter>
                 </StyledIconWrapper>
             </StyledWrapper>
-
             <StyledWrapper>
                 <StyledPhoto />
                 <StyledTextWrapper>
@@ -49,7 +48,6 @@ const StartStep = ({
                     <StyledAuthor text={getAuthor(author)} />
                 </StyledTextWrapper>
             </StyledWrapper>
-
             <StyledWrapper>
                 <StyledButton type='button' handleOnClick={onClick}>
                     Start
@@ -61,7 +59,6 @@ const StartStep = ({
                     Back
                 </StyledButton>
             </StyledWrapper>
-
         </StyledPageTemplate>
     );
 };

@@ -21,6 +21,7 @@ const QuestionStep = ({
     handleChange,
     ...props 
 }: IQuestionStep): JSX.Element => {
+
     return (
         <StyledContainer {...props}>
             <StyledQuestionWrapper>

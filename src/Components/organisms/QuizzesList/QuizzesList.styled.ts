@@ -36,7 +36,6 @@ export const StyledList = styled.ul`
   grid-template-rows: auto;
   grid-gap: 10px;
   width: 100%;
-  height: 100%;
   list-style: none;
   margin: 0;
 

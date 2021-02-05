@@ -33,7 +33,7 @@ You can take quiz, but if you want to create your own quiz, it's necessary to re
 
 &nbsp;
 
-### Installation app
+### App installation
 
 ```
 git clone https://github.com/MaciejSpalek/QuizTime-frontend.git
@@ -58,12 +58,11 @@ npm start
 | dotenv       | A zero-dependency module, that loads environment variables from a .env                                   |
 | mongoose     | A MongoDB object modeling tool designed to work in an asynchronous environment.                          |
 | cors         | Package for providing a Connect/Express middleware that can be used to enable CORS with various options. |
-| Formik       | Library to build forms without tears                                                                     |
 | Joi          | The most powerful schema description language and data validator for JavaScript.                         |
 
 &nbsp;
 
-### Installation server
+### Server installation 
 
 ```
 git clone https://github.com/MaciejSpalek/QuizTime-backend.git
@@ -73,7 +72,11 @@ npm install
 nodemon
 ```
 
+## Dummy account
+
+* Login: Example
+* Password: example
+
 ## Live
 
-https://quizz-time.netlify.app/
-
+<https://quizz-time.netlify.app/>

@@ -6,11 +6,10 @@ import Paragraph from "Components/atoms/Paragraph";
 import { AbbreviateText, FlexCenter } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { TestIcon } from "assets";
+import { twinkleScale } from "styles/Animations";
 
 export const StyledPageTemplate = styled(PageTemplate)`
-  position: relative;
   justify-content: flex-start;
-  overflow: auto;
 `;
 
 export const StyledWrapper = styled.div`
@@ -29,6 +28,7 @@ export const StyledWrapper = styled.div`
     flex: 6;
     justify-content: center;
     flex-direction: row;
+    padding: 30px 0;
   }
   :nth-of-type(3) {
     @media (min-width: 600px) {
@@ -45,6 +45,7 @@ export const StyledIconWrapper = styled.div`
   height: 50px;
   border-radius: 5px;
   padding: 0 5px;
+  
   :nth-of-type(2) {
     width: auto;
   }
@@ -68,7 +69,8 @@ export const StyledCounter = styled.span`
   font-size: 24px;
   font-weight: bold;
   color: ${colors.White};
-  margin-left: 5px;
+  margin-left: 7.5px;
+  animation: ${twinkleScale} .5s ease-in;
 `;
 
 export const StyledButton = styled(Button)`
@@ -83,11 +85,15 @@ export const StyledPhoto = styled(TestIcon)`
   display: none;
   @media (min-width: 600px) {
     display: unset;
+    width: 300px;
+    height: 300px;
     min-width: 300px;
     min-height: 300px;
   }
   @media (min-width: 900px) {
     display: unset;
+    width: 400px;
+    height: 400px;
     min-width: 400px;
     min-height: 400px;
   }
@@ -103,19 +109,6 @@ export const StyledTitle = styled.span`
 
   @media (min-width: 600px) {
     text-align: left;
-    :before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      left: 0;
-      bottom: 0;
-      background: linear-gradient(
-        to right,
-        ${colors.Gray40},
-        ${colors.Gray120}
-      );
-    }
   }
   @media (min-width: 900px) {
     font-size: 42px;
@@ -129,4 +122,9 @@ export const StyledAuthor = styled(Paragraph)`
   @media (min-width: 600px) {
     font-size: 24px;
   }
+`;
+
+export const StyledViews = styled(Paragraph)`
+  font-size: 10px;
+  color: ${colors.White};
 `;

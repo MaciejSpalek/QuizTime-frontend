@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import QuizThumbnail from '../../molecules/QuizThumbnail';
+import Paragraph from 'Components/atoms/Paragraph';
 import { setAddQuizButtonStatus } from 'redux/Actions/statusActions';
 import { IQuizzesList, IScore } from './QuizzesList.model';
 import { IQuizTemplate } from 'Interfaces/quizInterfaces';
@@ -18,7 +19,6 @@ import {
     StyledPhoto,
     StyledList
 } from './QuizzesList.styled';
-import Paragraph from 'Components/atoms/Paragraph';
 
 const QuizzesList = ({ quizzes, matchUsername }: IQuizzesList) => {
     const listRef = useRef<HTMLUListElement>(null);
@@ -26,14 +26,12 @@ const QuizzesList = ({ quizzes, matchUsername }: IQuizzesList) => {
     const dispatch = useDispatch();
 
     const loggedUser = useSelector<RootState, string | null>(state => state.session.loggedUser);
-    const [scores, setScores] = useState<string[]>([])
+    const [scores, setScores] = useState<string[]>([]);
     const [token] = useState(showCookie('token'));
 
     const handleOnClick = (id: string, author: string) => history.push(`${author}/${id}`);
     const handleButton = () => dispatch(setAddQuizButtonStatus(true));
     const isUserRoute = () => matchUsername === loggedUser;
-
-
 
     const manageScores = useCallback((quizzes: IQuizTemplate[]) => {
         if (loggedUser) {

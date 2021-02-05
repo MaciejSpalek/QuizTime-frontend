@@ -13,7 +13,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { routes } from './routes/index';
 
 const App = () => {
-
   return (
     <GlobalTemplate>
       <Router>

@@ -3,12 +3,13 @@ import ErrorMessage from 'Components/atoms/ErrorMessage';
 import Input from 'Components/atoms/Input/Input';
 import Label from 'Components/atoms/Label';
 import { setFormColor, setFormIconName } from 'redux/Actions/quizActions';
-import { OptionType } from '../../../molecules/SelectInput/SelectInput.model';
+import { OptionType } from 'Components/molecules/SelectInput/SelectInput.model';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { QuizIcons, QuizThemes } from 'helpers/constants';
 import { IFormColor } from 'Interfaces/quizInterfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { IThumbnailStep } from './ThumbnailStep.model';
+import { capitalizeFirstLetter } from 'helpers/string';
 import { RootState } from 'redux/store';
 import {
   StyledContainter,
@@ -18,7 +19,6 @@ import {
   StyledColorSelect,
   StyledFormField
 } from './ThumbnailStep.styled';
-import { capitalizeFirstLetter } from 'helpers/string';
 
 
 const ThumbnailStep = ({

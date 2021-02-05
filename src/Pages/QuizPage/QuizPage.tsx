@@ -5,17 +5,17 @@ import ErrorPage from 'Pages/ErrorPage';
 
 import { setCorrectAnswersArray, setUserAnswersArray } from 'redux/Actions/quizActions';
 import { StartStep, QuestionStep, LastStep } from 'Components/organisms/QuizSteps'
+import { addScore, fetchSingleQuiz, updateQuizCounter } from 'services/requests';
+import { StyledPreloaderScreen } from 'Pages/ProfilePage/ProfilePage.styled';
 import { setToastParameters } from 'redux/Actions/toastActions';
 import { IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { StyledMultiStepForm } from './QuizPage.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { IValues, TQuizPage } from './QuizPage.model';
 import { quizPageValidation } from './validation';
+import { showCookie } from 'helpers/cookies';
 import { RootState } from 'redux/store';
 import { Formik } from 'formik';
-import { addScore, fetchSingleQuiz, updateQuizCounter } from 'services/requests';
-import { StyledPreloaderScreen } from 'Pages/ProfilePage/ProfilePage.styled';
-import { showCookie } from 'helpers/cookies';
 
 const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const loggedUser = useSelector<RootState, string | null>(state => state.session.loggedUser);
@@ -27,7 +27,6 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const [token] = useState(showCookie('token'));
 
     const dispatch = useDispatch();
-
     const getId = useCallback(() => match.params.id, [match.params.id]);
     const getName = useCallback(() => match.params.username, [match.params.username]);
 
@@ -35,8 +34,6 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
         setIsTheQuizSolved(false);
         setScore('');
     };
-
-
 
     const manageQuiz = useCallback(async (id: string, author: string) => {
         fetchSingleQuiz(id, author).then(res => {
@@ -87,8 +84,6 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
         }
     };
 
-
-
     const getFormChildren = (
         handleChange: (e: ChangeEvent<HTMLElement>) => void,
         handleBlur: (e: ChangeEvent<HTMLElement>) => void,
@@ -117,7 +112,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
 
     useEffect(() => {
         manageQuiz(getId(), getName());
-    }, [manageQuiz, getId, getName]);
+    }, [manageQuiz, getId, getName, isTheQuizSolved]);
 
     return (
         <PageTemplate>

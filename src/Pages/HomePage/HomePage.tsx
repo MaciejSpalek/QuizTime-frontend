@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { fetchAllQuizzes, fetchUsersNames } from 'services/requests';
 import PreloaderScreen from 'Components/molecules/PreloaderScreen';
 import PageTemplate from 'templates/PageTemplate/PageTemplate';
 import SearchPanel from 'Components/organisms/SearchPanel';
 import QuizesList from 'Components/organisms/QuizzesList';
 import Header from 'Components/molecules/Header';
+import PopularQuizBanner from 'Components/molecules/PopularQuizBanner';
+import { IQuizTemplate } from 'Interfaces/quizInterfaces';
+import {
+  fetchTheMostPopularQuiz,
+  fetchAllQuizzes,
+  fetchUsersNames
+} from 'services/requests';
 
 const HomePage = () => {
+  const [quizzesFetchStatus, setQuizzesFetch] = useState(false);
+  const [quiz, setQuiz] = useState<IQuizTemplate | null>(null);
+  const [usersFetchStatus, setUsersFetch] = useState(false);
   const [quizzes, setQuizes] = useState([]);
   const [users, setUsers] = useState([]);
-  const [quizzesFetchStatus, setQuizzesFetch] = useState(false);
-  const [usersFetchStatus, setUsersFetch] = useState(false);
 
   const setQuizzes = async () => {
     fetchAllQuizzes()
@@ -28,9 +35,17 @@ const HomePage = () => {
       })
   };
 
+  const manageQuiz = async () => {
+    fetchTheMostPopularQuiz()
+      .then(({ data }) => {
+        setQuiz(data[0]);
+      })
+  };
+
   useEffect(() => {
-    setQuizzes();
     setUsersNames();
+    setQuizzes();
+    manageQuiz();
   }, []);
 
   return (
@@ -41,8 +56,14 @@ const HomePage = () => {
       />
       <Header />
       {quizzesFetchStatus && usersFetchStatus ?
-        <QuizesList quizzes={quizzes} /> :
-        <PreloaderScreen />}
+        (
+          <>
+            {quiz && <PopularQuizBanner quiz={quiz} />}
+            <QuizesList quizzes={quizzes} />
+          </>
+        ) : (
+          <PreloaderScreen />
+        )}
     </PageTemplate>
   );
 };
