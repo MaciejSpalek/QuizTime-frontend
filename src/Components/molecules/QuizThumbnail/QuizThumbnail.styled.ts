@@ -6,17 +6,17 @@ import { AbbreviateText, FlexCenter } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { increaseOpacity, increaseScale } from "styles/Animations";
 
-export const StyledContainer = styled.div<{ primarycolor: string, isHover: boolean | undefined }>`
+export const StyledContainer = styled.div<{ primary: string, isHover: boolean | undefined }>`
   ${FlexCenter};
   min-width: 200px;
   position: relative;
-  background-color: ${({ primarycolor }) => primarycolor};
+  background-color: ${({ primary }) => primary};
   border-radius: 4px;
   transition: .2s ease-in-out;
   animation: ${({ isHover }) => isHover ? increaseScale : ''} .3s ease-in-out;
 `;
 
-export const StyledImageWrapper = styled.picture<{ secondarycolor: string }>`
+export const StyledImageWrapper = styled.picture<{ secondary: string }>`
   ${FlexCenter};
   flex-direction: column;
   flex: 1;
@@ -25,7 +25,7 @@ export const StyledImageWrapper = styled.picture<{ secondarycolor: string }>`
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   transition: .5s ease-in;
-  background-color: ${({ secondarycolor }) => secondarycolor};
+  background-color: ${({ secondary }) => secondary};
 `;
 
 export const StyledTextWrapper = styled.div`
@@ -59,9 +59,9 @@ export const StyledScore = styled(Paragraph)<{ color: string }>`
   margin: 0;
 `;
 
-export const StyledIcon = styled(FontAwesomeIcon)<{ primarycolor: string }>`
+export const StyledIcon = styled(FontAwesomeIcon)<{ primary: string }>`
   font-size: 56px;
-  color: ${({ primarycolor }) => primarycolor};
+  color: ${({ primary }) => primary};
   margin-bottom: 5px;
 `;
 

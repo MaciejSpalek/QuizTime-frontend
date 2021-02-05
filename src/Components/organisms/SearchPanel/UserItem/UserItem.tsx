@@ -1,10 +1,9 @@
 import React from 'react';
+import { StyledLink, StyledTitle } from '../QuizItem/QuizItem.styled';
 import { IUserItem } from './UserItem.model';
 import {
-    StyledLink,
-    StyledIcon,
-    StyledText,
-    StyledIconWrapper
+    StyledIconWrapper,
+    StyledIcon
 } from './UserItem.styled';
 
 const UserItem = ({ name, ...props }: IUserItem) => {
@@ -13,7 +12,7 @@ const UserItem = ({ name, ...props }: IUserItem) => {
             <StyledIconWrapper>
                 <StyledIcon icon={'user-alt'} />
             </StyledIconWrapper>
-            <StyledText> {name} </StyledText>
+            <StyledTitle> {name} </StyledTitle>
         </StyledLink>
     );
 };

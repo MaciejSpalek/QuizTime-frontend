@@ -11,6 +11,7 @@ export const StyledAnswer = styled.div<{ isSelect: boolean, outlineColor: string
   width: 100%;
   min-height: 65px;
   padding: 0 18px;
+  border-radius: 5px;
   border: ${({ isSelect }) => isSelect ? '3px' : '2px'} solid ${({ isSelect }) => isSelect ? colors.BasicGreen : colors.Gray60};
   border: ${({ outlineColor }) => outlineColor && `3px solid ${outlineColor}`};
   cursor: inherit;

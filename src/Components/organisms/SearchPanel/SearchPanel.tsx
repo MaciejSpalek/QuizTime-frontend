@@ -1,13 +1,13 @@
 import React, { useRef, useState } from 'react';
-import ToggleButton from '../../atoms/ToggleButton';
+import ToggleButton from 'Components/atoms/ToggleButton';
 import Input from 'Components/atoms/Input';
 import Label from 'Components/atoms/Label';
-import SearchList from '../../molecules/SearchList';
+import SearchList from 'Components/molecules/SearchList';
 import { StyledContainer, StyledInputWrapper } from './SearchPanel.styled';
-import { clearInput, isInputTextMatch } from 'helpers/inputs';
+import { clearInput, isInputTextMatch } from 'helpers/input';
 import { ISearchPanel, IUsers } from './SearchPanel.model';
 import { IQuizTemplate } from 'Interfaces/quizInterfaces';
-import { getQuizzes, getUsers } from 'helpers/getters';
+import { getQuizzes, getUsers } from './helpers';
 import { useOutsideClick } from 'hooks';
 
 const SearchPanel = ({ quizzes, users }: ISearchPanel) => {

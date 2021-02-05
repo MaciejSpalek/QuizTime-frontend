@@ -2,21 +2,6 @@ import styled from "styled-components";
 import colors from "styles/colors";
 import { FlexCenter } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
-
-export const StyledLink = styled(Link)`
-  ${FlexCenter};
-  justify-content: flex-start;
-  background-color: ${colors.White};
-  padding: 5px;
-  transition: 0.3s ease-in-out;
-  :link {
-    text-decoration: none;
-  }
-  :hover {
-    background-color: ${colors.Gray100};
-  }
-`;
 
 export const StyledIconWrapper = styled.div`
   ${FlexCenter};
@@ -29,10 +14,5 @@ export const StyledIconWrapper = styled.div`
 
 export const StyledIcon = styled(FontAwesomeIcon)`
   font-size: 24px;
-  color: ${colors.Gray20};
-`;
-
-export const StyledText = styled.span`
-  font-size: 20px;
   color: ${colors.Gray20};
 `;

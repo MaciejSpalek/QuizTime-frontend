@@ -22,18 +22,23 @@ export const addScore = async (
   quizID: string,
   executor: string,
   token: string
-) => await axiosInstance.post("/quiz/addScore", { score, quizID, executor }, {
-  headers: { "auth-token": token },
-});
+) =>
+  await axiosInstance.post(
+    "/quiz/addScore",
+    { score, quizID, executor },
+    {
+      headers: { "auth-token": token },
+    }
+  );
 
 export const updateQuizCounter = async (id: string) =>
   await axiosInstance.put("/quiz/updateCounter", { id });
 
-
-
+export const fetchTheMostPopularQuiz = async () => {
+  return await axiosInstance.get("/quiz/mostPopular");
+};
 
 // User
-
 export const fetchSingleUser = async (route: string) => {
   return await axiosInstance.get("/user/singleUser", {
     params: { name: route },
@@ -47,8 +52,15 @@ export const fetchUsersNames = async () => {
 export const fetchUserScores = (executor: string, token: string) => {
   return axiosInstance.get("/user/allScores", {
     params: { executor },
-    headers:  { "auth-token": token }
-  }) 
+    headers: { "auth-token": token },
+  });
+};
+
+export const fetchUserScore = (executor: string, quizID: string, token: string) => {
+  return axiosInstance.get("/user/singleScore", {
+    params: { executor, quizID },
+    headers: { "auth-token": token },
+  });
 };
 
 export const fetchUserQuizzes = async (route: string) => {

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import QuizPagination from 'Components/molecules/QuizPagination';
+import React, { useEffect, useState } from 'react';
+import QuizPagination from 'Components/organisms/MultiStepForm/QuizPagination';
 import FormTemplate from 'templates/FormTemplate';
 import { StyledContainer } from './MultiStepForm.styled';
 import { IMultiStepForm } from './MultiStepForm.model';
@@ -7,9 +7,16 @@ import { IMultiStepForm } from './MultiStepForm.model';
 const MultiStepform = ({ 
     onSubmit,
     children, 
+    callback,
     ...props 
 }: IMultiStepForm): JSX.Element => {
     const [step, setStep] = useState(0);
+
+    useEffect(() => {
+        step > children.length -1 && setStep(children.length-1);
+        callback && callback(step+1);
+    }, [children.length, step, callback]);
+
     return (
         <StyledContainer {...props}>
             <FormTemplate onSubmit={onSubmit}>

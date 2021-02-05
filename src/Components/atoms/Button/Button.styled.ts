@@ -10,7 +10,6 @@ const ButtonStyle = css`
   font-size: 24px;
   font-weight: bold;
   font-size: 22px;
-  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   overflow: hidden;
   padding: 0 5px;

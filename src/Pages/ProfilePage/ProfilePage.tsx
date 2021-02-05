@@ -186,12 +186,6 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
     setUserQuizzes();
   }, [addQuizButtonStatus, setUserQuizzes]);
 
-  const clampStep = useCallback(() => (step === 3 && width >= 850) && setStep(2), [step, width]);
-
-  useEffect(() => {
-    clampStep();
-  }, [step, width, clampStep]);
-
   return (
     <PageTemplate>
       {isFetched ?
@@ -227,7 +221,8 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
                   errors
                 }) => (
                   <MultiStepForm
-                    onSubmit={handleSubmit}>
+                    onSubmit={handleSubmit}
+                    callback={(step)=> setStep(step)}>
                     {getChildren(
                       handleChange,
                       handleBlur,

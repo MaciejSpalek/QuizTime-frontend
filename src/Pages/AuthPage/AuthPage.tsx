@@ -63,7 +63,7 @@ const AuthPage = ({ history }: RouteComponentProps) => {
             resetForm();
             setSubmitting(false);
             setIsFirstRender(true);
-        }, 3000)
+        }, 2000)
     }
 
     useEffect(() => {
@@ -71,7 +71,7 @@ const AuthPage = ({ history }: RouteComponentProps) => {
         if (isAuthenticated) {
             timeout = setTimeout(() => {
                 history.push(`/${user}`);
-            }, 2000);
+            }, 500);
         }
 
         return () => clearTimeout(timeout);
