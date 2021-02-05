@@ -2,7 +2,6 @@ import styled from "styled-components";
 import colors from "styles/colors";
 import { FlexCenter } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
 
 export const StyledIconWrapper = styled.div`
   ${FlexCenter};

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IconName } from '@fortawesome/fontawesome-svg-core'
 import { IQuizThumbnail } from './QuizThumbnail.model';
 import {
@@ -13,30 +13,39 @@ import {
     StyledIcon
 } from './QuizThumbnail.styled';
 
-
 const QuizThumbnail = ({ isHover, score, parameters, ...props }: IQuizThumbnail) => {
     const [isContainerHover, setContainerHover] = useState(false);
     const {
         author,
         title,
         iconName,
-        colors: { primary, secondary }
+        colors: {
+            primary,
+            secondary
+        }
     } = parameters;
 
+    const manageHover = (value: boolean) => {
+        if (!isHover) {
+            setContainerHover(false);
+        } else {
+            setContainerHover(value);
+        }
+    }
 
     return (
         <StyledContainer
-            primarycolor={primary}
+            primary={primary}
             isHover={!!isHover}
-            onMouseEnter={()=> setContainerHover(true)}
-            onMouseLeave={()=> setContainerHover(false)}
-            onTouchStart={()=> setContainerHover(true)}
-            onTouchEnd={()=> setContainerHover(false)}
+            onMouseEnter={() => manageHover(true)}
+            onMouseLeave={() => manageHover(false)}
+            onTouchStart={() => manageHover(true)}
+            onTouchEnd={() => manageHover(false)}
             {...props}>
-            <StyledImageWrapper secondarycolor={secondary}>
+            <StyledImageWrapper secondary={secondary}>
                 <StyledIcon
                     icon={iconName as IconName}
-                    primarycolor={primary}
+                    primary={primary}
                 />
                 {score ?
                     <StyledScore text={`${score}`} color={primary} /> :

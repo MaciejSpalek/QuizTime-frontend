@@ -7,7 +7,6 @@ import {
     StyledPageTemplate,
     StyledIconWrapper,
     StyledTextWrapper,
-    StyledViews,
     StyledCounter,
     StyledWrapper,
     StyledButton,

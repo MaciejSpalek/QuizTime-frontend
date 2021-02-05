@@ -16,7 +16,7 @@ const CookieBanner = () => {
 
     useEffect(() => {
         !cookiesAgreement && localStorage.setItem('cookiesAgreement', JSON.parse("false"));
-    }, []);
+    }, [cookiesAgreement]);
     
     if(cookiesAgreement) return <></>;
 

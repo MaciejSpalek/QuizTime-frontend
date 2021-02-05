@@ -46,7 +46,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
             dispatch(setToastParameters(true, errorMessage, 'exclamation-circle'));
             setIsFetch(true);
         })
-    }, [dispatch, isTheQuizSolved]);
+    }, [dispatch]);
 
     const getScore = (data: IValues, amountOfQuestions: number) => {
         const correctAnswersArray: any = quiz?.questions?.map(question => question.answers.find(answer => answer.isCorrect)).map(answer => answer?.option);
@@ -112,7 +112,7 @@ const QuizPage = ({ match }: TQuizPage): JSX.Element => {
 
     useEffect(() => {
         manageQuiz(getId(), getName());
-    }, [manageQuiz, getId, getName]);
+    }, [manageQuiz, getId, getName, isTheQuizSolved]);
 
     return (
         <PageTemplate>

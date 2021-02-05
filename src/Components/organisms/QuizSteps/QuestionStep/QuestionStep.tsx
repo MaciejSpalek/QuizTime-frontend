@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Answer from './Answer';
 import { IQuestionStep } from './QuestionStep.model';
 import {
