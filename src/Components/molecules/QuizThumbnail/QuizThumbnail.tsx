@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { IconName } from '@fortawesome/fontawesome-svg-core'
 import { IQuizThumbnail } from './QuizThumbnail.model';
 import {
