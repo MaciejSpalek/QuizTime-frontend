@@ -17,6 +17,7 @@ const Button = ({
                 onClick={handleOnClick}
                 type={type}
                 disabled={true}
+                data-testid='Spinner-button'
                 {...props}>
                 <StyledWrapper>
                     <StyledSpinner />
@@ -31,6 +32,7 @@ const Button = ({
             onClick={handleOnClick}
             type={type}
             disabled={isDisabled}
+            data-testid='Button'
             {...props}>
             <span> {children} </span>
         </StyledButton>
