@@ -4,7 +4,7 @@ import { StyledLogo, StyledText, StyledWrapper } from './Logo.styled';
 
 const Logo = () => {
     return (
-        <StyledWrapper to={routes.home}>
+        <StyledWrapper data-testid="Logo" to={routes.home}>
             <StyledLogo />
             <StyledText> QuizTime </StyledText>
         </StyledWrapper>
