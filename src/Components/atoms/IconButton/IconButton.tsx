@@ -4,8 +4,8 @@ import { IIconButton } from './IconButton.model';
 
 const IconButton = ({ icon, type, handleOnClick, ...props }: IIconButton): JSX.Element => {
     return (
-        <StyledIconButton type={type} onClick={handleOnClick} {...props}>
-            <StyledIcon icon={icon}/>
+        <StyledIconButton data-testid="IconButton" type={type} onClick={handleOnClick} {...props}>
+            {icon && <StyledIcon icon={['fas', 'male']}/>}
         </StyledIconButton>
     )
 }
