@@ -4,7 +4,7 @@ import { StyledParagraph } from './Paragraph.styled';
 
 const Paragraph = ({text, ...props}: IParagraph)=> {
     return (
-        <StyledParagraph {...props}>
+        <StyledParagraph data-testid="Paragraph" {...props}>
             {text} 
         </StyledParagraph>
     );

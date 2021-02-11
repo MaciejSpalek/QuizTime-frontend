@@ -10,7 +10,7 @@ const Hamburger = ()=> {
     const toggle = ()=> dispatch(setHamburgerStatus(!hamburgerStatus));
 
     return (
-        <StyledButton aria-expanded="false" onClick={toggle}>
+        <StyledButton data-testid="Hamburger" aria-expanded="false" onClick={toggle}>
             <StyledOuterBox>
                 <StyledInnerBox isActive={hamburgerStatus}/>
             </StyledOuterBox>

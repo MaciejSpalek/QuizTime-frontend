@@ -19,7 +19,7 @@ const RadioButton = ({
 }: IRadioButton): JSX.Element=> {
     
     return (
-        <StyledWrapper {...props}>
+        <StyledWrapper data-testid="RadioButton" {...props}>
             <StyledRadioButton 
                 id={id} 
                 name={name} 

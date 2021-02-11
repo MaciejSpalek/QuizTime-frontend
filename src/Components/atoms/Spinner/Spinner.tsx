@@ -6,6 +6,7 @@ const Spinner = ({ ...props }) => {
         <StyledLoader 
             animation="border" 
             role="status" 
+            data-testid="Spinner"
             {...props}
         />
     );

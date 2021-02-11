@@ -10,9 +10,7 @@ import {
 } from './Toast.styled';
 
 const Toast = ({ ...props }): JSX.Element => {
-  const isActive = useSelector<RootState>(state => state.toast.isActive);
-  const icon = useSelector<RootState, string>(state => state.toast.icon);
-  const description = useSelector<RootState, string>(state => state.toast.description);
+  const { description, isActive, icon } = useSelector((state: RootState) => state.toast);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,10 +21,10 @@ const Toast = ({ ...props }): JSX.Element => {
     }
   }, [isActive, dispatch]);
 
-  if (!isActive) return <></>;
+  if (!isActive) return <div data-testid="Toast"></div>
   
   return (
-    <StyledToast {...props}>
+    <StyledToast data-testid='Toast' {...props}>
       <StyledIcon icon={icon as IconName} />
       <StyledText>
         {description}

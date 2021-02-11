@@ -34,6 +34,7 @@ const Input = ({
       aria-invalid={ariaInvalid}
       defaultValue={defaultValue}
       aria-describedby={ariaDescribedBy}
+      data-testid="Input"
       {...props}
     />
 );
