@@ -3,7 +3,7 @@ import { ILabel } from './Label.model';
 import { StyledLabel } from './Label.styled';
 
 const Label = ({ text, forText, ...props }: ILabel) => (
-  <StyledLabel htmlFor={forText} {...props}>
+  <StyledLabel data-testid="Label" htmlFor={forText} {...props}>
     {text}
   </StyledLabel>
 );

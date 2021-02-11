@@ -9,7 +9,7 @@ import {
     StyledIconWrapper
 } from './ToggleButton.styled';
 
-const RadioBar = ({ isSelect, onClick, ...props }: IToggleButton): JSX.Element => {
+const ToggleButton = ({ isSelect, onClick, ...props }: IToggleButton): JSX.Element => {
     const getColors = (isSelect: boolean): IFormColor => {
         if(isSelect) {
             return {
@@ -25,7 +25,7 @@ const RadioBar = ({ isSelect, onClick, ...props }: IToggleButton): JSX.Element =
     };
 
     return (
-        <StyledContainer onClick={onClick} { ...props }>
+        <StyledContainer data-testid="ToggleButton" onClick={onClick} { ...props }>
             <StyledIconWrapper primary={getColors(!isSelect).primary}>
                 <StyledUsersIcon secondary={getColors(!isSelect).secondary}/>
             </StyledIconWrapper>
@@ -36,4 +36,4 @@ const RadioBar = ({ isSelect, onClick, ...props }: IToggleButton): JSX.Element =
     );
 };
 
-export default RadioBar;
+export default ToggleButton;

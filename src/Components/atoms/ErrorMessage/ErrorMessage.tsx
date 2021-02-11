@@ -5,7 +5,7 @@ import { IErrorMessage } from './ErrorMessage.model'
 
 const ErrorMessage = ({ text, id, ...props }: IErrorMessage)=> {
     return (
-        <StyledErrorMessage id={id} {...props}>
+        <StyledErrorMessage data-testid="ErrorMessage" id={id} {...props}>
             {text} 
         </StyledErrorMessage>
     )
