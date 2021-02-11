@@ -1,6 +1,6 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import Logo from './Logo';
+import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
 describe('Logo component', () => {
