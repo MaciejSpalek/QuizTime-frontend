@@ -3,7 +3,7 @@ import { StyledContainer } from './WrapperTemplate.styled';
 import { IChildren } from 'Interfaces/children';
 
 const WrapperTemplate = ({ children }: IChildren) => (
-  <StyledContainer>
+  <StyledContainer data-testid="WrapperTemplate">
     {children}
   </StyledContainer>
 );

@@ -3,7 +3,7 @@ import { IChildren } from 'Interfaces/children';
 import { StyledContainer } from './PlaceholderTemplate.styled';
 
 const PlaceholderTemplate = ({ children, ...props }: IChildren) => (
-  <StyledContainer {...props}>
+  <StyledContainer data-testid="PlaceholderTemplate" {...props}>
     {children} 
   </StyledContainer>
 );

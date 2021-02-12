@@ -3,7 +3,7 @@ import { IChildren } from 'Interfaces/children';
 import { StyledContainer } from './MainTemplate.styled';
 
 const MainTemplate = ({ children }: IChildren) => (
-  <StyledContainer>
+  <StyledContainer data-testid="MainTemplate">
     {children} 
   </StyledContainer>
 );
