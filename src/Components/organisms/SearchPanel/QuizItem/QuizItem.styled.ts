@@ -16,6 +16,9 @@ export const StyledLink = styled(Link)`
   :hover {
     background-color: ${colors.Gray100};
   }
+  :focus {
+    background-color: ${colors.Gray100};
+  }
 `;
 
 export const StyledIconWrapper = styled.div<{ color: string }>`

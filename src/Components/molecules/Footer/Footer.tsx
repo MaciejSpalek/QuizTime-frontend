@@ -9,7 +9,7 @@ import {
 
 const Footer = () => {
     return (
-        <StyledFooter>
+        <StyledFooter data-testid="Footer">
             <StyledWrapper>
                 <StyledParagraph text='&copy; 2021 - Maciej Spałek' />
             </StyledWrapper>

@@ -38,8 +38,6 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
   const dispatch = useDispatch();
   const width = useWindowSize();
 
-
-
   const isLoggedUserRoute = () => loggedUser === match.params.username;
   const handleCancel = () => setIsModalActive(false);
 
@@ -222,7 +220,7 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
                 }) => (
                   <MultiStepForm
                     onSubmit={handleSubmit}
-                    callback={(step)=> setStep(step)}>
+                    callback={(step)=> setStep(step)}>          
                     {getChildren(
                       handleChange,
                       handleBlur,

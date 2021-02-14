@@ -4,7 +4,7 @@ import Placeholder from 'templates/PlaceholderTemplate';
 
 const PreloaderScreen = ({ ...props }) => {
   return (
-    <Placeholder {...props}>
+    <Placeholder data-testid="PreloaderScreen" {...props}>
         <Spinner />
     </Placeholder>
   );
