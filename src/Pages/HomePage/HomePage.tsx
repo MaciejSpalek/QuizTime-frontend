@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PreloaderScreen from 'Components/molecules/PreloaderScreen';
-import PageTemplate from 'templates/PageTemplate/PageTemplate';
+import PageTemplate from 'templates/UniversalTemplate';
 import SearchPanel from 'Components/organisms/SearchPanel';
 import QuizesList from 'Components/organisms/QuizzesList';
 import Header from 'Components/molecules/Header';

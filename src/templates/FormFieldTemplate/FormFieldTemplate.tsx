@@ -3,7 +3,7 @@ import { IChildren } from 'Interfaces/children';
 import { StyledFormField } from './FormFieldTemplate.styled';
 
 const FieldFormTemplate = ({ children, ...props }: IChildren) => (
-    <StyledFormField {...props}>
+    <StyledFormField data-testid="FormFieldTemplate" {...props}>
       {children}
     </StyledFormField>
 );

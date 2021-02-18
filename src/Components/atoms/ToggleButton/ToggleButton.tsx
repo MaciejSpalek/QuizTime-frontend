@@ -25,7 +25,7 @@ const ToggleButton = ({ isSelect, onClick, ...props }: IToggleButton): JSX.Eleme
     };
 
     return (
-        <StyledContainer data-testid="ToggleButton" onClick={onClick} { ...props }>
+        <StyledContainer type="button" aria-label={isSelect ? "quizzes finding mode" : "users finding mode"} data-testid="ToggleButton" onClick={onClick} { ...props }>
             <StyledIconWrapper primary={getColors(!isSelect).primary}>
                 <StyledUsersIcon secondary={getColors(!isSelect).secondary}/>
             </StyledIconWrapper>

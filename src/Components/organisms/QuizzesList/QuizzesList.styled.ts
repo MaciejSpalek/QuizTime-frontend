@@ -2,8 +2,8 @@ import { NoQuizzesIcon } from "assets";
 import Button from "Components/atoms/Button";
 import styled from "styled-components";
 import colors from "styles/colors";
+import Placeholder from "templates/UniversalTemplate";
 import { FlexCenter, scrollBar } from "styles/Mixins";
-import PlaceholderTemplate from "templates/PlaceholderTemplate";
 
 export const StyledContainer = styled.div`
   ${FlexCenter};
@@ -14,7 +14,7 @@ export const StyledContainer = styled.div`
   background-color: ${colors.Gray120};
 `;
 
-export const StyledPlaceholder = styled(PlaceholderTemplate)`
+export const StyledPlaceholder = styled(Placeholder)`
   justify-content: flex-start;
   overflow-x: hidden;
   overflow-y: auto;

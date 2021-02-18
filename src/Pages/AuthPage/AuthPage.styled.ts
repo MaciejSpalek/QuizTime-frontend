@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Button from "Components/atoms/Button";
 import Link from "Components/atoms/Link/index";
-import PageTemplate from "templates/PageTemplate/PageTemplate";
+import PageTemplate from "templates/UniversalTemplate";
 import AuthForm from "templates/FormTemplate";
 import Label from "Components/atoms/Label/index";
 import { BoxShadow, FlexCenter, scrollBar } from "styles/Mixins";

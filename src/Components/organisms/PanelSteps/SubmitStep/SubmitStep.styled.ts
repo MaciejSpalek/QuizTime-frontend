@@ -1,4 +1,4 @@
-import Placeholder from 'templates/PlaceholderTemplate';
+import Placeholder from 'templates/UniversalTemplate'; 
 import styled from "styled-components";
 import colors from "styles/colors";
 import { NoQuestionsIcon } from "assets";

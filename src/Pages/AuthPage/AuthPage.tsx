@@ -67,15 +67,11 @@ const AuthPage = ({ history }: RouteComponentProps) => {
     }
 
     useEffect(() => {
-        let timeout: number;
         if (isAuthenticated) {
-            timeout = setTimeout(() => {
+            setTimeout(() => {
                 history.push(`/${user}`);
             }, 500);
         }
-
-        return () => clearTimeout(timeout);
-
     }, [isAuthenticated, history, user]);
 
     return (
@@ -168,6 +164,7 @@ const AuthPage = ({ history }: RouteComponentProps) => {
                         <StyledLink
                             text={isLoginRoute() ? "Create an acconut" : "Do you have an account ?"}
                             to={isLoginRoute() ? routes.register : routes.login}
+                            aria-label={isLoginRoute() ? "Go to register form" : "Go to login form"}
                         />
                     </StyledAuthForm>
                 )}

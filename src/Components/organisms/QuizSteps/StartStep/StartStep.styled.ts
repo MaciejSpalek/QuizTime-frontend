@@ -1,7 +1,7 @@
 import colors from "styles/colors";
 import styled from "styled-components";
 import Button from "Components/atoms/Button";
-import PageTemplate from "templates/PageTemplate";
+import PageTemplate from "templates/UniversalTemplate";
 import Paragraph from "Components/atoms/Paragraph";
 import { AbbreviateText, FlexCenter } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
