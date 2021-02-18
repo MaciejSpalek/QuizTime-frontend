@@ -1,6 +1,6 @@
 # QuizTime - register and create your first quiz!
 
-## About application
+## Description
 
 QuizTime is an application developed in React + TypeScript, used to creating and taking quizzes.
 You can take quiz, but if you want to create your own quiz, it's necessary to register. It's first version of this application and it's still in improvement process.
@@ -15,9 +15,7 @@ You can take quiz, but if you want to create your own quiz, it's necessary to re
 
 &nbsp;
 
-## FRONTEND
-
-### Tech/framework used
+## Tech/framework used
 
 | Tech              | Description                                                                 |
 | ----------------- | --------------------------------------------------------------------------- |
@@ -33,7 +31,7 @@ You can take quiz, but if you want to create your own quiz, it's necessary to re
 
 &nbsp;
 
-### App installation
+## Installation
 
 ```
 git clone https://github.com/MaciejSpalek/QuizTime-frontend.git
@@ -44,39 +42,21 @@ npm start
 ```
 
 &nbsp;
+## Backend repository
 
-## BACKEND
-
-### Tech/framework used 
-
-| Tech         | Description                                                                                              |
-| - | - |
-| node.js      | A JavaScript runtime built on Chrome's V8 JavaScript engine.                                             |
-| express.js   | Node.js web application framework                                                                        |
-| jsonwebtoken | Library to manage JWT                                                                                    |
-| bcrypt.js    | A library to help hashing passwords.                                                                     |
-| dotenv       | A zero-dependency module, that loads environment variables from a .env                                   |
-| mongoose     | A MongoDB object modeling tool designed to work in an asynchronous environment.                          |
-| cors         | Package for providing a Connect/Express middleware that can be used to enable CORS with various options. |
-| Joi          | The most powerful schema description language and data validator for JavaScript.                         |
+<https://github.com/MaciejSpalek/QuizTime-backend.git>
 
 &nbsp;
 
-### Server installation 
 
-```
-git clone https://github.com/MaciejSpalek/QuizTime-backend.git
+## Live
 
-npm install
 
-nodemon
-```
+<https://quizz-time.netlify.app/>
+
+&nbsp;
 
 ## Dummy account
 
 * Login: Example
 * Password: example
-
-## Live
-
-<https://quizz-time.netlify.app/>
