@@ -37,7 +37,7 @@ const Menu = () => {
     };
 
     return (
-        <StyledContainer>
+        <StyledContainer aria-label="Menu">
             <StyledList ref={menuRef}>
                 <StyledItem>
                     <StyledNavLink
