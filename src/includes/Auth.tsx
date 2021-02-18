@@ -24,11 +24,11 @@ const Auth = () => {
         manageServerStatus(dispatch);
     }, [dispatch]);
 
-    useEffect(() => {
-        setInterval(() => {
-            setAuthentication();
-        }, 1000);
-    });
+    // useEffect(() => {
+    //     setInterval(() => {
+    //         setAuthentication();
+    //     }, 1000);
+    // });
 
     return (<></>);
 }

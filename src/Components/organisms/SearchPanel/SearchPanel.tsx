@@ -26,7 +26,7 @@ const SearchPanel = ({ quizzes, users }: ISearchPanel) => {
         resetParameters();
     });
 
-    const handleOnToggle = () => {
+    const toggle = () => {
         select(prev => !prev);
         resetParameters();
     };
@@ -49,12 +49,13 @@ const SearchPanel = ({ quizzes, users }: ISearchPanel) => {
 
     return (
         <StyledContainer>
-            <Label forText='search-input' />
+            <Label forText='search-label' />
             <StyledInputWrapper>
                 <Input
                     _ref={inputRef}
-                    id='search-input'
+                    id='search-label'
                     type='text'
+                    ariaLabel="Search input"
                     placeholder={isSelect ? 'Search quiz' : 'Search user'}
                     onChange={(e) => isSelect ? filterQuizzes(quizzes, e) : filterUsers(users, e)}
                 />
@@ -63,7 +64,7 @@ const SearchPanel = ({ quizzes, users }: ISearchPanel) => {
             </StyledInputWrapper>
             <ToggleButton
                 isSelect={isSelect}
-                onClick={handleOnToggle}
+                onClick={toggle}
             />
         </StyledContainer>
     );

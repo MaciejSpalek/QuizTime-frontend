@@ -3,7 +3,7 @@ import colors from 'styles/colors';
 import { FlexCenter, FlexColumn } from 'styles/Mixins';
 
 
-export const StyledContainer = styled.div`
+export const StyledContainer = styled.form`
     ${FlexCenter};
     width: 100%;
     height: 60px;
