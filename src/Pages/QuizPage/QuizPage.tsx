@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import ScoreWindow from 'Components/molecules/ScoreWindow';
-import PageTemplate from 'templates/PageTemplate';
+import PageTemplate from 'templates/UniversalTemplate';
 import ErrorPage from 'Pages/ErrorPage';
 
 import { setCorrectAnswersArray, setUserAnswersArray } from 'redux/Actions/quizActions';

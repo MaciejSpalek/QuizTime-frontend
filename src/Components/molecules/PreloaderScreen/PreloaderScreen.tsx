@@ -1,12 +1,12 @@
 import React from 'react'
 import Spinner from 'Components/atoms/Spinner';
-import Placeholder from 'templates/PlaceholderTemplate'; 
+import Template from 'templates/UniversalTemplate'; 
 
 const PreloaderScreen = ({ ...props }) => {
   return (
-    <Placeholder data-testid="PreloaderScreen" {...props}>
+    <Template isPlaceholder data-testid="PreloaderScreen" {...props}>
         <Spinner />
-    </Placeholder>
+    </Template>
   );
 };
 

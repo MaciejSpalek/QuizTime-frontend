@@ -79,7 +79,7 @@ const QuizzesList = ({ quizzes, matchUsername }: IQuizzesList) => {
                             />
                         </StyledListItem>)}
                 </StyledList> :
-                <StyledPlaceholder>
+                <StyledPlaceholder isPlaceholder>
                     <StyledPhoto />
                     {isUserRoute() &&
                         <>

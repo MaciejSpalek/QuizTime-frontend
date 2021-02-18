@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import ProfileBar from 'Components/molecules/ProfileBar/ProfileBar';
-import QuizList from 'Components/organisms/QuizzesList/QuizzesList';
-import PageTemplate from 'templates/PageTemplate/PageTemplate';
+import ProfileBar from 'Components/molecules/ProfileBar';
+import QuizList from 'Components/organisms/QuizzesList';
+import PageTemplate from 'templates/UniversalTemplate';
 import MultiStepForm from 'Components/organisms/MultiStepForm';
 import ModalWindow from 'Components/molecules/ModalWindow';
 import ErrorPage from 'Pages/ErrorPage';

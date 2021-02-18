@@ -1,9 +1,8 @@
 import React from 'react';
 import GlobalTemplate from './templates/GlobalTemplate/GlobalTemplate';
-import MainTemplate from './templates/MainTemplate/MainTemplate';
+import Template from 'templates/UniversalTemplate';
 import ProfilePage from './Pages/ProfilePage/ProfilePage';
 import Navbar from './Components/organisms/Navbar/Navbar';
-import WrapperTemplate from 'templates/WrapperTemplate';
 import AuthPage from './Pages/AuthPage/AuthPage';
 import Footer from 'Components/molecules/Footer';
 import Home from './Pages/HomePage/HomePage';
@@ -17,8 +16,8 @@ const App = () => {
     <GlobalTemplate>
       <Router>
         <Navbar />
-        <WrapperTemplate>
-            <MainTemplate>
+        <Template isWrapper>
+            <Template isMain>
               <Switch>
                 <Route exact path={routes.home} component={Home} />
                 <Route exact path={routes.register} component={AuthPage} />
@@ -27,9 +26,9 @@ const App = () => {
                 <Route exact path={routes.quiz} component={QuizPage} />
                 <Route component={ErrorPage} />
               </Switch>
-            </MainTemplate>
+            </Template>
           <Footer />
-        </WrapperTemplate>
+        </Template>
       </Router>
     </GlobalTemplate>
   );
