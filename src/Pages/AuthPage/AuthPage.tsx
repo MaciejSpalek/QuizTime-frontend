@@ -67,15 +67,11 @@ const AuthPage = ({ history }: RouteComponentProps) => {
     }
 
     useEffect(() => {
-        let timeout: number;
         if (isAuthenticated) {
-            timeout = setTimeout(() => {
+            setTimeout(() => {
                 history.push(`/${user}`);
             }, 500);
         }
-
-        return () => clearTimeout(timeout);
-
     }, [isAuthenticated, history, user]);
 
     return (
