@@ -3,7 +3,7 @@ import ToggleButton from 'Components/atoms/ToggleButton';
 import Input from 'Components/atoms/Input';
 import Label from 'Components/atoms/Label';
 import SearchList from 'Components/molecules/SearchList';
-import { StyledContainer, StyledInputWrapper } from './SearchPanel.styled';
+import { StyledForm, StyledInputWrapper } from './SearchPanel.styled';
 import { clearInput, isInputTextMatch } from 'helpers/input';
 import { ISearchPanel, IUsers } from './SearchPanel.model';
 import { IQuizTemplate } from 'Interfaces/quizInterfaces';
@@ -26,7 +26,7 @@ const SearchPanel = ({ quizzes, users }: ISearchPanel) => {
         resetParameters();
     });
 
-    const handleOnToggle = () => {
+    const toggle = () => {
         select(prev => !prev);
         resetParameters();
     };
@@ -48,13 +48,14 @@ const SearchPanel = ({ quizzes, users }: ISearchPanel) => {
     };
 
     return (
-        <StyledContainer>
-            <Label forText='search-input' />
+        <StyledForm onSubmit={(e)  => e.preventDefault()}>
+            <Label forText='search-label' />
             <StyledInputWrapper>
                 <Input
                     _ref={inputRef}
-                    id='search-input'
+                    id='search-label'
                     type='text'
+                    ariaLabel="Search input"
                     placeholder={isSelect ? 'Search quiz' : 'Search user'}
                     onChange={(e) => isSelect ? filterQuizzes(quizzes, e) : filterUsers(users, e)}
                 />
@@ -63,9 +64,9 @@ const SearchPanel = ({ quizzes, users }: ISearchPanel) => {
             </StyledInputWrapper>
             <ToggleButton
                 isSelect={isSelect}
-                onClick={handleOnToggle}
+                onClick={toggle}
             />
-        </StyledContainer>
+        </StyledForm>
     );
 };
 

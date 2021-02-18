@@ -20,7 +20,7 @@ const Navbar = () => {
     useEffect(() => {
         handleHamburgerStatus();
     }, [width, handleHamburgerStatus]);
-
+    
     return (
         <StyledNavbar>
             <StyledWrapper>

@@ -8,7 +8,7 @@ import Toast from 'Components/atoms/Toast';
 import CookieBanner from 'Components/molecules/CookieBanner';
 
 const GlobalTemplate = ({ children }: IChildren) => (
-  <StyledContainer>
+  <StyledContainer data-testid="GlobalTemplate">
     <FontAwesomeLibrary />
     <GlobalStyle />
     <Toast />

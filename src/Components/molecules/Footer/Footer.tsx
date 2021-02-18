@@ -9,12 +9,12 @@ import {
 
 const Footer = () => {
     return (
-        <StyledFooter>
+        <StyledFooter data-testid="Footer">
             <StyledWrapper>
                 <StyledParagraph text='&copy; 2021 - Maciej Spałek' />
             </StyledWrapper>
             <StyledWrapper>
-                <StyledAnchor href="https://github.com/MaciejSpalek/QuizTime-frontend" >
+                <StyledAnchor aria-label="Check github profile" href="https://github.com/MaciejSpalek/QuizTime-frontend" >
                     <StyledIcon icon={['fab', 'github-square']}/>
                 </StyledAnchor>
             </StyledWrapper>

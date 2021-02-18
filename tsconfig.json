@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "PageTemplate.test.tsx"  ]
 }

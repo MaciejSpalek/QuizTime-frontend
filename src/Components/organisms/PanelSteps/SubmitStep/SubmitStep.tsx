@@ -52,7 +52,7 @@ const SubmitStep = ({ errors, touched, values, isSubmitting }: ISubmitStep): JSX
                             </li>)}
                     </StyledList>
                 </StyledMainWrapper> :
-                <StyledPlaceholder>
+                <StyledPlaceholder isPlaceholder>
                     <StyledPhoto />
                     <StyledText> No questions </StyledText>
                 </StyledPlaceholder>}

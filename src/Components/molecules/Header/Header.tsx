@@ -9,7 +9,7 @@ import {
 
 const Header = () => {
     return (
-        <StyledHeader>
+        <StyledHeader data-testid="Header">
             <StyledWrapper>
                 <StyledHeading> QuizTime </StyledHeading>
                 <StyledParagraph text="Let's check our quizzes!" />

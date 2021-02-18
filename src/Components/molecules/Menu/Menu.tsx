@@ -37,13 +37,14 @@ const Menu = () => {
     };
 
     return (
-        <StyledContainer>
+        <StyledContainer aria-label="Menu">
             <StyledList ref={menuRef}>
                 <StyledItem>
                     <StyledNavLink
                         text='Home'
                         to={routes.home}
                         isNavLink={true}
+                        aria-label="Home"
                         onClick={handleOnClick}>
                         <StyledIconWrapper>
                             <StyledIcon icon='home' />
@@ -55,6 +56,7 @@ const Menu = () => {
                         <StyledNavLink
                             text='Log in'
                             isNavLink={true}
+                            aria-label="Log in"
                             to={routes.login}
                             onClick={handleOnClick}>
                             <StyledIconWrapper>
@@ -68,6 +70,7 @@ const Menu = () => {
                             text={`${user}`}
                             to={`/${user}`}
                             isNavLink={true}
+                            aria-label="User profile"
                             onClick={handleOnClick}>
                             <StyledIconWrapper>
                                 <StyledIcon icon='user' />
@@ -78,6 +81,7 @@ const Menu = () => {
                     <StyledItem>
                         <StyledNavLink
                             to={routes.home}
+                            aria-label="Log out"
                             onClick={() => {
                                 handleOnClick();
                                 logout();

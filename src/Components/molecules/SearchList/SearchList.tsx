@@ -9,7 +9,7 @@ import {
 
 const SearchList = ({ children, ...props }: ISearchList) => {
     return (
-        <StyledContainer>
+        <StyledContainer data-testid="SearchList">
             <StyledList  { ...props }>
                 {Children.map(children, Child => (
                     <StyledListItem> { Child } </StyledListItem>

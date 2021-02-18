@@ -4,15 +4,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setHamburgerStatus } from 'redux/Actions/statusActions';
 import { StyledButton, StyledInnerBox, StyledOuterBox } from './Hamburger.styled';
 
-const Hamburger = ()=> {
+const Hamburger = () => {
     const hamburgerStatus = useSelector<RootState, boolean>(state => state.status.hamburgerStatus);
     const dispatch = useDispatch();
-    const toggle = ()=> dispatch(setHamburgerStatus(!hamburgerStatus));
+    const toggle = () => dispatch(setHamburgerStatus(!hamburgerStatus));
 
     return (
-        <StyledButton data-testid="Hamburger" aria-expanded="false" onClick={toggle}>
+        <StyledButton
+            aria-expanded={hamburgerStatus}
+            aria-label="Hamburger button"
+            data-testid="Hamburger"
+            onClick={toggle}
+        >
             <StyledOuterBox>
-                <StyledInnerBox isActive={hamburgerStatus}/>
+                <StyledInnerBox isActive={hamburgerStatus} />
             </StyledOuterBox>
         </StyledButton>
     );

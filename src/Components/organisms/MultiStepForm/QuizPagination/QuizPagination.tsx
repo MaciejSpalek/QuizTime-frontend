@@ -34,6 +34,7 @@ const QuizPagination = ({
                     type='button'
                     icon={'angle-left'}
                     handleOnClick={handleLeftButton}
+                    ariaLabel="Left arrow"
                 /> : <StyledEmptySquare />
             }
             <StyledCenterSquare>
@@ -45,6 +46,7 @@ const QuizPagination = ({
                 <StyledIconButton
                     type='button'
                     icon={'angle-right'}
+                    ariaLabel="Right arrow"
                     handleOnClick={handleRightButton}
                 /> : <StyledEmptySquare />
             }

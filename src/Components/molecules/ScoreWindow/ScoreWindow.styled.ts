@@ -1,6 +1,6 @@
 import colors from 'styles/colors';
 import Button from 'Components/atoms/Button';
-import PageTemplate from 'templates/PageTemplate';
+import PageTemplate from 'templates/UniversalTemplate';
 import styled from 'styled-components';
 import { QuestionStep } from 'Components/organisms/QuizSteps';
 import { FlexCenter, FlexColumn, scrollBar } from 'styles/Mixins';

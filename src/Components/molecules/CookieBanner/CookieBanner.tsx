@@ -25,7 +25,7 @@ const CookieBanner = () => {
             <StyledTextWrapper>
                 <StyledParagraph> 
                     This website uses cookies to ensure you get the best experience on our website. 
-                    <StyledLink href="https://automattic.com/cookies/"> Learn more </StyledLink>
+                    <StyledLink aria-label="Learn more about cookie policy" href="https://automattic.com/cookies/"> Cookies policy  </StyledLink>
                 </StyledParagraph>
                 
             </StyledTextWrapper>
