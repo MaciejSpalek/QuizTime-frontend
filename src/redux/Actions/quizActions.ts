@@ -22,13 +22,6 @@ export const setFormQuestions = (array: IFormQuestion[]) => (dispatch: any) => {
   });
 };
 
-export const setFormCounter = (counter: number) => (dispatch: any) => {
-  dispatch({
-    type: QuizTypes.SET_FORM_COUNTER,
-    payload: counter,
-  });
-};
-
 export const setFormColor = (color: IFormColor) => (dispatch: any) => {
   dispatch({
     type: QuizTypes.SET_FORM_COLOR,

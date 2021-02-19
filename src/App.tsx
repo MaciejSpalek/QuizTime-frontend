@@ -1,15 +1,15 @@
 import React from 'react';
-import GlobalTemplate from './templates/GlobalTemplate/GlobalTemplate';
+import GlobalTemplate from 'templates/GlobalTemplate';
 import Template from 'templates/UniversalTemplate';
-import ProfilePage from './Pages/ProfilePage/ProfilePage';
-import Navbar from './Components/organisms/Navbar/Navbar';
-import AuthPage from './Pages/AuthPage/AuthPage';
+import ProfilePage from 'Pages/ProfilePage';
+import Navbar from 'Components/organisms/Navbar';
+import AuthPage from 'Pages/AuthPage/AuthPage';
 import Footer from 'Components/molecules/Footer';
-import Home from './Pages/HomePage/HomePage';
-import ErrorPage from './Pages/ErrorPage';
-import QuizPage from './Pages/QuizPage';
+import Home from 'Pages/HomePage';
+import ErrorPage from 'Pages/ErrorPage';
+import QuizPage from 'Pages/QuizPage';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { routes } from './routes/index';
+import { routes } from 'routes/index';
 
 const App = () => {
   return (

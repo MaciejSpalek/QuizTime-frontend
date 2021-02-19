@@ -12,8 +12,8 @@ const UniversalTemplate = ({
     isWrapper,
     isMain,
     children,
-    ...props }: IUniversalTemplate) => {
-
+    ...props
+}: IUniversalTemplate) => {
     if (isPlaceholder) {
         return (
             <StyledPlaceholderTemplate data-testid="PlaceholderTemplate" {...props}>

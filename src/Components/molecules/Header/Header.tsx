@@ -1,10 +1,11 @@
 import React from 'react';
-import { 
+import {
     StyledHeaderIcon,
     StyledParagraph,
     StyledHeading,
     StyledWrapper,
-    StyledHeader
+    StyledHeader,
+    StyledStrong,
 } from './Header.styled';
 
 const Header = () => {
@@ -12,7 +13,9 @@ const Header = () => {
         <StyledHeader data-testid="Header">
             <StyledWrapper>
                 <StyledHeading> QuizTime </StyledHeading>
-                <StyledParagraph text="Let's check our quizzes!" />
+                <StyledParagraph>
+                    Check our <StyledStrong> quizzes </StyledStrong> below!
+                </StyledParagraph>
             </StyledWrapper>
             <StyledHeaderIcon />
         </StyledHeader>

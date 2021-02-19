@@ -47,6 +47,8 @@ const HomePage = () => {
     setQuizzes();
     manageQuiz();
   }, []);
+  
+
 
   return (
     <PageTemplate>

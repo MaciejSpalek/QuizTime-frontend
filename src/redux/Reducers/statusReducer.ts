@@ -35,7 +35,6 @@ export const statusReducer = (state = initialState, action: any): StatusesState 
       };
     }
 
-
     default: {
       return state;
     }

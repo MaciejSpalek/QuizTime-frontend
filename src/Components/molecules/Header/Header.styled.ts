@@ -1,4 +1,3 @@
-import Paragraph from "Components/atoms/Paragraph";
 import styled from "styled-components";
 import colors from "styles/colors";
 import { FlexCenter, FlexColumn } from "styles/Mixins";
@@ -8,6 +7,7 @@ export const StyledHeader = styled.header`
   position: relative;
   ${FlexCenter};
   align-items: flex-start;
+  justify-content: flex-start;
   height: calc(100vh - 2 * 60px);
   min-height: 460px;
   background-color: ${colors.Gray120};
@@ -19,6 +19,8 @@ export const StyledHeader = styled.header`
 export const StyledWrapper = styled.div`
   ${FlexColumn};
   align-items: flex-start;
+  width: auto;
+  height: 100px;
 `;
 
 export const StyledHeading = styled.h1`
@@ -43,13 +45,13 @@ export const StyledHeading = styled.h1`
   }
 `;
 
-export const StyledParagraph = styled(Paragraph)`
+export const StyledParagraph = styled.p`
   font-size: 22px;
   font-weight: normal;
   line-height: 1.2;
-  color: ${colors.Gray40};
+  color: ${colors.Gray20};
   @media (min-width: 600px) {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   @media (min-height: 1024px) and (orientation: portrait) {
@@ -92,3 +94,9 @@ export const StyledHeaderIcon = styled(HeaderIcon)`
     height: 800px;
   }
 `;
+
+export const StyledStrong = styled.strong`
+  color: ${colors.BasicGreen};
+`;
+
+
