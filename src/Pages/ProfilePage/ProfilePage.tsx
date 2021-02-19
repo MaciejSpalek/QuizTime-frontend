@@ -9,7 +9,7 @@ import ErrorPage from 'Pages/ErrorPage';
 import { StyledWrapper, StyledStepWrapper,StyledPreloaderScreen } from './ProfilePage.styled';
 import { AddingStep, ThumbnailStep, SubmitStep } from 'Components/organisms/PanelSteps';
 import { answers, IErrors, IFormikValues, MatchParameters } from './ProfilePage.model';
-import { IFormColor, IFormQuestion, IQuizTemplate } from 'Interfaces/quizInterfaces';
+import { IQuizTemplate } from 'Interfaces/quizInterfaces';
 import { addQuiz, fetchSingleUser, fetchUserQuizzes } from 'services/requests';
 import { setAddQuizButtonStatus } from 'redux/Actions/statusActions';
 import { setToastParameters } from 'redux/Actions/toastActions';
@@ -24,10 +24,8 @@ import { useWindowSize } from 'hooks';
 
 const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
   const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.status.addQuizButtonStatus);
-  const formQuestions = useSelector<RootState, IFormQuestion[]>(state => state.quizzes.formQuestions);
+  const { formQuestions, formColor, formIconName } = useSelector((state: RootState) => state.quizzes);
   const loggedUser = useSelector<RootState, string | null>(state => state.session.loggedUser);
-  const formColors = useSelector<RootState, IFormColor>(state => state.quizzes.formColor);
-  const formIconName = useSelector<RootState>(state => state.quizzes.formIconName);
   const [isModalActive, setIsModalActive] = useState(false);
   const [doesUserExist, setDoesUserExist] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
@@ -49,8 +47,8 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
       amountOfQuestions: formQuestions.length,
       questions: formQuestions,
       colors: {
-        primary: formColors.primary,
-        secondary: formColors.secondary
+        primary: formColor.primary,
+        secondary: formColor.secondary
       }
     };
   };

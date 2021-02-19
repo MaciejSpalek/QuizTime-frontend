@@ -22,11 +22,11 @@ import {
 } from './AuthPage.styled';
 
 const AuthPage = ({ history }: RouteComponentProps) => {
-    const dispatch = useDispatch();
-    const [isFirstRender, setIsFirstRender] = useState(true);
-    const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
+    const { loggedUser, isAuthenticated } = useSelector((state: RootState) => state.session);
     const serverStatus = useSelector<RootState>(state => state.status.isTheServerConnected);
-    const user = useSelector<RootState, string | null>(state => state.session.loggedUser);
+    const [isFirstRender, setIsFirstRender] = useState(true);
+    const dispatch = useDispatch();
+    
 
     const isLoginRoute = () => history.location.pathname === routes.login;
     const isDisabledButton = (errors: any, touched: any, isSubmitting: boolean) => {
@@ -69,10 +69,10 @@ const AuthPage = ({ history }: RouteComponentProps) => {
     useEffect(() => {
         if (isAuthenticated) {
             setTimeout(() => {
-                history.push(`/${user}`);
+                history.push(`/${loggedUser}`);
             }, 500);
         }
-    }, [isAuthenticated, history, user]);
+    }, [isAuthenticated, history, loggedUser]);
 
     return (
         <StyledContainer>

@@ -20,9 +20,8 @@ import {
 
 
 const Menu = () => {
-    const isAuthenticated = useSelector<RootState, boolean>(state => state.session.isAuthenticated);
     const hamburgerStatus = useSelector<RootState, boolean>(state => state.status.hamburgerStatus);
-    const user = useSelector<RootState, string | null>(state => state.session.loggedUser);
+    const { loggedUser, isAuthenticated } = useSelector((state: RootState) => state.session);
     const menuRef = useRef<HTMLUListElement>(null);
     const dispatch = useDispatch();
     const width = useWindowSize();
@@ -67,8 +66,8 @@ const Menu = () => {
                 {isAuthenticated &&
                     <StyledItem>
                         <StyledNavLink
-                            text={`${user}`}
-                            to={`/${user}`}
+                            text={`${loggedUser}`}
+                            to={`/${loggedUser}`}
                             isNavLink={true}
                             aria-label="User profile"
                             onClick={handleOnClick}>

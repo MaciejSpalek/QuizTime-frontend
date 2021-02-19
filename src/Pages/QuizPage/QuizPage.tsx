@@ -19,12 +19,12 @@ import { Formik } from 'formik';
 
 const QuizPage = ({ match }: TQuizPage): JSX.Element => {
     const loggedUser = useSelector<RootState, string | null>(state => state.session.loggedUser);
-    const [quiz, setQuiz] = useState<IQuizTemplate | null>(null);
-    const [isFetch, setIsFetch] = useState(false);
-    const [isTheQuizOpen, setIsTheQuizOpen] = useState(false);
     const [isTheQuizSolved, setIsTheQuizSolved] = useState(false);
-    const [score, setScore] = useState('');
+    const [quiz, setQuiz] = useState<IQuizTemplate | null>(null);
+    const [isTheQuizOpen, setIsTheQuizOpen] = useState(false);
+    const [isFetch, setIsFetch] = useState(false);
     const [token] = useState(showCookie('token'));
+    const [score, setScore] = useState('');
 
     const dispatch = useDispatch();
     const getId = useCallback(() => match.params.id, [match.params.id]);
