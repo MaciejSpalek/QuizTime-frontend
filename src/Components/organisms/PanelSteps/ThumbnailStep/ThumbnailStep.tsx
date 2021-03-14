@@ -94,7 +94,7 @@ const ThumbnailStep = ({
           type={OptionType.COLOR}
           options={QuizThemes}
           selectCaption="Select theme"
-          handleOnClick={callback => handleColor(callback.value, OptionType.COLOR)}
+          onClick={callback => handleColor(callback.value, OptionType.COLOR)}
           selectedColor={formColors}
         />
         <StyledCategorySelect
@@ -102,7 +102,7 @@ const ThumbnailStep = ({
           options={QuizIcons}
           selectCaption="Select category"
           selectedIconName={`${formIconName}`}
-          handleOnClick={callback => handleIconName(callback.icon as IconName, OptionType.ICON)}
+          onClick={callback => handleIconName(callback.icon as IconName, OptionType.ICON)}
         />
       </StyledInputWrapper>
     </StyledContainter>

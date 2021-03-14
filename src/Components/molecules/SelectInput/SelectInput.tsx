@@ -4,7 +4,7 @@ import { ISelectInput } from './SelectInput.model';
 
 const SelectInput = ({ 
   options, 
-  handleOnClick, 
+  onClick, 
   selectCaption, 
   selectedColor, 
   selectedIconName, 
@@ -13,7 +13,7 @@ const SelectInput = ({
 }: ISelectInput): JSX.Element => {
   return ( 
     <Select 
-      handleOnClick={handleOnClick} 
+      onClick={onClick} 
       options={options} 
       selectCaption={selectCaption} 
       selectedIconName={selectedIconName} 

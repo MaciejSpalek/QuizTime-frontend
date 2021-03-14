@@ -15,7 +15,7 @@ import { ISingleOption } from '../SelectInput.model';
 import { useOutsideClick } from 'hooks';
 
 const Select = ({
-  handleOnClick,
+  onClick,
   options,
   selectCaption,
   type,
@@ -24,9 +24,9 @@ const Select = ({
   ...props
 }: ISelect): JSX.Element => {
   const selectRef = useRef<HTMLDivElement>(null);
-  const [selectedOption, setSelectedOption] = useState<ISingleOption>({ id: "", title: "" });
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [currentOptionId, setCurrentOptionId] = useState<string>("");
+  const [selectedOption, setSelectedOption] = useState({ id: "", title: "" });
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentOptionId, setCurrentOptionId] = useState("");
 
   useOutsideClick(selectRef, () => {
     setIsOpen(false);
@@ -38,8 +38,8 @@ const Select = ({
   };
 
   useEffect(() => {
-    handleOnClick(selectedOption);
-  }, [selectedOption, handleOnClick]);
+    onClick(selectedOption);
+  }, [selectedOption]);
 
   return (
     <StyledWrapper {...props} ref={selectRef}>

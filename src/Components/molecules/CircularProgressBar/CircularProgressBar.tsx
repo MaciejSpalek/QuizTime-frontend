@@ -14,15 +14,14 @@ const CircularProgressBar = ({
     progress,
     strokeWidth
 }: IProgressBar) => {
+    const circleRef = useRef<SVGCircleElement>(null);
     const [offset, setOffset] = useState(0);
-    const circleRef = useRef(null);
-    const center = size / 2;
-    const radius = size / 2 - strokeWidth / 2;
-    const circumference = 2 * Math.PI * radius;
+    const [center] = useState(size / 2);
+    const [radius] = useState(size / 2 - strokeWidth / 2);
+    const [circumference] = useState(2 * Math.PI * radius);
 
     const manageProgress = useCallback(() => {
-        const progressOffset = (progress / 100) * circumference;
-        setOffset(progressOffset);
+        setOffset((progress / 100) * circumference);
         (circleRef as any).current.style = 'transition: stroke-dashoffset 1s ease-in-out';
     }, [progress, circumference]);
 

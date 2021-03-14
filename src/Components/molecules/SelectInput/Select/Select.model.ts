@@ -2,7 +2,7 @@ import { ISingleOption } from '../SelectInput.model';
 import { IFormColor } from "Interfaces/quizInterfaces";
 
 export interface ISelect {
-  handleOnClick: (selection: ISingleOption) => void;
+  onClick: (selection: ISingleOption) => void;
   options: ISingleOption[];
   selectCaption: string;
   selectedColor?: IFormColor;

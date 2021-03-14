@@ -4,11 +4,11 @@ export interface ISingleOption {
   id: string;
   title: string;
   value?: IFormColor;
-  icon?: string | string[];
+  icon?: string;
 };
 
 export interface ISelectInput {
-  handleOnClick: (selection: ISingleOption) => void;
+  onClick: (selection: ISingleOption) => void;
   options: ISingleOption[];
   selectCaption: string;
   selectedIconName?: string;

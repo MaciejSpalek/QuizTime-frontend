@@ -1,12 +1,13 @@
 import React, { RefObject, useRef } from 'react'
 import { clearInput, isInputTextMatch } from '../input';
-import { render } from '@testing-library/react'
+import { fireEvent, render, waitForElement,  } from '@testing-library/react'
+import { debug } from 'console';
 
 
 const Component = () => {
     const inputRef = useRef<HTMLInputElement>(null);
     return (
-        <input ref={inputRef} data-testid="Input" value="example" onChange={()=> {}}/>
+        <input ref={inputRef} data-testid="Input" value="example" />
     )
 }
 
@@ -23,8 +24,15 @@ describe('isInputTextMatch helper', () => {
 })
 
 describe('clearInput helper', () => {
-    test('If used function, input value should be clear', () => {
-        const { getByTestId } = render(<Component />)
-        const inputRef = getByTestId("Input")
+    test('If used function, input value should be clear', async () => {
+        const { findByTestId } = render(<Component />);
+        // const input = findByTestId('Input')
+
+        const inputNode = await waitForElement(() => 
+            findByTestId('Input')
+        )
+
+        fireEvent.change(inputNode, {target: { value: "DUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUPA"}})
+        
     });
 })

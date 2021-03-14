@@ -40,16 +40,17 @@ const Option = ({
   const handleOnOptionClick = useCallback(() => {
     manageIsSelectedState();
     updateSelectedOption(option);
-  }, [manageIsSelectedState, updateSelectedOption, option]);
+  }, [manageIsSelectedState, option, updateSelectedOption]);
 
 
   useEffect(() => {
     manageIsSelectedState();
+    console.log("Odpalam")
   }, [handleOnOptionClick, manageIsSelectedState]);
 
   return (
     <StyledOption
-      onClick={() => handleOnOptionClick()}
+      onClick={handleOnOptionClick}
       aria-selected={isSelected}
       isSelected={isSelected}
       role="option"
