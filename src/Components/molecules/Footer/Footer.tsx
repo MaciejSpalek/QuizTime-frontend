@@ -15,19 +15,19 @@ const Footer = () => {
       </StyledWrapper>
       <StyledWrapper>
         <StyledAnchor
-          aria-label="Check github profile"
+          aria-label="Check github repository"
           href="https://github.com/MaciejSpalek/QuizTime-frontend"
         >
           <StyledIcon icon={["fab", "github-square"]} />
         </StyledAnchor>
         <StyledAnchor
-          aria-label="Check github profile"
+          aria-label="Check my linkedin profile"
           href="https://www.linkedin.com/in/maciej-spałek"
         >
           <StyledIcon icon={["fab", "linkedin"]} />
         </StyledAnchor>
         <StyledAnchor
-          aria-label="Check github profile"
+          aria-label="Check my facebook profile"
           href="https://www.facebook.com/MaciekSpalek/"
         >
           <StyledIcon icon={["fab", "facebook-square"]} />

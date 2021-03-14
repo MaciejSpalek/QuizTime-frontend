@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { OptionType } from '../SelectInput.model';
-import { IOption } from './Option.model';
+import React, { useCallback, useEffect, useState } from "react";
+import { OptionType } from "../SelectInput.model";
+import { IOption } from "./Option.model";
 import {
   StyledOption,
   StyledOptionTitle,
@@ -8,9 +8,9 @@ import {
   StyledCheckedSquareIcon,
   StyledWrapper,
   StyledCategoryIcon,
-  StyledPaletteIcon
-} from './Option.styled';
-import { IconName } from '@fortawesome/fontawesome-svg-core';
+  StyledPaletteIcon,
+} from "./Option.styled";
+import { IconName } from "@fortawesome/fontawesome-svg-core";
 
 const Option = ({
   type,
@@ -22,18 +22,18 @@ const Option = ({
   const { title, value, icon } = option;
 
   const [isSelected, setIsSelected] = useState(() => {
-    if(type === OptionType.COLOR) {
-      return value?.primary === selectedColor?.primary
+    if (type === OptionType.COLOR) {
+      return value?.primary === selectedColor?.primary;
     } else {
       return icon === selectedIconName;
     }
   });
 
   const manageIsSelectedState = useCallback(() => {
-    if(type === OptionType.COLOR) {
-        setIsSelected(value?.primary === selectedColor?.primary)
+    if (type === OptionType.COLOR) {
+      setIsSelected(value?.primary === selectedColor?.primary);
     } else {
-        setIsSelected(icon === selectedIconName);
+      setIsSelected(icon === selectedIconName);
     }
   }, [icon, type, value, setIsSelected, selectedColor, selectedIconName]);
 
@@ -42,10 +42,8 @@ const Option = ({
     updateSelectedOption(option);
   }, [manageIsSelectedState, option, updateSelectedOption]);
 
-
   useEffect(() => {
     manageIsSelectedState();
-    console.log("Odpalam")
   }, [handleOnOptionClick, manageIsSelectedState]);
 
   return (
@@ -55,19 +53,29 @@ const Option = ({
       isSelected={isSelected}
       role="option"
     >
-      {type === OptionType.COLOR ?
+      {type === OptionType.COLOR ? (
         <StyledWrapper>
-          {isSelected ? <StyledCheckedSquareIcon icon="check-square" /> : <StyledCheckedSquareIcon icon={['far', 'square']}/>}
-            <StyledPaletteIcon icon="palette" value={`${value?.secondary}`} />
-            <StyledPaletteIcon icon="palette" value={`${value?.primary}`} />
-        </StyledWrapper> :
+          {isSelected ? (
+            <StyledCheckedSquareIcon icon="check-square" />
+          ) : (
+            <StyledCheckedSquareIcon icon={["far", "square"]} />
+          )}
+          <StyledPaletteIcon icon="palette" value={`${value?.secondary}`} />
+          <StyledPaletteIcon icon="palette" value={`${value?.primary}`} />
+        </StyledWrapper>
+      ) : (
         <StyledWrapper>
-          {isSelected ? <StyledCheckedSquareIcon icon="check-square"/> : <StyledCheckedSquareIcon icon={['far', 'square']}/>}
-            <StyledIconField>
-              <StyledCategoryIcon icon={icon as IconName}/>
-            </StyledIconField>
-            <StyledOptionTitle>{title}</StyledOptionTitle>
-        </StyledWrapper>}
+          {isSelected ? (
+            <StyledCheckedSquareIcon icon="check-square" />
+          ) : (
+            <StyledCheckedSquareIcon icon={["far", "square"]} />
+          )}
+          <StyledIconField>
+            <StyledCategoryIcon icon={icon as IconName} />
+          </StyledIconField>
+          <StyledOptionTitle>{title}</StyledOptionTitle>
+        </StyledWrapper>
+      )}
     </StyledOption>
   );
 };

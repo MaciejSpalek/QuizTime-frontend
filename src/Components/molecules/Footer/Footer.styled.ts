@@ -18,12 +18,12 @@ export const StyledWrapper = styled.div`
   ${FlexCenter};
   width: auto;
 `;
-                                                                                    
+
 export const StyledAnchor = styled.a`
   ${FlexCenter};
-  :focus > svg     {
+  :focus > svg {
     color: ${colors.Black};
-    }
+  }
 `;
 
 export const StyledIcon = styled(FontAwesomeIcon)`
