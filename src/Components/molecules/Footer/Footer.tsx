@@ -24,7 +24,13 @@ const Footer = () => {
           aria-label="Check github profile"
           href="https://www.linkedin.com/in/maciej-spałek"
         >
-          <StyledIcon icon={["fab","linkedin"]} />
+          <StyledIcon icon={["fab", "linkedin"]} />
+        </StyledAnchor>
+        <StyledAnchor
+          aria-label="Check github profile"
+          href="https://www.facebook.com/MaciekSpalek/"
+        >
+          <StyledIcon icon={["fab", "facebook-square"]} />
         </StyledAnchor>
       </StyledWrapper>
     </StyledFooter>
