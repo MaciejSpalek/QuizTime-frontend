@@ -3,5 +3,7 @@ export const routes = {
     login: '/login',
     register: '/register',
     profile: '/:username',
-    quiz: '/:username/:id'
+    quiz: '/:username/:id',
+    category: '/categories/:category'
+
 };

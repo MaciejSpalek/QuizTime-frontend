@@ -20,7 +20,7 @@ import {
   StyledList,
 } from "./QuizzesList.styled";
 
-const QuizzesList = ({ quizzes, matchUsername }: IQuizzesList) => {
+const QuizzesList = ({ title, quizzes, matchUsername }: IQuizzesList) => {
   const listRef = useRef<HTMLUListElement>(null);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -78,7 +78,7 @@ const QuizzesList = ({ quizzes, matchUsername }: IQuizzesList) => {
   return (
     <StyledContainer>
       <StyledHeading>
-        Quizzes (<StyledStrong>{quizzes.length}</StyledStrong>)
+        {title} (<StyledStrong>{quizzes.length}</StyledStrong>)
       </StyledHeading>
       {quizzes.length ? (
         <StyledList ref={listRef}>
@@ -91,7 +91,7 @@ const QuizzesList = ({ quizzes, matchUsername }: IQuizzesList) => {
             >
               <QuizThumbnail
                 score={scores[index]}
-                parameters={data}       
+                parameters={data}
                 isHover={true}
               />
             </StyledListItem>
@@ -103,10 +103,7 @@ const QuizzesList = ({ quizzes, matchUsername }: IQuizzesList) => {
           {isUserRoute() && (
             <>
               <Paragraph text="Add your first quiz!" />
-              <StyledButton handleOnClick={handleButton}>
-                {" "}
-                Just click!{" "}
-              </StyledButton>
+              <StyledButton handleOnClick={handleButton}>Add</StyledButton>
             </>
           )}
         </StyledPlaceholder>

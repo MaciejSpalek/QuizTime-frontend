@@ -10,6 +10,7 @@ import ErrorPage from 'Pages/ErrorPage';
 import QuizPage from 'Pages/QuizPage';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { routes } from 'routes/index';
+import CategoryPage from 'Pages/CategoryPage';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
                 <Route exact path={routes.home} component={Home} />
                 <Route exact path={routes.register} component={AuthPage} />
                 <Route exact path={routes.login} component={AuthPage} />
+                <Route exact path={routes.category} component={CategoryPage} />
                 <Route exact path={routes.profile} component={ProfilePage} />
                 <Route exact path={routes.quiz} component={QuizPage} />
                 <Route component={ErrorPage} />

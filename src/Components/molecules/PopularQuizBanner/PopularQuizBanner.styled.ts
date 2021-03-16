@@ -18,7 +18,6 @@ export const StyledTopWrapper = styled.div`
   ${FlexCenter};
   justify-content: space-between;
   padding: 10px;
-  border-bottom: 1px solid ${colors.Gray80};
 `;
 
 export const StyledBottomWrapper = styled.div`

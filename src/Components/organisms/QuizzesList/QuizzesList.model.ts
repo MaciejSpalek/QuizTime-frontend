@@ -4,6 +4,7 @@ import { IQuizTemplate } from "Interfaces/quizInterfaces";
 export interface IQuizzesList {
     quizzes: IQuizTemplate[];
     matchUsername?: string;
+    title: string;
 };
 
 export interface IScore {

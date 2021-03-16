@@ -193,7 +193,7 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
               openModal={() => setIsModalActive(true)}
             />
             {!addQuizButtonStatus ?
-              <QuizList quizzes={quizzes} matchUsername={match.params.username} /> :
+              <QuizList quizzes={quizzes} matchUsername={match.params.username} title="User quizzes"/> :
               <Formik
                 validateOnChange={true}
                 initialValues={{
