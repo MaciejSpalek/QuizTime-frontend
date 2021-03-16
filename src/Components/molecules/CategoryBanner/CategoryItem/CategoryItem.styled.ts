@@ -27,6 +27,14 @@ export const StyledIcon = styled(FontAwesomeIcon)`
 `;
 
 export const StyledParagraph = styled(Paragraph)`
-  font-size: 22px;
+  font-size: 18px;
   margin-left: 5px;
+
+  @media (min-width: 600px) {
+    font-size: 20px;
+  }
+
+  @media (min-width: 900px) {
+    font-size: 22px;
+  }
 `;
