@@ -13,8 +13,9 @@ import { useHistory } from "react-router";
 
 const CategoryBanner = ({}: ICategoryBanner): JSX.Element => {
   const history = useHistory();
-  const openCategory = (category: string) => history.push(`/categories/${category}`);
-  
+  const openCategory = (category: string) =>
+    history.push(`/categories/${category}`);
+
   return (
     <StyledContainer>
       <StyledTopWrapper>

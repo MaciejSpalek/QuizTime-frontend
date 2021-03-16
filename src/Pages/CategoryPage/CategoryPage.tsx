@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import PreloaderScreen from "Components/molecules/PreloaderScreen";
 import PageTemplate from "templates/UniversalTemplate";
 import QuizesList from "Components/organisms/QuizzesList";
-import {
-  fetchAllQuizzes,
-} from "services/requests";
+import { fetchAllQuizzes } from "services/requests";
 
 const CategoryPage = () => {
   const [quizzesFetchStatus, setQuizzesFetch] = useState(false);
@@ -24,7 +22,7 @@ const CategoryPage = () => {
   return (
     <PageTemplate>
       {quizzesFetchStatus ? (
-          <QuizesList quizzes={quizzes} title="The latest" />
+        <QuizesList quizzes={quizzes} title="The latest" />
       ) : (
         <PreloaderScreen />
       )}
