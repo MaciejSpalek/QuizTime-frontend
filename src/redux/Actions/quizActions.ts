@@ -22,6 +22,13 @@ export const setFormQuestions = (array: IFormQuestion[]) => (dispatch: any) => {
   });
 };
 
+export const setFormCategory = (category: string) => (dispatch: any) => {
+  dispatch({
+    type: QuizTypes.SET_FORM_CATEGORY,
+    payload: category,
+  });
+};
+
 export const setFormColor = (color: IFormColor) => (dispatch: any) => {
   dispatch({
     type: QuizTypes.SET_FORM_COLOR,

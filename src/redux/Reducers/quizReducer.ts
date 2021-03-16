@@ -10,6 +10,7 @@ type QuizState = {
   correctAnswersArray: any;
   formColor: IFormColor;
   formIconName: string;
+  formCategory: string;
 };
 
 const { value } = QuizThemes[0];
@@ -17,6 +18,7 @@ const initialState: QuizState = {
   formQuestionsCounter: 0,
   correctAnswersArray: [],
   userAnswersArray: [],
+  formCategory: "Person",
   formIconName: "male",
   formQuestions: [],
   formColor: value
@@ -34,6 +36,13 @@ export const quizReducer = (state = initialState, action: any): QuizState => {
       return {
         ...state,
         userAnswersArray: action.payload,
+      };
+    }
+
+    case QuizTypes.SET_FORM_CATEGORY: {
+      return {
+        ...state,
+        formCategory: action.payload,
       };
     }
 

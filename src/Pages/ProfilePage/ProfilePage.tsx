@@ -46,6 +46,7 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
       iconName: `${formIconName}`,
       amountOfQuestions: formQuestions.length,
       questions: formQuestions,
+      category: "dupa",
       colors: {
         primary: formColor.primary,
         secondary: formColor.secondary

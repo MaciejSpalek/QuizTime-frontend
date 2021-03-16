@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import ErrorMessage from 'Components/atoms/ErrorMessage';
 import Input from 'Components/atoms/Input/Input';
 import Label from 'Components/atoms/Label';
-import { setFormColor, setFormIconName } from 'redux/Actions/quizActions';
+import { setFormCategory, setFormColor, setFormIconName } from 'redux/Actions/quizActions';
 import { OptionType } from 'Components/molecules/SelectInput/SelectInput.model';
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { QuizIcons, QuizThemes } from 'helpers/constants';
@@ -47,9 +47,10 @@ const ThumbnailStep = ({
       setTitle('Example title')
   }, [values, setTitle]);
 
-  const handleIconName = (iconName: string, type: string) => {
+  const handleIconName = (iconName: string, type: string, category: string) => {
     if (type === OptionType.ICON && typeof iconName !== 'undefined') {
       dispatch(setFormIconName(iconName));
+      dispatch(setFormCategory(category));
     }
   };
 
@@ -66,7 +67,8 @@ const ThumbnailStep = ({
           author: `${author}`,
           iconName: `${formIconName}`,
           colors: formColors,
-          amountOfQuestions: 5
+          amountOfQuestions: 5,
+          category: "Person"
         }}
         score={`1/5`}
         isHover={false}
@@ -102,7 +104,7 @@ const ThumbnailStep = ({
           options={QuizIcons}
           selectCaption="Select category"
           selectedIconName={`${formIconName}`}
-          onClick={callback => handleIconName(callback.icon as IconName, OptionType.ICON)}
+          onClick={callback => handleIconName(callback.icon as IconName, OptionType.ICON, callback.title)}
         />
       </StyledInputWrapper>
     </StyledContainter>

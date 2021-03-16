@@ -7,6 +7,7 @@ export interface IQuizTemplate {
   counter?: number;
   amountOfQuestions?: number;
   questions?: IQuestion[];
+  category: string;
 };
 
 export interface IFormColor {
