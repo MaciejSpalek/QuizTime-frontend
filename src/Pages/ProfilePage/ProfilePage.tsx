@@ -24,7 +24,7 @@ import { useWindowSize } from 'hooks';
 
 const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
   const addQuizButtonStatus = useSelector<RootState, boolean>(state => state.status.addQuizButtonStatus);
-  const { formQuestions, formColor, formIconName } = useSelector((state: RootState) => state.quizzes);
+  const { formQuestions, formColor, formIconName, formCategory } = useSelector((state: RootState) => state.quizzes);
   const loggedUser = useSelector<RootState, string | null>(state => state.session.loggedUser);
   const [isModalActive, setIsModalActive] = useState(false);
   const [doesUserExist, setDoesUserExist] = useState(false);
@@ -46,7 +46,7 @@ const ProfilePage = ({ match }: RouteComponentProps<MatchParameters>) => {
       iconName: `${formIconName}`,
       amountOfQuestions: formQuestions.length,
       questions: formQuestions,
-      category: "dupa",
+      category: formCategory,
       colors: {
         primary: formColor.primary,
         secondary: formColor.secondary

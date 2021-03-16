@@ -12,6 +12,13 @@ export const fetchSingleQuiz = async (id: string, author: string) => {
   });
 };
 
+export const fetchCategoryQuizzes = async (category: string) => {
+  return await axiosInstance.get("/quiz/allCategoryQuizzes", {
+    params: { category },
+  });
+};
+
+
 export const addQuiz = async (data: IQuizTemplate, token: string) =>
   await axiosInstance.post("/quiz/addQuiz", data, {
     headers: { "auth-token": token },

@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import PreloaderScreen from "Components/molecules/PreloaderScreen";
 import PageTemplate from "templates/UniversalTemplate";
 import QuizesList from "Components/organisms/QuizzesList";
-import { fetchAllQuizzes } from "services/requests";
+import { fetchCategoryQuizzes } from "services/requests";
+import { TCategoryPage } from "./CategoryPage.model";
 
-const CategoryPage = () => {
+const CategoryPage = ({ match }: TCategoryPage) => {
   const [quizzesFetchStatus, setQuizzesFetch] = useState(false);
   const [quizzes, setQuizes] = useState([]);
 
   const setQuizzes = async () => {
-    fetchAllQuizzes().then(({ data }) => {
+    fetchCategoryQuizzes(match.params.category).then(({ data }) => {
       setQuizes(data);
       setQuizzesFetch(true);
     });
@@ -22,7 +23,7 @@ const CategoryPage = () => {
   return (
     <PageTemplate>
       {quizzesFetchStatus ? (
-        <QuizesList quizzes={quizzes} title="The latest" />
+        <QuizesList quizzes={quizzes} title={match.params.category} />
       ) : (
         <PreloaderScreen />
       )}

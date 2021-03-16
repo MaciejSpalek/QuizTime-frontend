@@ -8,13 +8,16 @@ import {
     StyledIcon,
 } from "./CategoryItem.styled";
 
-const CategoryItem = ({ icon, title }: ICategoryItem): JSX.Element => {
+const CategoryItem = ({ icon, title, quizzesCounter }: ICategoryItem): JSX.Element => {
   return (
     <StyledContainer>
+      <>
       <StyledIconWrapper>
         <StyledIcon icon={icon as IconName} />
       </StyledIconWrapper>
-      <StyledParagraph text={title} />
+      <StyledParagraph text={`${title} (${ quizzesCounter })`} />
+      </>
+      <div></div>
     </StyledContainer>
   );
 };
