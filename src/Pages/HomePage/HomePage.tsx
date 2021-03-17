@@ -50,9 +50,9 @@ const HomePage = () => {
     <PageTemplate>
       <SearchPanel quizzes={quizzes} users={users} />
       <Header />
-      <CategoryBanner quizzes={quizzes} />
       {quizzesFetchStatus && usersFetchStatus ? (
         <>
+          <CategoryBanner quizzes={quizzes} />
           {quiz && <PopularQuizBanner quiz={quiz} />}
           <QuizesList quizzes={quizzes} title="The latest" />
         </>

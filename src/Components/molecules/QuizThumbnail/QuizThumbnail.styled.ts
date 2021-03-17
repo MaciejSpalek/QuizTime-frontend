@@ -6,10 +6,7 @@ import { AbbreviateText, FlexCenter } from "styles/Mixins";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { increaseOpacity, increaseScale } from "styles/Animations";
 
-export const StyledContainer = styled.div<{
-  primary: string;
-  isHover: boolean | undefined;
-}>`
+export const StyledContainer = styled.div<{ primary: string, isHover: boolean | undefined }>`
   ${FlexCenter};
   min-width: 200px;
   position: relative;

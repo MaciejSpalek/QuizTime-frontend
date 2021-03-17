@@ -11,13 +11,10 @@ import {
 const CategoryItem = ({ icon, title, quizzesCounter }: ICategoryItem): JSX.Element => {
   return (
     <StyledContainer>
-      <>
       <StyledIconWrapper>
         <StyledIcon icon={icon as IconName} />
       </StyledIconWrapper>
       <StyledParagraph text={`${title} (${ quizzesCounter })`} />
-      </>
-      <div></div>
     </StyledContainer>
   );
 };

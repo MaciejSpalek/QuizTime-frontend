@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import PreloaderScreen from "Components/molecules/PreloaderScreen";
 import PageTemplate from "templates/UniversalTemplate";
 import QuizesList from "Components/organisms/QuizzesList";
 import { fetchCategoryQuizzes } from "services/requests";
 import { TCategoryPage } from "./CategoryPage.model";
+import { StyledPreloaderScreen } from "../ProfilePage/ProfilePage.styled";
 
 const CategoryPage = ({ match }: TCategoryPage) => {
   const [quizzesFetchStatus, setQuizzesFetch] = useState(false);
   const [quizzes, setQuizes] = useState([]);
 
-  const setQuizzes = async () => {
+  const setQuizzes = () => {
     fetchCategoryQuizzes(match.params.category).then(({ data }) => {
       setQuizes(data);
       setQuizzesFetch(true);
@@ -25,7 +25,7 @@ const CategoryPage = ({ match }: TCategoryPage) => {
       {quizzesFetchStatus ? (
         <QuizesList quizzes={quizzes} title={match.params.category} />
       ) : (
-        <PreloaderScreen />
+        <StyledPreloaderScreen />
       )}
     </PageTemplate>
   );

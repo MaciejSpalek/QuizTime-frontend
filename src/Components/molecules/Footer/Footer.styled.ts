@@ -39,4 +39,8 @@ export const StyledIcon = styled(FontAwesomeIcon)`
 export const StyledParagraph = styled(Paragraph)`
   color: ${colors.Gray20};
   font-weight: normal;
+  font-size: 16px;
+
+  @media (min-width: 600px) {font-size: 18px}
+  @media (min-width: 900px) {font-size: 20px}
 `;

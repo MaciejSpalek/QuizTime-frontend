@@ -31,13 +31,13 @@ const QuizzesList = ({ title, quizzes, matchUsername }: IQuizzesList) => {
   const [scores, setScores] = useState<string[]>([]);
   const [token] = useState(showCookie("token"));
 
-  const handleOnClick = (id: string, author: string, e?: any) => {
-    history.push(`${author}/${id}`);
+  const handleOnClick = (id: string, author: string) => {
+    history.replace({pathname: `/${author}/${id}`})
   };
 
   const onKeyPress = (id: string, author: string, e?: any) => {
     if (e.which === 13) {
-      history.push(`${author}/${id}`);
+      history.replace({pathname: `/${author}/${id}`})
     }
   };
 
@@ -87,13 +87,13 @@ const QuizzesList = ({ title, quizzes, matchUsername }: IQuizzesList) => {
               key={data._id}
               id={data._id}
               onKeyPress={(e) => onKeyPress(`${data._id}`, `${data.author}`, e)}
-              onClick={(e) => handleOnClick(`${data._id}`, `${data.author}`, e)}
+              onClick={() => handleOnClick(`${data._id}`, `${data.author}`)}
             >
-              <QuizThumbnail
-                score={scores[index]}
-                parameters={data}
-                isHover={true}
-              />
+                <QuizThumbnail
+                  score={scores[index]}
+                  parameters={data}
+                  isHover={true}
+                />
             </StyledListItem>
           ))}
         </StyledList>
